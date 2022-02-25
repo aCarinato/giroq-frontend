@@ -15,6 +15,8 @@ import axios from 'axios';
 // import parse from 'html-react-parser';
 import { Room, AcUnit, Star } from '@material-ui/icons';
 // import { format } from 'timeago.js';
+import Register from './components/Register';
+import Login from './components/Login';
 
 function Home() {
   // const currentUsername = 'Jo';
@@ -25,12 +27,21 @@ function Home() {
   const [viewport, setViewport] = useState({
     latitude: 45,
     longitude: 15,
-    zoom: 7,
+    zoom: 4,
   });
-
+  const myStorage = window.localStorage;
+  const [currentUsername, setCurrentUsername] = useState(
+    myStorage.getItem('user')
+  );
   // const [showPopup, setShowPopup] = useState(true);
   const [pins, setPins] = useState([]);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
+  const [newPlace, setNewPlace] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [desc, setDesc] = useState(null);
+  const [star, setStar] = useState(0);
+  const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
   const [typeACheck, setTypeACheck] = useState(true);
   const [typeBCheck, setTypeBCheck] = useState(true);
@@ -40,42 +51,42 @@ function Home() {
     setViewport({ ...viewport, latitude: lat, longitude: long });
   };
 
-  // const handleAddClick = (e) => {
-  //   console.log(e.lngLat);
-  //   const longitude = e.lngLat.lng;
-  //   const latitude = e.lngLat.lat;
-  //   // console.log([longitude, latitude]);
-  //   setViewport({ ...viewport, latitude: latitude, longitude: longitude });
-  //   setNewPlace({
-  //     lat: latitude,
-  //     long: longitude,
-  //   });
-  // };
+  const handleAddClick = (e) => {
+    console.log(e.lngLat);
+    const longitude = e.lngLat.lng;
+    const latitude = e.lngLat.lat;
+    // console.log([longitude, latitude]);
+    setViewport({ ...viewport, latitude: latitude, longitude: longitude });
+    setNewPlace({
+      lat: latitude,
+      long: longitude,
+    });
+  };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const newPin = {
-  //     username: currentUsername,
-  //     title,
-  //     desc,
-  //     // rating: star,
-  //     lat: newPlace.lat,
-  //     long: newPlace.long,
-  //     type: 'A',
-  //   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newPin = {
+      username: currentUsername,
+      title,
+      desc,
+      // rating: star,
+      lat: newPlace.lat,
+      long: newPlace.long,
+      type: 'A',
+    };
 
-  //   try {
-  //     const res = await axios.post('/pins', newPin);
-  //     setPins([...pins, res.data]);
-  //     setNewPlace(null);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+    try {
+      const res = await axios.post('/pins', newPin);
+      setPins([...pins, res.data]);
+      setNewPlace(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  const handleOnClose = () => {
-    setCurrentPlaceId(null);
-    console.log(currentPlaceId);
+  const handleLogout = () => {
+    setCurrentUsername(null);
+    myStorage.removeItem('user');
   };
 
   const handleTypeAChange = () => {
@@ -104,11 +115,17 @@ function Home() {
     <div>
       <Map
         {...viewport}
+        // initialViewState={{
+        //   latitude: 45,
+        //   longitude: 15,
+        //   zoom: 4,
+        // }}
         style={{ width: '100vw', height: '100vh' }}
         mapStyle="mapbox://styles/mapbox/streets-v11"
+        // transitionDuration="1000"
         mapboxAccessToken={MAPBOX_TOKEN}
         onMove={(evt) => setViewport(evt.viewState)}
-        // onDblClick={currentUsername && handleAddClick}
+        onDblClick={currentUsername && handleAddClick}
       >
         <GeolocateControl />
         <FullscreenControl />
@@ -125,7 +142,7 @@ function Home() {
             > */}
             {/* <parse({p.icon}) style={{ fontSize: viewport.zoom * 5, color: 'red' }} /> */}
 
-            {p.type === 'A' && typeACheck && (
+            {p.type === 'a' && typeACheck && (
               <Marker
                 key={p._id}
                 longitude={p.long}
@@ -135,7 +152,6 @@ function Home() {
                 // anchor="bottom"
               >
                 <AcUnit
-                  key={p._id}
                   className="markerAcUnit"
                   style={{ fontSize: viewport.zoom * 5 }}
                   onClick={() => handleMarkerClick(p._id, p.lat, p.long)}
@@ -144,7 +160,7 @@ function Home() {
               </Marker>
             )}
 
-            {p.type === 'B' && typeBCheck && (
+            {p.type === 'b' && typeBCheck && (
               <Marker
                 key={p._id}
                 longitude={p.long}
@@ -154,7 +170,6 @@ function Home() {
                 // anchor="bottom"
               >
                 <Room
-                  key={p._id}
                   className="markerRoom"
                   style={{ fontSize: viewport.zoom * 5 }}
                   onClick={() => handleMarkerClick(p._id, p.lat, p.long)}
@@ -168,16 +183,21 @@ function Home() {
                 longitude={p.long}
                 latitude={p.lat}
                 anchor="left"
-                onClose={handleOnClose}
+                // onClose={() => setCurrentPlaceId(null)}
                 // onClose={() => setShowPopup(false)}
               >
                 <div className="card">
-                  <label>Evento</label>
-                  <p className="desc">{p.title}</p>
+                  <label>Place</label>
+                  <h4 className="place">{p.title}</h4>
+                  <label>Review</label>
+                  <p className="desc">{p.desc}</p>
+                  <label>Rating</label>
+                  <div className="stars">
+                    {Array(p.rating).fill(<Star className="star" />)}
+                  </div>
                   <label>Information</label>
-                  <p>{p.description}</p>
                   <span className="username">
-                    Created by <b>{p.organiser}</b>
+                    Created by <b>{p.username}</b>
                   </span>
                   {/* <span className="date">{format(p.createdAt)}</span> */}
                 </div>
@@ -185,6 +205,71 @@ function Home() {
             )}
           </>
         ))}
+
+        {newPlace && (
+          <>
+            <Popup
+              longitude={newPlace.long}
+              latitude={newPlace.lat}
+              anchor="left"
+              onClose={() => setNewPlace(null)}
+              // onClose={() => setShowPopup(false)}
+            >
+              <div>
+                <form onSubmit={handleSubmit}>
+                  <label>Title</label>
+                  <input
+                    placeholder="Enter a title"
+                    autoFocus
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                  <label>Description</label>
+                  <textarea
+                    placeholder="Say us something about this place."
+                    onChange={(e) => setDesc(e.target.value)}
+                  />
+                  <label>Rating</label>
+                  <select onChange={(e) => setStar(e.target.value)}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <button type="submit" className="submitButton">
+                    Add Pin
+                  </button>
+                </form>
+              </div>
+            </Popup>
+          </>
+        )}
+        {currentUsername ? (
+          <button className="button logout" onClick={handleLogout}>
+            Log out
+          </button>
+        ) : (
+          <div className="buttons">
+            <button className="button login" onClick={() => setShowLogin(true)}>
+              Log in
+            </button>
+            <button
+              className="button register"
+              onClick={() => setShowRegister(true)}
+            >
+              Register
+            </button>
+          </div>
+        )}
+
+        {showRegister && <Register setShowRegister={setShowRegister} />}
+        {showLogin && (
+          <Login
+            setShowLogin={setShowLogin}
+            setCurrentUsername={setCurrentUsername}
+            myStorage={myStorage}
+          />
+        )}
 
         <div id="filter-group" className="filter-group">
           <div>
@@ -195,7 +280,7 @@ function Home() {
               defaultChecked
               onChange={handleTypeAChange}
             />
-            <label htmlFor="typeA">Type A</label>
+            <label for="typeA">Type A</label>
           </div>
           <div>
             <input
@@ -205,7 +290,7 @@ function Home() {
               defaultChecked
               onChange={handleTypeBChange}
             />
-            <label htmlFor="typeB">Type B</label>
+            <label for="typeB">Type B</label>
           </div>
         </div>
       </Map>
@@ -214,3 +299,18 @@ function Home() {
 }
 
 export default Home;
+
+// const Home = () => {
+//   return (
+//     <div className="container">
+//       <div className="row">
+//         <div className="column">
+//           <h1 className="display-1 text-center py-5">giroq</h1>
+//           {/* {JSON.stringify(state)} */}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Home;

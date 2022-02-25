@@ -1,4 +1,4 @@
-// import '../styles/globals.css'
+import '../styles/globals.css';
 // const bootstrap = require('bootstrap');
 import 'bootstrap/dist/css/bootstrap.min.css';
 
