@@ -1,6 +1,3 @@
-// import './App.css';
-// import styles from '../styles/Home.module.css';
-// import * as React from 'react';
 import Map, {
   Marker,
   Popup,
@@ -9,7 +6,7 @@ import Map, {
   NavigationControl,
   ScaleControl,
 } from 'react-map-gl';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import axios from 'axios';
 // import parse from 'html-react-parser';
@@ -23,59 +20,35 @@ function Home() {
   const MAPBOX_TOKEN =
     'pk.eyJ1Ijoicm9zYWNyb2NlIiwiYSI6ImNrenU1eThxZzRzOTAybm55NWU0Y2JvNnQifQ.8-Iz1krxCOtnbCx0iBkBEg';
   const [viewport, setViewport] = useState({
-    latitude: 45,
-    longitude: 15,
-    zoom: 7,
+    latitude: 45.5,
+    longitude: 12,
+    zoom: 6.75,
   });
 
-  // const [showPopup, setShowPopup] = useState(true);
   const [pins, setPins] = useState([]);
+
+  const [showPopup, setShowPopup] = useState(false);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
 
   const [typeACheck, setTypeACheck] = useState(true);
   const [typeBCheck, setTypeBCheck] = useState(true);
 
   const handleMarkerClick = (id, lat, long) => {
+    console.log(`MOUSE ENTRATO`);
+    console.log(`currentPlaceId (before setting it): ${currentPlaceId}`);
     setCurrentPlaceId(id);
-    setViewport({ ...viewport, latitude: lat, longitude: long });
+    // setViewport({ ...viewport, latitude: lat, longitude: long });
+    console.log(`currentPlaceId: ${currentPlaceId}`);
+    console.log(`----------------`);
+    // if (!showPopup) setShowPopup(true);
+    // console.log(`mouse entrato. showPopup = ${showPopup}`);
   };
-
-  // const handleAddClick = (e) => {
-  //   console.log(e.lngLat);
-  //   const longitude = e.lngLat.lng;
-  //   const latitude = e.lngLat.lat;
-  //   // console.log([longitude, latitude]);
-  //   setViewport({ ...viewport, latitude: latitude, longitude: longitude });
-  //   setNewPlace({
-  //     lat: latitude,
-  //     long: longitude,
-  //   });
-  // };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const newPin = {
-  //     username: currentUsername,
-  //     title,
-  //     desc,
-  //     // rating: star,
-  //     lat: newPlace.lat,
-  //     long: newPlace.long,
-  //     type: 'A',
-  //   };
-
-  //   try {
-  //     const res = await axios.post('/pins', newPin);
-  //     setPins([...pins, res.data]);
-  //     setNewPlace(null);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   const handleOnClose = () => {
     setCurrentPlaceId(null);
-    console.log(currentPlaceId);
+    console.log(`mouse uscito. currentPlaceId= ${currentPlaceId}`);
+    setShowPopup(false);
+    console.log(`mouse left. showPopup = ${showPopup}`);
   };
 
   const handleTypeAChange = () => {
@@ -101,114 +74,92 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      <Map
-        {...viewport}
-        style={{ width: '100vw', height: '100vh' }}
-        mapStyle="mapbox://styles/mapbox/streets-v11"
-        mapboxAccessToken={MAPBOX_TOKEN}
-        onMove={(evt) => setViewport(evt.viewState)}
-        // onDblClick={currentUsername && handleAddClick}
-      >
-        <GeolocateControl />
-        <FullscreenControl />
-        <NavigationControl />
-        <ScaleControl />
-        {pins.map((p) => (
-          <>
-            {/* <Marker
-              key={p._id}
-              longitude={p.long}
-              latitude={p.lat}
-              offsetLeft={-3.5 * viewport.zoom}
-              offsetTop={-7 * viewport.zoom}
-            > */}
-            {/* <parse({p.icon}) style={{ fontSize: viewport.zoom * 5, color: 'red' }} /> */}
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-lg-4">SX</div>
+        <div className="col-lg-4">CX</div>
+        <div className="col-lg-4">DX</div>
+      </div>
+      <div className="row">
+        <div className="col-lg-3">SX</div>
+        <div className="col-lg-6">
+          <Map
+            {...viewport}
+            style={{ height: '50vh' }}
+            mapStyle="mapbox://styles/mapbox/streets-v11"
+            mapboxAccessToken={MAPBOX_TOKEN}
+            onMove={(evt) => setViewport(evt.viewState)}
+            // onDblClick={currentUsername && handleAddClick}
+          >
+            <GeolocateControl />
+            <FullscreenControl />
+            <NavigationControl />
+            {/* <ScaleControl /> */}
+            {typeACheck &&
+              pins.map((p) => (
+                <Fragment key={p._id}>
+                  <Marker
+                    key={p._id}
+                    longitude={p.long}
+                    latitude={p.lat}
+                    offsetLeft={-3.5 * viewport.zoom}
+                    offsetTop={-7 * viewport.zoom}
+                  >
+                    {' '}
+                    <div>
+                      <AcUnit
+                        key={p._id}
+                        className="markerAcUnit"
+                        style={{ fontSize: viewport.zoom * 1.5 }}
+                        onMouseEnter={() =>
+                          handleMarkerClick(p._id, p.lat, p.long)
+                        }
+                        onMouseLeave={handleOnClose}
+                      />
+                    </div>
+                  </Marker>
+                  {p._id === currentPlaceId && (
+                    <Popup longitude={p.long} latitude={p.lat} anchor="left">
+                      <div className="card">
+                        <label>Evento</label>
+                        <p className="desc">{p.title}</p>
+                        <label>Information</label>
+                        <p>{p.description}</p>
+                        <span className="username">
+                          Created by <b>{p.organiser}</b>
+                        </span>
+                      </div>
+                    </Popup>
+                  )}
+                </Fragment>
+              ))}
 
-            {p.type === 'A' && typeACheck && (
-              <Marker
-                key={p._id}
-                longitude={p.long}
-                latitude={p.lat}
-                offsetLeft={-3.5 * viewport.zoom}
-                offsetTop={-7 * viewport.zoom}
-                // anchor="bottom"
-              >
-                <AcUnit
-                  key={p._id}
-                  className="markerAcUnit"
-                  style={{ fontSize: viewport.zoom * 5 }}
-                  onClick={() => handleMarkerClick(p._id, p.lat, p.long)}
-                  // onMouseEnter={() => handleMarkerClick(p._id, p.lat, p.long)}
+            <div id="filter-group" className="filter-group">
+              <div>
+                <input
+                  type="checkbox"
+                  id="typeA"
+                  name="typeA"
+                  defaultChecked
+                  onChange={handleTypeAChange}
                 />
-              </Marker>
-            )}
-
-            {p.type === 'B' && typeBCheck && (
-              <Marker
-                key={p._id}
-                longitude={p.long}
-                latitude={p.lat}
-                offsetLeft={-3.5 * viewport.zoom}
-                offsetTop={-7 * viewport.zoom}
-                // anchor="bottom"
-              >
-                <Room
-                  key={p._id}
-                  className="markerRoom"
-                  style={{ fontSize: viewport.zoom * 5 }}
-                  onClick={() => handleMarkerClick(p._id, p.lat, p.long)}
-                  // onMouseEnter={() => handleMarkerClick(p._id, p.lat, p.long)}
+                <label htmlFor="typeA">Type A</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="typeB"
+                  name="typeB"
+                  defaultChecked
+                  onChange={handleTypeBChange}
                 />
-              </Marker>
-            )}
-            {/* </Marker> */}
-            {p._id === currentPlaceId && (
-              <Popup
-                longitude={p.long}
-                latitude={p.lat}
-                anchor="left"
-                onClose={handleOnClose}
-                // onClose={() => setShowPopup(false)}
-              >
-                <div className="card">
-                  <label>Evento</label>
-                  <p className="desc">{p.title}</p>
-                  <label>Information</label>
-                  <p>{p.description}</p>
-                  <span className="username">
-                    Created by <b>{p.organiser}</b>
-                  </span>
-                  {/* <span className="date">{format(p.createdAt)}</span> */}
-                </div>
-              </Popup>
-            )}
-          </>
-        ))}
-
-        <div id="filter-group" className="filter-group">
-          <div>
-            <input
-              type="checkbox"
-              id="typeA"
-              name="typeA"
-              defaultChecked
-              onChange={handleTypeAChange}
-            />
-            <label htmlFor="typeA">Type A</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="typeB"
-              name="typeB"
-              defaultChecked
-              onChange={handleTypeBChange}
-            />
-            <label htmlFor="typeB">Type B</label>
-          </div>
+                <label htmlFor="typeB">Type B</label>
+              </div>
+            </div>
+          </Map>
         </div>
-      </Map>
+        <div className="col-lg-3">DX</div>
+      </div>
     </div>
   );
 }
