@@ -130,27 +130,19 @@ function Home() {
                   >
                     {' '}
                     <div>
-                      {/* <AcUnit
-                        key={p._id}
-                        className="markerAcUnit"
-                        style={{ fontSize: viewport.zoom * 1.5 }}
-                        onMouseEnter={() =>
-                          handleMarkerClick(p._id, p.lat, p.long)
-                        }
-                        onMouseLeave={handleOnClose}
-                        onClick={() => handleOnMarkerClick(p._id)}
-                      /> */}
-
-                      <AcUnit
-                        key={p._id}
-                        className="markerAcUnit"
-                        style={{ fontSize: viewport.zoom * 1.5 }}
-                        onMouseEnter={() =>
-                          handleMarkerClick(p._id, p.lat, p.long)
-                        }
-                        onMouseLeave={handleOnClose}
-                        onClick={() => handleOnMarkerClick(p._id)}
-                      />
+                      <Link href={`/events/${p._id}`}>
+                        <a target="_blank">
+                          <AcUnit
+                            key={p._id}
+                            className="markerAcUnit"
+                            style={{ fontSize: viewport.zoom * 1.5 }}
+                            onMouseEnter={() =>
+                              handleMarkerClick(p._id, p.lat, p.long)
+                            }
+                            onMouseLeave={handleOnClose}
+                          />
+                        </a>
+                      </Link>
                     </div>
                   </Marker>
                   {p._id === currentPlaceId && (
@@ -163,7 +155,6 @@ function Home() {
                         <span className="username">
                           Created by <b>{p.organiser}</b>
                         </span>
-                        <Link href={`/events/${p._id}`}>Go to page</Link>
                       </div>
                     </Popup>
                   )}
@@ -182,16 +173,19 @@ function Home() {
                   >
                     {' '}
                     <div>
-                      <Room
-                        key={p._id}
-                        className="markerRoom"
-                        style={{ fontSize: viewport.zoom * 1.5 }}
-                        onMouseEnter={() =>
-                          handleMarkerClick(p._id, p.lat, p.long)
-                        }
-                        onMouseLeave={handleOnClose}
-                        onClick={() => handleOnMarkerClick(p._id)}
-                      />
+                      <Link href={`/events/${p._id}`}>
+                        <a target="_blank">
+                          <Room
+                            key={p._id}
+                            className="markerRoom"
+                            style={{ fontSize: viewport.zoom * 1.5 }}
+                            onMouseEnter={() =>
+                              handleMarkerClick(p._id, p.lat, p.long)
+                            }
+                            onMouseLeave={handleOnClose}
+                          />
+                        </a>
+                      </Link>
                     </div>
                   </Marker>
                   {p._id === currentPlaceId && (
