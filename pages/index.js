@@ -4,7 +4,6 @@ import Map, {
   GeolocateControl,
   FullscreenControl,
   NavigationControl,
-  ScaleControl,
 } from 'react-map-gl';
 import { useState, useEffect, Fragment } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -12,6 +11,8 @@ import axios from 'axios';
 // import parse from 'html-react-parser';
 import { Room, AcUnit, Star } from '@material-ui/icons';
 // import { format } from 'timeago.js';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 function Home() {
   // const currentUsername = 'Jo';
@@ -25,7 +26,8 @@ function Home() {
     zoom: 6.75,
   });
 
-  const [pins, setPins] = useState([]);
+  const router = useRouter();
+
   const [eventsTypeA, setEventsTypeA] = useState([]);
   const [eventsTypeB, setEventsTypeB] = useState([]);
 
@@ -37,20 +39,25 @@ function Home() {
 
   const handleMarkerClick = (id, lat, long) => {
     console.log(`MOUSE ENTRATO`);
-    console.log(`currentPlaceId (before setting it): ${currentPlaceId}`);
+    // console.log(`currentPlaceId (before setting it): ${currentPlaceId}`);
     setCurrentPlaceId(id);
     // setViewport({ ...viewport, latitude: lat, longitude: long });
-    console.log(`currentPlaceId: ${currentPlaceId}`);
-    console.log(`----------------`);
+    // console.log(`currentPlaceId: ${currentPlaceId}`);
+    // console.log(`----------------`);
     // if (!showPopup) setShowPopup(true);
-    // console.log(`mouse entrato. showPopup = ${showPopup}`);
   };
 
   const handleOnClose = () => {
     setCurrentPlaceId(null);
-    console.log(`mouse uscito. currentPlaceId= ${currentPlaceId}`);
+    // console.log(`mouse uscito. currentPlaceId= ${currentPlaceId}`);
     setShowPopup(false);
-    console.log(`mouse left. showPopup = ${showPopup}`);
+    // console.log(`mouse left. showPopup = ${showPopup}`);
+  };
+
+  const handleOnMarkerClick = (id) => {
+    const fullPath = `/events/${id}`;
+
+    router.push(fullPath);
   };
 
   const handleTypeAChange = () => {
@@ -60,20 +67,6 @@ function Home() {
   const handleTypeBChange = () => {
     setTypeBCheck(!typeBCheck);
   };
-
-  useEffect(() => {
-    const getPins = async () => {
-      try {
-        const allPins = await axios.get(
-          `${process.env.NEXT_PUBLIC_API}/events`
-        );
-        setPins(allPins.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getPins();
-  }, []);
 
   useEffect(() => {
     const getTypeA = async () => {
@@ -145,7 +138,11 @@ function Home() {
                           handleMarkerClick(p._id, p.lat, p.long)
                         }
                         onMouseLeave={handleOnClose}
+                        onClick={() => handleOnMarkerClick(p._id)}
                       />
+                      {/* <Link href={`/events/${p._id}`}>
+                        <a></a>
+                      </Link> */}
                     </div>
                   </Marker>
                   {p._id === currentPlaceId && (
@@ -184,6 +181,7 @@ function Home() {
                           handleMarkerClick(p._id, p.lat, p.long)
                         }
                         onMouseLeave={handleOnClose}
+                        onClick={() => handleOnMarkerClick(p._id)}
                       />
                     </div>
                   </Marker>
