@@ -26,6 +26,8 @@ function Home() {
   });
 
   const [pins, setPins] = useState([]);
+  const [eventsTypeA, setEventsTypeA] = useState([]);
+  const [eventsTypeB, setEventsTypeB] = useState([]);
 
   const [showPopup, setShowPopup] = useState(false);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
@@ -73,6 +75,34 @@ function Home() {
     getPins();
   }, []);
 
+  useEffect(() => {
+    const getTypeA = async () => {
+      try {
+        const eventsTypeA = await axios.get(
+          `${process.env.NEXT_PUBLIC_API}/events/typea`
+        );
+        setEventsTypeA(eventsTypeA.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getTypeA();
+  }, []);
+
+  useEffect(() => {
+    const getTypeB = async () => {
+      try {
+        const eventsTypeB = await axios.get(
+          `${process.env.NEXT_PUBLIC_API}/events/typeb`
+        );
+        setEventsTypeB(eventsTypeB.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getTypeB();
+  }, []);
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -96,7 +126,7 @@ function Home() {
             <NavigationControl />
             {/* <ScaleControl /> */}
             {typeACheck &&
-              pins.map((p) => (
+              eventsTypeA.map((p) => (
                 <Fragment key={p._id}>
                   <Marker
                     key={p._id}
@@ -110,6 +140,45 @@ function Home() {
                       <AcUnit
                         key={p._id}
                         className="markerAcUnit"
+                        style={{ fontSize: viewport.zoom * 1.5 }}
+                        onMouseEnter={() =>
+                          handleMarkerClick(p._id, p.lat, p.long)
+                        }
+                        onMouseLeave={handleOnClose}
+                      />
+                    </div>
+                  </Marker>
+                  {p._id === currentPlaceId && (
+                    <Popup longitude={p.long} latitude={p.lat} anchor="left">
+                      <div className="card">
+                        <label>Evento</label>
+                        <p className="desc">{p.title}</p>
+                        <label>Information</label>
+                        <p>{p.description}</p>
+                        <span className="username">
+                          Created by <b>{p.organiser}</b>
+                        </span>
+                      </div>
+                    </Popup>
+                  )}
+                </Fragment>
+              ))}
+
+            {typeBCheck &&
+              eventsTypeB.map((p) => (
+                <Fragment key={p._id}>
+                  <Marker
+                    key={p._id}
+                    longitude={p.long}
+                    latitude={p.lat}
+                    offsetLeft={-3.5 * viewport.zoom}
+                    offsetTop={-7 * viewport.zoom}
+                  >
+                    {' '}
+                    <div>
+                      <Room
+                        key={p._id}
+                        className="markerRoom"
                         style={{ fontSize: viewport.zoom * 1.5 }}
                         onMouseEnter={() =>
                           handleMarkerClick(p._id, p.lat, p.long)
