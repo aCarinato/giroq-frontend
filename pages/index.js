@@ -29,29 +29,36 @@ function Home() {
 
   // const router = useRouter();
 
-  const [eventsTypeA, setEventsTypeA] = useState([]);
-  const [eventsTypeB, setEventsTypeB] = useState([]);
+  const today = new Date();
 
+  const [date, setDate] = useState(today);
+  // const [resultDate, setResultDate] = useState([]);
+
+  const [events, setEvents] = useState([]);
+
+  // const [showPopup, setShowPopup] = useState(false);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
 
   const [typeACheck, setTypeACheck] = useState(true);
   const [typeBCheck, setTypeBCheck] = useState(true);
 
-  // const handleMarkerClick = (id, lat, long) => {
-  //   console.log(`MOUSE ENTRATO`);
-  // console.log(`currentPlaceId (before setting it): ${currentPlaceId}`);
-  // setCurrentPlaceId(id);
-  // setViewport({ ...viewport, latitude: lat, longitude: long });
-  // console.log(`currentPlaceId: ${currentPlaceId}`);
-  // console.log(`----------------`);
-  // if (!showPopup) setShowPopup(true);
-  // };
+  const handleMarkerClick = (id, lat, long) => {
+    console.log(`MOUSE ENTRATO`);
+    // console.log(`currentPlaceId (before setting it): ${currentPlaceId}`);
+    setCurrentPlaceId(id);
+    // setViewport({ ...viewport, latitude: lat, longitude: long });
+    // console.log(`currentPlaceId: ${currentPlaceId}`);
+    // console.log(`----------------`);
+    // if (!showPopup) setShowPopup(true);
+  };
 
-  // const handleOnClose = () => {
-  //   setCurrentPlaceId(null);
-  // console.log(`mouse uscito. currentPlaceId= ${currentPlaceId}`);
-  // console.log(`mouse left. showPopup = ${showPopup}`);
-  // };
+  const handleOnClose = () => {
+    setCurrentPlaceId(null);
+    // console.log(`mouse uscito. currentPlaceId= ${currentPlaceId}`);
+    // setShowPopup(false);
+    // console.log(`mouse left. showPopup = ${showPopup}`);
+  };
+
 
   // const handleOnMarkerClick = (id) => {
   //   const fullPath = `/events/${id}`;
@@ -59,41 +66,46 @@ function Home() {
   //   router.push(fullPath);
   // };
 
-  // const handleTypeAChange = () => {
-  //   setTypeACheck(!typeACheck);
-  // };
 
-  // const handleTypeBChange = () => {
-  //   setTypeBCheck(!typeBCheck);
-  // };
-  const handleDateSelection = (e) => console.log(e.target.value);
+  const handleTypeAChange = () => {
+    setTypeACheck(!typeACheck);
+  };
 
-  useEffect(() => {
-    const getTypeA = async () => {
+  const handleTypeBChange = () => {
+    setTypeBCheck(!typeBCheck);
+  };
+
+  // const handleSelectDate = (e) => {
+  //   console.log(e.target.value);
+  // };
+  const searchDates = async (e) => {
+    setDate(e.target.value);
+    e.preventDefault();
+    // console.log(`Find "${query}" f rom db`);
+    try {
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_API}/events/${date}`
+      );
+      //  console.log("search user response => ", data);
+      // setResultDate(data);
+      setEvents(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+ useEffect(() => {
+    const getEvents = async () => {
       try {
-        const eventsA = await axios.get(
-          `${process.env.NEXT_PUBLIC_API}/events/typea`
+        const retrievedEvents = await axios.get(
+          `${process.env.NEXT_PUBLIC_API}/events`
         );
-        setEventsTypeA(eventsA.data);
+        setEvents(retrievedEvents.data);
       } catch (err) {
         console.log(err);
       }
     };
-    getTypeA();
-  }, []);
-
-  useEffect(() => {
-    const getTypeB = async () => {
-      try {
-        const eventsB = await axios.get(
-          `${process.env.NEXT_PUBLIC_API}/events/typeb`
-        );
-        setEventsTypeB(eventsB.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getTypeB();
+    getEvents();
   }, []);
 
   return (
@@ -117,11 +129,11 @@ function Home() {
             <GeolocateControl />
             <FullscreenControl />
             <NavigationControl />
-            {/* <MapboxGeocoder /> */}
             {/* <ScaleControl /> */}
-            {typeACheck &&
-              eventsTypeA.map((p) => (
-                <Fragment key={p._id}>
+
+            {events.map((p) => (
+              <Fragment key={p._id}>
+                {p.type === 'A' && typeACheck && (
                   <Marker
                     key={p._id}
                     longitude={p.long}
@@ -148,25 +160,8 @@ function Home() {
                       </Link>
                     </div>
                   </Marker>
-                  {p._id === currentPlaceId && (
-                    <Popup longitude={p.long} latitude={p.lat} anchor="left">
-                      <div className="card">
-                        <label>Evento</label>
-                        <p className="desc">{p.title}</p>
-                        <label>Information</label>
-                        <p>{p.description}</p>
-                        <span className="username">
-                          Created by <b>{p.organiser}</b>
-                        </span>
-                      </div>
-                    </Popup>
-                  )}
-                </Fragment>
-              ))}
-
-            {typeBCheck &&
-              eventsTypeB.map((p) => (
-                <Fragment key={p._id}>
+                )}
+                {p.type === 'B' && typeBCheck && (
                   <Marker
                     key={p._id}
                     longitude={p.long}
@@ -193,21 +188,26 @@ function Home() {
                       </Link>
                     </div>
                   </Marker>
-                  {p._id === currentPlaceId && (
-                    <Popup longitude={p.long} latitude={p.lat} anchor="left">
-                      <div className="card">
-                        <label>Evento</label>
-                        <p className="desc">{p.title}</p>
-                        <label>Information</label>
-                        <p>{p.description}</p>
-                        <span className="username">
-                          Created by <b>{p.organiser}</b>
-                        </span>
-                      </div>
-                    </Popup>
-                  )}
-                </Fragment>
-              ))}
+
+                )}
+
+                {p._id === currentPlaceId && (
+                  <Popup longitude={p.long} latitude={p.lat} anchor="left">
+                    <div className="card">
+                      <label>Evento</label>
+                      <p className="desc">{p.title}</p>
+                      <label>Information</label>
+                      <p>{p.description}</p>
+                      <span className="username">
+                        Created by <b>{p.organiser}</b>
+                      </span>
+                      <Link href={`/events/${p._id}`}>Go to page</Link>
+                    </div>
+                  </Popup>
+                )}
+              </Fragment>
+            ))}
+
 
             <div id="filter-group" className="filter-group">
               <div>
@@ -241,14 +241,21 @@ function Home() {
         <div className="col-lg-4">SX</div>
         <div className="col-lg-4">
           <form>
-            <label htmlFor="date-picker">Seleziona la data: </label>
+            <label htmlFor="events-date">Seleziona data:</label>
             <input
               type="date"
-              id="date-picker"
-              name="test-date"
-              // onChange={(e) => console.log(e.target.value)}
-              onChange={handleDateSelection}
+              id="events-date"
+              name="events-date"
+              value={date}
+              // onChange={(e) => {
+              // setDate(e.target.value);
+              // setResultDate([]);
+              // }}
+              onChange={searchDates}
             />
+            <button className="btn btn-outline-primary col-12" type="submit">
+              Search
+            </button>
           </form>
         </div>
         <div className="col-lg-4">DX</div>
