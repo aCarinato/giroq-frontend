@@ -28,9 +28,14 @@ function Home() {
 
   const router = useRouter();
 
+  const today = new Date();
+
+  const [date, setDate] = useState(today);
+  // const [resultDate, setResultDate] = useState([]);
+
   const [events, setEvents] = useState([]);
 
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
 
   const [typeACheck, setTypeACheck] = useState(true);
@@ -49,15 +54,15 @@ function Home() {
   const handleOnClose = () => {
     setCurrentPlaceId(null);
     // console.log(`mouse uscito. currentPlaceId= ${currentPlaceId}`);
-    setShowPopup(false);
+    // setShowPopup(false);
     // console.log(`mouse left. showPopup = ${showPopup}`);
   };
 
-  const handleOnMarkerClick = (id) => {
-    const fullPath = `/events/${id}`;
+  // const handleOnMarkerClick = (id) => {
+  //   const fullPath = `/events/${id}`;
 
-    router.push(fullPath);
-  };
+  //   router.push(fullPath);
+  // };
 
   const handleTypeAChange = () => {
     setTypeACheck(!typeACheck);
@@ -65,6 +70,25 @@ function Home() {
 
   const handleTypeBChange = () => {
     setTypeBCheck(!typeBCheck);
+  };
+
+  // const handleSelectDate = (e) => {
+  //   console.log(e.target.value);
+  // };
+  const searchDates = async (e) => {
+    setDate(e.target.value);
+    e.preventDefault();
+    // console.log(`Find "${query}" f rom db`);
+    try {
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_API}/events/${date}`
+      );
+      //  console.log("search user response => ", data);
+      // setResultDate(data);
+      setEvents(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -202,6 +226,30 @@ function Home() {
         </div>
         <div className="col-lg-3">DX</div>
       </div>
+      <div className="row">
+        <div className="col-lg-4">SX</div>
+        <div className="col-lg-4">
+          <form>
+            <label htmlFor="events-date">Seleziona data:</label>
+            <input
+              type="date"
+              id="events-date"
+              name="events-date"
+              value={date}
+              // onChange={(e) => {
+              // setDate(e.target.value);
+              // setResultDate([]);
+              // }}
+              onChange={searchDates}
+            />
+            <button className="btn btn-outline-primary col-12" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+        <div className="col-lg-4">DX</div>
+      </div>
+      {/* {resultDate.length > 0 && <div>CIAOOOO</div>} */}
     </div>
   );
 }
