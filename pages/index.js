@@ -144,9 +144,9 @@ function Home() {
                     <div>
                       <Link href={`/events/${p._id}`}>
                         <a target="_blank">
-                          <AcUnit
+                          <Room
                             key={p._id}
-                            className="markerAcUnit"
+                            className="markerRoom"
                             style={{ fontSize: viewport.zoom * 1.5 }}
                             onMouseEnter={() =>
                               handleMarkerClick(p._id, p.lat, p.long)
