@@ -28,8 +28,7 @@ function Home() {
 
   const router = useRouter();
 
-  const [eventsTypeA, setEventsTypeA] = useState([]);
-  const [eventsTypeB, setEventsTypeB] = useState([]);
+  const [events, setEvents] = useState([]);
 
   const [showPopup, setShowPopup] = useState(false);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
@@ -69,31 +68,17 @@ function Home() {
   };
 
   useEffect(() => {
-    const getTypeA = async () => {
+    const getEvents = async () => {
       try {
-        const eventsTypeA = await axios.get(
-          `${process.env.NEXT_PUBLIC_API}/events/typea`
+        const retrievedEvents = await axios.get(
+          `${process.env.NEXT_PUBLIC_API}/events`
         );
-        setEventsTypeA(eventsTypeA.data);
+        setEvents(retrievedEvents.data);
       } catch (err) {
         console.log(err);
       }
     };
-    getTypeA();
-  }, []);
-
-  useEffect(() => {
-    const getTypeB = async () => {
-      try {
-        const eventsTypeB = await axios.get(
-          `${process.env.NEXT_PUBLIC_API}/events/typeb`
-        );
-        setEventsTypeB(eventsTypeB.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getTypeB();
+    getEvents();
   }, []);
 
   return (
@@ -118,9 +103,10 @@ function Home() {
             <FullscreenControl />
             <NavigationControl />
             {/* <ScaleControl /> */}
-            {typeACheck &&
-              eventsTypeA.map((p) => (
-                <Fragment key={p._id}>
+
+            {events.map((p) => (
+              <Fragment key={p._id}>
+                {p.type === 'A' && typeACheck && (
                   <Marker
                     key={p._id}
                     longitude={p.long}
@@ -145,25 +131,8 @@ function Home() {
                       </Link>
                     </div>
                   </Marker>
-                  {p._id === currentPlaceId && (
-                    <Popup longitude={p.long} latitude={p.lat} anchor="left">
-                      <div className="card">
-                        <label>Evento</label>
-                        <p className="desc">{p.title}</p>
-                        <label>Information</label>
-                        <p>{p.description}</p>
-                        <span className="username">
-                          Created by <b>{p.organiser}</b>
-                        </span>
-                      </div>
-                    </Popup>
-                  )}
-                </Fragment>
-              ))}
-
-            {typeBCheck &&
-              eventsTypeB.map((p) => (
-                <Fragment key={p._id}>
+                )}
+                {p.type === 'B' && typeBCheck && (
                   <Marker
                     key={p._id}
                     longitude={p.long}
@@ -175,9 +144,9 @@ function Home() {
                     <div>
                       <Link href={`/events/${p._id}`}>
                         <a target="_blank">
-                          <Room
+                          <AcUnit
                             key={p._id}
-                            className="markerRoom"
+                            className="markerAcUnit"
                             style={{ fontSize: viewport.zoom * 1.5 }}
                             onMouseEnter={() =>
                               handleMarkerClick(p._id, p.lat, p.long)
@@ -188,22 +157,24 @@ function Home() {
                       </Link>
                     </div>
                   </Marker>
-                  {p._id === currentPlaceId && (
-                    <Popup longitude={p.long} latitude={p.lat} anchor="left">
-                      <div className="card">
-                        <label>Evento</label>
-                        <p className="desc">{p.title}</p>
-                        <label>Information</label>
-                        <p>{p.description}</p>
-                        <span className="username">
-                          Created by <b>{p.organiser}</b>
-                        </span>
-                        <Link href={`/events/${p._id}`}>Go to page</Link>
-                      </div>
-                    </Popup>
-                  )}
-                </Fragment>
-              ))}
+                )}
+
+                {p._id === currentPlaceId && (
+                  <Popup longitude={p.long} latitude={p.lat} anchor="left">
+                    <div className="card">
+                      <label>Evento</label>
+                      <p className="desc">{p.title}</p>
+                      <label>Information</label>
+                      <p>{p.description}</p>
+                      <span className="username">
+                        Created by <b>{p.organiser}</b>
+                      </span>
+                      <Link href={`/events/${p._id}`}>Go to page</Link>
+                    </div>
+                  </Popup>
+                )}
+              </Fragment>
+            ))}
 
             <div id="filter-group" className="filter-group">
               <div>
