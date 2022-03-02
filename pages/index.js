@@ -4,6 +4,7 @@ import Map, {
   GeolocateControl,
   FullscreenControl,
   NavigationControl,
+  // MapboxGeocoder,
 } from 'react-map-gl';
 import { useState, useEffect, Fragment } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -12,7 +13,7 @@ import axios from 'axios';
 import { Room, AcUnit, Star } from '@material-ui/icons';
 // import { format } from 'timeago.js';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 function Home() {
   // const currentUsername = 'Jo';
@@ -26,55 +27,54 @@ function Home() {
     zoom: 6.75,
   });
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const [eventsTypeA, setEventsTypeA] = useState([]);
   const [eventsTypeB, setEventsTypeB] = useState([]);
 
-  const [showPopup, setShowPopup] = useState(false);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
 
   const [typeACheck, setTypeACheck] = useState(true);
   const [typeBCheck, setTypeBCheck] = useState(true);
 
-  const handleMarkerClick = (id, lat, long) => {
-    console.log(`MOUSE ENTRATO`);
-    // console.log(`currentPlaceId (before setting it): ${currentPlaceId}`);
-    setCurrentPlaceId(id);
-    // setViewport({ ...viewport, latitude: lat, longitude: long });
-    // console.log(`currentPlaceId: ${currentPlaceId}`);
-    // console.log(`----------------`);
-    // if (!showPopup) setShowPopup(true);
-  };
+  // const handleMarkerClick = (id, lat, long) => {
+  //   console.log(`MOUSE ENTRATO`);
+  // console.log(`currentPlaceId (before setting it): ${currentPlaceId}`);
+  // setCurrentPlaceId(id);
+  // setViewport({ ...viewport, latitude: lat, longitude: long });
+  // console.log(`currentPlaceId: ${currentPlaceId}`);
+  // console.log(`----------------`);
+  // if (!showPopup) setShowPopup(true);
+  // };
 
-  const handleOnClose = () => {
-    setCurrentPlaceId(null);
-    // console.log(`mouse uscito. currentPlaceId= ${currentPlaceId}`);
-    setShowPopup(false);
-    // console.log(`mouse left. showPopup = ${showPopup}`);
-  };
+  // const handleOnClose = () => {
+  //   setCurrentPlaceId(null);
+  // console.log(`mouse uscito. currentPlaceId= ${currentPlaceId}`);
+  // console.log(`mouse left. showPopup = ${showPopup}`);
+  // };
 
-  const handleOnMarkerClick = (id) => {
-    const fullPath = `/events/${id}`;
+  // const handleOnMarkerClick = (id) => {
+  //   const fullPath = `/events/${id}`;
 
-    router.push(fullPath);
-  };
+  //   router.push(fullPath);
+  // };
 
-  const handleTypeAChange = () => {
-    setTypeACheck(!typeACheck);
-  };
+  // const handleTypeAChange = () => {
+  //   setTypeACheck(!typeACheck);
+  // };
 
-  const handleTypeBChange = () => {
-    setTypeBCheck(!typeBCheck);
-  };
+  // const handleTypeBChange = () => {
+  //   setTypeBCheck(!typeBCheck);
+  // };
+  const handleDateSelection = (e) => console.log(e.target.value);
 
   useEffect(() => {
     const getTypeA = async () => {
       try {
-        const eventsTypeA = await axios.get(
+        const eventsA = await axios.get(
           `${process.env.NEXT_PUBLIC_API}/events/typea`
         );
-        setEventsTypeA(eventsTypeA.data);
+        setEventsTypeA(eventsA.data);
       } catch (err) {
         console.log(err);
       }
@@ -85,10 +85,10 @@ function Home() {
   useEffect(() => {
     const getTypeB = async () => {
       try {
-        const eventsTypeB = await axios.get(
+        const eventsB = await axios.get(
           `${process.env.NEXT_PUBLIC_API}/events/typeb`
         );
-        setEventsTypeB(eventsTypeB.data);
+        setEventsTypeB(eventsB.data);
       } catch (err) {
         console.log(err);
       }
@@ -117,6 +117,7 @@ function Home() {
             <GeolocateControl />
             <FullscreenControl />
             <NavigationControl />
+            {/* <MapboxGeocoder /> */}
             {/* <ScaleControl /> */}
             {typeACheck &&
               eventsTypeA.map((p) => (
@@ -136,10 +137,12 @@ function Home() {
                             key={p._id}
                             className="markerAcUnit"
                             style={{ fontSize: viewport.zoom * 1.5 }}
-                            onMouseEnter={() =>
-                              handleMarkerClick(p._id, p.lat, p.long)
-                            }
-                            onMouseLeave={handleOnClose}
+                            // onMouseEnter={() =>
+                            //   handleMarkerClick(p._id, p.lat, p.long)
+                            // }
+                            onMouseEnter={() => setCurrentPlaceId(p._id)}
+                            // onMouseLeave={handleOnClose}
+                            onMouseLeave={() => setCurrentPlaceId(null)}
                           />
                         </a>
                       </Link>
@@ -179,10 +182,12 @@ function Home() {
                             key={p._id}
                             className="markerRoom"
                             style={{ fontSize: viewport.zoom * 1.5 }}
-                            onMouseEnter={() =>
-                              handleMarkerClick(p._id, p.lat, p.long)
-                            }
-                            onMouseLeave={handleOnClose}
+                            // onMouseEnter={() =>
+                            //   handleMarkerClick(p._id, p.lat, p.long)
+                            // }
+                            onMouseEnter={() => setCurrentPlaceId(p._id)}
+                            // onMouseLeave={handleOnClose}
+                            onMouseLeave={() => setCurrentPlaceId(null)}
                           />
                         </a>
                       </Link>
@@ -198,7 +203,6 @@ function Home() {
                         <span className="username">
                           Created by <b>{p.organiser}</b>
                         </span>
-                        <Link href={`/events/${p._id}`}>Go to page</Link>
                       </div>
                     </Popup>
                   )}
@@ -212,7 +216,8 @@ function Home() {
                   id="typeA"
                   name="typeA"
                   defaultChecked
-                  onChange={handleTypeAChange}
+                  // onChange={handleTypeAChange}
+                  onChange={() => setTypeACheck(!typeACheck)}
                 />
                 <label htmlFor="typeA">Type A</label>
               </div>
@@ -222,7 +227,8 @@ function Home() {
                   id="typeB"
                   name="typeB"
                   defaultChecked
-                  onChange={handleTypeBChange}
+                  // onChange={handleTypeBChange}
+                  onChange={() => setTypeBCheck(!typeBCheck)}
                 />
                 <label htmlFor="typeB">Type B</label>
               </div>
@@ -230,6 +236,22 @@ function Home() {
           </Map>
         </div>
         <div className="col-lg-3">DX</div>
+      </div>
+      <div className="row">
+        <div className="col-lg-4">SX</div>
+        <div className="col-lg-4">
+          <form>
+            <label htmlFor="date-picker">Seleziona la data: </label>
+            <input
+              type="date"
+              id="date-picker"
+              name="test-date"
+              // onChange={(e) => console.log(e.target.value)}
+              onChange={handleDateSelection}
+            />
+          </form>
+        </div>
+        <div className="col-lg-4">DX</div>
       </div>
     </div>
   );
