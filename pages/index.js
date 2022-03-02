@@ -4,6 +4,7 @@ import Map, {
   GeolocateControl,
   FullscreenControl,
   NavigationControl,
+  // MapboxGeocoder,
 } from 'react-map-gl';
 import { useState, useEffect, Fragment } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -12,7 +13,7 @@ import axios from 'axios';
 import { Room, AcUnit, Star } from '@material-ui/icons';
 // import { format } from 'timeago.js';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 function Home() {
   // const currentUsername = 'Jo';
@@ -26,7 +27,7 @@ function Home() {
     zoom: 6.75,
   });
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const today = new Date();
 
@@ -58,11 +59,13 @@ function Home() {
     // console.log(`mouse left. showPopup = ${showPopup}`);
   };
 
+
   // const handleOnMarkerClick = (id) => {
   //   const fullPath = `/events/${id}`;
 
   //   router.push(fullPath);
   // };
+
 
   const handleTypeAChange = () => {
     setTypeACheck(!typeACheck);
@@ -91,7 +94,7 @@ function Home() {
     }
   };
 
-  useEffect(() => {
+ useEffect(() => {
     const getEvents = async () => {
       try {
         const retrievedEvents = await axios.get(
@@ -146,10 +149,12 @@ function Home() {
                             key={p._id}
                             className="markerAcUnit"
                             style={{ fontSize: viewport.zoom * 1.5 }}
-                            onMouseEnter={() =>
-                              handleMarkerClick(p._id, p.lat, p.long)
-                            }
-                            onMouseLeave={handleOnClose}
+                            // onMouseEnter={() =>
+                            //   handleMarkerClick(p._id, p.lat, p.long)
+                            // }
+                            onMouseEnter={() => setCurrentPlaceId(p._id)}
+                            // onMouseLeave={handleOnClose}
+                            onMouseLeave={() => setCurrentPlaceId(null)}
                           />
                         </a>
                       </Link>
@@ -172,15 +177,18 @@ function Home() {
                             key={p._id}
                             className="markerRoom"
                             style={{ fontSize: viewport.zoom * 1.5 }}
-                            onMouseEnter={() =>
-                              handleMarkerClick(p._id, p.lat, p.long)
-                            }
-                            onMouseLeave={handleOnClose}
+                            // onMouseEnter={() =>
+                            //   handleMarkerClick(p._id, p.lat, p.long)
+                            // }
+                            onMouseEnter={() => setCurrentPlaceId(p._id)}
+                            // onMouseLeave={handleOnClose}
+                            onMouseLeave={() => setCurrentPlaceId(null)}
                           />
                         </a>
                       </Link>
                     </div>
                   </Marker>
+
                 )}
 
                 {p._id === currentPlaceId && (
@@ -200,6 +208,7 @@ function Home() {
               </Fragment>
             ))}
 
+
             <div id="filter-group" className="filter-group">
               <div>
                 <input
@@ -207,7 +216,8 @@ function Home() {
                   id="typeA"
                   name="typeA"
                   defaultChecked
-                  onChange={handleTypeAChange}
+                  // onChange={handleTypeAChange}
+                  onChange={() => setTypeACheck(!typeACheck)}
                 />
                 <label htmlFor="typeA">Type A</label>
               </div>
@@ -217,7 +227,8 @@ function Home() {
                   id="typeB"
                   name="typeB"
                   defaultChecked
-                  onChange={handleTypeBChange}
+                  // onChange={handleTypeBChange}
+                  onChange={() => setTypeBCheck(!typeBCheck)}
                 />
                 <label htmlFor="typeB">Type B</label>
               </div>
@@ -249,7 +260,6 @@ function Home() {
         </div>
         <div className="col-lg-4">DX</div>
       </div>
-      {/* {resultDate.length > 0 && <div>CIAOOOO</div>} */}
     </div>
   );
 }
