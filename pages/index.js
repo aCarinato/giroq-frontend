@@ -59,27 +59,25 @@ function Home() {
     // console.log(`mouse left. showPopup = ${showPopup}`);
   };
 
-
   // const handleOnMarkerClick = (id) => {
   //   const fullPath = `/events/${id}`;
 
   //   router.push(fullPath);
   // };
 
+  // const handleTypeAChange = () => {
+  //   setTypeACheck(!typeACheck);
+  // };
 
-  const handleTypeAChange = () => {
-    setTypeACheck(!typeACheck);
-  };
-
-  const handleTypeBChange = () => {
-    setTypeBCheck(!typeBCheck);
-  };
+  // const handleTypeBChange = () => {
+  //   setTypeBCheck(!typeBCheck);
+  // };
 
   // const handleSelectDate = (e) => {
   //   console.log(e.target.value);
   // };
-  const searchDates = async (e) => {
-    setDate(e.target.value);
+  const filterDates = async (e) => {
+    // setDate(e.target.value);
     e.preventDefault();
     // console.log(`Find "${query}" f rom db`);
     try {
@@ -94,7 +92,7 @@ function Home() {
     }
   };
 
- useEffect(() => {
+  useEffect(() => {
     const getEvents = async () => {
       try {
         const retrievedEvents = await axios.get(
@@ -188,7 +186,6 @@ function Home() {
                       </Link>
                     </div>
                   </Marker>
-
                 )}
 
                 {p._id === currentPlaceId && (
@@ -207,7 +204,6 @@ function Home() {
                 )}
               </Fragment>
             ))}
-
 
             <div id="filter-group" className="filter-group">
               <div>
@@ -240,7 +236,7 @@ function Home() {
       <div className="row">
         <div className="col-lg-4">SX</div>
         <div className="col-lg-4">
-          <form>
+          <form onSubmit={filterDates}>
             <label htmlFor="events-date">Seleziona data:</label>
             <input
               type="date"
@@ -251,7 +247,7 @@ function Home() {
               // setDate(e.target.value);
               // setResultDate([]);
               // }}
-              onChange={searchDates}
+              onChange={(e) => setDate(e.target.value)}
             />
             <button className="btn btn-outline-primary col-12" type="submit">
               Search
