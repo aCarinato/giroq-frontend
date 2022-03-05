@@ -17,7 +17,7 @@ function EventDetailPage() {
   const fetchEvent = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/events/event/${eventId}`
+        `${process.env.NEXT_PUBLIC_API}/event/${eventId}`
       );
       setEvent(data);
     } catch (err) {

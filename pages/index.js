@@ -30,8 +30,14 @@ function Home() {
   // const router = useRouter();
 
   const today = new Date();
+  const todayISO = today.toISOString().split('T')[0];
 
-  const [date, setDate] = useState(today);
+  const sett = today.setDate(today.getDate() + 7);
+  const oneWeek = new Date(sett);
+  const oneWeekISO = oneWeek.toISOString().split('T')[0];
+
+  const [firstDate, setFirstDate] = useState(todayISO);
+  const [lastDate, setLastDate] = useState(oneWeekISO);
   // const [resultDate, setResultDate] = useState([]);
 
   const [events, setEvents] = useState([]);
@@ -42,22 +48,22 @@ function Home() {
   const [typeACheck, setTypeACheck] = useState(true);
   const [typeBCheck, setTypeBCheck] = useState(true);
 
-  const handleMarkerClick = (id, lat, long) => {
-    console.log(`MOUSE ENTRATO`);
-    // console.log(`currentPlaceId (before setting it): ${currentPlaceId}`);
-    setCurrentPlaceId(id);
-    // setViewport({ ...viewport, latitude: lat, longitude: long });
-    // console.log(`currentPlaceId: ${currentPlaceId}`);
-    // console.log(`----------------`);
-    // if (!showPopup) setShowPopup(true);
-  };
+  // const handleMarkerClick = (id, lat, long) => {
+  //   console.log(`MOUSE ENTRATO`);
+  // console.log(`currentPlaceId (before setting it): ${currentPlaceId}`);
+  // setCurrentPlaceId(id);
+  // setViewport({ ...viewport, latitude: lat, longitude: long });
+  // console.log(`currentPlaceId: ${currentPlaceId}`);
+  // console.log(`----------------`);
+  // if (!showPopup) setShowPopup(true);
+  // };
 
-  const handleOnClose = () => {
-    setCurrentPlaceId(null);
-    // console.log(`mouse uscito. currentPlaceId= ${currentPlaceId}`);
-    // setShowPopup(false);
-    // console.log(`mouse left. showPopup = ${showPopup}`);
-  };
+  // const handleOnClose = () => {
+  //   setCurrentPlaceId(null);
+  // console.log(`mouse uscito. currentPlaceId= ${currentPlaceId}`);
+  // setShowPopup(false);
+  // console.log(`mouse left. showPopup = ${showPopup}`);
+  // };
 
   // const handleOnMarkerClick = (id) => {
   //   const fullPath = `/events/${id}`;
@@ -76,27 +82,30 @@ function Home() {
   // const handleSelectDate = (e) => {
   //   console.log(e.target.value);
   // };
-  const filterDates = async (e) => {
-    // setDate(e.target.value);
-    e.preventDefault();
-    // console.log(`Find "${query}" f rom db`);
-    try {
-      const { data } = await axios.get(
-        `${process.env.NEXT_PUBLIC_API}/events/${date}`
-      );
-      //  console.log("search user response => ", data);
-      // setResultDate(data);
-      setEvents(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const filterDates = async (e) => {
+  //   // setDate(e.target.value);
+  //   e.preventDefault();
+  //   // console.log(`Find "${query}" f rom db`);
+  //   try {
+  //     const { data } = await axios.get(
+  //       `${process.env.NEXT_PUBLIC_API}/events/${date}`
+  //     );
+  //     //  console.log("search user response => ", data);
+  //     // setResultDate(data);
+  //     setEvents(data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   useEffect(() => {
     const getEvents = async () => {
       try {
+        console.log(`firstDate; ${firstDate}`);
+        console.log(`lastDate: ${lastDate}`);
         const retrievedEvents = await axios.get(
-          `${process.env.NEXT_PUBLIC_API}/events`
+          // `${process.env.NEXT_PUBLIC_API}/events`
+          `${process.env.NEXT_PUBLIC_API}/events/${firstDate}/${lastDate}`
         );
         setEvents(retrievedEvents.data);
       } catch (err) {
@@ -104,7 +113,7 @@ function Home() {
       }
     };
     getEvents();
-  }, []);
+  }, [firstDate, lastDate]);
 
   return (
     <div className="container-fluid">
@@ -141,7 +150,7 @@ function Home() {
                   >
                     {' '}
                     <div>
-                      <Link href={`/events/${p._id}`}>
+                      <Link href={`/event/${p._id}`}>
                         <a target="_blank">
                           <AcUnit
                             key={p._id}
@@ -169,7 +178,7 @@ function Home() {
                   >
                     {' '}
                     <div>
-                      <Link href={`/events/${p._id}`}>
+                      <Link href={`/event/${p._id}`}>
                         <a target="_blank">
                           <Room
                             key={p._id}
@@ -236,22 +245,34 @@ function Home() {
       <div className="row">
         <div className="col-lg-4">SX</div>
         <div className="col-lg-4">
-          <form onSubmit={filterDates}>
-            <label htmlFor="events-date">Seleziona data:</label>
+          <form>
+            <label htmlFor="first-date">Seleziona data inizio:</label>
             <input
               type="date"
-              id="events-date"
-              name="events-date"
-              value={date}
+              id="first-date"
+              name="first-date"
+              value={firstDate}
               // onChange={(e) => {
               // setDate(e.target.value);
               // setResultDate([]);
               // }}
-              onChange={(e) => setDate(e.target.value)}
+              onChange={(e) => setFirstDate(e.target.value)}
             />
-            <button className="btn btn-outline-primary col-12" type="submit">
+            <label htmlFor="last-date">Seleziona data fine:</label>
+            <input
+              type="date"
+              id="last-date"
+              name="last-date"
+              value={lastDate}
+              // onChange={(e) => {
+              // setDate(e.target.value);
+              // setResultDate([]);
+              // }}
+              onChange={(e) => setLastDate(e.target.value)}
+            />
+            {/* <button className="btn btn-outline-primary col-12" type="submit">
               Search
-            </button>
+            </button> */}
           </form>
         </div>
         <div className="col-lg-4">DX</div>
