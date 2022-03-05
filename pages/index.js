@@ -275,7 +275,12 @@ function Home() {
             </button> */}
           </form>
         </div>
-        <div className="col-lg-4">DX</div>
+        <div className="col-lg-4">
+          {' '}
+          <button>
+            <Link href="/add">Aggiugi Evento</Link>
+          </button>
+        </div>
       </div>
     </div>
   );

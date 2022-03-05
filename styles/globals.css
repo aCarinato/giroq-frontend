@@ -36,7 +36,7 @@ label {
 
 form {
   width: 250px;
-  height: 250px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
