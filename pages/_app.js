@@ -3,7 +3,13 @@ import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    // <UserProvider>
+    // <AuthContext.Provider value={{ isLoggedIn: false }}>
+    <Component {...pageProps} />
+    // </AuthContext.Provider> */}
+    // </UserProvider> */}
+  );
 }
 
 export default MyApp;

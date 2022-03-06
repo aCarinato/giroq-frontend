@@ -28,7 +28,6 @@ function Home() {
   });
 
   // const router = useRouter();
-
   const today = new Date();
   const todayISO = today.toISOString().split('T')[0];
 
@@ -101,8 +100,8 @@ function Home() {
   useEffect(() => {
     const getEvents = async () => {
       try {
-        console.log(`firstDate; ${firstDate}`);
-        console.log(`lastDate: ${lastDate}`);
+        // console.log(`firstDate; ${firstDate}`);
+        // console.log(`lastDate: ${lastDate}`);
         const retrievedEvents = await axios.get(
           // `${process.env.NEXT_PUBLIC_API}/events`
           `${process.env.NEXT_PUBLIC_API}/events/${firstDate}/${lastDate}`
@@ -278,7 +277,7 @@ function Home() {
         <div className="col-lg-4">
           {' '}
           <button>
-            <Link href="/add">Aggiugi Evento</Link>
+            <Link href="/nuovo">Aggiugi Evento</Link>
           </button>
         </div>
       </div>
