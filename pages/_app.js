@@ -1,14 +1,12 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/globals.css';
-// const bootstrap = require('bootstrap');
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Layout from '../components/layout/layout';
 
 function MyApp({ Component, pageProps }) {
   return (
-    // <UserProvider>
-    // <AuthContext.Provider value={{ isLoggedIn: false }}>
-    <Component {...pageProps} />
-    // </AuthContext.Provider> */}
-    // </UserProvider> */}
+    <Layout>
+      <Component {...pageProps} />;
+    </Layout>
   );
 }
 

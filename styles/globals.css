@@ -2,7 +2,7 @@
   height: 400px;
 }
 
-.card {
+/* .card {
   width: 250px;
   height: 250px;
   display: flex;
@@ -105,7 +105,7 @@ textarea {
 
 .register {
   background-color: slateblue;
-}
+} */
 
 .markerAcUnit {
   color: red;
@@ -120,7 +120,7 @@ textarea {
 .filter-group {
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: 600;
-  position: absolute;
+  /* position: absolute; */
   top: 10px;
   left: 10px;
   z-index: 1;
