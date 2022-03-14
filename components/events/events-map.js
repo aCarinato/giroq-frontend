@@ -9,6 +9,7 @@ import Map, {
 import { Room, AcUnit, Star } from '@material-ui/icons';
 import Link from 'next/link';
 import { Fragment } from 'react';
+import EventsPopup from './events-popup';
 
 function EventsMap(props) {
   const {
@@ -31,7 +32,6 @@ function EventsMap(props) {
       mapStyle="mapbox://styles/mapbox/streets-v11"
       mapboxAccessToken={MAPBOX_TOKEN}
       onMove={(evt) => setViewport(evt.viewState)}
-      // onDblClick={currentUsername && handleAddClick}
     >
       <GeolocateControl />
       <FullscreenControl />
@@ -56,11 +56,7 @@ function EventsMap(props) {
                       key={p._id}
                       className="markerAcUnit"
                       style={{ fontSize: viewport.zoom * 1.5 }}
-                      // onMouseEnter={() =>
-                      //   handleMarkerClick(p._id, p.lat, p.long)
-                      // }
                       onMouseEnter={() => setCurrentPlaceId(p._id)}
-                      // onMouseLeave={handleOnClose}
                       onMouseLeave={() => setCurrentPlaceId(null)}
                     />
                   </a>
@@ -84,11 +80,7 @@ function EventsMap(props) {
                       key={p._id}
                       className="markerRoom"
                       style={{ fontSize: viewport.zoom * 1.5 }}
-                      // onMouseEnter={() =>
-                      //   handleMarkerClick(p._id, p.lat, p.long)
-                      // }
                       onMouseEnter={() => setCurrentPlaceId(p._id)}
-                      // onMouseLeave={handleOnClose}
                       onMouseLeave={() => setCurrentPlaceId(null)}
                     />
                   </a>
@@ -99,16 +91,12 @@ function EventsMap(props) {
 
           {p._id === currentPlaceId && (
             <Popup longitude={p.long} latitude={p.lat} anchor="left">
-              <div className="card">
-                <label>Evento</label>
-                <p className="desc">{p.title}</p>
-                <label>Information</label>
-                <p>{p.description}</p>
-                <span className="username">
-                  Created by <b>{p.organiser}</b>
-                </span>
-                <Link href={`/event/${p._id}`}>Go to page</Link>
-              </div>
+              <EventsPopup
+                title={p.title}
+                description={p.description}
+                organiser={p.organiser}
+                id={p._id}
+              />
             </Popup>
           )}
         </Fragment>

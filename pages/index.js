@@ -3,7 +3,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import axios from 'axios';
 // import parse from 'html-react-parser';
 // import { format } from 'timeago.js';
-// import { useRouter } from 'next/router';
+
 import EventsFilter from '../components/events/events-filter';
 import EventsMap from '../components/events/events-map';
 
@@ -14,7 +14,6 @@ function Home() {
     zoom: 6.75,
   });
 
-  // const router = useRouter();
   const today = new Date();
   const todayISO = today.toISOString().split('T')[0];
 
@@ -27,7 +26,6 @@ function Home() {
 
   const [events, setEvents] = useState([]);
 
-  // const [showPopup, setShowPopup] = useState(false);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
 
   const [typeACheck, setTypeACheck] = useState(true);
