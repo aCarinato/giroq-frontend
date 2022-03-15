@@ -1,10 +1,10 @@
 import EventItem from './event-item';
-// import classes from './event-list.module.css';
+import classes from './event-list.module.css';
 
 function EventList(props) {
-  const { events } = props;
+  const { events, currentMarker, setCurrentMarker } = props;
   return (
-    <ul>
+    <ul className={classes.list}>
       {events.map((event) => (
         <EventItem
           key={event._id}
@@ -13,6 +13,8 @@ function EventList(props) {
           // location={event.location}
           date={event.date}
           // image={event.image}
+          currentMarker={currentMarker}
+          setCurrentMarker={setCurrentMarker}
         />
       ))}
     </ul>
