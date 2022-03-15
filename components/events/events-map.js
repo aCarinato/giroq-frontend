@@ -27,6 +27,8 @@ function EventsMap(props) {
   // const MAPBOX_TOKEN = process.env.MapboxAccessToken;
   // const MAPBOX_TOKEN = process.env.MAPBOX_ACCESS_TOKEN;
 
+  // const handleOnMouseEnter = ()
+
   return (
     <Map
       {...viewport}

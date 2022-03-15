@@ -8,12 +8,31 @@ import Link from 'next/link';
 import classes from './event-item.module.css';
 
 function EventItem(props) {
-  const { title, date, id, setCurrentMarker } = props;
+  const {
+    title,
+    date,
+    id,
+    setCurrentMarker,
+    latitude,
+    longitude,
+    viewport,
+    setViewport,
+  } = props;
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
   });
+
+  const handleOnEnter = (id, latitude, longitude) => {
+    setCurrentMarker(id);
+    setViewport({
+      ...viewport,
+      zoom: 9,
+      latitude: latitude,
+      longitude: longitude,
+    });
+  };
 
   //   const formattedAddress = location.replace(', ', '\n');
   const exploreLink = `/event/${id}`;
@@ -34,7 +53,8 @@ function EventItem(props) {
           </div> */}
           <div
             className={classes.addressOnMap}
-            onMouseEnter={() => setCurrentMarker(id)}
+            // onMouseEnter={() => setCurrentMarker(id)}
+            onMouseEnter={() => handleOnEnter(id, latitude, longitude)}
             onMouseLeave={() => setCurrentMarker(null)}
           >
             Mostra nella mappa
