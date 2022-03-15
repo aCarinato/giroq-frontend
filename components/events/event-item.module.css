@@ -11,8 +11,14 @@
   padding: 1rem;
 }
 
+.addressOnMap {
+  /* display: flex; */
+  width: fit-content;
+}
+
 .addressOnMap:hover {
   cursor: pointer;
+  color: red;
 }
 
 .item img {

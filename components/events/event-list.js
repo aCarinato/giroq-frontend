@@ -3,7 +3,14 @@ import EventItem from './event-item';
 import classes from './event-list.module.css';
 
 function EventList(props) {
-  const { events, typeACheck, typeBCheck, setCurrentMarker } = props;
+  const {
+    events,
+    typeACheck,
+    typeBCheck,
+    setCurrentMarker,
+    viewport,
+    setViewport,
+  } = props;
   return (
     <ul className={classes.list}>
       {events.map((event) => (
@@ -17,6 +24,10 @@ function EventList(props) {
               date={event.date}
               // image={event.image}
               setCurrentMarker={setCurrentMarker}
+              viewport={viewport}
+              setViewport={setViewport}
+              longitude={event.long}
+              latitude={event.lat}
             />
           )}
           {event.type === 'B' && typeBCheck && (
@@ -28,6 +39,10 @@ function EventList(props) {
               date={event.date}
               // image={event.image}
               setCurrentMarker={setCurrentMarker}
+              viewport={viewport}
+              setViewport={setViewport}
+              longitude={event.long}
+              latitude={event.lat}
             />
           )}
         </Fragment>

@@ -103,6 +103,8 @@ function Home() {
             typeACheck={typeACheck}
             typeBCheck={typeBCheck}
             setCurrentMarker={setCurrentMarker}
+            viewport={viewport}
+            setViewport={setViewport}
           />
         </div>
         <div className="col-lg-3"></div>
