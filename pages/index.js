@@ -100,7 +100,9 @@ function Home() {
         <div className="col-lg-6">
           <EventList
             events={events}
-            currentMarker={currentMarker}
+            typeACheck={typeACheck}
+            typeBCheck={typeBCheck}
+            // currentMarker={currentMarker}
             setCurrentMarker={setCurrentMarker}
           />
         </div>

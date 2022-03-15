@@ -8,7 +8,7 @@ import Link from 'next/link';
 import classes from './event-item.module.css';
 
 function EventItem(props) {
-  const { title, date, id, currentMarker, setCurrentMarker } = props;
+  const { title, date, id, setCurrentMarker } = props;
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
     month: 'long',
