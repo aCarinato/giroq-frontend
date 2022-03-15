@@ -20,11 +20,13 @@ function EventsMap(props) {
     typeBCheck,
     currentPlaceId,
     setCurrentPlaceId,
+    currentMarker,
   } = props;
   const MAPBOX_TOKEN =
     'pk.eyJ1Ijoicm9zYWNyb2NlIiwiYSI6ImNrenU1eThxZzRzOTAybm55NWU0Y2JvNnQifQ.8-Iz1krxCOtnbCx0iBkBEg';
   // const MAPBOX_TOKEN = process.env.MapboxAccessToken;
   // const MAPBOX_TOKEN = process.env.MAPBOX_ACCESS_TOKEN;
+
   return (
     <Map
       {...viewport}
@@ -52,13 +54,23 @@ function EventsMap(props) {
               <div>
                 <Link href={`/event/${p._id}`}>
                   <a target="_blank">
-                    <AcUnit
-                      key={p._id}
-                      className="markerAcUnit"
-                      style={{ fontSize: viewport.zoom * 1.5 }}
-                      onMouseEnter={() => setCurrentPlaceId(p._id)}
-                      onMouseLeave={() => setCurrentPlaceId(null)}
-                    />
+                    {p._id === currentMarker ? (
+                      <AcUnit
+                        key={p._id}
+                        className="markerAcUnit"
+                        style={{ fontSize: viewport.zoom * 4.5 }}
+                        onMouseEnter={() => setCurrentPlaceId(p._id)}
+                        onMouseLeave={() => setCurrentPlaceId(null)}
+                      />
+                    ) : (
+                      <AcUnit
+                        key={p._id}
+                        className="markerAcUnit"
+                        style={{ fontSize: viewport.zoom * 2.5 }}
+                        onMouseEnter={() => setCurrentPlaceId(p._id)}
+                        onMouseLeave={() => setCurrentPlaceId(null)}
+                      />
+                    )}
                   </a>
                 </Link>
               </div>
@@ -76,13 +88,23 @@ function EventsMap(props) {
               <div>
                 <Link href={`/event/${p._id}`}>
                   <a target="_blank">
-                    <Room
-                      key={p._id}
-                      className="markerRoom"
-                      style={{ fontSize: viewport.zoom * 1.5 }}
-                      onMouseEnter={() => setCurrentPlaceId(p._id)}
-                      onMouseLeave={() => setCurrentPlaceId(null)}
-                    />
+                    {p._id === currentMarker ? (
+                      <Room
+                        key={p._id}
+                        className="markerRoom"
+                        style={{ fontSize: viewport.zoom * 4.5 }}
+                        onMouseEnter={() => setCurrentPlaceId(p._id)}
+                        onMouseLeave={() => setCurrentPlaceId(null)}
+                      />
+                    ) : (
+                      <Room
+                        key={p._id}
+                        className="markerRoom"
+                        style={{ fontSize: viewport.zoom * 2.5 }}
+                        onMouseEnter={() => setCurrentPlaceId(p._id)}
+                        onMouseLeave={() => setCurrentPlaceId(null)}
+                      />
+                    )}
                   </a>
                 </Link>
               </div>

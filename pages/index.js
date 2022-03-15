@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import EventsFilter from '../components/events/events-filter';
 import EventsMap from '../components/events/events-map';
+import EventList from '../components/events/event-list';
 
 function Home() {
   const [viewport, setViewport] = useState({
@@ -28,8 +29,18 @@ function Home() {
 
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
 
+  const [currentMarker, setCurrentMarker] = useState(null);
+
   const [typeACheck, setTypeACheck] = useState(true);
   const [typeBCheck, setTypeBCheck] = useState(true);
+
+  // scetticismo situatione
+  // ripartizione compiti, piu responsabilitá, maggior crescita
+  // aggiungere piu zone (verona, etc.)
+  // presenza concorrenza come fattore aggiuntivo
+  // seo keywords e concorrenza (fare cartella condivisa)
+  // avvisa se non si fa un cazzo
+  // nappitello
 
   useEffect(() => {
     const getEvents = async () => {
@@ -48,12 +59,12 @@ function Home() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-lg-4">SX</div>
-        <div className="col-lg-4">CX</div>
-        <div className="col-lg-4">DX</div>
+        <div className="col-lg-4"></div>
+        <div className="col-lg-4"></div>
+        <div className="col-lg-4"></div>
       </div>
       <div className="row">
-        <div className="col-lg-3">SX</div>
+        <div className="col-lg-3"></div>
         <div className="col-lg-6">
           <EventsMap
             viewport={viewport}
@@ -63,21 +74,39 @@ function Home() {
             typeBCheck={typeBCheck}
             currentPlaceId={currentPlaceId}
             setCurrentPlaceId={setCurrentPlaceId}
+            currentMarker={currentMarker}
           />
         </div>
         <div className="col-lg-3">DX</div>
       </div>
-
-      <EventsFilter
-        typeACheck={typeACheck}
-        setTypeACheck={setTypeACheck}
-        typeBCheck={typeBCheck}
-        setTypeBCheck={setTypeBCheck}
-        firstDate={firstDate}
-        setFirstDate={setFirstDate}
-        lastDate={lastDate}
-        setLastDate={setLastDate}
-      />
+      <div className="row">
+        <div className="col-lg-3"></div>
+        <div className="col-lg-6">
+          <EventsFilter
+            typeACheck={typeACheck}
+            setTypeACheck={setTypeACheck}
+            typeBCheck={typeBCheck}
+            setTypeBCheck={setTypeBCheck}
+            firstDate={firstDate}
+            setFirstDate={setFirstDate}
+            lastDate={lastDate}
+            setLastDate={setLastDate}
+          />
+        </div>
+        <div className="col-lg-3"></div>
+      </div>
+      <div className="row">
+        <div className="col-lg-3"></div>
+        <div className="col-lg-6">
+          <EventList
+            events={events}
+            typeACheck={typeACheck}
+            typeBCheck={typeBCheck}
+            setCurrentMarker={setCurrentMarker}
+          />
+        </div>
+        <div className="col-lg-3"></div>
+      </div>
     </div>
   );
 }

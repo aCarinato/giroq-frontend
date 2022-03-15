@@ -61,9 +61,9 @@ function EventsFilter(props) {
       </div>
       <div className="col-lg-4">
         {' '}
-        <button className="btn btn-dark btn-lg btn-download" type="button">
+        {/* <button className="btn btn-dark btn-lg btn-download" type="button">
           <Link href="/nuovo">Aggiugi Evento</Link>
-        </button>
+        </button> */}
       </div>
     </div>
   );
