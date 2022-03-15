@@ -102,7 +102,6 @@ function Home() {
             events={events}
             typeACheck={typeACheck}
             typeBCheck={typeBCheck}
-            // currentMarker={currentMarker}
             setCurrentMarker={setCurrentMarker}
           />
         </div>
