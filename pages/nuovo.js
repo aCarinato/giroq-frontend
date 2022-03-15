@@ -163,8 +163,9 @@ function AddEvent() {
       {/* </div>
           <div className="col-lg-4">DX</div> */}
       {/* </div> */}
+      <p>Log-in per aggiungere nuovo evento</p>
       <button>
-        <Link href="/">Home</Link>
+        <Link href="/login">Login</Link>
       </button>
     </div>
   );

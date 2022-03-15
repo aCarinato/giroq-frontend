@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import EventsFilter from '../components/events/events-filter';
 import EventsMap from '../components/events/events-map';
+import EventList from '../components/events/event-list';
 
 function Home() {
   const [viewport, setViewport] = useState({
@@ -48,12 +49,12 @@ function Home() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-lg-4">SX</div>
-        <div className="col-lg-4">CX</div>
-        <div className="col-lg-4">DX</div>
+        <div className="col-lg-4"></div>
+        <div className="col-lg-4"></div>
+        <div className="col-lg-4"></div>
       </div>
       <div className="row">
-        <div className="col-lg-3">SX</div>
+        <div className="col-lg-3"></div>
         <div className="col-lg-6">
           <EventsMap
             viewport={viewport}
@@ -67,17 +68,29 @@ function Home() {
         </div>
         <div className="col-lg-3">DX</div>
       </div>
-
-      <EventsFilter
-        typeACheck={typeACheck}
-        setTypeACheck={setTypeACheck}
-        typeBCheck={typeBCheck}
-        setTypeBCheck={setTypeBCheck}
-        firstDate={firstDate}
-        setFirstDate={setFirstDate}
-        lastDate={lastDate}
-        setLastDate={setLastDate}
-      />
+      <div className="row">
+        <div className="col-lg-3"></div>
+        <div className="col-lg-6">
+          <EventsFilter
+            typeACheck={typeACheck}
+            setTypeACheck={setTypeACheck}
+            typeBCheck={typeBCheck}
+            setTypeBCheck={setTypeBCheck}
+            firstDate={firstDate}
+            setFirstDate={setFirstDate}
+            lastDate={lastDate}
+            setLastDate={setLastDate}
+          />
+        </div>
+        <div className="col-lg-3"></div>
+      </div>
+      <div className="row">
+        <div className="col-lg-3"></div>
+        <div className="col-lg-6">
+          <EventList events={events} />
+        </div>
+        <div className="col-lg-3"></div>
+      </div>
     </div>
   );
 }

@@ -55,7 +55,7 @@ function EventsMap(props) {
                     <AcUnit
                       key={p._id}
                       className="markerAcUnit"
-                      style={{ fontSize: viewport.zoom * 1.5 }}
+                      style={{ fontSize: viewport.zoom * 2.5 }}
                       onMouseEnter={() => setCurrentPlaceId(p._id)}
                       onMouseLeave={() => setCurrentPlaceId(null)}
                     />
