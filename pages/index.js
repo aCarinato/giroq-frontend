@@ -35,18 +35,31 @@ function Home() {
 
   const [mobileView, setMobileView] = useState(null);
 
+  const [mapSelected, setMapSelected] = useState(true);
+
+  const [showList, setShowList] = useState(null);
+
   const [viewport, setViewport] = useState({
     latitude: 45.5,
     longitude: 12,
     zoom: 6.75,
   });
-  // const { height, width } = useWindowDimensions();
+
   const calcHeight = () => {
     if (window.innerWidth <= 820) {
       setMobileView(true);
-      return 0;
+      if (mapSelected) {
+        setShowList(false);
+        console.log(`showList: ${showList}`);
+        console.log(`mapSelected: ${mapSelected}`);
+        return '100vh';
+      } else {
+        setShowList(true);
+        return 0;
+      }
     } else {
       setMobileView(false);
+      setShowList(true);
       return '100vh';
     }
   };
@@ -87,17 +100,21 @@ function Home() {
         </div>
         {/* <div className="col-lg-3"></div> */}
       </div>
-      <SwitchTab />
+      {mobileView && (
+        <SwitchTab mapSelected={mapSelected} setMapSelected={setMapSelected} />
+      )}
       <div className="row">
         <div className="col-lg-4">
-          <EventList
-            events={events}
-            typeACheck={typeACheck}
-            typeBCheck={typeBCheck}
-            setCurrentMarker={setCurrentMarker}
-            viewport={viewport}
-            setViewport={setViewport}
-          />
+          {showList && (
+            <EventList
+              events={events}
+              typeACheck={typeACheck}
+              typeBCheck={typeBCheck}
+              setCurrentMarker={setCurrentMarker}
+              viewport={viewport}
+              setViewport={setViewport}
+            />
+          )}
         </div>
         <div className="col-lg-8">
           <EventsMap

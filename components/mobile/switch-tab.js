@@ -1,8 +1,10 @@
-import { useState } from 'react';
 import classes from './switch-tab.module.css';
 
-function SwitchTab() {
-  const [mapSelected, setMapSelected] = useState(true);
+function SwitchTab(props) {
+  //   const [mapSelected, setMapSelected] = useState(true);
+
+  const { mapSelected, setMapSelected } = props;
+
   return (
     <div className={classes.switch}>
       <div className="row">
