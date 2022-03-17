@@ -34,14 +34,6 @@ function Home() {
   const [typeACheck, setTypeACheck] = useState(true);
   const [typeBCheck, setTypeBCheck] = useState(true);
 
-  // scetticismo situatione
-  // ripartizione compiti, piu responsabilitá, maggior crescita
-  // aggiungere piu zone (verona, etc.)
-  // presenza concorrenza come fattore aggiuntivo
-  // seo keywords e concorrenza (fare cartella condivisa)
-  // avvisa se non si fa un cazzo
-  // nappitello
-
   useEffect(() => {
     const getEvents = async () => {
       try {
@@ -59,29 +51,8 @@ function Home() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-lg-4"></div>
-        <div className="col-lg-4"></div>
-        <div className="col-lg-4"></div>
-      </div>
-      <div className="row">
-        <div className="col-lg-3"></div>
-        <div className="col-lg-6">
-          <EventsMap
-            viewport={viewport}
-            setViewport={setViewport}
-            events={events}
-            typeACheck={typeACheck}
-            typeBCheck={typeBCheck}
-            currentPlaceId={currentPlaceId}
-            setCurrentPlaceId={setCurrentPlaceId}
-            currentMarker={currentMarker}
-          />
-        </div>
-        <div className="col-lg-3">DX</div>
-      </div>
-      <div className="row">
-        <div className="col-lg-3"></div>
-        <div className="col-lg-6">
+        {/* <div className="col-lg-3"></div> */}
+        <div className="col-lg-12">
           <EventsFilter
             typeACheck={typeACheck}
             setTypeACheck={setTypeACheck}
@@ -93,9 +64,33 @@ function Home() {
             setLastDate={setLastDate}
           />
         </div>
-        <div className="col-lg-3"></div>
+        {/* <div className="col-lg-3"></div> */}
       </div>
       <div className="row">
+        <div className="col-lg-4">
+          <EventList
+            events={events}
+            typeACheck={typeACheck}
+            typeBCheck={typeBCheck}
+            setCurrentMarker={setCurrentMarker}
+            viewport={viewport}
+            setViewport={setViewport}
+          />
+        </div>
+        <div className="col-lg-8">
+          <EventsMap
+            viewport={viewport}
+            setViewport={setViewport}
+            events={events}
+            typeACheck={typeACheck}
+            typeBCheck={typeBCheck}
+            currentPlaceId={currentPlaceId}
+            setCurrentPlaceId={setCurrentPlaceId}
+            currentMarker={currentMarker}
+          />
+        </div>
+      </div>
+      {/* <div className="row">
         <div className="col-lg-3"></div>
         <div className="col-lg-6">
           <EventList
@@ -108,7 +103,7 @@ function Home() {
           />
         </div>
         <div className="col-lg-3"></div>
-      </div>
+      </div> */}
     </div>
   );
 }

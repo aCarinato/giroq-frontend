@@ -32,7 +32,7 @@ function EventsMap(props) {
   return (
     <Map
       {...viewport}
-      style={{ height: '50vh' }}
+      style={{ height: '100vh' }}
       mapStyle="mapbox://styles/mapbox/streets-v11"
       mapboxAccessToken={MAPBOX_TOKEN}
       onMove={(evt) => setViewport(evt.viewState)}
