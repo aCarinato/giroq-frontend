@@ -13,40 +13,42 @@ function EventList(props) {
   } = props;
   return (
     <ul className={classes.list}>
-      {events.map((event) => (
-        <Fragment key={event._id}>
-          {event.type === 'A' && typeACheck && (
-            <EventItem
-              key={event._id}
-              id={event._id}
-              title={event.title}
-              // location={event.location}
-              date={event.date}
-              // image={event.image}
-              setCurrentMarker={setCurrentMarker}
-              viewport={viewport}
-              setViewport={setViewport}
-              longitude={event.long}
-              latitude={event.lat}
-            />
-          )}
-          {event.type === 'B' && typeBCheck && (
-            <EventItem
-              key={event._id}
-              id={event._id}
-              title={event.title}
-              // location={event.location}
-              date={event.date}
-              // image={event.image}
-              setCurrentMarker={setCurrentMarker}
-              viewport={viewport}
-              setViewport={setViewport}
-              longitude={event.long}
-              latitude={event.lat}
-            />
-          )}
-        </Fragment>
-      ))}
+      {events.length === 0 && <div>NESSUN EVENTO PER LE DATE SELEZIONATE</div>}
+      {events.length > 0 &&
+        events.map((event) => (
+          <Fragment key={event._id}>
+            {event.type === 'A' && typeACheck && (
+              <EventItem
+                key={event._id}
+                id={event._id}
+                title={event.title}
+                // location={event.location}
+                date={event.date}
+                // image={event.image}
+                setCurrentMarker={setCurrentMarker}
+                viewport={viewport}
+                setViewport={setViewport}
+                longitude={event.long}
+                latitude={event.lat}
+              />
+            )}
+            {event.type === 'B' && typeBCheck && (
+              <EventItem
+                key={event._id}
+                id={event._id}
+                title={event.title}
+                // location={event.location}
+                date={event.date}
+                // image={event.image}
+                setCurrentMarker={setCurrentMarker}
+                viewport={viewport}
+                setViewport={setViewport}
+                longitude={event.long}
+                latitude={event.lat}
+              />
+            )}
+          </Fragment>
+        ))}
     </ul>
   );
 }
