@@ -21,7 +21,7 @@ function EventsFilter(props) {
         className={classes.filterSwitch}
         onClick={() => setFilterVisible(!filterVisible)}
       >
-        Filtra eventi e attivitá
+        Filtra eventi e attivitá (click per aprire)
       </div>
       {filterVisible && (
         <>

@@ -36,8 +36,9 @@ function Home() {
   const [mobileView, setMobileView] = useState(null);
 
   const [mapSelected, setMapSelected] = useState(true);
+  // const [listSelected, setListSelected] = useState(false)
 
-  const [showList, setShowList] = useState(null);
+  const [showList, setShowList] = useState(false);
 
   const [viewport, setViewport] = useState({
     latitude: 45.5,
@@ -54,7 +55,7 @@ function Home() {
         console.log(`mapSelected: ${mapSelected}`);
         return '100vh';
       } else {
-        setShowList(true);
+        // setShowList(true);
         return 0;
       }
     } else {
@@ -101,11 +102,16 @@ function Home() {
         {/* <div className="col-lg-3"></div> */}
       </div>
       {mobileView && (
-        <SwitchTab mapSelected={mapSelected} setMapSelected={setMapSelected} />
+        <SwitchTab
+          // mapSelected={mapSelected}
+          setMapSelected={setMapSelected}
+          // showList={showList}
+          setShowList={setShowList}
+        />
       )}
       <div className="row">
         <div className="col-lg-4">
-          {showList && (
+          {showList === true && (
             <EventList
               events={events}
               typeACheck={typeACheck}

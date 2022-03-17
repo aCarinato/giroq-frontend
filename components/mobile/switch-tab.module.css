@@ -1,5 +1,8 @@
 .switch {
-  background-color: blueviolet;
+  text-align: center;
+}
+
+.tab {
   cursor: pointer;
 }
 

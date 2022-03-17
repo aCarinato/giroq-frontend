@@ -10,7 +10,6 @@ import { Room, AcUnit, Star } from '@material-ui/icons';
 import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
 import EventsPopup from './events-popup';
-import classes from './events-map.module.css';
 
 function EventsMap(props) {
   const {
@@ -29,35 +28,8 @@ function EventsMap(props) {
   // const MAPBOX_TOKEN = process.env.MapboxAccessToken;
   // const MAPBOX_TOKEN = process.env.MAPBOX_ACCESS_TOKEN;
 
-  // const mq = window.matchMedia('(min-width: 768px)');
-  // const useWindowSize = () => {
-  //   const [height, setHeight] = useState(calcHeight());
-  //   useEffect(() => {
-  //     const updateSize = () => {
-  //       setHeight(calcHeight());
-  //     };
-  //     window.addEventListener('resize', updateSize);
-
-  //     return () => {
-  //       window.removeEventListener('resize', updateSize);
-  //     };
-  //   }, []);
-
-  //   const calcHeight = () => {
-  //     if (window.innerWidth < 768) {
-  //       return 0;
-  //     } else {
-  //       return '100vh';
-  //     }
-  //   };
-
-  //   return height;
-  // };
-
-  // const size = useWindowSize();
-
   return (
-    <div className={classes.switch}>
+    <div>
       <Map
         {...viewport}
         style={{ height: mapHeight }}
