@@ -15,8 +15,6 @@ function EventsFilter(props) {
 
   const [filterVisible, setFilterVisible] = useState(false);
 
-  // const switchVisibility = () => {};
-
   return (
     <div className="row">
       <div

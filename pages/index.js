@@ -7,14 +7,11 @@ import axios from 'axios';
 import EventsFilter from '../components/events/events-filter';
 import EventsMap from '../components/events/events-map';
 import EventList from '../components/events/event-list';
+import SwitchTab from '../components/mobile/switch-tab';
+
+// import useWindowDimension from '../components/hooks/window-dimension';
 
 function Home() {
-  const [viewport, setViewport] = useState({
-    latitude: 45.5,
-    longitude: 12,
-    zoom: 6.75,
-  });
-
   const today = new Date();
   const todayISO = today.toISOString().split('T')[0];
 
@@ -33,6 +30,30 @@ function Home() {
 
   const [typeACheck, setTypeACheck] = useState(true);
   const [typeBCheck, setTypeBCheck] = useState(true);
+
+  const [mapHeight, setMapHeight] = useState(null);
+
+  const [mobileView, setMobileView] = useState(null);
+
+  const [viewport, setViewport] = useState({
+    latitude: 45.5,
+    longitude: 12,
+    zoom: 6.75,
+  });
+  // const { height, width } = useWindowDimensions();
+  const calcHeight = () => {
+    if (window.innerWidth <= 820) {
+      setMobileView(true);
+      return 0;
+    } else {
+      setMobileView(false);
+      return '100vh';
+    }
+  };
+
+  useEffect(() => {
+    setMapHeight(calcHeight());
+  }, [calcHeight]);
 
   useEffect(() => {
     const getEvents = async () => {
@@ -66,6 +87,7 @@ function Home() {
         </div>
         {/* <div className="col-lg-3"></div> */}
       </div>
+      <SwitchTab />
       <div className="row">
         <div className="col-lg-4">
           <EventList
@@ -79,6 +101,7 @@ function Home() {
         </div>
         <div className="col-lg-8">
           <EventsMap
+            mapHeight={mapHeight}
             viewport={viewport}
             setViewport={setViewport}
             events={events}
@@ -90,20 +113,6 @@ function Home() {
           />
         </div>
       </div>
-      {/* <div className="row">
-        <div className="col-lg-3"></div>
-        <div className="col-lg-6">
-          <EventList
-            events={events}
-            typeACheck={typeACheck}
-            typeBCheck={typeBCheck}
-            setCurrentMarker={setCurrentMarker}
-            viewport={viewport}
-            setViewport={setViewport}
-          />
-        </div>
-        <div className="col-lg-3"></div>
-      </div> */}
     </div>
   );
 }
