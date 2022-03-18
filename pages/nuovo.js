@@ -43,6 +43,8 @@ function AddEvent() {
   const [type, setType] = useState('');
   const [date, setDate] = useState(today);
 
+  const [organisers, setOrganisers] = useState([]);
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const router = useRouter();
@@ -78,6 +80,20 @@ function AddEvent() {
     }
   }, []);
 
+  useEffect(() => {
+    const getOrganisers = async () => {
+      try {
+        const reqOrganisers = await axios.get(
+          `${process.env.NEXT_PUBLIC_API}/auth/organiser`
+        );
+        setOrganisers(reqOrganisers.data);
+        console.log(organisers);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getOrganisers();
+  }, []);
   // useEffect(() => {
   //   localStorage.setItem('name', currentUsername)
   // }, [currentUsername]);
@@ -92,13 +108,20 @@ function AddEvent() {
             <div className="col-lg-4">
               <form onSubmit={handleAddEvent}>
                 <label htmlFor="organiser">Organizzatore</label>
-                <input
+                {/* <input
                   type="text"
                   id="organiser"
                   name="organiser"
                   value={organiser}
                   onChange={(e) => setOrganiser(e.target.value)}
-                />
+                /> */}
+                <select htmlFor="organiser">
+                  {organisers.map((organiser) => (
+                    <option key={organiser._id} value={organiser.name}>
+                      {organiser.name}
+                    </option>
+                  ))}
+                </select>
                 <label htmlFor="title">Title</label>
                 <input
                   type="text"
@@ -160,9 +183,6 @@ function AddEvent() {
           </>
         )}
       </div>
-      {/* </div>
-          <div className="col-lg-4">DX</div> */}
-      {/* </div> */}
       <p>Log-in per aggiungere nuovo evento</p>
       <button>
         <Link href="/login">Login</Link>
