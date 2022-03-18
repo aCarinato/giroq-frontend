@@ -53,7 +53,7 @@ function Home() {
         setShowList(false);
         console.log(`showList: ${showList}`);
         console.log(`mapSelected: ${mapSelected}`);
-        return '100vh';
+        return '500px';
       } else {
         // setShowList(true);
         return 0;
@@ -86,7 +86,6 @@ function Home() {
   return (
     <div className="container-fluid">
       <div className="row">
-        {/* <div className="col-lg-3"></div> */}
         <div className="col-lg-12">
           <EventsFilter
             typeACheck={typeACheck}
@@ -99,13 +98,12 @@ function Home() {
             setLastDate={setLastDate}
           />
         </div>
-        {/* <div className="col-lg-3"></div> */}
       </div>
       {mobileView && (
         <SwitchTab
-          // mapSelected={mapSelected}
+          mapSelected={mapSelected}
           setMapSelected={setMapSelected}
-          // showList={showList}
+          showList={showList}
           setShowList={setShowList}
         />
       )}
@@ -119,6 +117,8 @@ function Home() {
               setCurrentMarker={setCurrentMarker}
               viewport={viewport}
               setViewport={setViewport}
+              mobileView={mobileView}
+              setMapSelected={setMapSelected}
             />
           )}
         </div>

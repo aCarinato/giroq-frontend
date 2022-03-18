@@ -10,9 +10,6 @@ function MainHeader() {
       <div className={classes.slogan}>
         <Link href="/">cose da fare attorno a te</Link>
       </div>
-      {/* <nav className={classes.navigation}>
-        <ul></ul>
-      </nav> */}
     </header>
   );
 }

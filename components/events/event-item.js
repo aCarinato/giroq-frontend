@@ -17,6 +17,8 @@ function EventItem(props) {
     longitude,
     viewport,
     setViewport,
+    mobileView,
+    setMapSelected,
   } = props;
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
@@ -26,6 +28,9 @@ function EventItem(props) {
 
   const handleOnEnter = (id, latitude, longitude) => {
     setCurrentMarker(id);
+    if (mobileView === true) {
+      setMapSelected(true);
+    }
     setViewport({
       ...viewport,
       zoom: 9,
