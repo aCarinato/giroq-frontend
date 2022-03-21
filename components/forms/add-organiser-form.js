@@ -1,4 +1,4 @@
-import classes from './add-organiser.module.css';
+import classes from './add-organiser-form.module.css';
 
 function AddOrganiserForm(props) {
   const {

@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import AddOrganiserForm from '../../components/forms/add-organiser';
+import AddOrganiserForm from '../../components/forms/add-organiser-form';
 
 function AddOrganiser() {
   const nameInputRef = useRef();

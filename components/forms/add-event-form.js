@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import classes from './add-event.module.css';
+import classes from './add-event-form.module.css';
 
 function AddEventForm(props) {
   const {
@@ -35,6 +35,7 @@ function AddEventForm(props) {
             name="organiser"
             onChange={(e) => setOrganiser(e.target.value)}
           >
+            <option value="">--Seleziona organizzatore--</option>
             {organisers.map((organiser) => (
               <option key={organiser._id} value={organiser.name}>
                 {organiser.name}
@@ -89,14 +90,23 @@ function AddEventForm(props) {
           <label className={classes.formCol} htmlFor="type">
             tipo
           </label>
-          <input
+          <select
+            className={classes.formInput}
+            name="type"
+            onChange={(e) => setType(e.target.value)}
+          >
+            <option value="">--Seleziona tipo--</option>
+            <option value="A">tipo A</option>
+            <option value="B">tipo B</option>
+          </select>
+          {/* <input
             className={classes.formInput}
             type="text"
             id="type"
             name="type"
             value={type}
             onChange={(e) => setType(e.target.value)}
-          />
+          /> */}
         </div>
         <div className={classes.formRow}>
           <label className={classes.formCol} htmlFor="event-date">
