@@ -29,8 +29,8 @@ function EventsMap(props) {
   // const MAPBOX_TOKEN = process.env.MAPBOX_ACCESS_TOKEN;
 
   const bounds = [
-    [10.8, 44.5], // Southwest coordinates
-    [12.8, 46.5], // Northeast coordinates
+    [10.5, 44.0], // Southwest coordinates
+    [12.9, 46.5], // Northeast coordinates
   ];
 
   return (

@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import AddOrganiserForm from '../../components/forms/add-organiser';
 
 function AddOrganiser() {
   const nameInputRef = useRef();
@@ -46,48 +47,31 @@ function AddOrganiser() {
 
   return (
     <div>
-      <p>Aggiungi Organizzatore</p>
-      {isLoggedIn && (
-        <form onSubmit={formSubmit}>
-          <label htmlFor="organiser">Organizzatore</label>
-          <input
-            type="text"
-            id="organiser"
-            name="organiser"
-            ref={nameInputRef}
-          />
-          <label htmlFor="address">Indirizzo</label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            ref={addressInputRef}
-          />
-          <label htmlFor="lat">Lat</label>
-          <input
-            type="number"
-            step=".1"
-            id="lat"
-            name="lat"
-            ref={latInputRef}
-          />
-          <label htmlFor="long">Long</label>
-          <input
-            type="number"
-            step=".1"
-            id="long"
-            name="long"
-            ref={longInputRef}
-          />
-          <br></br>
-          <button className="btn btn-outline-primary col-12" type="submit">
-            Aggiungi Organizzatore
-          </button>
-        </form>
-      )}
+      <h3>Aggiungi Organizzatore</h3>
+      <div className="row">
+        {isLoggedIn && (
+          <>
+            <div className="col-lg-4"></div>
+            <div className="col-lg-4">
+              <AddOrganiserForm
+                nameInputRef={nameInputRef}
+                addressInputRef={addressInputRef}
+                latInputRef={latInputRef}
+                longInputRef={longInputRef}
+                formSubmit={formSubmit}
+              />
+            </div>
+            <div className="col-lg-4"></div>
+          </>
+        )}
+      </div>
       <p>Log-in per aggiungere nuovo Organizzatore</p>
       <button>
         <Link href="/login">Login</Link>
+      </button>
+      <p>Aggiungere nuovo Evento</p>
+      <button>
+        <Link href="/nuovo">Nuovo</Link>
       </button>
     </div>
   );

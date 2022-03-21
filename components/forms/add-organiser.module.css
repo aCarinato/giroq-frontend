@@ -1,0 +1,11 @@
+.formRow {
+  padding: 0.5rem 0.5rem;
+}
+
+.formCol {
+  width: 50%;
+}
+
+.formInput {
+  width: 35%;
+}
