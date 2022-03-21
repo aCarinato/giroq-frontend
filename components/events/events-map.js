@@ -28,6 +28,11 @@ function EventsMap(props) {
   // const MAPBOX_TOKEN = process.env.MapboxAccessToken;
   // const MAPBOX_TOKEN = process.env.MAPBOX_ACCESS_TOKEN;
 
+  const bounds = [
+    [10.5, 44.0], // Southwest coordinates
+    [12.9, 46.5], // Northeast coordinates
+  ];
+
   return (
     <div>
       <Map
@@ -36,11 +41,11 @@ function EventsMap(props) {
         mapStyle="mapbox://styles/mapbox/streets-v11"
         mapboxAccessToken={MAPBOX_TOKEN}
         onMove={(evt) => setViewport(evt.viewState)}
+        maxBounds={bounds}
       >
         <GeolocateControl />
         <FullscreenControl />
         <NavigationControl />
-
         {events.map((p) => (
           <Fragment key={p._id}>
             {p.type === 'A' && typeACheck && (
@@ -51,7 +56,6 @@ function EventsMap(props) {
                 offsetLeft={-3.5 * viewport.zoom}
                 offsetTop={-7 * viewport.zoom}
               >
-                {' '}
                 <div>
                   <Link href={`/event/${p._id}`}>
                     <a target="_blank">
@@ -85,7 +89,6 @@ function EventsMap(props) {
                 offsetLeft={-3.5 * viewport.zoom}
                 offsetTop={-7 * viewport.zoom}
               >
-                {' '}
                 <div>
                   <Link href={`/event/${p._id}`}>
                     <a target="_blank">
@@ -111,7 +114,6 @@ function EventsMap(props) {
                 </div>
               </Marker>
             )}
-
             {p._id === currentPlaceId && (
               <Popup longitude={p.long} latitude={p.lat} anchor="left">
                 <EventsPopup

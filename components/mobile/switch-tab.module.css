@@ -4,6 +4,18 @@
 
 .tab {
   cursor: pointer;
+  padding: 0.5rem;
+}
+
+.tabSelected {
+  color: darkslategrey;
+  background-color: aliceblue;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.spanSelected {
+  font-weight: bold;
 }
 
 /* @media only screen and (min-width: 821px) {

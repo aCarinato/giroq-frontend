@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import AddEventForm from '../components/forms/add-event';
 
 function AddEvent() {
   // if (typeof window !== 'undefined') {
@@ -31,31 +32,41 @@ function AddEvent() {
 
   const today = new Date().toISOString().split('T')[0];
 
-  // const [currentUsername, setCurrentUsername] = useState(
-  //   localStorage.getItem('name')
-  // );
-
   const [organiser, setOrganiser] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [long, setLong] = useState('');
-  const [lat, setLat] = useState('');
+  // const [long, setLong] = useState('');
+  // const [lat, setLat] = useState('');
   const [type, setType] = useState('');
   const [date, setDate] = useState(today);
+
+  const [organisers, setOrganisers] = useState([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const router = useRouter();
 
+  // const handleSelect = (e) => {
+  //   setOrganiser(e.target.value);
+  //   console.log(organiser);
+  //   console.log(organisers);
+  //   const currentOrganiser = organisers.find((org) => org.name === organiser);
+  //   if (currentOrganiser) {
+  //     console.log(typeof currentOrganiser.lat);
+  //   }
+  // };
+
   const handleAddEvent = async (e) => {
     e.preventDefault();
     try {
+      const currentOrganiser = organisers.find((org) => org.name === organiser);
+
       const newEvent = {
         organiser,
         title,
         description,
-        long,
-        lat,
+        long: currentOrganiser.long,
+        lat: currentOrganiser.lat,
         type,
         date,
       };
@@ -78,6 +89,20 @@ function AddEvent() {
     }
   }, []);
 
+  useEffect(() => {
+    const getOrganisers = async () => {
+      try {
+        const reqOrganisers = await axios.get(
+          `${process.env.NEXT_PUBLIC_API}/auth/organiser`
+        );
+        setOrganisers(reqOrganisers.data);
+        console.log(organisers);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getOrganisers();
+  }, []);
   // useEffect(() => {
   //   localStorage.setItem('name', currentUsername)
   // }, [currentUsername]);
@@ -88,84 +113,33 @@ function AddEvent() {
       <div className="row">
         {isLoggedIn && (
           <>
-            <div className="col-lg-4">SX</div>
+            <div className="col-lg-4"></div>
             <div className="col-lg-4">
-              <form onSubmit={handleAddEvent}>
-                <label htmlFor="organiser">Organizzatore</label>
-                <input
-                  type="text"
-                  id="organiser"
-                  name="organiser"
-                  value={organiser}
-                  onChange={(e) => setOrganiser(e.target.value)}
-                />
-                <label htmlFor="title">Title</label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-                <label htmlFor="description">Description</label>
-                <input
-                  type="text"
-                  id="description"
-                  name="description"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-                <label htmlFor="long">long</label>
-                <input
-                  type="number"
-                  id="long"
-                  name="long"
-                  value={long}
-                  onChange={(e) => setLong(e.target.value)}
-                />
-                <label htmlFor="lat">lat</label>
-                <input
-                  type="number"
-                  id="lat"
-                  name="lat"
-                  value={lat}
-                  onChange={(e) => setLat(e.target.value)}
-                />
-                <label htmlFor="type">tipo</label>
-                <input
-                  type="text"
-                  id="type"
-                  name="type"
-                  value={type}
-                  onChange={(e) => setType(e.target.value)}
-                />
-                <label htmlFor="event-date">Data Evento</label>
-                <input
-                  type="date"
-                  id="event-date"
-                  name="event-date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                />
-                <br></br>
-                <button
-                  className="btn btn-outline-primary col-12"
-                  type="submit"
-                >
-                  Aggiungi evento
-                </button>
-              </form>
+              <AddEventForm
+                organisers={organisers}
+                setOrganiser={setOrganiser}
+                title={title}
+                setTitle={setTitle}
+                description={description}
+                setDescription={setDescription}
+                type={type}
+                setType={setType}
+                date={date}
+                setDate={setDate}
+                handleAddEvent={handleAddEvent}
+              />
             </div>
-            <div className="col-lg-4">DX</div>
+            <div className="col-lg-4"></div>
           </>
         )}
       </div>
-      {/* </div>
-          <div className="col-lg-4">DX</div> */}
-      {/* </div> */}
       <p>Log-in per aggiungere nuovo evento</p>
       <button>
         <Link href="/login">Login</Link>
+      </button>
+      <p>Aggiungere nuovo Organizzatore</p>
+      <button>
+        <Link href="/organizzatore">Nuovo</Link>
       </button>
     </div>
   );

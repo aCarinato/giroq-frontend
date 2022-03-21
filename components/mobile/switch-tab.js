@@ -3,7 +3,7 @@ import classes from './switch-tab.module.css';
 function SwitchTab(props) {
   //   const [mapSelected, setMapSelected] = useState(true);
 
-  const { setMapSelected, setShowList } = props;
+  const { mapSelected, setMapSelected, showList, setShowList } = props;
 
   const clickMapTab = () => {
     setMapSelected(true);
@@ -19,10 +19,18 @@ function SwitchTab(props) {
     <div className={classes.switch}>
       <div className="row">
         <div className="col" onClick={clickMapTab}>
-          <span className={classes.tab}>Mappa</span>
+          <div className={mapSelected ? classes.tabSelected : classes.tab}>
+            <span className={showList ? classes.spanSelected : null}>
+              Mappa
+            </span>
+          </div>
         </div>
         <div className="col" onClick={clickListTab}>
-          <span className={classes.tab}>Lista Eventi</span>
+          <div className={showList ? classes.tabSelected : classes.tab}>
+            <span className={showList ? classes.spanSelected : null}>
+              Lista Eventi
+            </span>
+          </div>
         </div>
       </div>
     </div>

@@ -10,6 +10,8 @@ function EventList(props) {
     setCurrentMarker,
     viewport,
     setViewport,
+    mobileView,
+    setMapSelected,
   } = props;
   return (
     <ul className={classes.list}>
@@ -30,6 +32,8 @@ function EventList(props) {
                 setViewport={setViewport}
                 longitude={event.long}
                 latitude={event.lat}
+                mobileView={mobileView}
+                setMapSelected={setMapSelected}
               />
             )}
             {event.type === 'B' && typeBCheck && (
@@ -45,6 +49,8 @@ function EventList(props) {
                 setViewport={setViewport}
                 longitude={event.long}
                 latitude={event.lat}
+                mobileView={mobileView}
+                setMapSelected={setMapSelected}
               />
             )}
           </Fragment>
