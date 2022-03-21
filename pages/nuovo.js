@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import AddEventForm from '../components/forms/add-event';
+import AddEventForm from '../components/forms/add-event-form';
 
 function AddEvent() {
   // if (typeof window !== 'undefined') {

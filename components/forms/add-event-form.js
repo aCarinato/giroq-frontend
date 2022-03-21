@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import classes from './add-event.module.css';
+import classes from './add-event-form.module.css';
 
 function AddEventForm(props) {
   const {
@@ -35,6 +35,7 @@ function AddEventForm(props) {
             name="organiser"
             onChange={(e) => setOrganiser(e.target.value)}
           >
+            <option value="">--Seleziona organizzatore--</option>
             {organisers.map((organiser) => (
               <option key={organiser._id} value={organiser.name}>
                 {organiser.name}
