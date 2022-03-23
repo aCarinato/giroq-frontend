@@ -20,12 +20,14 @@ function AddOrganiser() {
         long: longInputRef.current.value,
         lat: latInputRef.current.value,
       };
-      console.log(newOrganiser);
+      // console.log(newOrganiser);
 
       const res = axios.post(
         `${process.env.NEXT_PUBLIC_API}/auth/organiser`,
         newOrganiser
       );
+
+      // console.log(res);
 
       //   Reset values after submit
       nameInputRef.current.value = '';

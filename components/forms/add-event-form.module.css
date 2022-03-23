@@ -9,3 +9,11 @@
 .formInput {
   width: 35%;
 }
+
+.image {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid white;
+}

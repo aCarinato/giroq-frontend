@@ -11,6 +11,7 @@ function EventsFilter(props) {
     setFirstDate,
     lastDate,
     setLastDate,
+    // minDate,
   } = props;
 
   const [filterVisible, setFilterVisible] = useState(false);
@@ -57,6 +58,7 @@ function EventsFilter(props) {
               <input
                 type="date"
                 id="first-date"
+                // min={minDate}
                 name="first-date"
                 value={firstDate}
                 onChange={(e) => setFirstDate(e.target.value)}

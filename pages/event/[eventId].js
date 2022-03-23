@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import EventId from '../../components/events/eventid';
 
 function EventDetailPage() {
   const [event, setEvent] = useState({});
@@ -20,6 +21,8 @@ function EventDetailPage() {
         `${process.env.NEXT_PUBLIC_API}/event/${eventId}`
       );
       setEvent(data);
+      console.log('evento ritrovato:');
+      console.log(event);
     } catch (err) {
       console.log(err);
     }
@@ -30,10 +33,17 @@ function EventDetailPage() {
   }, [eventId]);
 
   return (
-    <div>
-      <h2>{event.title}</h2>
-      <p>Organizzato da: {event.organiser}</p>
-    </div>
+    <>
+      <EventId
+        organiser={event.organiser}
+        title={event.title}
+        image={event.image}
+      />
+    </>
+    // <div>
+    //   <h2>{event.title}</h2>
+    //   <p>Organizzato da: {event.organiser}</p>
+    // </div>
   );
 }
 

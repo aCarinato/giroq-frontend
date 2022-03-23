@@ -26,7 +26,7 @@ function EventList(props) {
                 title={event.title}
                 // location={event.location}
                 date={event.date}
-                // image={event.image}
+                image={event.image}
                 setCurrentMarker={setCurrentMarker}
                 viewport={viewport}
                 setViewport={setViewport}
@@ -43,14 +43,13 @@ function EventList(props) {
                 title={event.title}
                 // location={event.location}
                 date={event.date}
-                // image={event.image}
+                image={event.image}
                 setCurrentMarker={setCurrentMarker}
                 viewport={viewport}
                 setViewport={setViewport}
                 longitude={event.long}
                 latitude={event.lat}
                 mobileView={mobileView}
-                setMapSelected={setMapSelected}
               />
             )}
           </Fragment>

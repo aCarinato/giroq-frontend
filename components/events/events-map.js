@@ -121,6 +121,7 @@ function EventsMap(props) {
                   description={p.description}
                   organiser={p.organiser}
                   id={p._id}
+                  image={p.image}
                 />
               </Popup>
             )}

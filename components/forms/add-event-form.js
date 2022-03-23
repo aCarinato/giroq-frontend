@@ -9,10 +9,11 @@ function AddEventForm(props) {
     setTitle,
     description,
     setDescription,
-    type,
     setType,
     date,
     setDate,
+    uploadImg,
+    image,
     handleAddEvent,
   } = props;
 
@@ -120,6 +121,15 @@ function AddEventForm(props) {
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
+        </div>
+        <div className={classes.formRow}>
+          <label className={classes.formCol}>Carica immagini</label>
+          {image && image.url && (
+            <div className={classes.image}>
+              <img src={`${image.url}`} />
+            </div>
+          )}
+          <input onChange={uploadImg} type="file" accept="images/*" />
         </div>
 
         <br></br>
