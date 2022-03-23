@@ -5,31 +5,6 @@ import Link from 'next/link';
 import AddEventForm from '../components/forms/add-event-form';
 
 function AddEvent() {
-  // if (typeof window !== 'undefined') {
-  //   const myStorage = window.localStorage;
-  // }
-  // const [currentUsername, setCurrentUsername] = useState(
-  //   myStorage.getItem('user')
-  // );
-
-  // const [currentUsername, setCurrentUsername] = useState(() => {
-  //   const saved = localStorage.getItem('user');
-  //   const initialValue = JSON.parse(saved);
-  //   return initialValue || '';
-  // });
-  // if (typeof window !== 'undefined') {
-  //   console.log('You are on the browser');
-  //   // 👉️ can use localStorage here
-  //   const [currentUsername, setCurrentUsername] = useState(() => {
-  //     const saved = localStorage.getItem('user');
-  //     const initialValue = JSON.parse(saved);
-  //     return initialValue || '';
-  //   });
-  // } else {
-  //   console.log('You are on the server');
-  //   // 👉️ can't use localStorage
-  // }
-
   const today = new Date().toISOString().split('T')[0];
 
   const [organiser, setOrganiser] = useState('');
@@ -44,17 +19,34 @@ function AddEvent() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [image, setImage] = useState({});
+
   const router = useRouter();
 
-  // const handleSelect = (e) => {
-  //   setOrganiser(e.target.value);
-  //   console.log(organiser);
-  //   console.log(organisers);
-  //   const currentOrganiser = organisers.find((org) => org.name === organiser);
-  //   if (currentOrganiser) {
-  //     console.log(typeof currentOrganiser.lat);
-  //   }
-  // };
+  const uploadImg = async (e) => {
+    const file = e.target.files[0];
+    let formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'hlfsr6zl');
+    console.log([...formData]);
+    try {
+      // const { data } = await axios.post(
+      //   `${process.env.NEXT_PUBLIC_API}/event/img-upload`,
+      //   formData
+      // );
+      const { data } = await axios.post(
+        'https://api.cloudinary.com/v1_1/dbew5ctqi/image/upload',
+        formData
+      );
+      console.log('uploaded img => ', data);
+      setImage({
+        url: data.url,
+        public_id: data.public_id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleAddEvent = async (e) => {
     e.preventDefault();
@@ -69,10 +61,11 @@ function AddEvent() {
         lat: currentOrganiser.lat,
         type,
         date,
+        image,
       };
 
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API}/events/`,
+        `${process.env.NEXT_PUBLIC_API}/event/`,
         newEvent
       );
       router.push('/');
@@ -96,16 +89,12 @@ function AddEvent() {
           `${process.env.NEXT_PUBLIC_API}/auth/organiser`
         );
         setOrganisers(reqOrganisers.data);
-        console.log(organisers);
       } catch (err) {
         console.log(err);
       }
     };
     getOrganisers();
   }, []);
-  // useEffect(() => {
-  //   localStorage.setItem('name', currentUsername)
-  // }, [currentUsername]);
 
   return (
     <div>
@@ -122,10 +111,11 @@ function AddEvent() {
                 setTitle={setTitle}
                 description={description}
                 setDescription={setDescription}
-                type={type}
                 setType={setType}
                 date={date}
                 setDate={setDate}
+                uploadImg={uploadImg}
+                image={image}
                 handleAddEvent={handleAddEvent}
               />
             </div>

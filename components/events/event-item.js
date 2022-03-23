@@ -1,4 +1,5 @@
 import Link from 'next/link';
+// import Image from 'next/image';
 
 // import Button from '../ui/button';
 // import DateIcon from '../icons/date-icon';
@@ -19,6 +20,7 @@ function EventItem(props) {
     setViewport,
     mobileView,
     setMapSelected,
+    image,
   } = props;
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
@@ -44,7 +46,8 @@ function EventItem(props) {
 
   return (
     <li className={classes.item}>
-      {/* <img src={'/' + image} alt={title} /> */}
+      <img src={image.url} alt={title} />
+      {/* <Image src={image.url} alt={title} width={250} height={160} /> */}
       <div className={classes.content}>
         <div>
           <h2>{title}</h2>
