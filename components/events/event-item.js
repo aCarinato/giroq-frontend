@@ -46,7 +46,14 @@ function EventItem(props) {
 
   return (
     <li className={classes.item}>
-      <img src={image.url} alt={title} />
+      <div className={classes.contenitore}>
+        {image && (
+          <div className={classes.verticale}>
+            <img src={image.url} alt={title} />
+          </div>
+        )}
+      </div>
+
       {/* <Image src={image.url} alt={title} width={250} height={160} /> */}
       <div className={classes.content}>
         <div>

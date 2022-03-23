@@ -96,6 +96,7 @@ function Home() {
             setFirstDate={setFirstDate}
             lastDate={lastDate}
             setLastDate={setLastDate}
+            // minDate={firstDate}
           />
         </div>
       </div>

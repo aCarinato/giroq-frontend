@@ -33,6 +33,8 @@ function EventDetailPage() {
     <div>
       <h2>{event.title}</h2>
       <p>Organizzato da: {event.organiser}</p>
+      {/* <p>{event.image}</p> */}
+      {/* <img src={event.image} alt={event.title} /> */}
     </div>
   );
 }
