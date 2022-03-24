@@ -12,9 +12,11 @@ function AddEventForm(props) {
     setType,
     date,
     setDate,
-    uploadImg,
+    // uploadImg,
     image,
     handleAddEvent,
+    // imageUpload,
+    handleImage,
   } = props;
 
   return (
@@ -129,7 +131,8 @@ function AddEventForm(props) {
               <img src={`${image.url}`} />
             </div>
           )}
-          <input onChange={uploadImg} type="file" accept="images/*" />
+          {/* <input onChange={uploadImg} type="file" accept="images/*" /> */}
+          <input onChange={handleImage} type="file" accept="images/*" />
         </div>
 
         <br></br>

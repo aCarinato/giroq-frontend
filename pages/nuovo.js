@@ -21,24 +21,42 @@ function AddEvent() {
 
   const [image, setImage] = useState({});
 
+  // const [imageUpload, setImageUpload] = useState({});
+
   const router = useRouter();
 
-  const uploadImg = async (e) => {
+  // const uploadImg = async (e) => {
+  //   const file = e.target.files[0];
+  //   let formData = new FormData();
+  //   formData.append('file', file);
+  //   formData.append('upload_preset', 'rosacroce');
+  //   console.log([...formData]);
+  //   try {
+  //     const { data } = await axios.post(
+  //       'https://api.cloudinary.com/v1_1/dbew5ctqi/image/upload',
+  //       formData
+  //     );
+  //     console.log('uploaded img => ', data);
+  //     setImage({
+  //       url: data.url,
+  //       public_id: data.public_id,
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  const handleImage = async (e) => {
     const file = e.target.files[0];
     let formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', 'hlfsr6zl');
+    formData.append('image', file);
     console.log([...formData]);
     try {
-      // const { data } = await axios.post(
-      //   `${process.env.NEXT_PUBLIC_API}/event/img-upload`,
-      //   formData
-      // );
       const { data } = await axios.post(
-        'https://api.cloudinary.com/v1_1/dbew5ctqi/image/upload',
+        `${process.env.NEXT_PUBLIC_API}/event/upload-image`,
         formData
       );
-      console.log('uploaded img => ', data);
+      // console.log('uploaded image => ', data);
       setImage({
         url: data.url,
         public_id: data.public_id,
@@ -114,9 +132,11 @@ function AddEvent() {
                 setType={setType}
                 date={date}
                 setDate={setDate}
-                uploadImg={uploadImg}
+                // uploadImg={uploadImg}
                 image={image}
                 handleAddEvent={handleAddEvent}
+                // imageUpload={imageUpload}
+                handleImage={handleImage}
               />
             </div>
             <div className="col-lg-4"></div>
