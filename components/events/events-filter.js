@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import classes from './events-filter.module.css';
 
+import * as ga from '../../lib/google-analytics';
+
 function EventsFilter(props) {
   const {
     typeACheck,
@@ -16,11 +18,39 @@ function EventsFilter(props) {
 
   const [filterVisible, setFilterVisible] = useState(false);
 
+  const handleClick = () => {
+    setFilterVisible(!filterVisible);
+
+    ga.event({
+      action: 'open_filter',
+      category: 'selection',
+      label: 'Filter clicked',
+      value: 'Valore',
+    });
+  };
+
+  const handleTypeAChange = () => {
+    setTypeACheck(!typeACheck);
+
+    // let labelValue
+    // if (typeACheck) {
+    //  labelValue
+    // }
+
+    ga.event({
+      action: 'set_type_A',
+      category: 'selection',
+      label: 'Open type A',
+      value: 'Type A open',
+    });
+  };
+
   return (
     <div className="row">
       <div
         className={classes.filterSwitch}
-        onClick={() => setFilterVisible(!filterVisible)}
+        // onClick={() => setFilterVisible(!filterVisible)}
+        onClick={handleClick}
       >
         Filtra eventi e attivitá (click per aprire)
       </div>
@@ -34,8 +64,8 @@ function EventsFilter(props) {
                   id="typeA"
                   name="typeA"
                   defaultChecked
-                  // onChange={handleTypeAChange}
-                  onChange={() => setTypeACheck(!typeACheck)}
+                  onChange={handleTypeAChange}
+                  // onChange={() => setTypeACheck(!typeACheck)}
                 />
                 <label htmlFor="typeA">Type A</label>
               </div>
