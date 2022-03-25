@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import EventId from '../../components/events/eventid';
+import Head from 'next/head';
 
 function EventDetailPage() {
   const [event, setEvent] = useState({});
@@ -34,6 +35,10 @@ function EventDetailPage() {
 
   return (
     <>
+      <Head>
+        <title>{event.title}</title>
+        <meta name="description" content={event.description} />
+      </Head>
       <EventId
         organiser={event.organiser}
         title={event.title}

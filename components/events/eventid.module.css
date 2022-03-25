@@ -1,0 +1,9 @@
+.contenitore {
+  /* position: relative; */
+  width: 20rem;
+  margin: 2rem;
+}
+
+.contenitore img {
+  width: 100%;
+}
