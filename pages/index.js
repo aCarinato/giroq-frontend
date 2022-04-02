@@ -8,6 +8,7 @@ import EventsFilter from '../components/events/events-filter';
 import EventsMap from '../components/events/events-map';
 import EventList from '../components/events/event-list';
 import SwitchTab from '../components/mobile/switch-tab';
+import Map from '../components/map/map';
 
 // import useWindowDimension from '../components/hooks/window-dimension';
 
@@ -124,7 +125,7 @@ function Home() {
           )}
         </div>
         <div className="col-lg-8">
-          <EventsMap
+          {/* <EventsMap
             mapHeight={mapHeight}
             viewport={viewport}
             setViewport={setViewport}
@@ -134,7 +135,8 @@ function Home() {
             currentPlaceId={currentPlaceId}
             setCurrentPlaceId={setCurrentPlaceId}
             currentMarker={currentMarker}
-          />
+          /> */}
+          <Map />
         </div>
       </div>
     </div>
