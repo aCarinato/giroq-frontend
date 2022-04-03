@@ -41,6 +41,8 @@ function Home() {
 
   const [showList, setShowList] = useState(false);
 
+  // MAP SETTINGS
+  // const [isLoading, setIsLoading] = useState(false);
   const [coordinates, setCoordinates] = useState({});
   // lat: 45.7, lng: 11.5
   const [bounds, setBounds] = useState(null);
@@ -75,11 +77,7 @@ function Home() {
   }, [calcHeight]);
 
   useEffect(() => {
-    // navigator.geolocation.getCurrentPosition((pos) => {
-    //   const crd = pos.coords;
-    //   console.log(`Latitude : ${crd.latitude}`);
-    //   console.log(`Longitude: ${crd.longitude}`);
-    // });
+    // https://developers.google.com/maps/documentation/javascript/geolocation
     if ('geolocation' in navigator) {
       console.log('Geolocation Available');
     } else {
@@ -87,8 +85,8 @@ function Home() {
     }
     navigator.geolocation.getCurrentPosition(
       function (position) {
-        console.log('Latitude is :', position.coords.latitude);
-        console.log('Longitude is :', position.coords.longitude);
+        // console.log('Latitude is :', position.coords.latitude);
+        // console.log('Longitude is :', position.coords.longitude);
         setCoordinates({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
@@ -105,18 +103,31 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    const getEvents = async () => {
-      try {
-        const retrievedEvents = await axios.get(
-          `${process.env.NEXT_PUBLIC_API}/events/${firstDate}/${lastDate}`
-        );
-        setEvents(retrievedEvents.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getEvents();
-  }, [firstDate, lastDate, coordinates]);
+    if (bounds) {
+      console.log('THESE ARE THE BOUNDS');
+      // const ne = bounds.ne;
+      // const sw = bounds.sw;
+      const blLat = bounds.sw.lat;
+      const trLat = bounds.ne.lat;
+      const blLong = bounds.sw.lng;
+      const trLong = bounds.ne.lng;
+      console.log(`blLat: ${blLat}`);
+      console.log(`blLong: ${blLong}`);
+      console.log(`trLat: ${trLat}`);
+      console.log(`trLong: ${trLong}`);
+      const getEvents = async () => {
+        try {
+          const retrievedEvents = await axios.get(
+            `${process.env.NEXT_PUBLIC_API}/events/${firstDate}/${lastDate}/${blLat}/${trLat}/${blLong}/${trLong}`
+          );
+          setEvents(retrievedEvents.data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getEvents();
+    }
+  }, [firstDate, lastDate, coordinates, bounds]);
 
   return (
     <div className="container-fluid">
@@ -171,6 +182,7 @@ function Home() {
             currentMarker={currentMarker}
           /> */}
           <Map
+            bounds={bounds}
             coordinates={coordinates}
             setBounds={setBounds}
             setCoordinates={setCoordinates}
