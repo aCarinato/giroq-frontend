@@ -41,6 +41,10 @@ function Home() {
 
   const [showList, setShowList] = useState(false);
 
+  const [coordinates, setCoordinates] = useState({});
+  // lat: 45.7, lng: 11.5
+  const [bounds, setBounds] = useState(null);
+
   const [viewport, setViewport] = useState({
     latitude: 45.5,
     longitude: 12,
@@ -71,6 +75,36 @@ function Home() {
   }, [calcHeight]);
 
   useEffect(() => {
+    // navigator.geolocation.getCurrentPosition((pos) => {
+    //   const crd = pos.coords;
+    //   console.log(`Latitude : ${crd.latitude}`);
+    //   console.log(`Longitude: ${crd.longitude}`);
+    // });
+    if ('geolocation' in navigator) {
+      console.log('Geolocation Available');
+    } else {
+      console.log('Not Available');
+    }
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        console.log('Latitude is :', position.coords.latitude);
+        console.log('Longitude is :', position.coords.longitude);
+        setCoordinates({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+      },
+      () => {
+        console.log('Unable to retrieve your location');
+        setCoordinates({
+          lat: 45.8,
+          lng: 11.7,
+        });
+      }
+    );
+  }, []);
+
+  useEffect(() => {
     const getEvents = async () => {
       try {
         const retrievedEvents = await axios.get(
@@ -82,7 +116,7 @@ function Home() {
       }
     };
     getEvents();
-  }, [firstDate, lastDate]);
+  }, [firstDate, lastDate, coordinates]);
 
   return (
     <div className="container-fluid">
@@ -136,7 +170,11 @@ function Home() {
             setCurrentPlaceId={setCurrentPlaceId}
             currentMarker={currentMarker}
           /> */}
-          <Map />
+          <Map
+            coordinates={coordinates}
+            setBounds={setBounds}
+            setCoordinates={setCoordinates}
+          />
         </div>
       </div>
     </div>
