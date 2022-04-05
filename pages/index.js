@@ -46,6 +46,7 @@ function Home() {
   const [coordinates, setCoordinates] = useState({ lat: 45.7, lng: 11.5 });
   // lat: 45.7, lng: 11.5
   const [bounds, setBounds] = useState(null);
+  const [zoom, setZoom] = useState(9);
 
   const [viewport, setViewport] = useState({
     latitude: 45.5,
@@ -169,6 +170,8 @@ function Home() {
               setViewport={setViewport}
               mobileView={mobileView}
               setMapSelected={setMapSelected}
+              setCoordinates={setCoordinates}
+              setCurrentPlaceId={setCurrentPlaceId}
             />
           )}
         </div>
@@ -185,13 +188,18 @@ function Home() {
             currentMarker={currentMarker}
           /> */}
           <Map
+            mapHeight={mapHeight}
             bounds={bounds}
             coordinates={coordinates}
+            zoom={zoom}
             setBounds={setBounds}
             setCoordinates={setCoordinates}
             events={events}
             typeACheck={typeACheck}
             typeBCheck={typeBCheck}
+            currentPlaceId={currentPlaceId}
+            setCurrentPlaceId={setCurrentPlaceId}
+            mobileView={mobileView}
           />
         </div>
       </div>

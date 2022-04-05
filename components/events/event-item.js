@@ -22,6 +22,8 @@ function EventItem(props) {
     mobileView,
     setMapSelected,
     image,
+    setCoordinates,
+    setCurrentPlaceId,
   } = props;
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
@@ -31,15 +33,33 @@ function EventItem(props) {
 
   const handleOnEnter = (id, latitude, longitude) => {
     setCurrentMarker(id);
+    // if (mobileView === true) {
+    //   setMapSelected(true);
+    // }
+    if (!mobileView === true) {
+      setCoordinates({ lat: latitude, lng: longitude });
+      setCurrentPlaceId(id);
+    }
+
+    // setViewport({
+    //   ...viewport,
+    //   zoom: 9,
+    //   latitude: latitude,
+    //   longitude: longitude,
+    // });
+  };
+
+  const handleOnLeave = () => {
+    setCurrentMarker(null);
+    setCurrentPlaceId(null);
+  };
+
+  const handleOnClick = () => {
     if (mobileView === true) {
       setMapSelected(true);
+      setCoordinates({ lat: latitude, lng: longitude });
+      setCurrentPlaceId(id);
     }
-    setViewport({
-      ...viewport,
-      zoom: 9,
-      latitude: latitude,
-      longitude: longitude,
-    });
   };
 
   //   const formattedAddress = location.replace(', ', '\n');
@@ -77,7 +97,8 @@ function EventItem(props) {
             className={classes.addressOnMap}
             // onMouseEnter={() => setCurrentMarker(id)}
             onMouseEnter={() => handleOnEnter(id, latitude, longitude)}
-            onMouseLeave={() => setCurrentMarker(null)}
+            onMouseLeave={() => handleOnLeave()}
+            onClick={() => handleOnClick()}
           >
             Mostra nella mappa
           </div>

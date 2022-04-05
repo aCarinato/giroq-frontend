@@ -13,6 +13,8 @@ function EventList(props) {
     setViewport,
     mobileView,
     setMapSelected,
+    setCoordinates,
+    setCurrentPlaceId,
   } = props;
   return (
     <ul className={classes.list}>
@@ -36,6 +38,8 @@ function EventList(props) {
                 latitude={event.lat}
                 mobileView={mobileView}
                 setMapSelected={setMapSelected}
+                setCoordinates={setCoordinates}
+                setCurrentPlaceId={setCurrentPlaceId}
               />
             )}
             {event.type === 'B' && typeBCheck && (
@@ -53,6 +57,9 @@ function EventList(props) {
                 longitude={event.long}
                 latitude={event.lat}
                 mobileView={mobileView}
+                setMapSelected={setMapSelected}
+                setCoordinates={setCoordinates}
+                setCurrentPlaceId={setCurrentPlaceId}
               />
             )}
           </Fragment>

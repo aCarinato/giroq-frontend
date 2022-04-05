@@ -5,27 +5,37 @@ import Link from 'next/link';
 
 import MarkerTypeA from './MarkerTypeA';
 import MarkerTypeB from './MarkerTypeB';
+import Popup from './popup';
 
 // const AnyReactComponent = ({ text }) => <div>Porca {text}</div>;
 
 function Map({
+  mapHeight,
   bounds,
   coordinates,
+  zoom,
   setBounds,
   setCoordinates,
   events,
   typeACheck,
   typeBCheck,
+  currentPlaceId,
+  setCurrentPlaceId,
+  mobileView,
 }) {
   //   const coordinates = { lat: 45, lng: 11.5 };
 
+  // const handleMouseEnter = (id) => {
+  //   console.log(id);
+  // };
+
   return (
-    <div className={classes.container}>
+    <div style={{ height: mapHeight }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: 'AIzaSyDCcIebhgyEdQTd9DB6KK_ePVXNCNk1G6k' }}
         defaultCenter={coordinates}
         center={coordinates}
-        defaultZoom={8}
+        defaultZoom={zoom}
         margin={[0, 0, 0, 0]}
         options={''}
         onChange={(e) => {
@@ -52,6 +62,21 @@ function Map({
           // )
 
           {
+            if (event._id === currentPlaceId) {
+              return (
+                <Popup
+                  key={event._id}
+                  id={event._id}
+                  title={event.title}
+                  organiser={event.organiser}
+                  image={event.image}
+                  lat={event.lat}
+                  lng={event.long}
+                  setCurrentPlaceId={setCurrentPlaceId}
+                  mobileView={mobileView}
+                />
+              );
+            }
             if (event.type === 'A' && typeACheck) {
               return (
                 <MarkerTypeA
@@ -59,6 +84,10 @@ function Map({
                   lat={event.lat}
                   lng={event.long}
                   id={event._id}
+                  setCurrentPlaceId={setCurrentPlaceId}
+                  mobileView={mobileView}
+                  // onMouseEnter={handleMouseEnter(event._id)}
+                  // onMouseLeave={() => setCurrentPlaceId(null)}
                 />
 
                 // <AcUnit
@@ -80,6 +109,11 @@ function Map({
                   lat={event.lat}
                   lng={event.long}
                   id={event._id}
+                  setCurrentPlaceId={setCurrentPlaceId}
+                  mobileView={mobileView}
+                  // onMouseEnter={handleMouseEnter(event._id)}
+                  // onMouseEnter={() => setCurrentPlaceId(event._id)}
+                  // onMouseLeave={() => setCurrentPlaceId(null)}
                 />
               );
             }
