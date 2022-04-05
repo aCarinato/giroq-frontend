@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { event } from '../../lib/google-analytics';
 // import Image from 'next/image';
 
 // import Button from '../ui/button';
@@ -58,6 +59,12 @@ function EventItem(props) {
       <div className={classes.content}>
         <div>
           <h2>{title}</h2>
+          {/* <p>{bounds.ne.lat}</p>
+          <p>{bounds.ne.lng}</p>
+          <p>{bounds.sw.lat}</p>
+          <p>{bounds.sw.lng}</p>
+          <p>{latitude}</p>
+          <p>{longitude}</p> */}
           <div className={classes.date}>
             {/* <DateIcon /> */}
             <time>{humanReadableDate}</time>

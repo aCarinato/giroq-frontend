@@ -9,6 +9,10 @@ body {
   height: 400px;
 }
 
+.location-icon {
+  position: relative;
+}
+
 /* .card {
   width: 250px;
   height: 250px;

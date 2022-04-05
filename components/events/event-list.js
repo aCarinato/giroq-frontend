@@ -4,6 +4,7 @@ import classes from './event-list.module.css';
 
 function EventList(props) {
   const {
+    // bounds,
     events,
     typeACheck,
     typeBCheck,
@@ -23,6 +24,7 @@ function EventList(props) {
               <EventItem
                 key={event._id}
                 id={event._id}
+                // bounds={bounds}
                 title={event.title}
                 // location={event.location}
                 date={event.date}
@@ -40,6 +42,7 @@ function EventList(props) {
               <EventItem
                 key={event._id}
                 id={event._id}
+                // bounds={bounds}
                 title={event.title}
                 // location={event.location}
                 date={event.date}

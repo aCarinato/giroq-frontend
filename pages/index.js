@@ -43,7 +43,7 @@ function Home() {
 
   // MAP SETTINGS
   // const [isLoading, setIsLoading] = useState(false);
-  const [coordinates, setCoordinates] = useState({});
+  const [coordinates, setCoordinates] = useState({ lat: 45.7, lng: 11.5 });
   // lat: 45.7, lng: 11.5
   const [bounds, setBounds] = useState(null);
 
@@ -76,45 +76,47 @@ function Home() {
     setMapHeight(calcHeight());
   }, [calcHeight]);
 
-  useEffect(() => {
-    // https://developers.google.com/maps/documentation/javascript/geolocation
-    if ('geolocation' in navigator) {
-      console.log('Geolocation Available');
-    } else {
-      console.log('Not Available');
-    }
-    navigator.geolocation.getCurrentPosition(
-      function (position) {
-        // console.log('Latitude is :', position.coords.latitude);
-        // console.log('Longitude is :', position.coords.longitude);
-        setCoordinates({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
-      },
-      () => {
-        console.log('Unable to retrieve your location');
-        setCoordinates({
-          lat: 45.8,
-          lng: 11.7,
-        });
-      }
-    );
-  }, []);
+  // useEffect(() => {
+  //   // https://developers.google.com/maps/documentation/javascript/geolocation
+  //   if ('geolocation' in navigator) {
+  //     console.log('Geolocation Available');
+  //   } else {
+  //     console.log('Not Available');
+  //   }
+  //   navigator.geolocation.getCurrentPosition(
+  //     function (position) {
+  //       // console.log('Latitude is :', position.coords.latitude);
+  //       // console.log('Longitude is :', position.coords.longitude);
+  //       setCoordinates({
+  //         lat: position.coords.latitude,
+  //         lng: position.coords.longitude,
+  //       });
+  //     },
+  //     () => {
+  //       console.log('Unable to retrieve your location');
+  //       setCoordinates({
+  //         lat: 45.8,
+  //         lng: 11.7,
+  //       });
+  //     }
+  //   );
+  // }, []);
 
   useEffect(() => {
     if (bounds) {
       console.log('THESE ARE THE BOUNDS');
-      // const ne = bounds.ne;
-      // const sw = bounds.sw;
+
       const blLat = bounds.sw.lat;
       const trLat = bounds.ne.lat;
       const blLong = bounds.sw.lng;
       const trLong = bounds.ne.lng;
-      console.log(`blLat: ${blLat}`);
-      console.log(`blLong: ${blLong}`);
-      console.log(`trLat: ${trLat}`);
-      console.log(`trLong: ${trLong}`);
+      // console.log('----------------');
+      // console.log('');
+      // console.log(`blLat: ${blLat}`);
+      // console.log(`blLong: ${blLong}`);
+      // console.log(`trLat: ${trLat}`);
+      // console.log(`trLong: ${trLong}`);
+      // console.log('');
       const getEvents = async () => {
         try {
           const retrievedEvents = await axios.get(
@@ -158,6 +160,7 @@ function Home() {
         <div className="col-lg-4">
           {showList === true && (
             <EventList
+              // bounds={bounds}
               events={events}
               typeACheck={typeACheck}
               typeBCheck={typeBCheck}
@@ -186,6 +189,9 @@ function Home() {
             coordinates={coordinates}
             setBounds={setBounds}
             setCoordinates={setCoordinates}
+            events={events}
+            typeACheck={typeACheck}
+            typeBCheck={typeBCheck}
           />
         </div>
       </div>
