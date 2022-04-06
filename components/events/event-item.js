@@ -17,13 +17,14 @@ function EventItem(props) {
     setCurrentMarker,
     latitude,
     longitude,
-    viewport,
-    setViewport,
+    // viewport,
+    // setViewport,
     mobileView,
     setMapSelected,
     image,
     setCoordinates,
     setCurrentPlaceId,
+    // setZoom,
   } = props;
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
@@ -31,15 +32,16 @@ function EventItem(props) {
     year: 'numeric',
   });
 
-  const handleOnEnter = (id, latitude, longitude) => {
-    setCurrentMarker(id);
-    // if (mobileView === true) {
-    //   setMapSelected(true);
-    // }
+  const handleOnEnter = () => {
     if (!mobileView === true) {
-      setCoordinates({ lat: latitude, lng: longitude });
-      setCurrentPlaceId(id);
+      setCurrentMarker({ latitude, longitude });
     }
+
+    // if (!mobileView === true) {
+    //   setCoordinates({ lat: latitude, lng: longitude });
+    //   setCurrentPlaceId(id);
+    //   // setZoom(14);
+    // }
 
     // setViewport({
     //   ...viewport,
@@ -50,15 +52,16 @@ function EventItem(props) {
   };
 
   const handleOnLeave = () => {
-    setCurrentMarker(null);
-    setCurrentPlaceId(null);
+    setCurrentMarker({});
+    // setCurrentPlaceId(null);
   };
 
   const handleOnClick = () => {
     if (mobileView === true) {
       setMapSelected(true);
-      setCoordinates({ lat: latitude, lng: longitude });
-      setCurrentPlaceId(id);
+      setCurrentMarker({ latitude, longitude });
+      // setCoordinates({ lat: latitude, lng: longitude });
+      // setCurrentPlaceId(id);
     }
   };
 
@@ -96,7 +99,7 @@ function EventItem(props) {
           <div
             className={classes.addressOnMap}
             // onMouseEnter={() => setCurrentMarker(id)}
-            onMouseEnter={() => handleOnEnter(id, latitude, longitude)}
+            onMouseEnter={() => handleOnEnter()}
             onMouseLeave={() => handleOnLeave()}
             onClick={() => handleOnClick()}
           >

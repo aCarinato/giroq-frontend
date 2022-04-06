@@ -1,4 +1,5 @@
 import { useState, useEffect, Fragment } from 'react';
+// import useSupercluster from 'use-supercluster';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import axios from 'axios';
 // import parse from 'html-react-parser';
@@ -27,7 +28,7 @@ function Home() {
 
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
 
-  const [currentMarker, setCurrentMarker] = useState(null);
+  const [currentMarker, setCurrentMarker] = useState({});
 
   const [typeACheck, setTypeACheck] = useState(true);
   const [typeBCheck, setTypeBCheck] = useState(true);
@@ -43,16 +44,19 @@ function Home() {
 
   // MAP SETTINGS
   // const [isLoading, setIsLoading] = useState(false);
-  const [coordinates, setCoordinates] = useState({ lat: 45.7, lng: 11.5 });
+  const [coordinates, setCoordinates] = useState({
+    lat: 45.7,
+    lng: 11.5,
+  });
   // lat: 45.7, lng: 11.5
   const [bounds, setBounds] = useState(null);
   const [zoom, setZoom] = useState(9);
 
-  const [viewport, setViewport] = useState({
-    latitude: 45.5,
-    longitude: 12,
-    zoom: 6.75,
-  });
+  // const [viewport, setViewport] = useState({
+  //   latitude: 45.5,
+  //   longitude: 12,
+  //   zoom: 6.75,
+  // });
 
   const calcHeight = () => {
     if (window.innerWidth <= 820) {
@@ -111,6 +115,7 @@ function Home() {
       const trLat = bounds.ne.lat;
       const blLong = bounds.sw.lng;
       const trLong = bounds.ne.lng;
+      console.log(typeof blLat);
       // console.log('----------------');
       // console.log('');
       // console.log(`blLat: ${blLat}`);
@@ -166,12 +171,13 @@ function Home() {
               typeACheck={typeACheck}
               typeBCheck={typeBCheck}
               setCurrentMarker={setCurrentMarker}
-              viewport={viewport}
-              setViewport={setViewport}
+              // viewport={viewport}
+              // setViewport={setViewport}
               mobileView={mobileView}
               setMapSelected={setMapSelected}
               setCoordinates={setCoordinates}
               setCurrentPlaceId={setCurrentPlaceId}
+              // setZoom={setZoom}
             />
           )}
         </div>
@@ -194,12 +200,14 @@ function Home() {
             zoom={zoom}
             setBounds={setBounds}
             setCoordinates={setCoordinates}
+            setZoom={setZoom}
             events={events}
             typeACheck={typeACheck}
             typeBCheck={typeBCheck}
             currentPlaceId={currentPlaceId}
             setCurrentPlaceId={setCurrentPlaceId}
             mobileView={mobileView}
+            currentMarker={currentMarker}
           />
         </div>
       </div>

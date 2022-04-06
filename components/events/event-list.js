@@ -15,6 +15,7 @@ function EventList(props) {
     setMapSelected,
     setCoordinates,
     setCurrentPlaceId,
+    // setZoom,
   } = props;
   return (
     <ul className={classes.list}>
@@ -40,6 +41,7 @@ function EventList(props) {
                 setMapSelected={setMapSelected}
                 setCoordinates={setCoordinates}
                 setCurrentPlaceId={setCurrentPlaceId}
+                // setZoom={setZoom}
               />
             )}
             {event.type === 'B' && typeBCheck && (
@@ -60,6 +62,7 @@ function EventList(props) {
                 setMapSelected={setMapSelected}
                 setCoordinates={setCoordinates}
                 setCurrentPlaceId={setCurrentPlaceId}
+                // setZoom={setZoom}
               />
             )}
           </Fragment>
