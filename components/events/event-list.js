@@ -9,12 +9,11 @@ function EventList(props) {
     typeACheck,
     typeBCheck,
     setCurrentMarker,
-    viewport,
-    setViewport,
     mobileView,
     setMapSelected,
     setCoordinates,
     setCurrentPlaceId,
+    coordinates,
     // setZoom,
   } = props;
   return (
@@ -23,7 +22,7 @@ function EventList(props) {
       {events.length > 0 &&
         events.map((event) => (
           <Fragment key={event._id}>
-            {event.type === 'A' && typeACheck && (
+            {event.type === 1 && typeACheck && (
               <EventItem
                 key={event._id}
                 id={event._id}
@@ -33,18 +32,17 @@ function EventList(props) {
                 date={event.date}
                 image={event.image}
                 setCurrentMarker={setCurrentMarker}
-                viewport={viewport}
-                setViewport={setViewport}
                 longitude={event.long}
                 latitude={event.lat}
                 mobileView={mobileView}
                 setMapSelected={setMapSelected}
                 setCoordinates={setCoordinates}
+                coordinates={coordinates}
                 setCurrentPlaceId={setCurrentPlaceId}
                 // setZoom={setZoom}
               />
             )}
-            {event.type === 'B' && typeBCheck && (
+            {event.type === 2 && typeBCheck && (
               <EventItem
                 key={event._id}
                 id={event._id}
@@ -54,13 +52,12 @@ function EventList(props) {
                 date={event.date}
                 image={event.image}
                 setCurrentMarker={setCurrentMarker}
-                viewport={viewport}
-                setViewport={setViewport}
                 longitude={event.long}
                 latitude={event.lat}
                 mobileView={mobileView}
                 setMapSelected={setMapSelected}
                 setCoordinates={setCoordinates}
+                coordinates={coordinates}
                 setCurrentPlaceId={setCurrentPlaceId}
                 // setZoom={setZoom}
               />

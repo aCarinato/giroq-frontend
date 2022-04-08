@@ -96,11 +96,11 @@ function AddEventForm(props) {
           <select
             className={classes.formInput}
             name="type"
-            onChange={(e) => setType(e.target.value)}
+            onChange={(e) => setType(Number(e.target.value))}
           >
             <option value="">--Seleziona tipo--</option>
-            <option value="A">tipo A</option>
-            <option value="B">tipo B</option>
+            <option value="1">tipo A</option>
+            <option value="2">tipo B</option>
           </select>
           {/* <input
             className={classes.formInput}

@@ -12,6 +12,7 @@ function Popup(props) {
     lng,
     setCurrentPlaceId,
     mobileView,
+    setTestId,
   } = props;
   return (
     <div className={classes.wrapper}>
@@ -28,19 +29,15 @@ function Popup(props) {
             className={classes.close}
             onClick={() => setCurrentPlaceId(null)}
           >
-            SARA SU
+            CHIUDI POPUP X
           </div>
         )}
-
-        {/* <div className={classes.goldBox}>Gold box</div>
-        <div className={classes.greenBox}>Green box</div> */}
-        <label>Evento</label>
+        <br></br>
         <p className="desc">{title}</p>
         <label>Information</label>
         <span className="username">
           Created by <b>{organiser}</b>
         </span>
-
         <div className={classes.imageBox}>
           <img src={image.url} alt={title} />
         </div>

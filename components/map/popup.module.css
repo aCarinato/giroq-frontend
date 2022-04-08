@@ -21,6 +21,7 @@
 .close {
   cursor: pointer;
   font-weight: bold;
+  color: red;
 }
 
 .imageBox {

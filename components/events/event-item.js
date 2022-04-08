@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { event } from '../../lib/google-analytics';
+// import { event } from '../../lib/google-analytics';
 // import Image from 'next/image';
 
 // import Button from '../ui/button';
@@ -17,13 +17,12 @@ function EventItem(props) {
     setCurrentMarker,
     latitude,
     longitude,
-    // viewport,
-    // setViewport,
     mobileView,
     setMapSelected,
     image,
     setCoordinates,
-    setCurrentPlaceId,
+    coordinates,
+    // setCurrentPlaceId,
     // setZoom,
   } = props;
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
@@ -32,40 +31,25 @@ function EventItem(props) {
     year: 'numeric',
   });
 
-  const handleOnEnter = () => {
-    if (!mobileView === true) {
-      setCurrentMarker({ latitude, longitude });
-    }
+  // const handleOnEnter = () => {
+  //   if (!mobileView === true) {
+  //     setCurrentMarker({ latitude, longitude });
+  //   }
+  // };
 
-    // if (!mobileView === true) {
-    //   setCoordinates({ lat: latitude, lng: longitude });
-    //   setCurrentPlaceId(id);
-    //   // setZoom(14);
-    // }
-
-    // setViewport({
-    //   ...viewport,
-    //   zoom: 9,
-    //   latitude: latitude,
-    //   longitude: longitude,
-    // });
-  };
-
-  const handleOnLeave = () => {
-    setCurrentMarker({});
-    // setCurrentPlaceId(null);
-  };
+  // const handleOnLeave = () => {
+  //   setCurrentMarker({});
+  // };
 
   const handleOnClick = () => {
     if (mobileView === true) {
       setMapSelected(true);
-      setCurrentMarker({ latitude, longitude });
-      // setCoordinates({ lat: latitude, lng: longitude });
-      // setCurrentPlaceId(id);
     }
+    setCurrentMarker({ latitude, longitude });
+    // setCoordinates({ latitude, longitude });
+    // console.log(coordinates);
   };
 
-  //   const formattedAddress = location.replace(', ', '\n');
   const exploreLink = `/event/${id}`;
 
   return (
@@ -78,33 +62,23 @@ function EventItem(props) {
         )}
       </div>
 
-      {/* <Image src={image.url} alt={title} width={250} height={160} /> */}
       <div className={classes.content}>
         <div>
           <h2>{title}</h2>
-          {/* <p>{bounds.ne.lat}</p>
-          <p>{bounds.ne.lng}</p>
-          <p>{bounds.sw.lat}</p>
-          <p>{bounds.sw.lng}</p>
-          <p>{latitude}</p>
-          <p>{longitude}</p> */}
           <div className={classes.date}>
             {/* <DateIcon /> */}
             <time>{humanReadableDate}</time>
           </div>
-          {/* <div className={classes.address}>
-            <AddressIcon />
-            <address>{formattedAddress}</address>
-          </div> */}
-          <div
-            className={classes.addressOnMap}
-            // onMouseEnter={() => setCurrentMarker(id)}
-            onMouseEnter={() => handleOnEnter()}
-            onMouseLeave={() => handleOnLeave()}
-            onClick={() => handleOnClick()}
-          >
-            Mostra nella mappa
-          </div>
+          {mobileView && (
+            <div
+              className={classes.addressOnMap}
+              // onMouseEnter={() => handleOnEnter()}
+              // onMouseLeave={() => handleOnLeave()}
+              onClick={() => handleOnClick()}
+            >
+              Mostra nella mappa
+            </div>
+          )}
         </div>
         <div className={classes.actions}>
           <Link href={exploreLink}>
