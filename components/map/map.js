@@ -33,7 +33,6 @@ function Map(props) {
   return (
     <div style={{ height: mapHeight }}>
       <GoogleMapReact
-        // bootstrapURLKeys={{ key: 'AIzaSyDCcIebhgyEdQTd9DB6KK_ePVXNCNk1G6k' }}
         // defaultCenter={coordinates}
         // center={coordinates}
         // defaultZoom={zoom}
