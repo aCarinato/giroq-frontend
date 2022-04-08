@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Comfortaa', cursive;
   /* font-family: 'Roboto', sans-serif; */
 }
 
@@ -29,6 +29,7 @@ body {
   border-radius: 3px;
   width: 120px;
   color: #fff;
+  /* border-top: 1px solid #616161; */
 }
 
 .filter-group input[type='checkbox']:first-child + label {

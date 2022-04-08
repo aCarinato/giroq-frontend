@@ -19,11 +19,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 
 .logo img {
-  height: 100px;
+  height: 75px;
+  cursor: pointer;
 }
 
 .slogan {
@@ -58,6 +58,6 @@
   }
 
   .logo img {
-    height: 150px;
+    height: 100px;
   }
 }

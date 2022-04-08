@@ -1,7 +1,16 @@
 .filterSwitch {
-  background-color: navy;
-  padding: 1rem;
-  text-align: center;
-  color: white;
+  /* background-color: navy; */
+  padding: 0.75rem;
+  text-align: left;
+  color: #616161;
   cursor: pointer;
+  border-top: 1px solid #616161;
+  font-size: 0.75rem;
+  font-family: 'Comfortaa', cursive;
+}
+
+@media (min-width: 768px) {
+  .filterSwitch {
+    font-size: 1.25rem;
+  }
 }
