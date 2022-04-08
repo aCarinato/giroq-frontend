@@ -1,4 +1,5 @@
 import Link from 'next/link';
+// import { event } from '../../lib/google-analytics';
 // import Image from 'next/image';
 
 // import Button from '../ui/button';
@@ -16,11 +17,13 @@ function EventItem(props) {
     setCurrentMarker,
     latitude,
     longitude,
-    viewport,
-    setViewport,
     mobileView,
     setMapSelected,
     image,
+    setCoordinates,
+    coordinates,
+    // setCurrentPlaceId,
+    // setZoom,
   } = props;
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
@@ -28,20 +31,25 @@ function EventItem(props) {
     year: 'numeric',
   });
 
-  const handleOnEnter = (id, latitude, longitude) => {
-    setCurrentMarker(id);
+  // const handleOnEnter = () => {
+  //   if (!mobileView === true) {
+  //     setCurrentMarker({ latitude, longitude });
+  //   }
+  // };
+
+  // const handleOnLeave = () => {
+  //   setCurrentMarker({});
+  // };
+
+  const handleOnClick = () => {
     if (mobileView === true) {
       setMapSelected(true);
     }
-    setViewport({
-      ...viewport,
-      zoom: 9,
-      latitude: latitude,
-      longitude: longitude,
-    });
+    setCurrentMarker({ latitude, longitude });
+    // setCoordinates({ latitude, longitude });
+    // console.log(coordinates);
   };
 
-  //   const formattedAddress = location.replace(', ', '\n');
   const exploreLink = `/event/${id}`;
 
   return (
@@ -54,7 +62,6 @@ function EventItem(props) {
         )}
       </div>
 
-      {/* <Image src={image.url} alt={title} width={250} height={160} /> */}
       <div className={classes.content}>
         <div>
           <h2>{title}</h2>
@@ -62,18 +69,16 @@ function EventItem(props) {
             {/* <DateIcon /> */}
             <time>{humanReadableDate}</time>
           </div>
-          {/* <div className={classes.address}>
-            <AddressIcon />
-            <address>{formattedAddress}</address>
-          </div> */}
-          <div
-            className={classes.addressOnMap}
-            // onMouseEnter={() => setCurrentMarker(id)}
-            onMouseEnter={() => handleOnEnter(id, latitude, longitude)}
-            onMouseLeave={() => setCurrentMarker(null)}
-          >
-            Mostra nella mappa
-          </div>
+          {mobileView && (
+            <div
+              className={classes.addressOnMap}
+              // onMouseEnter={() => handleOnEnter()}
+              // onMouseLeave={() => handleOnLeave()}
+              onClick={() => handleOnClick()}
+            >
+              Mostra nella mappa
+            </div>
+          )}
         </div>
         <div className={classes.actions}>
           <Link href={exploreLink}>

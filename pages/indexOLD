@@ -1,29 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import useSupercluster from 'use-supercluster';
+import { useState, useEffect, Fragment } from 'react';
+// import useSupercluster from 'use-supercluster';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import axios from 'axios';
+// import parse from 'html-react-parser';
+// import { format } from 'timeago.js';
 
-import Map from '../components/map/map';
 import EventsFilter from '../components/events/events-filter';
+// import EventsMap from '../components/events/events-map';
 import EventList from '../components/events/event-list';
 import SwitchTab from '../components/mobile/switch-tab';
+import Map from '../components/map/map';
 
-export default function App() {
-  // MAP
-  const [bounds, setBounds] = useState(null);
-  const [zoom, setZoom] = useState(9);
-  const [coordinates, setCoordinates] = useState({
-    lat: 45.4,
-    lng: 11.5,
-  });
+// import useWindowDimension from '../components/hooks/window-dimension';
 
-  // SELECTION
-  const [currentPlaceId, setCurrentPlaceId] = useState(null);
-  const [currentMarker, setCurrentMarker] = useState({});
-
-  // EVENTS
-  const [events, setEvents] = useState([]);
-
-  // FILTER EVENTS
+function Home() {
   const today = new Date();
   const todayISO = today.toISOString().split('T')[0];
 
@@ -34,32 +24,56 @@ export default function App() {
   const [firstDate, setFirstDate] = useState(todayISO);
   const [lastDate, setLastDate] = useState(oneWeekISO);
 
+  const [events, setEvents] = useState([]);
+
+  const [currentPlaceId, setCurrentPlaceId] = useState(null);
+
+  const [currentMarker, setCurrentMarker] = useState({});
+
   const [typeACheck, setTypeACheck] = useState(true);
   const [typeBCheck, setTypeBCheck] = useState(true);
-  // const [types, setTypes] = useState(['A', 'B']);
 
-  // MOBILE
   const [mapHeight, setMapHeight] = useState(null);
+
   const [mobileView, setMobileView] = useState(null);
-  const [showList, setShowList] = useState(false);
+
   const [mapSelected, setMapSelected] = useState(true);
+  // const [listSelected, setListSelected] = useState(false)
+
+  const [showList, setShowList] = useState(false);
+
+  // MAP SETTINGS
+  // const [isLoading, setIsLoading] = useState(false);
+  const [coordinates, setCoordinates] = useState({
+    lat: 45.7,
+    lng: 11.5,
+  });
+  // lat: 45.7, lng: 11.5
+  const [bounds, setBounds] = useState(null);
+  const [zoom, setZoom] = useState(9);
+
+  // const [viewport, setViewport] = useState({
+  //   latitude: 45.5,
+  //   longitude: 12,
+  //   zoom: 6.75,
+  // });
 
   const calcHeight = () => {
     if (window.innerWidth <= 820) {
       setMobileView(true);
       if (mapSelected) {
         setShowList(false);
-        // console.log(`mobileView: ${mobileView}`);
-        return '600px';
+        console.log(`showList: ${showList}`);
+        console.log(`mapSelected: ${mapSelected}`);
+        return '500px';
       } else {
         // setShowList(true);
-        return;
+        return 0;
       }
     } else {
       setMobileView(false);
       setShowList(true);
-      // console.log(`mobileView: ${mobileView}`);
-      return '80vh';
+      return '100vh';
     }
   };
 
@@ -122,55 +136,41 @@ export default function App() {
     // }
   }, [firstDate, lastDate, bounds, typeACheck, typeBCheck]);
 
-  useEffect(() => {
-    if (currentMarker !== {}) {
-      const currMarkerLat = currentMarker.latitude;
-      const currMarkerLng = currentMarker.longitude;
-      // mapRef.current.panTo({ lat, lng });
-      // mapRef.current.setZoom(15);
+  // useEffect(() => {
+  //   if (bounds) {
+  //     const blLat = bounds[1];
+  //     const trLat = bounds[3];
+  //     const blLong = bounds[0];
+  //     const trLong = bounds[2];
 
-      setCoordinates({ lat: currMarkerLat, lng: currMarkerLng });
-      // console.log(currentMarker);
-      // console.log(coordinates);
-      // setZoom(12);
-      // setCurrentMarker(null);
-    }
-    setCoordinates({ lat: 45.4, lng: 11.5 });
-  }, [currentMarker]);
-
-  const points = events.map((event) => ({
-    type: 'Feature',
-    properties: {
-      cluster: false,
-      eventId: event._id,
-      eventType: event.type,
-      eventDate: event.date,
-      eventTitle: event.title,
-      eventOrganiser: event.organiser,
-      eventDescription: event.description,
-      eventImage: event.image,
-      eventLat: event.lat,
-      eventLong: event.long,
-    },
-    geometry: {
-      type: 'Point',
-      coordinates: [event.long, event.lat],
-    },
-  }));
-
-  const { clusters, supercluster } = useSupercluster({
-    points,
-    bounds,
-    zoom,
-    options: { radius: 75, maxZoom: 20 },
-  });
-  // console.log(clusters);
+  //     // const blLat = bounds.sw.lat;
+  //     // const trLat = bounds.ne.lat;
+  //     // const blLong = bounds.sw.lng;
+  //     // const trLong = bounds.ne.lng;
+  //     // console.log(bounds);
+  //     // console.log('----------------');
+  //     // console.log('');
+  //     // console.log(`blLat: ${blLat}`);
+  //     // console.log(`blLong: ${blLong}`);
+  //     // console.log(`trLat: ${trLat}`);
+  //     // console.log(`trLong: ${trLong}`);
+  //     // console.log('');
+  //     const getEvents = async () => {
+  //       try {
+  //         const retrievedEvents = await axios.get(
+  //           `${process.env.NEXT_PUBLIC_API}/events/${firstDate}/${lastDate}/${blLat}/${trLat}/${blLong}/${trLong}`
+  //         );
+  //         setEvents(retrievedEvents.data);
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     };
+  //     getEvents();
+  //   }
+  // }, [firstDate, lastDate, coordinates, bounds]);
 
   return (
     <div className="container-fluid">
-      {/* <div className="row">
-        <div className="col-lg-12">QUESTO É IL PLACEID: {currentPlaceId}</div>
-      </div> */}
       <div className="row">
         <div className="col-lg-12">
           <EventsFilter
@@ -178,12 +178,11 @@ export default function App() {
             setTypeACheck={setTypeACheck}
             typeBCheck={typeBCheck}
             setTypeBCheck={setTypeBCheck}
-            // types={types}
-            // setTypes={setTypes}
             firstDate={firstDate}
             setFirstDate={setFirstDate}
             lastDate={lastDate}
             setLastDate={setLastDate}
+            // minDate={firstDate}
           />
         </div>
       </div>
@@ -199,34 +198,46 @@ export default function App() {
         <div className="col-lg-4">
           {showList === true && (
             <EventList
+              // bounds={bounds}
               events={events}
               typeACheck={typeACheck}
               typeBCheck={typeBCheck}
               setCurrentMarker={setCurrentMarker}
+              // viewport={viewport}
+              // setViewport={setViewport}
               mobileView={mobileView}
               setMapSelected={setMapSelected}
               setCoordinates={setCoordinates}
               setCurrentPlaceId={setCurrentPlaceId}
-              coordinates={coordinates}
+              // setZoom={setZoom}
             />
           )}
         </div>
         <div className="col-lg-8">
-          <Map
+          {/* <EventsMap
             mapHeight={mapHeight}
-            points={points}
-            clusters={clusters}
-            supercluster={supercluster}
-            coordinates={coordinates}
-            setCoordinates={setCoordinates}
-            setBounds={setBounds}
-            zoom={zoom}
-            setZoom={setZoom}
+            viewport={viewport}
+            setViewport={setViewport}
+            events={events}
             typeACheck={typeACheck}
             typeBCheck={typeBCheck}
             currentPlaceId={currentPlaceId}
             setCurrentPlaceId={setCurrentPlaceId}
-            setCurrentMarker={setCurrentMarker}
+            currentMarker={currentMarker}
+          /> */}
+          <Map
+            mapHeight={mapHeight}
+            bounds={bounds}
+            coordinates={coordinates}
+            zoom={zoom}
+            setBounds={setBounds}
+            setCoordinates={setCoordinates}
+            setZoom={setZoom}
+            events={events}
+            typeACheck={typeACheck}
+            typeBCheck={typeBCheck}
+            currentPlaceId={currentPlaceId}
+            setCurrentPlaceId={setCurrentPlaceId}
             mobileView={mobileView}
             currentMarker={currentMarker}
           />
@@ -235,3 +246,5 @@ export default function App() {
     </div>
   );
 }
+
+export default Home;

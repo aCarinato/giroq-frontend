@@ -1,0 +1,6 @@
+.room {
+  position: absolute;
+  z-index: 1;
+  color: blue;
+  /* z-index: -1; */
+}
