@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: baseline;
   padding: 1rem 10%;
-  /* height: 5rem; */
+  /* height: 15rem; */
   /* background-color: navy; */
   /* opacity: 0.5; */
   text-align: center;
@@ -19,6 +19,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+.logo img {
+  height: 100px;
 }
 
 .slogan {
@@ -50,5 +55,9 @@
 
   .navigation a {
     font-size: 1.5rem;
+  }
+
+  .logo img {
+    height: 150px;
   }
 }

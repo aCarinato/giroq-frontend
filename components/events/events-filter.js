@@ -52,7 +52,7 @@ function EventsFilter(props) {
         // onClick={() => setFilterVisible(!filterVisible)}
         onClick={handleClick}
       >
-        Filtra eventi e attivitá (click per aprire)
+        Seleziona eventi, attivitá e cose da fare vicino a te (click per aprire)
       </div>
       {filterVisible && (
         <>
