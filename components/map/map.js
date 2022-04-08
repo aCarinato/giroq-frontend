@@ -49,7 +49,7 @@ function Map(props) {
         //   setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
         //   setZoom(e.zoom);
         // }}
-        bootstrapURLKeys={{ key: 'AIzaSyDCcIebhgyEdQTd9DB6KK_ePVXNCNk1G6k' }}
+        bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_API_KEY }}
         defaultCenter={{ lat: 45.7, lng: 11.5 }}
         center={coordinates}
         defaultZoom={7}
