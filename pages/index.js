@@ -122,28 +122,28 @@ export default function App() {
     // }
   }, [firstDate, lastDate, bounds, typeACheck, typeBCheck]);
 
-  useEffect(() => {
-    if (currentMarker !== {}) {
-      const currMarkerLat = currentMarker.latitude;
-      const currMarkerLng = currentMarker.longitude;
-      // mapRef.current.panTo({ lat, lng });
-      // mapRef.current.setZoom(15);
+  // useEffect(() => {
+  //   if (currentMarker !== {}) {
+  //     const currMarkerLat = currentMarker.latitude;
+  //     const currMarkerLng = currentMarker.longitude;
+  //     // mapRef.current.panTo({ lat, lng });
+  //     // mapRef.current.setZoom(15);
 
-      setCoordinates({ lat: currMarkerLat, lng: currMarkerLng });
-      // console.log(currentMarker);
-      // console.log(coordinates);
-      // setZoom(12);
-      // setCurrentMarker(null);
-    }
-    setCoordinates({ lat: 45.4, lng: 11.5 });
-  }, [currentMarker]);
+  //     setCoordinates({ lat: currMarkerLat, lng: currMarkerLng });
+  //     // console.log(currentMarker);
+  //     // console.log(coordinates);
+  //     // setZoom(12);
+  //     // setCurrentMarker(null);
+  //   }
+  //   setCoordinates({ lat: 45.4, lng: 11.5 });
+  // }, [currentMarker]);
 
   const points = events.map((event) => ({
     type: 'Feature',
     properties: {
       cluster: false,
       eventId: event._id,
-      eventType: event.type,
+      eventType: event.category,
       eventDate: event.date,
       eventTitle: event.title,
       eventOrganiser: event.organiser,

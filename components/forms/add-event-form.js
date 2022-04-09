@@ -9,7 +9,7 @@ function AddEventForm(props) {
     setTitle,
     description,
     setDescription,
-    setType,
+    setCategory,
     date,
     setDate,
     // uploadImg,
@@ -18,6 +18,12 @@ function AddEventForm(props) {
     // imageUpload,
     handleImage,
   } = props;
+
+  const selectCategory = (e) => {
+    const categories = [];
+    categories.push(Number(e.target.value));
+    setCategory(categories);
+  };
 
   return (
     <Fragment>
@@ -96,7 +102,7 @@ function AddEventForm(props) {
           <select
             className={classes.formInput}
             name="type"
-            onChange={(e) => setType(Number(e.target.value))}
+            onChange={selectCategory}
           >
             <option value="">--Seleziona tipo--</option>
             <option value="1">tipo A</option>

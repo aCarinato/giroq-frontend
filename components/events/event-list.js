@@ -22,7 +22,7 @@ function EventList(props) {
       {events.length > 0 &&
         events.map((event) => (
           <Fragment key={event._id}>
-            {event.type === 1 && typeACheck && (
+            {event.category[0] === 1 && typeACheck && (
               <EventItem
                 key={event._id}
                 id={event._id}
@@ -42,7 +42,7 @@ function EventList(props) {
                 // setZoom={setZoom}
               />
             )}
-            {event.type === 2 && typeBCheck && (
+            {event.category[0] === 2 && typeBCheck && (
               <EventItem
                 key={event._id}
                 id={event._id}
