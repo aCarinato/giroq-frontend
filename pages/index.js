@@ -118,6 +118,8 @@ export default function App() {
         }
       };
       getEvents();
+      console.log('Questi sono gli eventi trovati:');
+      console.log(events);
     }
     // }
   }, [firstDate, lastDate, bounds, typeACheck, typeBCheck]);
