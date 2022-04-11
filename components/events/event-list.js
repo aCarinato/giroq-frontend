@@ -19,7 +19,8 @@ function EventList(props) {
   return (
     <ul className={classes.list}>
       {events.length === 0 && <div>NESSUN EVENTO PER LE DATE SELEZIONATE</div>}
-      {events.length > 0 &&
+      {events &&
+        events.length > 0 &&
         events.map((event) => (
           <Fragment key={event._id}>
             {event.category[0] === 1 && typeACheck && (

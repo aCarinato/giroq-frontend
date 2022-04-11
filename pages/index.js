@@ -199,7 +199,7 @@ export default function App() {
       )}
       <div className="row">
         <div className="col-lg-4">
-          {events && events.length > 0 && showList === true && (
+          {showList === true && (
             <EventList
               events={events}
               typeACheck={typeACheck}
@@ -214,26 +214,24 @@ export default function App() {
           )}
         </div>
         <div className="col-lg-8">
-          {events && events.length > 0 && (
-            <Map
-              mapHeight={mapHeight}
-              points={points}
-              clusters={clusters}
-              supercluster={supercluster}
-              coordinates={coordinates}
-              setCoordinates={setCoordinates}
-              setBounds={setBounds}
-              zoom={zoom}
-              setZoom={setZoom}
-              typeACheck={typeACheck}
-              typeBCheck={typeBCheck}
-              currentPlaceId={currentPlaceId}
-              setCurrentPlaceId={setCurrentPlaceId}
-              setCurrentMarker={setCurrentMarker}
-              mobileView={mobileView}
-              currentMarker={currentMarker}
-            />
-          )}
+          <Map
+            mapHeight={mapHeight}
+            points={points}
+            clusters={clusters}
+            supercluster={supercluster}
+            coordinates={coordinates}
+            setCoordinates={setCoordinates}
+            setBounds={setBounds}
+            zoom={zoom}
+            setZoom={setZoom}
+            typeACheck={typeACheck}
+            typeBCheck={typeBCheck}
+            currentPlaceId={currentPlaceId}
+            setCurrentPlaceId={setCurrentPlaceId}
+            setCurrentMarker={setCurrentMarker}
+            mobileView={mobileView}
+            currentMarker={currentMarker}
+          />
         </div>
       </div>
     </div>
