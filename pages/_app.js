@@ -30,6 +30,7 @@ function MyApp({ Component, pageProps }) {
           name="description"
           content="eventi, attivitá e cose da fare vicino a te"
         />
+        {/* <link rel="shortcut icon" href="/favicon.ico" /> */}
         {/* <link
           rel="apple-touch-icon"
           sizes="180x180"
