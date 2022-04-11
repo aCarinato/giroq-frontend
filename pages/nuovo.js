@@ -12,7 +12,7 @@ function AddEvent() {
   const [description, setDescription] = useState('');
   // const [long, setLong] = useState('');
   // const [lat, setLat] = useState('');
-  const [type, setType] = useState('');
+  const [category, setCategory] = useState([]);
   const [date, setDate] = useState(today);
 
   const [organisers, setOrganisers] = useState([]);
@@ -77,7 +77,7 @@ function AddEvent() {
         description,
         long: currentOrganiser.long,
         lat: currentOrganiser.lat,
-        type,
+        category,
         date,
         image,
       };
@@ -129,7 +129,7 @@ function AddEvent() {
                 setTitle={setTitle}
                 description={description}
                 setDescription={setDescription}
-                setType={setType}
+                setCategory={setCategory}
                 date={date}
                 setDate={setDate}
                 // uploadImg={uploadImg}

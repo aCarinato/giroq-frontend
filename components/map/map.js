@@ -122,7 +122,7 @@ function Map(props) {
             );
           }
 
-          if (cluster.properties.eventType === 1 && typeACheck) {
+          if (cluster.properties.eventType[0] === 1 && typeACheck) {
             return (
               <Marker
                 // key={`crime-${cluster.properties.crimeId}`}
@@ -146,7 +146,7 @@ function Map(props) {
               </Marker>
             );
           }
-          if (cluster.properties.eventType === 2 && typeBCheck) {
+          if (cluster.properties.eventType[0] === 2 && typeBCheck) {
             return (
               <Marker
                 // key={`crime-${cluster.properties.crimeId}`}
