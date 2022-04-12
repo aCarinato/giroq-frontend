@@ -87,63 +87,63 @@ export default function App() {
     console.log(events);
   }, []);
 
-  useEffect(() => {
-    if (bounds) {
-      console.log('THESE ARE THE BOUNDS FROM useEffect:');
-      console.log(bounds);
-      const blLat = bounds[1];
-      const trLat = bounds[3];
-      const blLong = bounds[0];
-      const trLong = bounds[2];
+  // useEffect(() => {
+  //   if (bounds) {
+  //     console.log('THESE ARE THE BOUNDS FROM useEffect:');
+  //     console.log(bounds);
+  //     const blLat = bounds[1];
+  //     const trLat = bounds[3];
+  //     const blLong = bounds[0];
+  //     const trLong = bounds[2];
 
-      // const blLat = bounds.sw.lat;
-      // const trLat = bounds.ne.lat;
-      // const blLong = bounds.sw.lng;
-      // const trLong = bounds.ne.lng;
+  //     // const blLat = bounds.sw.lat;
+  //     // const trLat = bounds.ne.lat;
+  //     // const blLong = bounds.sw.lng;
+  //     // const trLong = bounds.ne.lng;
 
-      // console.log(
-      //   `blLat:${blLat} - blLong:${blLong} - trLat:${trLat} - trLong:${trLong}`
-      // );
-      const typesChecked = [typeACheck, typeBCheck];
+  //     // console.log(
+  //     //   `blLat:${blLat} - blLong:${blLong} - trLat:${trLat} - trLong:${trLong}`
+  //     // );
+  //     const typesChecked = [typeACheck, typeBCheck];
 
-      const types = typesChecked.map((tipo, index) => {
-        if (tipo) {
-          return index + 1;
-        } else {
-          return 0;
-        }
-      });
+  //     const types = typesChecked.map((tipo, index) => {
+  //       if (tipo) {
+  //         return index + 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
 
-      const filterParams = {
-        firstDate,
-        lastDate,
-        trLat,
-        trLong,
-        blLat,
-        blLong,
-        types,
-      };
+  //     const filterParams = {
+  //       firstDate,
+  //       lastDate,
+  //       trLat,
+  //       trLong,
+  //       blLat,
+  //       blLong,
+  //       types,
+  //     };
 
-      const getEvents = async () => {
-        try {
-          // const retrievedEvents = await axios.get(
-          //   // `${process.env.NEXT_PUBLIC_API}/events/`
-          // );
-          const retrievedEvents = await axios.post(
-            `${process.env.NEXT_PUBLIC_API}/events/`,
-            filterParams
-          );
-          setEvents(retrievedEvents.data);
-          // console.log(events);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-      getEvents();
-      console.log('Questi sono gli eventi trovati:');
-      console.log(events);
-    }
-  }, [firstDate, lastDate, bounds, typeACheck, typeBCheck]);
+  //     const getEvents = async () => {
+  //       try {
+  //         // const retrievedEvents = await axios.get(
+  //         //   // `${process.env.NEXT_PUBLIC_API}/events/`
+  //         // );
+  //         const retrievedEvents = await axios.post(
+  //           `${process.env.NEXT_PUBLIC_API}/events/`,
+  //           filterParams
+  //         );
+  //         setEvents(retrievedEvents.data);
+  //         // console.log(events);
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     };
+  //     getEvents();
+  //     console.log('Questi sono gli eventi trovati:');
+  //     console.log(events);
+  //   }
+  // }, [firstDate, lastDate, bounds, typeACheck, typeBCheck]);
 
   // useEffect(() => {
   //   if (currentMarker !== {}) {
