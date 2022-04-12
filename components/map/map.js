@@ -59,6 +59,8 @@ function Map(props) {
   });
   // console.log(clusters);
 
+  const categories = [1, 2];
+
   return (
     <div style={{ height: mapHeight }}>
       <GoogleMapReact
@@ -157,14 +159,19 @@ function Map(props) {
               );
             }
 
-            if (cluster.properties.eventType[0] === 1 && categoryCheck[0]) {
+            if (
+              categories.includes(+cluster.properties.eventType[0]) &&
+              categoryCheck[+cluster.properties.eventType[0] - 1]
+            ) {
               return (
                 <Marker
                   key={`${cluster.properties.eventId}`}
                   lat={latitude}
                   lng={longitude}
                 >
-                  <button className="crime-marker-A">
+                  <button
+                    className={`marker-${cluster.properties.eventType[0]}`}
+                  >
                     <CustomMarker
                       key={cluster.properties.eventId}
                       id={cluster.properties.eventId}
@@ -172,29 +179,6 @@ function Map(props) {
                       setCurrentPlaceId={setCurrentPlaceId}
                       mobileView={mobileView}
                       currentPlaceId={currentPlaceId}
-                      testID={testID}
-                      setTestId={setTestId}
-                    />
-                    {/* <img src="/custody.svg" alt="crime doesn't pay" /> */}
-                  </button>
-                </Marker>
-              );
-            }
-            if (cluster.properties.eventType[0] === 2 && categoryCheck[1]) {
-              return (
-                <Marker
-                  // key={`crime-${cluster.properties.crimeId}`}
-                  key={`${cluster.properties.eventId}`}
-                  lat={latitude}
-                  lng={longitude}
-                >
-                  <button className="crime-marker-B">
-                    <CustomMarker
-                      key={cluster.properties.eventId}
-                      id={cluster.properties.eventId}
-                      title={cluster.properties.eventTitle}
-                      setCurrentPlaceId={setCurrentPlaceId}
-                      mobileView={mobileView}
                       testID={testID}
                       setTestId={setTestId}
                     />

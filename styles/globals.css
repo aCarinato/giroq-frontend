@@ -80,12 +80,12 @@ body {
   align-items: center;
 }
 
-.crime-marker-A {
+.marker-1 {
   background: red;
   border: none;
 }
 
-.crime-marker-B {
+.marker-2 {
   background: blue;
   border: none;
 }
