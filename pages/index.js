@@ -9,7 +9,10 @@ import SwitchTab from '../components/mobile/switch-tab';
 
 export default function App() {
   // MAP
-  const [bounds, setBounds] = useState(null);
+  const [bounds, setBounds] = useState([
+    10.603240966796875, 44.636030435233096, 12.396759033203125,
+    46.15377768145734,
+  ]);
   const [zoom, setZoom] = useState(9);
   const [coordinates, setCoordinates] = useState({
     lat: 45.4,
@@ -68,7 +71,26 @@ export default function App() {
   }, [calcHeight]);
 
   useEffect(() => {
+    const getEvents = async () => {
+      try {
+        const retrievedEvents = await axios.get(
+          `${process.env.NEXT_PUBLIC_API}/events/`
+        );
+        setEvents(retrievedEvents.data);
+        // console.log(events);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getEvents();
+    console.log('Questi sono gli eventi trovati:');
+    console.log(events);
+  }, []);
+
+  useEffect(() => {
     if (bounds) {
+      console.log('THESE ARE THE BOUNDS FROM useEffect:');
+      console.log(bounds);
       const blLat = bounds[1];
       const trLat = bounds[3];
       const blLong = bounds[0];
@@ -121,7 +143,6 @@ export default function App() {
       console.log('Questi sono gli eventi trovati:');
       console.log(events);
     }
-    // }
   }, [firstDate, lastDate, bounds, typeACheck, typeBCheck]);
 
   // useEffect(() => {
@@ -231,6 +252,7 @@ export default function App() {
             setCurrentMarker={setCurrentMarker}
             mobileView={mobileView}
             currentMarker={currentMarker}
+            events={events}
           />
         </div>
       </div>

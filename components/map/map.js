@@ -25,6 +25,7 @@ function Map(props) {
     setCurrentMarker,
     mobileView,
     // currentMarker,
+    events,
   } = props;
   const mapRef = useRef();
 
@@ -66,6 +67,10 @@ function Map(props) {
             bounds.se.lng,
             bounds.nw.lat,
           ]);
+          console.log('THESE ARE THE BOUNDS FROM THE MAP:');
+          console.log(bounds);
+          console.log('THESE ARE THE EVENTS FROM THE MAP:');
+          console.log(events);
         }}
         // onClick={() => setCurrentPlaceId(null)}
         // onDrag={() => setCurrentPlaceId(null)}
