@@ -5,10 +5,8 @@ import * as ga from '../../lib/google-analytics';
 
 function EventsFilter(props) {
   const {
-    typeACheck,
-    setTypeACheck,
-    typeBCheck,
-    setTypeBCheck,
+    categoryCheck,
+    setCategoryCheck,
     firstDate,
     setFirstDate,
     lastDate,
@@ -29,20 +27,23 @@ function EventsFilter(props) {
     });
   };
 
-  const handleTypeAChange = () => {
-    setTypeACheck(!typeACheck);
+  const handleCategoryChange = (e) => {
+    // console.log(+e.target.value);
 
-    // let labelValue
-    // if (typeACheck) {
-    //  labelValue
-    // }
+    const idx = +e.target.value;
+    if (idx === 0) {
+      ga.event({
+        action: 'set_type_A',
+        category: 'selection',
+        label: 'Open type A',
+        value: 'Type A open',
+      });
+    } else {
+    }
 
-    ga.event({
-      action: 'set_type_A',
-      category: 'selection',
-      label: 'Open type A',
-      value: 'Type A open',
-    });
+    const newTypesCheck = [...categoryCheck];
+    newTypesCheck[idx] = !newTypesCheck[idx];
+    setCategoryCheck(newTypesCheck);
   };
 
   return (
@@ -63,9 +64,9 @@ function EventsFilter(props) {
                   type="checkbox"
                   id="typeA"
                   name="typeA"
+                  value="0"
                   defaultChecked
-                  onChange={handleTypeAChange}
-                  // onChange={() => setTypeACheck(!typeACheck)}
+                  onChange={handleCategoryChange}
                 />
                 <label htmlFor="typeA">Type A</label>
               </div>
@@ -74,9 +75,9 @@ function EventsFilter(props) {
                   type="checkbox"
                   id="typeB"
                   name="typeB"
+                  value="1"
                   defaultChecked
-                  // onChange={handleTypeBChange}
-                  onChange={() => setTypeBCheck(!typeBCheck)}
+                  onChange={handleCategoryChange}
                 />
                 <label htmlFor="typeB">Type B</label>
               </div>

@@ -18,8 +18,7 @@ function Map(props) {
     setBounds,
     zoom,
     setZoom,
-    typeACheck,
-    typeBCheck,
+    categoryCheck,
     currentPlaceId,
     setCurrentPlaceId,
     setCurrentMarker,
@@ -96,10 +95,10 @@ function Map(props) {
             bounds.se.lng,
             bounds.nw.lat,
           ]);
-          console.log('THESE ARE THE BOUNDS FROM THE MAP:');
-          console.log(bounds);
-          console.log('THESE ARE THE EVENTS FROM THE MAP:');
-          console.log(events);
+          // console.log('THESE ARE THE BOUNDS FROM THE MAP:');
+          // console.log(bounds);
+          // console.log('THESE ARE THE EVENTS FROM THE MAP:');
+          // console.log(events);
         }}
         // onClick={() => setCurrentPlaceId(null)}
         // onDrag={() => setCurrentPlaceId(null)}
@@ -158,10 +157,9 @@ function Map(props) {
               );
             }
 
-            if (cluster.properties.eventType[0] === 1 && typeACheck) {
+            if (cluster.properties.eventType[0] === 1 && categoryCheck[0]) {
               return (
                 <Marker
-                  // key={`crime-${cluster.properties.crimeId}`}
                   key={`${cluster.properties.eventId}`}
                   lat={latitude}
                   lng={longitude}
@@ -182,7 +180,7 @@ function Map(props) {
                 </Marker>
               );
             }
-            if (cluster.properties.eventType[0] === 2 && typeBCheck) {
+            if (cluster.properties.eventType[0] === 2 && categoryCheck[1]) {
               return (
                 <Marker
                   // key={`crime-${cluster.properties.crimeId}`}
