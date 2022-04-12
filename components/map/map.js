@@ -77,104 +77,106 @@ function Map(props) {
         // onClick={() => setTestId(null)}
         // onDrag={() => setTestId(null)}
       >
-        {clusters.map((cluster) => {
-          const [longitude, latitude] = cluster.geometry.coordinates;
-          const { cluster: isCluster, point_count: pointCount } =
-            cluster.properties;
+        {clusters &&
+          clusters.length > 0 &&
+          clusters.map((cluster) => {
+            const [longitude, latitude] = cluster.geometry.coordinates;
+            const { cluster: isCluster, point_count: pointCount } =
+              cluster.properties;
 
-          if (isCluster) {
-            return (
-              <Marker
-                key={`cluster-${cluster.id}`}
-                lat={latitude}
-                lng={longitude}
-              >
-                <div
-                  className="cluster-marker"
-                  style={{
-                    width: `${10 + (pointCount / points.length) * 20}px`,
-                    height: `${10 + (pointCount / points.length) * 20}px`,
-                  }}
-                  onClick={() => {
-                    const expansionZoom = Math.min(
-                      supercluster.getClusterExpansionZoom(cluster.id),
-                      20
-                    );
-                    mapRef.current.setZoom(expansionZoom);
-                    mapRef.current.panTo({ lat: latitude, lng: longitude });
-                  }}
+            if (isCluster) {
+              return (
+                <Marker
+                  key={`cluster-${cluster.id}`}
+                  lat={latitude}
+                  lng={longitude}
                 >
-                  {pointCount}
-                </div>
-              </Marker>
-            );
-          }
+                  <div
+                    className="cluster-marker"
+                    style={{
+                      width: `${10 + (pointCount / points.length) * 20}px`,
+                      height: `${10 + (pointCount / points.length) * 20}px`,
+                    }}
+                    onClick={() => {
+                      const expansionZoom = Math.min(
+                        supercluster.getClusterExpansionZoom(cluster.id),
+                        20
+                      );
+                      mapRef.current.setZoom(expansionZoom);
+                      mapRef.current.panTo({ lat: latitude, lng: longitude });
+                    }}
+                  >
+                    {pointCount}
+                  </div>
+                </Marker>
+              );
+            }
 
-          if (cluster.properties.eventId === currentPlaceId) {
-            return (
-              <Popup
-                key={cluster.properties.eventId}
-                id={cluster.properties.eventId}
-                title={cluster.properties.eventTitle}
-                organiser={cluster.properties.eventOrganiser}
-                image={cluster.properties.eventImage}
-                lat={cluster.properties.eventLat}
-                lng={cluster.properties.eventLong}
-                setCurrentPlaceId={setCurrentPlaceId}
-                mobileView={mobileView}
-                setTestId={setTestId}
-              />
-            );
-          }
+            if (cluster.properties.eventId === currentPlaceId) {
+              return (
+                <Popup
+                  key={cluster.properties.eventId}
+                  id={cluster.properties.eventId}
+                  title={cluster.properties.eventTitle}
+                  organiser={cluster.properties.eventOrganiser}
+                  image={cluster.properties.eventImage}
+                  lat={cluster.properties.eventLat}
+                  lng={cluster.properties.eventLong}
+                  setCurrentPlaceId={setCurrentPlaceId}
+                  mobileView={mobileView}
+                  setTestId={setTestId}
+                />
+              );
+            }
 
-          if (cluster.properties.eventType[0] === 1 && typeACheck) {
-            return (
-              <Marker
-                // key={`crime-${cluster.properties.crimeId}`}
-                key={`${cluster.properties.eventId}`}
-                lat={latitude}
-                lng={longitude}
-              >
-                <button className="crime-marker-A">
-                  <CustomMarker
-                    key={cluster.properties.eventId}
-                    id={cluster.properties.eventId}
-                    title={cluster.properties.eventTitle}
-                    setCurrentPlaceId={setCurrentPlaceId}
-                    mobileView={mobileView}
-                    currentPlaceId={currentPlaceId}
-                    testID={testID}
-                    setTestId={setTestId}
-                  />
-                  {/* <img src="/custody.svg" alt="crime doesn't pay" /> */}
-                </button>
-              </Marker>
-            );
-          }
-          if (cluster.properties.eventType[0] === 2 && typeBCheck) {
-            return (
-              <Marker
-                // key={`crime-${cluster.properties.crimeId}`}
-                key={`${cluster.properties.eventId}`}
-                lat={latitude}
-                lng={longitude}
-              >
-                <button className="crime-marker-B">
-                  <CustomMarker
-                    key={cluster.properties.eventId}
-                    id={cluster.properties.eventId}
-                    title={cluster.properties.eventTitle}
-                    setCurrentPlaceId={setCurrentPlaceId}
-                    mobileView={mobileView}
-                    testID={testID}
-                    setTestId={setTestId}
-                  />
-                  {/* <img src="/custody.svg" alt="crime doesn't pay" /> */}
-                </button>
-              </Marker>
-            );
-          }
-        })}
+            if (cluster.properties.eventType[0] === 1 && typeACheck) {
+              return (
+                <Marker
+                  // key={`crime-${cluster.properties.crimeId}`}
+                  key={`${cluster.properties.eventId}`}
+                  lat={latitude}
+                  lng={longitude}
+                >
+                  <button className="crime-marker-A">
+                    <CustomMarker
+                      key={cluster.properties.eventId}
+                      id={cluster.properties.eventId}
+                      title={cluster.properties.eventTitle}
+                      setCurrentPlaceId={setCurrentPlaceId}
+                      mobileView={mobileView}
+                      currentPlaceId={currentPlaceId}
+                      testID={testID}
+                      setTestId={setTestId}
+                    />
+                    {/* <img src="/custody.svg" alt="crime doesn't pay" /> */}
+                  </button>
+                </Marker>
+              );
+            }
+            if (cluster.properties.eventType[0] === 2 && typeBCheck) {
+              return (
+                <Marker
+                  // key={`crime-${cluster.properties.crimeId}`}
+                  key={`${cluster.properties.eventId}`}
+                  lat={latitude}
+                  lng={longitude}
+                >
+                  <button className="crime-marker-B">
+                    <CustomMarker
+                      key={cluster.properties.eventId}
+                      id={cluster.properties.eventId}
+                      title={cluster.properties.eventTitle}
+                      setCurrentPlaceId={setCurrentPlaceId}
+                      mobileView={mobileView}
+                      testID={testID}
+                      setTestId={setTestId}
+                    />
+                    {/* <img src="/custody.svg" alt="crime doesn't pay" /> */}
+                  </button>
+                </Marker>
+              );
+            }
+          })}
       </GoogleMapReact>
     </div>
   );
