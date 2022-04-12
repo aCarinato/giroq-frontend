@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useSupercluster from 'use-supercluster';
+// import useSupercluster from 'use-supercluster';
 import axios from 'axios';
 
 import Map from '../components/map/map';
@@ -7,7 +7,7 @@ import EventsFilter from '../components/events/events-filter';
 import EventList from '../components/events/event-list';
 import SwitchTab from '../components/mobile/switch-tab';
 
-export default function App() {
+const Home = () => {
   // MAP
   const [bounds, setBounds] = useState([
     10.603240966796875, 44.636030435233096, 12.396759033203125,
@@ -161,33 +161,33 @@ export default function App() {
   //   setCoordinates({ lat: 45.4, lng: 11.5 });
   // }, [currentMarker]);
 
-  const points = events.map((event) => ({
-    type: 'Feature',
-    properties: {
-      cluster: false,
-      eventId: event._id,
-      eventType: event.category,
-      eventDate: event.date,
-      eventTitle: event.title,
-      eventOrganiser: event.organiser,
-      eventDescription: event.description,
-      eventImage: event.image,
-      eventLat: event.lat,
-      eventLong: event.long,
-    },
-    geometry: {
-      type: 'Point',
-      coordinates: [event.long, event.lat],
-    },
-  }));
+  // const points = events.map((event) => ({
+  //   type: 'Feature',
+  //   properties: {
+  //     cluster: false,
+  //     eventId: event._id,
+  //     eventType: event.category,
+  //     eventDate: event.date,
+  //     eventTitle: event.title,
+  //     eventOrganiser: event.organiser,
+  //     eventDescription: event.description,
+  //     eventImage: event.image,
+  //     eventLat: event.lat,
+  //     eventLong: event.long,
+  //   },
+  //   geometry: {
+  //     type: 'Point',
+  //     coordinates: [event.long, event.lat],
+  //   },
+  // }));
 
-  const { clusters, supercluster } = useSupercluster({
-    points,
-    bounds,
-    zoom,
-    options: { radius: 75, maxZoom: 20 },
-  });
-  // console.log(clusters);
+  // const { clusters, supercluster } = useSupercluster({
+  //   points,
+  //   bounds,
+  //   zoom,
+  //   options: { radius: 75, maxZoom: 20 },
+  // });
+  // // console.log(clusters);
 
   return (
     <div className="container-fluid">
@@ -237,9 +237,9 @@ export default function App() {
         <div className="col-lg-8">
           <Map
             mapHeight={mapHeight}
-            points={points}
-            clusters={clusters}
-            supercluster={supercluster}
+            // points={points}
+            // clusters={clusters}
+            // supercluster={supercluster}
             coordinates={coordinates}
             setCoordinates={setCoordinates}
             setBounds={setBounds}
@@ -253,9 +253,30 @@ export default function App() {
             mobileView={mobileView}
             currentMarker={currentMarker}
             events={events}
+            bounds={bounds}
           />
         </div>
       </div>
     </div>
   );
-}
+};
+
+// export async function getServerSideProps(context) {
+//   try {
+//     const retrievedEvents = await axios.get(
+//       `${process.env.NEXT_PUBLIC_API}/events/`
+//     );
+//     // setEvents(retrievedEvents.data);
+//     // console.log(events);
+//   } catch (err) {
+//     console.log(err);
+//   }
+
+//   return {
+//     props: {
+//       allEvents: retrievedEvents,
+//     },
+//   };
+// }
+
+export default Home;

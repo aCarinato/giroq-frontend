@@ -1,5 +1,5 @@
 import GoogleMapReact from 'google-map-react';
-// import useSupercluster from 'use-supercluster';
+import useSupercluster from 'use-supercluster';
 import { useRef, useEffect, useState } from 'react';
 import CustomMarker from './custom-marker';
 
@@ -10,9 +10,9 @@ const Marker = ({ children }) => children;
 function Map(props) {
   const {
     mapHeight,
-    points,
-    clusters,
-    supercluster,
+    // points,
+    // clusters,
+    // supercluster,
     coordinates,
     setCoordinates,
     setBounds,
@@ -26,10 +26,39 @@ function Map(props) {
     mobileView,
     // currentMarker,
     events,
+    bounds,
   } = props;
   const mapRef = useRef();
 
   const [testID, setTestId] = useState(null);
+
+  const points = events.map((event) => ({
+    type: 'Feature',
+    properties: {
+      cluster: false,
+      eventId: event._id,
+      eventType: event.category,
+      eventDate: event.date,
+      eventTitle: event.title,
+      eventOrganiser: event.organiser,
+      eventDescription: event.description,
+      eventImage: event.image,
+      eventLat: event.lat,
+      eventLong: event.long,
+    },
+    geometry: {
+      type: 'Point',
+      coordinates: [event.long, event.lat],
+    },
+  }));
+
+  const { clusters, supercluster } = useSupercluster({
+    points,
+    bounds,
+    zoom,
+    options: { radius: 75, maxZoom: 20 },
+  });
+  // console.log(clusters);
 
   return (
     <div style={{ height: mapHeight }}>
