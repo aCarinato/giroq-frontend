@@ -59,8 +59,6 @@ function Map(props) {
   });
   // console.log(clusters);
 
-  const categories = [1, 2];
-
   return (
     <div style={{ height: mapHeight }}>
       <GoogleMapReact
@@ -159,10 +157,7 @@ function Map(props) {
               );
             }
 
-            if (
-              categories.includes(+cluster.properties.eventType[0]) &&
-              categoryCheck[+cluster.properties.eventType[0] - 1]
-            ) {
+            if (categoryCheck[+cluster.properties.eventType[0] - 1]) {
               return (
                 <Marker
                   key={`${cluster.properties.eventId}`}

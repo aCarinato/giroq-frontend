@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 // import useSupercluster from 'use-supercluster';
 import axios from 'axios';
 
@@ -45,6 +45,9 @@ const Home = () => {
   const [showList, setShowList] = useState(false);
   const [mapSelected, setMapSelected] = useState(true);
 
+  // const mapHeightRef = useRef(mapHeight);
+  // mapHeightRef.current = mapHeight;
+
   const calcHeight = () => {
     if (window.innerWidth <= 820) {
       setMobileView(true);
@@ -64,8 +67,36 @@ const Home = () => {
     }
   };
 
+  // const calcHeightAgain = () => {
+  //   if (window.innerWidth <= 820) {
+  //     setMobileView(true);
+  //     if (mapSelected) {
+  //       setShowList(false);
+  //       // console.log(`mobileView: ${mobileView}`);
+  //       return '200px';
+  //     } else {
+  //       // setShowList(true);
+  //       return;
+  //     }
+  //   } else {
+  //     setMobileView(false);
+  //     setShowList(true);
+  //     // console.log(`mobileView: ${mobileView}`);
+  //     return '50vh';
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     // console.log('This will run after 1 second!');
+  //     setMapHeight('50vh');
+  //   }, 2000);
+  //   return () => clearTimeout(timer);
+  // }, []);
+
   useEffect(() => {
     setMapHeight(calcHeight());
+    // setTimeout(calcHeightAgain(), 2000);
   }, [calcHeight]);
 
   // useEffect(() => {
@@ -124,6 +155,11 @@ const Home = () => {
         console.log(err);
       }
     };
+    // const timer = setTimeout(() => {
+    //   // console.log('This will run after 1 second!');
+    //   getEvents();
+    // }, 1500);
+    // return () => clearTimeout(timer);
     getEvents();
     // console.log('Questi sono gli eventi trovati:');
     // console.log(events);

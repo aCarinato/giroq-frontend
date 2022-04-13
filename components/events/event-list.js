@@ -16,8 +16,6 @@ function EventList(props) {
     // setZoom,
   } = props;
 
-  const categories = [1, 2];
-
   return (
     <ul className={classes.list}>
       {events.length === 0 && <div>NESSUN EVENTO PER LE DATE SELEZIONATE</div>}
@@ -25,27 +23,26 @@ function EventList(props) {
         events.length > 0 &&
         events.map((event) => (
           <Fragment key={event._id}>
-            {categories.includes(+event.category[0]) &&
-              categoryCheck[+event.category[0] - 1] && (
-                <EventItem
-                  key={event._id}
-                  id={event._id}
-                  // bounds={bounds}
-                  title={event.title}
-                  // location={event.location}
-                  date={event.date}
-                  image={event.image}
-                  setCurrentMarker={setCurrentMarker}
-                  longitude={event.long}
-                  latitude={event.lat}
-                  mobileView={mobileView}
-                  setMapSelected={setMapSelected}
-                  setCoordinates={setCoordinates}
-                  coordinates={coordinates}
-                  setCurrentPlaceId={setCurrentPlaceId}
-                  // setZoom={setZoom}
-                />
-              )}
+            {categoryCheck[+event.category[0] - 1] && (
+              <EventItem
+                key={event._id}
+                id={event._id}
+                // bounds={bounds}
+                title={event.title}
+                // location={event.location}
+                date={event.date}
+                image={event.image}
+                setCurrentMarker={setCurrentMarker}
+                longitude={event.long}
+                latitude={event.lat}
+                mobileView={mobileView}
+                setMapSelected={setMapSelected}
+                setCoordinates={setCoordinates}
+                coordinates={coordinates}
+                setCurrentPlaceId={setCurrentPlaceId}
+                // setZoom={setZoom}
+              />
+            )}
           </Fragment>
         ))}
     </ul>
