@@ -37,7 +37,34 @@ const Home = () => {
   const [firstDate, setFirstDate] = useState(todayISO);
   const [lastDate, setLastDate] = useState(oneWeekISO);
 
-  const [categoryCheck, setCategoryCheck] = useState([true, true]);
+  const [categoryCheck, setCategoryCheck] = useState([
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+  ]);
 
   // MOBILE
   const [mapHeight, setMapHeight] = useState(null);

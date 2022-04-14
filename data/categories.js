@@ -1,6 +1,19 @@
 const CATEGORIES = [
   {
     id: '0',
+    mainCategory: 'GUSTO E DIVERTIMENTO',
+    subCategories: [
+      'Feste e sagre',
+      'Famiglie',
+      'Street food',
+      'Vino',
+      'Ristoranti',
+      'Disco & Club',
+    ],
+  },
+
+  {
+    id: '6',
     mainCategory: 'CULTURA E SPETTACOLO',
     subCategories: [
       'Musica',
@@ -15,20 +28,7 @@ const CATEGORIES = [
   },
 
   {
-    id: '8',
-    mainCategory: 'GUSTO E DIVERTIMENTO',
-    subCategories: [
-      'Feste e sagre',
-      'Famiglie',
-      'Street food',
-      'Vino',
-      'Ristoranti',
-      'Disco & Club',
-    ],
-  },
-
-  {
-    id: '13',
+    id: '14',
     mainCategory: 'SPORT E NATURA',
     subCategories: [
       'Escursioni e trekking',
@@ -42,7 +42,7 @@ const CATEGORIES = [
   },
 
   {
-    id: '20',
+    id: '21',
     mainCategory: 'EXPO E ACQUISTI',
     subCategories: [
       'Fiere tradizionali',
