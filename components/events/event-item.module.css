@@ -38,7 +38,7 @@
 } */
 
 .btnDetails {
-  background-color: navy;
+  background-color: #616161;
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -52,13 +52,13 @@
 
 .btnDetails:hover {
   background-color: white;
-  border: 1px solid navy;
-  color: navy;
+  border: 1px solid #616161;
+  color: #616161;
 }
 
 .btnDetails:hover > a {
   background-color: white;
-  color: navy;
+  color: #616161;
 }
 
 .date,

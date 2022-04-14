@@ -7,17 +7,14 @@
 .checkmarkOuter {
   width: 2rem;
   position: relative;
-  /* background-color: aqua; */
   cursor: pointer;
   padding: 0.625rem;
 }
 
 .checkmark {
-  /* width: 15%; */
   position: relative;
   width: 0.75rem;
   height: 0.75rem;
-  /* background-color: aqua; */
   cursor: pointer;
   border: 1px solid #616161;
   border-radius: 50%;
@@ -28,15 +25,7 @@
   cursor: pointer;
 }
 
-/* .checkmarkOuter {
-  width: 2rem;
-  position: relative;
-  cursor: pointer;
-  padding: 0.5rem;
-} */
-
 .checkmarkSelectedRed {
-  /* width: 15%; */
   position: relative;
   background-color: #ff6b6b;
   width: 0.75rem;
@@ -47,7 +36,6 @@
 }
 
 .checkmarkSelectedBlue {
-  /* width: 15%; */
   position: relative;
   background-color: #1a535c;
   width: 0.75rem;
@@ -58,7 +46,6 @@
 }
 
 .checkmarkSelectedYellow {
-  /* width: 15%; */
   position: relative;
   background-color: #ffd100;
   width: 0.75rem;
@@ -69,7 +56,6 @@
 }
 
 .checkmarkSelectedCyan {
-  /* width: 15%; */
   position: relative;
   background-color: #4ecdc4;
   width: 0.75rem;

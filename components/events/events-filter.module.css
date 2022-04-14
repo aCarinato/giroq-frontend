@@ -1,20 +1,86 @@
+/* MAIN CONTAINER */
+
+/* .mainContainer {
+  display: flex;
+} */
+
+/* .mainContainerSmallColumn {
+  width: 35%;
+} */
+
+/* .mainContainerLargeColumn {
+  width: 65%;
+  display: flex;
+} */
+
 .filterSwitch {
   text-align: center;
   padding: 0.75rem;
   color: #616161;
-  border-top: 1px solid #616161;
-  font-size: 0.75rem;
+  /* border-top: 1px solid #616161; */
+  /* font-size: 3rem; */
+  font-weight: bold;
 }
 
 /* MY DROPDOWN */
 
+/* Dropdown Opener-Closer */
+
+.drowdownWrapper {
+  width: 18rem;
+  /* margin-left: 2rem; */
+  margin: auto;
+}
+
 .categoriesDropdown {
+  height: 3rem;
   width: 18rem;
   background-color: white;
   border: 1px solid #616161;
-  padding: 0.5rem;
   cursor: pointer;
+  /* margin: auto; */
 }
+
+.containerOpener {
+  display: flex;
+  height: 100%;
+  line-height: 3rem;
+}
+
+.containerOpenerLabel {
+  width: 15rem;
+  text-align: center;
+  font-weight: bold;
+  /* padding-left: 2rem; */
+}
+
+.containerOpenerArrow {
+  position: relative;
+  width: 3rem;
+  padding: 1rem 0.75rem;
+}
+
+.arrowUp {
+  position: relative;
+  width: 0;
+  height: 0;
+  border-left: 0.75rem solid transparent;
+  border-right: 0.75rem solid transparent;
+
+  border-bottom: 0.75rem solid #616161;
+}
+
+.arrowDown {
+  position: relative;
+  width: 0;
+  height: 0;
+  border-left: 0.75rem solid transparent;
+  border-right: 0.75rem solid transparent;
+
+  border-top: 0.75rem solid #616161;
+}
+
+/* Dropdown Category Items */
 
 .categoriesList {
   width: 18rem;
@@ -25,6 +91,7 @@
   position: absolute;
   overflow-y: scroll;
   z-index: 4;
+  margin: auto;
 }
 
 .container {
@@ -36,25 +103,21 @@
 .checkmarkOuter {
   width: 2rem;
   position: relative;
-  /* background-color: aqua; */
   cursor: pointer;
   padding: 0.75rem;
   padding-left: 0.5rem;
 }
 
 .checkmark {
-  /* width: 15%; */
   position: relative;
   width: 1rem;
   height: 1rem;
-  /* background-color: aqua; */
   cursor: pointer;
   border: 1px solid #616161;
   border-radius: 50%;
 }
 
 .checkmarkSelectedRed {
-  /* width: 15%; */
   position: relative;
   background-color: #ff6b6b;
   width: 1rem;
@@ -65,7 +128,6 @@
 }
 
 .checkmarkSelectedBlue {
-  /* width: 15%; */
   position: relative;
   background-color: #1a535c;
   width: 1rem;
@@ -76,7 +138,6 @@
 }
 
 .checkmarkSelectedYellow {
-  /* width: 15%; */
   position: relative;
   background-color: #ffd100;
   width: 1rem;
@@ -87,7 +148,6 @@
 }
 
 .checkmarkSelectedCyan {
-  /* width: 15%; */
   position: relative;
   background-color: #4ecdc4;
   width: 1rem;
@@ -102,8 +162,59 @@
   cursor: pointer;
 }
 
+/* Dropdown Dates Items */
+
+.datesList {
+  width: 18rem;
+  padding: 0.5rem;
+  background-color: white;
+  border: 1px solid #616161;
+  position: absolute;
+  overflow-y: scroll;
+  z-index: 4;
+  margin: auto;
+}
+
+/* Segnala Evento Button */
+
+.btnPost {
+  width: 18rem;
+  height: 3rem;
+  line-height: 3rem;
+  margin: auto;
+  background-color: #616161;
+  color: white;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.btnPost:hover {
+  background-color: white;
+  border: 1px solid #616161;
+  color: #616161;
+}
+
 @media (min-width: 768px) {
   .filterSwitch {
     font-size: 1.25rem;
+  }
+
+  .mainContainer {
+    display: flex;
+  }
+
+  .mainContainerSmallColumn {
+    width: 35%;
+  }
+
+  .mainContainerLargeColumn {
+    width: 65%;
+    display: flex;
+  }
+
+  .largeColumnColumn {
+    width: 33%;
+    text-align: center;
+    padding: 0.5rem;
   }
 }
