@@ -145,6 +145,8 @@
 .label {
   padding-left: 0.5rem;
   cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: bold;
 }
 
 /* Dropdown Dates Items */
@@ -225,6 +227,13 @@
     font-size: 1rem;
   }
 
+  .label {
+    padding-left: 0.5rem;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+
   .arrowUp {
     width: 0;
     height: 0;
@@ -302,6 +311,12 @@
 
   .containerOpenerLabel {
     width: 10rem;
+  }
+
+  .label {
+    padding-left: 0.5rem;
+    cursor: pointer;
+    font-size: 0.65rem;
   }
 
   .containerOpenerArrow {
