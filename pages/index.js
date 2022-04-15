@@ -77,7 +77,7 @@ const Home = () => {
   // mapHeightRef.current = mapHeight;
 
   const calcHeight = () => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 820) {
       setMobileView(true);
       if (mapSelected) {
         setShowList(false);

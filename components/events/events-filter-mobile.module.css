@@ -216,7 +216,7 @@
   color: #616161;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .mainContainerLargeColumn {
     /* width: 67%; */
     display: flex;
