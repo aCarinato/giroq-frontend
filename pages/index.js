@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Map from '../components/map/map';
 import EventsFilter from '../components/events/events-filter';
+import EventsFilterMobile from '../components/events/events-filter-mobile';
 import EventList from '../components/events/event-list';
 import SwitchTab from '../components/mobile/switch-tab';
 
@@ -76,7 +77,7 @@ const Home = () => {
   // mapHeightRef.current = mapHeight;
 
   const calcHeight = () => {
-    if (window.innerWidth <= 820) {
+    if (window.innerWidth <= 768) {
       setMobileView(true);
       if (mapSelected) {
         setShowList(false);
@@ -244,14 +245,25 @@ const Home = () => {
       </div> */}
       <div className="row">
         <div className="col-lg-12">
-          <EventsFilter
-            categoryCheck={categoryCheck}
-            setCategoryCheck={setCategoryCheck}
-            firstDate={firstDate}
-            setFirstDate={setFirstDate}
-            lastDate={lastDate}
-            setLastDate={setLastDate}
-          />
+          {mobileView ? (
+            <EventsFilterMobile
+              categoryCheck={categoryCheck}
+              setCategoryCheck={setCategoryCheck}
+              firstDate={firstDate}
+              setFirstDate={setFirstDate}
+              lastDate={lastDate}
+              setLastDate={setLastDate}
+            />
+          ) : (
+            <EventsFilter
+              categoryCheck={categoryCheck}
+              setCategoryCheck={setCategoryCheck}
+              firstDate={firstDate}
+              setFirstDate={setFirstDate}
+              lastDate={lastDate}
+              setLastDate={setLastDate}
+            />
+          )}
         </div>
       </div>
       {mobileView && (

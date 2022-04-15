@@ -1,10 +1,45 @@
 /* MAIN CONTAINER */
 
-.filterSwitch {
+.mainContainerSmallColumn {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+
+.containerFilterSwitch {
+  /* width: 85%; */
   text-align: center;
   padding: 0.75rem;
   color: #616161;
   font-weight: bold;
+}
+
+.containerFilterSwitchArrow {
+  position: relative;
+  width: 4rem;
+  /* padding: 5%; */
+}
+
+.filterSwitchArrowUp {
+  position: relative;
+  /* margin: 2rem; */
+  width: 0;
+  height: 0;
+  border-left: 0.75rem solid transparent;
+  border-right: 0.75rem solid transparent;
+
+  border-bottom: 0.75rem solid #616161;
+}
+
+.filterSwitchArrowDown {
+  position: relative;
+  /* margin: 2rem; */
+  width: 0;
+  height: 0;
+  border-left: 0.75rem solid transparent;
+  border-right: 0.75rem solid transparent;
+
+  border-top: 0.75rem solid #616161;
 }
 
 /* MY DROPDOWN */
@@ -41,7 +76,7 @@
   position: relative;
   width: 3rem;
   /* width: 20%; */
-  padding: 1rem 0.75rem;
+  padding: 50% 0.75rem;
 }
 
 .arrowUp {
@@ -181,203 +216,24 @@
   color: #616161;
 }
 
-@media (min-width: 1201px) {
-  .mainContainer {
-    /* display: flex; */
-    height: 5rem;
-  }
-
-  .filterSwitch {
-    font-size: 1.45rem;
-    width: 90%;
-    word-wrap: break-word;
-    padding: 0;
-
-    margin: auto;
-    margin-top: 0.75rem;
-  }
-
-  .mainContainer {
-    display: flex;
-  }
-
-  .mainContainerSmallColumn {
-    width: 33%;
-  }
-
+@media (max-width: 768px) {
   .mainContainerLargeColumn {
-    width: 67%;
+    /* width: 67%; */
     display: flex;
+    /* padding: 0.25rem; */
   }
 
   .largeColumnColumn {
-    width: 33%;
+    width: 50%;
     text-align: center;
-    padding: 0.5rem;
-  }
-
-  .drowdownWrapper {
-    margin-top: 0.7rem;
-    font-size: 0.8rem;
-  }
-
-  .containerOpenerLabel {
-    font-size: 1rem;
-  }
-
-  .arrowUp {
-    width: 0;
-    height: 0;
-    border-left: 0.5rem solid transparent;
-    border-right: 0.5rem solid transparent;
-
-    border-bottom: 0.5rem solid #616161;
-  }
-
-  .arrowDown {
-    width: 0;
-    height: 0;
-    border-left: 0.5rem solid transparent;
-    border-right: 0.5rem solid transparent;
-
-    border-top: 0.5rem solid #616161;
-  }
-
-  .btnPost {
-    width: 15rem;
-    height: 3rem;
-    line-height: 3rem;
-    margin: auto;
-    font-size: 1rem;
-    font-weight: bolder;
-    margin-top: 0.7rem;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1200px) {
-  .mainContainer {
-    /* display: flex; */
-    height: 5rem;
-  }
-
-  .filterSwitch {
-    font-size: 1.25rem;
-    height: 100%;
-    /* line-height: 2.5rem; */
-  }
-
-  .mainContainer {
-    display: flex;
-  }
-
-  .mainContainerSmallColumn {
-    width: 33%;
-  }
-
-  .mainContainerLargeColumn {
-    width: 67%;
-    display: flex;
-  }
-
-  .largeColumnColumn {
-    width: 33%;
-    text-align: center;
-    padding: 0.5rem;
-  }
-
-  .drowdownWrapper {
-    width: 12rem;
-    margin: auto;
-    font-size: 0.8rem;
-    margin-top: 0.75rem;
-  }
-
-  .categoriesDropdown {
-    height: 2.5rem;
-  }
-
-  .containerOpener {
-    line-height: 2.5rem;
-  }
-
-  .containerOpenerLabel {
-    width: 10rem;
-  }
-
-  .containerOpenerArrow {
-    width: 2.5rem;
-    padding: 0.75rem 0.5rem;
-  }
-
-  .arrowUp {
-    width: 0;
-    height: 0;
-    border-left: 0.5rem solid transparent;
-    border-right: 0.5rem solid transparent;
-
-    border-bottom: 0.5rem solid #616161;
-  }
-
-  .arrowDown {
-    width: 0;
-    height: 0;
-    border-left: 0.5rem solid transparent;
-    border-right: 0.5rem solid transparent;
-
-    border-top: 0.5rem solid #616161;
-  }
-
-  .btnPost {
-    /* width: 18rem; */
-    width: 12rem;
-    height: 2.5rem;
-    line-height: 2.5rem;
-    margin: auto;
-    font-size: 0.85rem;
-    font-weight: bolder;
-    margin-top: 0.75rem;
-  }
-
-  /* .categoriesList {
-    width: 12rem;
-  } */
-
-  .datesList {
-    width: 12rem;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .mainContainer {
-    display: flex;
-    height: 4rem;
-  }
-
-  .filterSwitch {
-    font-size: 1rem;
-    height: 100%;
-  }
-
-  .mainContainerSmallColumn {
-    width: 33%;
-  }
-
-  .mainContainerLargeColumn {
-    width: 67%;
-    display: flex;
-  }
-
-  .largeColumnColumn {
-    width: 33%;
-    text-align: center;
-    /* padding: 0.5rem; */
+    padding: 0.25rem;
   }
 
   .drowdownWrapper {
     width: 8rem;
-    margin: auto;
+    /* margin: auto; */
     font-size: 0.75rem;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
   }
 
   .categoriesDropdown {
@@ -386,10 +242,6 @@
 
   .containerOpener {
     line-height: 2rem;
-  }
-
-  .containerOpenerLabel {
-    width: 6rem;
   }
 
   .containerOpenerArrow {
@@ -416,16 +268,23 @@
     border-top: 0.5rem solid #616161;
   }
 
-  /* Segnala Evento Button */
+  .datesList {
+    width: 9.5rem;
+  }
+
+  .largeColumnBtn {
+    padding: 0.5rem;
+  }
 
   .btnPost {
-    /* width: 18rem; */
-    width: 9rem;
+    /* display: none; */
+    width: 50%;
     height: 2rem;
     line-height: 2rem;
-    margin: auto;
-    font-size: 0.65rem;
+    /* margin: auto; */
+    font-size: 0.7rem;
+    text-align: center;
+    word-wrap: break-word;
     font-weight: bolder;
-    margin-top: 1rem;
   }
 }
