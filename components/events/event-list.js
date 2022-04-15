@@ -6,8 +6,7 @@ function EventList(props) {
   const {
     // bounds,
     events,
-    typeACheck,
-    typeBCheck,
+    categoryCheck,
     setCurrentMarker,
     mobileView,
     setMapSelected,
@@ -16,6 +15,7 @@ function EventList(props) {
     coordinates,
     // setZoom,
   } = props;
+
   return (
     <ul className={classes.list}>
       {events.length === 0 && <div>NESSUN EVENTO PER LE DATE SELEZIONATE</div>}
@@ -23,27 +23,7 @@ function EventList(props) {
         events.length > 0 &&
         events.map((event) => (
           <Fragment key={event._id}>
-            {event.category[0] === 1 && typeACheck && (
-              <EventItem
-                key={event._id}
-                id={event._id}
-                // bounds={bounds}
-                title={event.title}
-                // location={event.location}
-                date={event.date}
-                image={event.image}
-                setCurrentMarker={setCurrentMarker}
-                longitude={event.long}
-                latitude={event.lat}
-                mobileView={mobileView}
-                setMapSelected={setMapSelected}
-                setCoordinates={setCoordinates}
-                coordinates={coordinates}
-                setCurrentPlaceId={setCurrentPlaceId}
-                // setZoom={setZoom}
-              />
-            )}
-            {event.category[0] === 2 && typeBCheck && (
+            {categoryCheck[+event.category[0] - 1] && (
               <EventItem
                 key={event._id}
                 id={event._id}

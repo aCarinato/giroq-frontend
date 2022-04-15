@@ -18,8 +18,7 @@ function Map(props) {
     setBounds,
     zoom,
     setZoom,
-    typeACheck,
-    typeBCheck,
+    categoryCheck,
     currentPlaceId,
     setCurrentPlaceId,
     setCurrentMarker,
@@ -96,10 +95,10 @@ function Map(props) {
             bounds.se.lng,
             bounds.nw.lat,
           ]);
-          console.log('THESE ARE THE BOUNDS FROM THE MAP:');
-          console.log(bounds);
-          console.log('THESE ARE THE EVENTS FROM THE MAP:');
-          console.log(events);
+          // console.log('THESE ARE THE BOUNDS FROM THE MAP:');
+          // console.log(bounds);
+          // console.log('THESE ARE THE EVENTS FROM THE MAP:');
+          // console.log(events);
         }}
         // onClick={() => setCurrentPlaceId(null)}
         // onDrag={() => setCurrentPlaceId(null)}
@@ -158,15 +157,16 @@ function Map(props) {
               );
             }
 
-            if (cluster.properties.eventType[0] === 1 && typeACheck) {
+            if (categoryCheck[+cluster.properties.eventType[0] - 1]) {
               return (
                 <Marker
-                  // key={`crime-${cluster.properties.crimeId}`}
                   key={`${cluster.properties.eventId}`}
                   lat={latitude}
                   lng={longitude}
                 >
-                  <button className="crime-marker-A">
+                  <button
+                    className={`marker-${cluster.properties.eventType[0]}`}
+                  >
                     <CustomMarker
                       key={cluster.properties.eventId}
                       id={cluster.properties.eventId}
@@ -174,29 +174,6 @@ function Map(props) {
                       setCurrentPlaceId={setCurrentPlaceId}
                       mobileView={mobileView}
                       currentPlaceId={currentPlaceId}
-                      testID={testID}
-                      setTestId={setTestId}
-                    />
-                    {/* <img src="/custody.svg" alt="crime doesn't pay" /> */}
-                  </button>
-                </Marker>
-              );
-            }
-            if (cluster.properties.eventType[0] === 2 && typeBCheck) {
-              return (
-                <Marker
-                  // key={`crime-${cluster.properties.crimeId}`}
-                  key={`${cluster.properties.eventId}`}
-                  lat={latitude}
-                  lng={longitude}
-                >
-                  <button className="crime-marker-B">
-                    <CustomMarker
-                      key={cluster.properties.eventId}
-                      id={cluster.properties.eventId}
-                      title={cluster.properties.eventTitle}
-                      setCurrentPlaceId={setCurrentPlaceId}
-                      mobileView={mobileView}
                       testID={testID}
                       setTestId={setTestId}
                     />

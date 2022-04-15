@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 // import useSupercluster from 'use-supercluster';
 import axios from 'axios';
 
 import Map from '../components/map/map';
 import EventsFilter from '../components/events/events-filter';
+import EventsFilterMobile from '../components/events/events-filter-mobile';
 import EventList from '../components/events/event-list';
 import SwitchTab from '../components/mobile/switch-tab';
 
@@ -37,15 +38,43 @@ const Home = () => {
   const [firstDate, setFirstDate] = useState(todayISO);
   const [lastDate, setLastDate] = useState(oneWeekISO);
 
-  const [typeACheck, setTypeACheck] = useState(true);
-  const [typeBCheck, setTypeBCheck] = useState(true);
-  // const [types, setTypes] = useState(['A', 'B']);
+  const [categoryCheck, setCategoryCheck] = useState([
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+  ]);
 
   // MOBILE
   const [mapHeight, setMapHeight] = useState(null);
   const [mobileView, setMobileView] = useState(null);
   const [showList, setShowList] = useState(false);
   const [mapSelected, setMapSelected] = useState(true);
+
+  // const mapHeightRef = useRef(mapHeight);
+  // mapHeightRef.current = mapHeight;
 
   const calcHeight = () => {
     if (window.innerWidth <= 820) {
@@ -66,8 +95,36 @@ const Home = () => {
     }
   };
 
+  // const calcHeightAgain = () => {
+  //   if (window.innerWidth <= 820) {
+  //     setMobileView(true);
+  //     if (mapSelected) {
+  //       setShowList(false);
+  //       // console.log(`mobileView: ${mobileView}`);
+  //       return '200px';
+  //     } else {
+  //       // setShowList(true);
+  //       return;
+  //     }
+  //   } else {
+  //     setMobileView(false);
+  //     setShowList(true);
+  //     // console.log(`mobileView: ${mobileView}`);
+  //     return '50vh';
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     // console.log('This will run after 1 second!');
+  //     setMapHeight('50vh');
+  //   }, 2000);
+  //   return () => clearTimeout(timer);
+  // }, []);
+
   useEffect(() => {
     setMapHeight(calcHeight());
+    // setTimeout(calcHeightAgain(), 2000);
   }, [calcHeight]);
 
   // useEffect(() => {
@@ -88,25 +145,16 @@ const Home = () => {
   // }, []);
 
   useEffect(() => {
-    if (bounds) {
-      console.log('THESE ARE THE BOUNDS FROM useEffect:');
-      console.log(bounds);
+    // if (bounds) {
+    const getEvents = async () => {
+      // console.log('THESE ARE THE BOUNDS FROM useEffect:');
+      // console.log(bounds);
       const blLat = bounds[1];
       const trLat = bounds[3];
       const blLong = bounds[0];
       const trLong = bounds[2];
 
-      // const blLat = bounds.sw.lat;
-      // const trLat = bounds.ne.lat;
-      // const blLong = bounds.sw.lng;
-      // const trLong = bounds.ne.lng;
-
-      // console.log(
-      //   `blLat:${blLat} - blLong:${blLong} - trLat:${trLat} - trLong:${trLong}`
-      // );
-      const typesChecked = [typeACheck, typeBCheck];
-
-      const types = typesChecked.map((tipo, index) => {
+      const types = categoryCheck.map((tipo, index) => {
         if (tipo) {
           return index + 1;
         } else {
@@ -124,26 +172,27 @@ const Home = () => {
         types,
       };
 
-      const getEvents = async () => {
-        try {
-          // const retrievedEvents = await axios.get(
-          //   // `${process.env.NEXT_PUBLIC_API}/events/`
-          // );
-          const retrievedEvents = await axios.post(
-            `${process.env.NEXT_PUBLIC_API}/events/`,
-            filterParams
-          );
-          setEvents(retrievedEvents.data);
-          // console.log(events);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-      getEvents();
-      console.log('Questi sono gli eventi trovati:');
-      console.log(events);
-    }
-  }, [firstDate, lastDate, bounds, typeACheck, typeBCheck]);
+      // console.log(filterParams);
+      try {
+        const retrievedEvents = await axios.post(
+          `${process.env.NEXT_PUBLIC_API}/events/`,
+          filterParams
+        );
+        setEvents(retrievedEvents.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    // const timer = setTimeout(() => {
+    //   // console.log('This will run after 1 second!');
+    //   getEvents();
+    // }, 1500);
+    // return () => clearTimeout(timer);
+    getEvents();
+    // console.log('Questi sono gli eventi trovati:');
+    // console.log(events);
+    // }
+  }, [firstDate, lastDate, bounds, categoryCheck]);
 
   // useEffect(() => {
   //   if (currentMarker !== {}) {
@@ -196,18 +245,25 @@ const Home = () => {
       </div> */}
       <div className="row">
         <div className="col-lg-12">
-          <EventsFilter
-            typeACheck={typeACheck}
-            setTypeACheck={setTypeACheck}
-            typeBCheck={typeBCheck}
-            setTypeBCheck={setTypeBCheck}
-            // types={types}
-            // setTypes={setTypes}
-            firstDate={firstDate}
-            setFirstDate={setFirstDate}
-            lastDate={lastDate}
-            setLastDate={setLastDate}
-          />
+          {mobileView ? (
+            <EventsFilterMobile
+              categoryCheck={categoryCheck}
+              setCategoryCheck={setCategoryCheck}
+              firstDate={firstDate}
+              setFirstDate={setFirstDate}
+              lastDate={lastDate}
+              setLastDate={setLastDate}
+            />
+          ) : (
+            <EventsFilter
+              categoryCheck={categoryCheck}
+              setCategoryCheck={setCategoryCheck}
+              firstDate={firstDate}
+              setFirstDate={setFirstDate}
+              lastDate={lastDate}
+              setLastDate={setLastDate}
+            />
+          )}
         </div>
       </div>
       {mobileView && (
@@ -223,8 +279,7 @@ const Home = () => {
           {showList === true && (
             <EventList
               events={events}
-              typeACheck={typeACheck}
-              typeBCheck={typeBCheck}
+              categoryCheck={categoryCheck}
               setCurrentMarker={setCurrentMarker}
               mobileView={mobileView}
               setMapSelected={setMapSelected}
@@ -245,8 +300,7 @@ const Home = () => {
             setBounds={setBounds}
             zoom={zoom}
             setZoom={setZoom}
-            typeACheck={typeACheck}
-            typeBCheck={typeBCheck}
+            categoryCheck={categoryCheck}
             currentPlaceId={currentPlaceId}
             setCurrentPlaceId={setCurrentPlaceId}
             setCurrentMarker={setCurrentMarker}
