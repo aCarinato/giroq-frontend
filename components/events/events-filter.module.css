@@ -1,24 +1,11 @@
 /* MAIN CONTAINER */
 
-/* .mainContainer {
-  display: flex;
-} */
-
-/* .mainContainerSmallColumn {
-  width: 35%;
-} */
-
-/* .mainContainerLargeColumn {
-  width: 65%;
-  display: flex;
-} */
-
 .filterSwitch {
   text-align: center;
   padding: 0.75rem;
   color: #616161;
   /* border-top: 1px solid #616161; */
-  /* font-size: 3rem; */
+  /* font-size: 10px; */
   font-weight: bold;
 }
 
@@ -27,14 +14,15 @@
 /* Dropdown Opener-Closer */
 
 .drowdownWrapper {
-  width: 18rem;
+  width: 15rem;
+  /* width: 80%; */
   /* margin-left: 2rem; */
   margin: auto;
 }
 
 .categoriesDropdown {
   height: 3rem;
-  width: 18rem;
+  width: 100%;
   background-color: white;
   border: 1px solid #616161;
   cursor: pointer;
@@ -49,6 +37,7 @@
 
 .containerOpenerLabel {
   width: 15rem;
+  /* width: 80%; */
   text-align: center;
   font-weight: bold;
   /* padding-left: 2rem; */
@@ -57,6 +46,7 @@
 .containerOpenerArrow {
   position: relative;
   width: 3rem;
+  /* width: 20%; */
   padding: 1rem 0.75rem;
 }
 
@@ -83,7 +73,8 @@
 /* Dropdown Category Items */
 
 .categoriesList {
-  width: 18rem;
+  width: 15rem;
+  /* width: 100%; */
   height: 40rem;
   padding: 0.5rem;
   background-color: white;
@@ -165,7 +156,7 @@
 /* Dropdown Dates Items */
 
 .datesList {
-  width: 18rem;
+  width: 15rem;
   padding: 0.5rem;
   background-color: white;
   border: 1px solid #616161;
@@ -178,7 +169,8 @@
 /* Segnala Evento Button */
 
 .btnPost {
-  width: 18rem;
+  /* width: 18rem; */
+  width: 70%;
   height: 3rem;
   line-height: 3rem;
   margin: auto;
@@ -186,6 +178,7 @@
   color: white;
   cursor: pointer;
   font-weight: bolder;
+  border-radius: 0.25rem;
 }
 
 .btnPost:hover {
@@ -194,7 +187,256 @@
   color: #616161;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1201px) {
+  .mainContainer {
+    /* display: flex; */
+    height: 5rem;
+  }
+
+  .filterSwitch {
+    font-size: 1.45rem;
+    width: 90%;
+    word-wrap: break-word;
+    padding: 0;
+
+    margin: auto;
+    margin-top: 0.75rem;
+  }
+
+  .mainContainer {
+    display: flex;
+  }
+
+  .mainContainerSmallColumn {
+    width: 33%;
+  }
+
+  .mainContainerLargeColumn {
+    width: 67%;
+    display: flex;
+  }
+
+  .largeColumnColumn {
+    width: 33%;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  .drowdownWrapper {
+    margin-top: 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .containerOpenerLabel {
+    font-size: 1rem;
+  }
+
+  .arrowUp {
+    width: 0;
+    height: 0;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+
+    border-bottom: 0.5rem solid #616161;
+  }
+
+  .arrowDown {
+    width: 0;
+    height: 0;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+
+    border-top: 0.5rem solid #616161;
+  }
+
+  .btnPost {
+    width: 15rem;
+    height: 3rem;
+    line-height: 3rem;
+    margin: auto;
+    font-size: 1rem;
+    font-weight: bolder;
+    margin-top: 0.7rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .mainContainer {
+    /* display: flex; */
+    height: 5rem;
+  }
+
+  .filterSwitch {
+    font-size: 1.25rem;
+    height: 100%;
+    /* line-height: 2.5rem; */
+  }
+
+  .mainContainer {
+    display: flex;
+  }
+
+  .mainContainerSmallColumn {
+    width: 33%;
+  }
+
+  .mainContainerLargeColumn {
+    width: 67%;
+    display: flex;
+  }
+
+  .largeColumnColumn {
+    width: 33%;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  .drowdownWrapper {
+    width: 12rem;
+    margin: auto;
+    font-size: 0.8rem;
+    margin-top: 0.75rem;
+  }
+
+  .categoriesDropdown {
+    height: 2.5rem;
+  }
+
+  .containerOpener {
+    line-height: 2.5rem;
+  }
+
+  .containerOpenerLabel {
+    width: 10rem;
+  }
+
+  .containerOpenerArrow {
+    width: 2.5rem;
+    padding: 0.75rem 0.5rem;
+  }
+
+  .arrowUp {
+    width: 0;
+    height: 0;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+
+    border-bottom: 0.5rem solid #616161;
+  }
+
+  .arrowDown {
+    width: 0;
+    height: 0;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+
+    border-top: 0.5rem solid #616161;
+  }
+
+  .btnPost {
+    /* width: 18rem; */
+    width: 12rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin: auto;
+    font-size: 0.85rem;
+    font-weight: bolder;
+    margin-top: 0.75rem;
+  }
+
+  /* .categoriesList {
+    width: 12rem;
+  } */
+
+  .datesList {
+    width: 12rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .mainContainer {
+    display: flex;
+    height: 4rem;
+  }
+
+  .filterSwitch {
+    font-size: 1rem;
+    height: 100%;
+  }
+
+  .mainContainerSmallColumn {
+    width: 33%;
+  }
+
+  .mainContainerLargeColumn {
+    width: 67%;
+    display: flex;
+  }
+
+  .largeColumnColumn {
+    width: 33%;
+    text-align: center;
+    /* padding: 0.5rem; */
+  }
+
+  .drowdownWrapper {
+    width: 8rem;
+    margin: auto;
+    font-size: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .categoriesDropdown {
+    height: 2rem;
+  }
+
+  .containerOpener {
+    line-height: 2rem;
+  }
+
+  .containerOpenerLabel {
+    width: 6rem;
+  }
+
+  .containerOpenerArrow {
+    position: relative;
+    width: 2rem;
+    padding: 0.625rem 0.5rem;
+  }
+
+  .arrowUp {
+    width: 0;
+    height: 0;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+
+    border-bottom: 0.5rem solid #616161;
+  }
+
+  .arrowDown {
+    width: 0;
+    height: 0;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+
+    border-top: 0.5rem solid #616161;
+  }
+
+  /* Segnala Evento Button */
+
+  .btnPost {
+    /* width: 18rem; */
+    width: 9rem;
+    height: 2rem;
+    line-height: 2rem;
+    margin: auto;
+    font-size: 0.65rem;
+    font-weight: bolder;
+    margin-top: 1rem;
+  }
+}
+
+/* @media (min-width: 768px) {
   .filterSwitch {
     font-size: 1.25rem;
   }
@@ -204,11 +446,11 @@
   }
 
   .mainContainerSmallColumn {
-    width: 35%;
+    width: 33%;
   }
 
   .mainContainerLargeColumn {
-    width: 65%;
+    width: 67%;
     display: flex;
   }
 
@@ -217,4 +459,4 @@
     text-align: center;
     padding: 0.5rem;
   }
-}
+} */
