@@ -25,6 +25,7 @@ const Home = () => {
   const [currentMarker, setCurrentMarker] = useState({});
 
   // EVENTS
+  // const [isLoadingEvents, setIsLoadingEvents] = useState(true);
   const [events, setEvents] = useState([]);
 
   // FILTER EVENTS
@@ -127,28 +128,29 @@ const Home = () => {
     // setTimeout(calcHeightAgain(), 2000);
   }, [calcHeight]);
 
-  // useEffect(() => {
-  //   const getEvents = async () => {
-  //     try {
-  //       const retrievedEvents = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_API}/events/`
-  //       );
-  //       setEvents(retrievedEvents.data);
-  //       // console.log(events);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getEvents();
-  //   console.log('Questi sono gli eventi trovati:');
-  //   console.log(events);
-  // }, []);
+  useEffect(() => {
+    const getEvents = async () => {
+      try {
+        const retrievedEvents = await axios.get(
+          `${process.env.NEXT_PUBLIC_API}/events/`
+        );
+        setEvents(retrievedEvents.data);
+        console.log('RECUPERATI EVENTI DAL GET');
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getEvents();
+    console.log('Questi sono gli eventi trovati:');
+    console.log(events);
+  }, []);
 
   useEffect(() => {
     // if (bounds) {
     const getEvents = async () => {
       // console.log('THESE ARE THE BOUNDS FROM useEffect:');
       // console.log(bounds);
+      // setIsLoadingEvents(true);
       const blLat = bounds[1];
       const trLat = bounds[3];
       const blLong = bounds[0];
@@ -179,6 +181,7 @@ const Home = () => {
           filterParams
         );
         setEvents(retrievedEvents.data);
+        // setIsLoadingEvents(false);
       } catch (err) {
         console.log(err);
       }
@@ -276,7 +279,7 @@ const Home = () => {
       )}
       <div className="row">
         <div className="col-lg-4">
-          {showList === true && (
+          {showList && (
             <EventList
               events={events}
               categoryCheck={categoryCheck}
