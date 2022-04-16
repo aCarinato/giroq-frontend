@@ -128,22 +128,66 @@ const Home = () => {
     // setTimeout(calcHeightAgain(), 2000);
   }, [calcHeight]);
 
-  useEffect(() => {
-    const getEvents = async () => {
-      try {
-        const retrievedEvents = await axios.get(
-          `${process.env.NEXT_PUBLIC_API}/events/`
-        );
-        setEvents(retrievedEvents.data);
-        console.log('RECUPERATI EVENTI DAL GET');
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getEvents();
-    console.log('Questi sono gli eventi trovati:');
-    console.log(events);
-  }, []);
+  // useEffect(() => {
+  //   const getEvents = async () => {
+  //     try {
+  //       const retrievedEvents = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_API}/events/`
+  //       );
+  //       setEvents(retrievedEvents.data);
+  //       console.log('RECUPERATI EVENTI DAL GET');
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getEvents();
+  //   console.log('Questi sono gli eventi trovati:');
+  //   console.log(events);
+  // }, []);
+
+  // useEffect(() => {
+  //   // if (bounds) {
+  //   const getEvents = async () => {
+  //     // console.log('THESE ARE THE BOUNDS FROM useEffect:');
+  //     // console.log(bounds);
+  //     // setIsLoadingEvents(true);
+  //     const blLat = bounds[1];
+  //     const trLat = bounds[3];
+  //     const blLong = bounds[0];
+  //     const trLong = bounds[2];
+
+  //     const types = categoryCheck.map((tipo, index) => {
+  //       if (tipo) {
+  //         return index + 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+
+  //     const filterParams = {
+  //       firstDate,
+  //       lastDate,
+  //       trLat,
+  //       trLong,
+  //       blLat,
+  //       blLong,
+  //       types,
+  //     };
+
+  //     // console.log(filterParams);
+  //     try {
+  //       const retrievedEvents = await axios.post(
+  //         `${process.env.NEXT_PUBLIC_API}/events/`,
+  //         filterParams
+  //       );
+  //       setEvents(retrievedEvents.data);
+  //       // setIsLoadingEvents(false);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getEvents();
+  // }, [firstDate, lastDate, bounds, categoryCheck]);
 
   useEffect(() => {
     // if (bounds) {
@@ -156,46 +200,25 @@ const Home = () => {
       const blLong = bounds[0];
       const trLong = bounds[2];
 
-      const types = categoryCheck.map((tipo, index) => {
-        if (tipo) {
-          return index + 1;
-        } else {
-          return 0;
-        }
-      });
+      // const types = categoryCheck.map((tipo, index) => {
+      //   if (tipo) {
+      //     return index + 1;
+      //   } else {
+      //     return 0;
+      //   }
+      // });
 
-      const filterParams = {
-        firstDate,
-        lastDate,
-        trLat,
-        trLong,
-        blLat,
-        blLong,
-        types,
-      };
-
-      // console.log(filterParams);
       try {
-        const retrievedEvents = await axios.post(
-          `${process.env.NEXT_PUBLIC_API}/events/`,
-          filterParams
+        const retrievedEvents = await axios.get(
+          `${process.env.NEXT_PUBLIC_API}/events/${firstDate}/${lastDate}/${trLat}/${trLong}/${blLat}/${blLong}`
         );
         setEvents(retrievedEvents.data);
-        // setIsLoadingEvents(false);
       } catch (err) {
         console.log(err);
       }
     };
-    // const timer = setTimeout(() => {
-    //   // console.log('This will run after 1 second!');
-    //   getEvents();
-    // }, 1500);
-    // return () => clearTimeout(timer);
     getEvents();
-    // console.log('Questi sono gli eventi trovati:');
-    // console.log(events);
-    // }
-  }, [firstDate, lastDate, bounds, categoryCheck]);
+  }, [firstDate, lastDate, bounds]);
 
   // useEffect(() => {
   //   if (currentMarker !== {}) {
