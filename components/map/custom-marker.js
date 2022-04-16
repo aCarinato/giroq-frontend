@@ -6,32 +6,28 @@ function CustomMarker(props) {
     title,
     setCurrentPlaceId,
     mobileView,
-    currentPlaceId,
-    testID,
-    setTestId,
+    category,
+    zoom,
+    // currentPlaceId,
+    // testID,
+    // setTestId,
   } = props;
   const handleOnEnter = (id) => {
-    // if (mobileView === true) {
-    //   setMapSelected(true);
-    // }
     if (!mobileView === true) {
       setCurrentPlaceId(id);
-      setTestId(id);
-      console.log(`From the custom marker, is this mobile view? ${mobileView}`);
-      console.log(`From the custom marker, id? ${id}`);
-      console.log(`From the custom marker, currentPlaceId? ${currentPlaceId}`);
-      console.log(`From the custom marker, testID? ${testID}`);
+      console.log(category);
+      // setTestId(id);
+      // console.log(`From the custom marker, is this mobile view? ${mobileView}`);
+      // console.log(`From the custom marker, id? ${id}`);
+      // console.log(`From the custom marker, currentPlaceId? ${currentPlaceId}`);
+      // console.log(`From the custom marker, testID? ${testID}`);
     }
   };
 
   const handleClick = (id) => {
     if (mobileView === true) {
       setCurrentPlaceId(id);
-      setTestId(id);
-      console.log(`From the custom marker, is this mobile view? ${mobileView}`);
-      console.log(`From the custom marker, id? ${id}`);
-      console.log(`From the custom marker, currentPlaceId? ${currentPlaceId}`);
-      console.log(`From the custom marker, testID? ${testID}`);
+      // setTestId(id);
     }
   };
   return (
@@ -41,7 +37,15 @@ function CustomMarker(props) {
       onMouseLeave={() => setCurrentPlaceId(null)}
       onClick={() => handleClick(id)}
     >
-      {title}
+      {/* {title} */}
+      <img
+        style={{
+          width: `${Math.pow(zoom, 3) * 0.0015}rem`,
+          height: `${Math.pow(zoom, 3) * 0.0015}rem`,
+        }}
+        className={classes.markerIcon}
+        src={`/markers/${category}.svg`}
+      />
       {/* {!mobileView ? (
         <div>CustomMarker</div>
       ) : (

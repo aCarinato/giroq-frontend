@@ -96,25 +96,6 @@ const Home = () => {
     }
   };
 
-  // const calcHeightAgain = () => {
-  //   if (window.innerWidth <= 820) {
-  //     setMobileView(true);
-  //     if (mapSelected) {
-  //       setShowList(false);
-  //       // console.log(`mobileView: ${mobileView}`);
-  //       return '200px';
-  //     } else {
-  //       // setShowList(true);
-  //       return;
-  //     }
-  //   } else {
-  //     setMobileView(false);
-  //     setShowList(true);
-  //     // console.log(`mobileView: ${mobileView}`);
-  //     return '50vh';
-  //   }
-  // };
-
   // useEffect(() => {
   //   const timer = setTimeout(() => {
   //     // console.log('This will run after 1 second!');
@@ -145,50 +126,6 @@ const Home = () => {
   //   console.log(events);
   // }, []);
 
-  // useEffect(() => {
-  //   // if (bounds) {
-  //   const getEvents = async () => {
-  //     // console.log('THESE ARE THE BOUNDS FROM useEffect:');
-  //     // console.log(bounds);
-  //     // setIsLoadingEvents(true);
-  //     const blLat = bounds[1];
-  //     const trLat = bounds[3];
-  //     const blLong = bounds[0];
-  //     const trLong = bounds[2];
-
-  //     const types = categoryCheck.map((tipo, index) => {
-  //       if (tipo) {
-  //         return index + 1;
-  //       } else {
-  //         return 0;
-  //       }
-  //     });
-
-  //     const filterParams = {
-  //       firstDate,
-  //       lastDate,
-  //       trLat,
-  //       trLong,
-  //       blLat,
-  //       blLong,
-  //       types,
-  //     };
-
-  //     // console.log(filterParams);
-  //     try {
-  //       const retrievedEvents = await axios.post(
-  //         `${process.env.NEXT_PUBLIC_API}/events/`,
-  //         filterParams
-  //       );
-  //       setEvents(retrievedEvents.data);
-  //       // setIsLoadingEvents(false);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getEvents();
-  // }, [firstDate, lastDate, bounds, categoryCheck]);
-
   useEffect(() => {
     // if (bounds) {
     const getEvents = async () => {
@@ -200,25 +137,69 @@ const Home = () => {
       const blLong = bounds[0];
       const trLong = bounds[2];
 
-      // const types = categoryCheck.map((tipo, index) => {
-      //   if (tipo) {
-      //     return index + 1;
-      //   } else {
-      //     return 0;
-      //   }
-      // });
+      const types = categoryCheck.map((tipo, index) => {
+        if (tipo) {
+          return index + 1;
+        } else {
+          return 0;
+        }
+      });
 
+      const filterParams = {
+        firstDate,
+        lastDate,
+        trLat,
+        trLong,
+        blLat,
+        blLong,
+        types,
+      };
+
+      // console.log(filterParams);
       try {
-        const retrievedEvents = await axios.get(
-          `${process.env.NEXT_PUBLIC_API}/events/${firstDate}/${lastDate}/${trLat}/${trLong}/${blLat}/${blLong}`
+        const retrievedEvents = await axios.post(
+          `${process.env.NEXT_PUBLIC_API}/events/`,
+          filterParams
         );
         setEvents(retrievedEvents.data);
+        // setIsLoadingEvents(false);
       } catch (err) {
         console.log(err);
       }
     };
     getEvents();
-  }, [firstDate, lastDate, bounds]);
+  }, [firstDate, lastDate, bounds, categoryCheck]);
+
+  // useEffect(() => {
+  //   // if (bounds) {
+  //   const getEvents = async () => {
+  //     // console.log('THESE ARE THE BOUNDS FROM useEffect:');
+  //     // console.log(bounds);
+  //     // setIsLoadingEvents(true);
+  //     const blLat = bounds[1];
+  //     const trLat = bounds[3];
+  //     const blLong = bounds[0];
+  //     const trLong = bounds[2];
+
+  //     // const types = categoryCheck.map((tipo, index) => {
+  //     //   if (tipo) {
+  //     //     return index + 1;
+  //     //   } else {
+  //     //     return 0;
+  //     //   }
+  //     // });
+
+  //     try {
+  //       const retrievedEvents = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_API}/events/${firstDate}/${lastDate}/${trLat}/${trLong}/${blLat}/${blLong}`
+  //       );
+  //       setEvents(retrievedEvents.data);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getEvents();
+  // }, [firstDate, lastDate, bounds]);
 
   // useEffect(() => {
   //   if (currentMarker !== {}) {
@@ -235,34 +216,6 @@ const Home = () => {
   //   }
   //   setCoordinates({ lat: 45.4, lng: 11.5 });
   // }, [currentMarker]);
-
-  // const points = events.map((event) => ({
-  //   type: 'Feature',
-  //   properties: {
-  //     cluster: false,
-  //     eventId: event._id,
-  //     eventType: event.category,
-  //     eventDate: event.date,
-  //     eventTitle: event.title,
-  //     eventOrganiser: event.organiser,
-  //     eventDescription: event.description,
-  //     eventImage: event.image,
-  //     eventLat: event.lat,
-  //     eventLong: event.long,
-  //   },
-  //   geometry: {
-  //     type: 'Point',
-  //     coordinates: [event.long, event.lat],
-  //   },
-  // }));
-
-  // const { clusters, supercluster } = useSupercluster({
-  //   points,
-  //   bounds,
-  //   zoom,
-  //   options: { radius: 75, maxZoom: 20 },
-  // });
-  // // console.log(clusters);
 
   return (
     <div className="container-fluid">

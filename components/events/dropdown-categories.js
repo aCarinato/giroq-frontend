@@ -36,13 +36,13 @@ function DropdownCategories(props) {
       if (id === '0') {
         newCategoryGroupCheck[0] = false;
       }
-      if (id === '6') {
+      if (id === '5') {
         newCategoryGroupCheck[1] = false;
       }
-      if (id === '14') {
+      if (id === '13') {
         newCategoryGroupCheck[2] = false;
       }
-      if (id === '21') {
+      if (id === '20') {
         newCategoryGroupCheck[3] = false;
       }
       setCategoryGroupCheck(newCategoryGroupCheck);
@@ -52,7 +52,7 @@ function DropdownCategories(props) {
     if (newTypesCheck[idx]) {
       if (id === '0') {
         const min = 0;
-        const max = 6;
+        const max = 5;
 
         const slicedCategoryCheck = newTypesCheck.slice(min, max);
         const condition = slicedCategoryCheck.every((e) => e === true);
@@ -61,9 +61,9 @@ function DropdownCategories(props) {
           newCategoryGroupCheck[0] = true;
         }
       }
-      if (id === '6') {
-        const min = 6;
-        const max = 14;
+      if (id === '5') {
+        const min = 5;
+        const max = 13;
 
         const slicedCategoryCheck = newTypesCheck.slice(min, max);
         const condition = slicedCategoryCheck.every((e) => e === true);
@@ -71,9 +71,9 @@ function DropdownCategories(props) {
           newCategoryGroupCheck[1] = true;
         }
       }
-      if (id === '14') {
-        const min = 14;
-        const max = 21;
+      if (id === '13') {
+        const min = 13;
+        const max = 20;
 
         const slicedCategoryCheck = newTypesCheck.slice(min, max);
         const condition = slicedCategoryCheck.every((e) => e === true);
@@ -81,9 +81,9 @@ function DropdownCategories(props) {
           newCategoryGroupCheck[2] = true;
         }
       }
-      if (id === '21') {
-        const min = 21;
-        const max = 26;
+      if (id === '20') {
+        const min = 20;
+        const max = 25;
 
         const slicedCategoryCheck = newTypesCheck.slice(min, max);
         const condition = slicedCategoryCheck.every((e) => e === true);
@@ -99,14 +99,14 @@ function DropdownCategories(props) {
     <div onClick={handleCategoryChange} className={classes.container} key={idx}>
       {categoryCheck[idx] ? (
         <div className={classes.checkmarkOuter}>
-          {+id < 6 && <div className={classes.checkmarkSelectedRed}></div>}
-          {+id > 5 && +id < 14 && (
+          {+id < 5 && <div className={classes.checkmarkSelectedRed}></div>}
+          {+id > 4 && +id < 13 && (
             <div className={classes.checkmarkSelectedBlue}></div>
           )}
-          {+id > 13 && +id < 21 && (
+          {+id > 12 && +id < 20 && (
             <div className={classes.checkmarkSelectedYellow}></div>
           )}
-          {+id > 20 && <div className={classes.checkmarkSelectedCyan}></div>}
+          {+id > 19 && <div className={classes.checkmarkSelectedCyan}></div>}
         </div>
       ) : (
         <div className={classes.checkmarkOuter}>

@@ -29,14 +29,14 @@ function Map(props) {
   } = props;
   const mapRef = useRef();
 
-  const [testID, setTestId] = useState(null);
+  // const [testID, setTestId] = useState(null);
 
   const points = events.map((event) => ({
     type: 'Feature',
     properties: {
       cluster: false,
       eventId: event._id,
-      eventType: event.category,
+      eventCategory: event.category,
       eventDate: event.date,
       eventTitle: event.title,
       eventOrganiser: event.organiser,
@@ -89,16 +89,13 @@ function Map(props) {
         }}
         onChange={({ zoom, bounds }) => {
           setZoom(zoom);
+          console.log(zoom);
           setBounds([
             bounds.nw.lng,
             bounds.se.lat,
             bounds.se.lng,
             bounds.nw.lat,
           ]);
-          // console.log('THESE ARE THE BOUNDS FROM THE MAP:');
-          // console.log(bounds);
-          // console.log('THESE ARE THE EVENTS FROM THE MAP:');
-          // console.log(events);
         }}
         // onClick={() => setCurrentPlaceId(null)}
         // onDrag={() => setCurrentPlaceId(null)}
@@ -152,33 +149,34 @@ function Map(props) {
                   lng={cluster.properties.eventLong}
                   setCurrentPlaceId={setCurrentPlaceId}
                   mobileView={mobileView}
-                  setTestId={setTestId}
+                  // setTestId={setTestId}
                 />
               );
             }
 
-            if (categoryCheck[+cluster.properties.eventType[0] - 1]) {
+            if (categoryCheck[+cluster.properties.eventCategory[0] - 1]) {
               return (
                 <Marker
                   key={`${cluster.properties.eventId}`}
                   lat={latitude}
                   lng={longitude}
                 >
-                  <button
-                    className={`marker-${cluster.properties.eventType[0]}`}
-                  >
-                    <CustomMarker
-                      key={cluster.properties.eventId}
-                      id={cluster.properties.eventId}
-                      title={cluster.properties.eventTitle}
-                      setCurrentPlaceId={setCurrentPlaceId}
-                      mobileView={mobileView}
-                      currentPlaceId={currentPlaceId}
-                      testID={testID}
-                      setTestId={setTestId}
-                    />
-                    {/* <img src="/custody.svg" alt="crime doesn't pay" /> */}
-                  </button>
+                  {/* <button
+                    className={`marker-${cluster.properties.eventCategory[0]}`}
+                  > */}
+                  <CustomMarker
+                    key={cluster.properties.eventId}
+                    id={cluster.properties.eventId}
+                    title={cluster.properties.eventTitle}
+                    setCurrentPlaceId={setCurrentPlaceId}
+                    mobileView={mobileView}
+                    category={cluster.properties.eventCategory[0]}
+                    zoom={zoom}
+                    // currentPlaceId={currentPlaceId}
+                    // testID={testID}
+                    // setTestId={setTestId}
+                  />
+                  {/* </button> */}
                 </Marker>
               );
             }

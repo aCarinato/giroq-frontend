@@ -4,7 +4,6 @@ const CATEGORIES = [
     mainCategory: 'GUSTO E DIVERTIMENTO',
     subCategories: [
       'Feste e sagre',
-      'Famiglie',
       'Street food',
       'Vino',
       'Ristoranti',
@@ -13,7 +12,7 @@ const CATEGORIES = [
   },
 
   {
-    id: '6',
+    id: '5',
     mainCategory: 'CULTURA E SPETTACOLO',
     subCategories: [
       'Musica',
@@ -28,7 +27,7 @@ const CATEGORIES = [
   },
 
   {
-    id: '14',
+    id: '13',
     mainCategory: 'SPORT E NATURA',
     subCategories: [
       'Escursioni e trekking',
@@ -42,7 +41,7 @@ const CATEGORIES = [
   },
 
   {
-    id: '21',
+    id: '20',
     mainCategory: 'EXPO E ACQUISTI',
     subCategories: [
       'Fiere tradizionali',

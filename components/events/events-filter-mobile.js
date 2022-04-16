@@ -48,7 +48,7 @@ function EventsFilterMobile(props) {
       newCategoryGroupCheck[0] = !newCategoryGroupCheck[0];
       setCategoryGroupCheck(newCategoryGroupCheck);
 
-      for (let idx = 0; idx < 6; idx++) {
+      for (let idx = 0; idx < 5; idx++) {
         if (newTypesCheck[idx] !== newCategoryGroupCheck[0]) {
           newTypesCheck[idx] = newCategoryGroupCheck[0];
           setCategoryCheck(newTypesCheck);
@@ -56,11 +56,11 @@ function EventsFilterMobile(props) {
       }
     }
 
-    if (id === '6') {
+    if (id === '5') {
       newCategoryGroupCheck[1] = !newCategoryGroupCheck[1];
       setCategoryGroupCheck(newCategoryGroupCheck);
 
-      for (let idx = 6; idx < 14; idx++) {
+      for (let idx = 5; idx < 13; idx++) {
         if (newTypesCheck[idx] !== newCategoryGroupCheck[1]) {
           newTypesCheck[idx] = newCategoryGroupCheck[1];
           setCategoryCheck(newTypesCheck);
@@ -68,11 +68,11 @@ function EventsFilterMobile(props) {
       }
     }
 
-    if (id === '14') {
+    if (id === '13') {
       newCategoryGroupCheck[2] = !newCategoryGroupCheck[2];
       setCategoryGroupCheck(newCategoryGroupCheck);
 
-      for (let idx = 14; idx < 21; idx++) {
+      for (let idx = 13; idx < 20; idx++) {
         if (newTypesCheck[idx] !== newCategoryGroupCheck[2]) {
           newTypesCheck[idx] = newCategoryGroupCheck[2];
           setCategoryCheck(newTypesCheck);
@@ -80,11 +80,11 @@ function EventsFilterMobile(props) {
       }
     }
 
-    if (id === '21') {
+    if (id === '20') {
       newCategoryGroupCheck[3] = !newCategoryGroupCheck[3];
       setCategoryGroupCheck(newCategoryGroupCheck);
 
-      for (let idx = 21; idx < 26; idx++) {
+      for (let idx = 20; idx < 25; idx++) {
         if (newTypesCheck[idx] !== newCategoryGroupCheck[3]) {
           newTypesCheck[idx] = newCategoryGroupCheck[3];
           setCategoryCheck(newTypesCheck);
@@ -142,7 +142,7 @@ function EventsFilterMobile(props) {
                           onClick={() => selectCategoryGroup(category.id)}
                         >
                           <div className={classes.checkmarkOuter}>
-                            {+category.id < 6 &&
+                            {+category.id < 5 &&
                               (categoryGroupCheck[0] ? (
                                 <div
                                   className={classes.checkmarkSelectedRed}
@@ -150,8 +150,8 @@ function EventsFilterMobile(props) {
                               ) : (
                                 <div className={classes.checkmark}></div>
                               ))}
-                            {+category.id > 5 &&
-                              +category.id < 14 &&
+                            {+category.id > 4 &&
+                              +category.id < 13 &&
                               (categoryGroupCheck[1] ? (
                                 <div
                                   className={classes.checkmarkSelectedBlue}
@@ -159,8 +159,8 @@ function EventsFilterMobile(props) {
                               ) : (
                                 <div className={classes.checkmark}></div>
                               ))}
-                            {+category.id > 13 &&
-                              +category.id < 21 &&
+                            {+category.id > 12 &&
+                              +category.id < 20 &&
                               (categoryGroupCheck[2] ? (
                                 <div
                                   className={classes.checkmarkSelectedYellow}
@@ -168,7 +168,7 @@ function EventsFilterMobile(props) {
                               ) : (
                                 <div className={classes.checkmark}></div>
                               ))}
-                            {+category.id > 20 &&
+                            {+category.id > 19 &&
                               (categoryGroupCheck[3] ? (
                                 <div
                                   className={classes.checkmarkSelectedCyan}
