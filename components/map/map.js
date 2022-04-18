@@ -161,9 +161,6 @@ function Map(props) {
                   lat={latitude}
                   lng={longitude}
                 >
-                  {/* <button
-                    className={`marker-${cluster.properties.eventCategory[0]}`}
-                  > */}
                   <CustomMarker
                     key={cluster.properties.eventId}
                     id={cluster.properties.eventId}
@@ -172,11 +169,7 @@ function Map(props) {
                     mobileView={mobileView}
                     category={cluster.properties.eventCategory[0]}
                     zoom={zoom}
-                    // currentPlaceId={currentPlaceId}
-                    // testID={testID}
-                    // setTestId={setTestId}
                   />
-                  {/* </button> */}
                 </Marker>
               );
             }

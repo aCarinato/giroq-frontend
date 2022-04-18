@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import AddEventForm from '../components/forms/add-event-form';
+import categoriesList from '../data/categories-list';
 
 function AddEvent() {
   const today = new Date().toISOString().split('T')[0];
@@ -116,7 +117,7 @@ function AddEvent() {
 
   return (
     <div>
-      AddEvent
+      <h3>Aggiungi nuovo evento</h3>
       <div className="row">
         {isLoggedIn && (
           <>
@@ -137,20 +138,29 @@ function AddEvent() {
                 handleAddEvent={handleAddEvent}
                 // imageUpload={imageUpload}
                 handleImage={handleImage}
+                categories={categoriesList}
               />
             </div>
             <div className="col-lg-4"></div>
           </>
         )}
       </div>
-      <p>Log-in per aggiungere nuovo evento</p>
-      <button>
-        <Link href="/login">Login</Link>
-      </button>
-      <p>Aggiungere nuovo Organizzatore</p>
-      <button>
-        <Link href="/organizzatore">Nuovo</Link>
-      </button>
+      {!isLoggedIn && (
+        <>
+          <p>Log-in per aggiungere nuovo evento o nuovo Organizzatore</p>
+          <button>
+            <Link href="/login">Login</Link>
+          </button>
+        </>
+      )}
+      {isLoggedIn && (
+        <>
+          <h3>Aggiungere nuovo Organizzatore</h3>
+          <button>
+            <Link href="/organizzatore">Nuovo Organizzatore</Link>
+          </button>
+        </>
+      )}
     </div>
   );
 }
