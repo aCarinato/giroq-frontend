@@ -5,9 +5,16 @@
   color: white; */
 }
 
-/* .markerIcon {
-  height: 1rem;
+.markerIcon1 {
+  /* height: 1rem;
   width: 1rem;
-  border-radius: 50%;
+  border-radius: 50%; */
+  color: blue;
+}
+
+.markerIcon2 {
+  /* height: 1rem;
+  width: 1rem;
+  border-radius: 50%; */
   color: red;
-} */
+}
