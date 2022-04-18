@@ -1,6 +1,20 @@
 .icon {
   position: relative;
   z-index: 1;
-  padding: 0.1rem;
-  color: white;
+  /* padding: 0.1rem;
+  color: white; */
+}
+
+.markerIcon1 {
+  /* height: 1rem;
+  width: 1rem;
+  border-radius: 50%; */
+  color: blue;
+}
+
+.markerIcon2 {
+  /* height: 1rem;
+  width: 1rem;
+  border-radius: 50%; */
+  color: red;
 }

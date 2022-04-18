@@ -17,6 +17,7 @@ function AddEventForm(props) {
     handleAddEvent,
     // imageUpload,
     handleImage,
+    categories,
   } = props;
 
   const selectCategory = (e) => {
@@ -54,7 +55,7 @@ function AddEventForm(props) {
         </div>
         <div className={classes.formRow}>
           <label className={classes.formCol} htmlFor="title">
-            Title
+            Nome evento
           </label>
           <input
             className={classes.formInput}
@@ -67,7 +68,7 @@ function AddEventForm(props) {
         </div>
         <div className={classes.formRow}>
           <label className={classes.formCol} htmlFor="description">
-            Description
+            Descrizione
           </label>
           <input
             className={classes.formInput}
@@ -97,16 +98,21 @@ function AddEventForm(props) {
                 /> */}
         <div className={classes.formRow}>
           <label className={classes.formCol} htmlFor="type">
-            tipo
+            Categoria
           </label>
           <select
             className={classes.formInput}
             name="type"
             onChange={selectCategory}
           >
-            <option value="">--Seleziona tipo--</option>
-            <option value="1">tipo A</option>
-            <option value="2">tipo B</option>
+            <option value="">--Seleziona Categoria--</option>
+            {/* <option value="1">tipo A</option>
+            <option value="2">tipo B</option> */}
+            {categories.map((category, index) => (
+              <option key={index} value={String(index)}>
+                {category}
+              </option>
+            ))}
           </select>
           {/* <input
             className={classes.formInput}
@@ -131,7 +137,7 @@ function AddEventForm(props) {
           />
         </div>
         <div className={classes.formRow}>
-          <label className={classes.formCol}>Carica immagini</label>
+          <label className={classes.formCol}>Carica immagine</label>
           {image && image.url && (
             <div className={classes.image}>
               <img src={`${image.url}`} />

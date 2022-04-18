@@ -67,13 +67,17 @@ function AddOrganiser() {
           </>
         )}
       </div>
-      <p>Log-in per aggiungere nuovo Organizzatore</p>
+      {!isLoggedIn && (
+        <>
+          <p>Log-in per aggiungere nuovo Organizzatore</p>
+          <button>
+            <Link href="/login">Login</Link>
+          </button>
+        </>
+      )}
+      <h3>Aggiungere nuovo Evento</h3>
       <button>
-        <Link href="/login">Login</Link>
-      </button>
-      <p>Aggiungere nuovo Evento</p>
-      <button>
-        <Link href="/nuovo">Nuovo</Link>
+        <Link href="/nuovo">Nuovo Evento</Link>
       </button>
     </div>
   );

@@ -28,7 +28,7 @@ function Login() {
 
       localStorage.setItem('user', res.data.username);
       setIsLoggedIn(true);
-      //   router.push('/');
+      router.push('/nuovo');
     } catch (err) {
       console.log(err);
     }
