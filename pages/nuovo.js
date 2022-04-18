@@ -83,6 +83,8 @@ function AddEvent() {
         image,
       };
 
+      console.log(newEvent);
+
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API}/event/`,
         newEvent

@@ -14,10 +14,10 @@ const Home = () => {
     10.603240966796875, 44.636030435233096, 12.396759033203125,
     46.15377768145734,
   ]);
-  const [zoom, setZoom] = useState(9);
+  const [zoom, setZoom] = useState(13);
   const [coordinates, setCoordinates] = useState({
-    lat: 45.4,
-    lng: 11.5,
+    lat: 45.76,
+    lng: 11.73,
   });
 
   // SELECTION
@@ -139,9 +139,9 @@ const Home = () => {
 
       const types = categoryCheck.map((tipo, index) => {
         if (tipo) {
-          return index + 1;
+          return index;
         } else {
-          return 0;
+          return 1000;
         }
       });
 

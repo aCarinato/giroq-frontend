@@ -24,6 +24,7 @@ function AddEventForm(props) {
     const categories = [];
     categories.push(Number(e.target.value));
     setCategory(categories);
+    console.log(categories);
   };
 
   return (

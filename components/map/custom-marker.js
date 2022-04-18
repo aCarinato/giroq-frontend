@@ -108,11 +108,11 @@ function CustomMarker(props) {
         src={`/markers/${category}.svg`}
       /> */}
       <Icon
-        icon={iconSet[category - 1]}
+        icon={iconSet[category]}
         style={{
           width: `${Math.pow(zoom, 2.8) * 0.0015}rem`,
           height: `${Math.pow(zoom, 2.8) * 0.0015}rem`,
-          color: `${colorSet[category - 1]}`,
+          color: `${colorSet[category]}`,
         }}
         // className={iconClassName}
       />

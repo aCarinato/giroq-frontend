@@ -1,3 +1,5 @@
+// category index starts from 0 i.e. index('Feste e sagre') = 0
+
 const CATEGORIES = [
   {
     id: '0',

@@ -26,7 +26,13 @@ function AddOrganiserForm(props) {
         <label className={classes.formCol} htmlFor="lat">
           Lat
         </label>
-        <input type="number" step=".1" id="lat" name="lat" ref={latInputRef} />
+        <input
+          type="number"
+          step=".0001"
+          id="lat"
+          name="lat"
+          ref={latInputRef}
+        />
       </div>
       <div className={classes.formRow}>
         <label className={classes.formCol} htmlFor="long">
@@ -34,7 +40,7 @@ function AddOrganiserForm(props) {
         </label>
         <input
           type="number"
-          step=".1"
+          step=".0001"
           id="long"
           name="long"
           ref={longInputRef}

@@ -78,9 +78,9 @@ function Map(props) {
         //   setZoom(e.zoom);
         // }}
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_API_KEY }}
-        defaultCenter={{ lat: 45.7, lng: 11.5 }}
+        // defaultCenter={{ lat: 45.76, lng: 11.73 }}
         center={coordinates}
-        defaultZoom={7}
+        // defaultZoom={10}
         zoom={zoom}
         margin={[0, 0, 0, 0]}
         yesIWantToUseGoogleMapApiInternals
@@ -154,7 +154,7 @@ function Map(props) {
               );
             }
 
-            if (categoryCheck[+cluster.properties.eventCategory[0] - 1]) {
+            if (categoryCheck[+cluster.properties.eventCategory[0]]) {
               return (
                 <Marker
                   key={`${cluster.properties.eventId}`}

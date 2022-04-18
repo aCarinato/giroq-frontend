@@ -27,6 +27,7 @@ function DropdownCategories(props) {
 
     const newTypesCheck = [...categoryCheck];
     newTypesCheck[idx] = !newTypesCheck[idx];
+    console.log(newTypesCheck);
     setCategoryCheck(newTypesCheck);
 
     const newCategoryGroupCheck = [...categoryGroupCheck];
