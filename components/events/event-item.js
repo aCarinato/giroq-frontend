@@ -1,13 +1,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import categoriesList from '../../data/categories-list';
-// import { event } from '../../lib/google-analytics';
-// import Image from 'next/image';
-
-// import Button from '../ui/button';
-// import DateIcon from '../icons/date-icon';
-// import AddressIcon from '../icons/address-icon';
-// import ArrowRightIcon from '../icons/arrow-right-icon';
 
 import classes from './event-item.module.css';
 
@@ -79,7 +72,7 @@ function EventItem(props) {
   const exploreLink = `/event/${id}`;
 
   return (
-    <li className={classes.item}>
+    <div className={classes.item}>
       <div className={classes.contenitore}>
         {image && (
           <div className={classes.verticale}>
@@ -140,7 +133,7 @@ function EventItem(props) {
           </Link>
         </div>
       </div>
-    </li>
+    </div>
   );
 }
 

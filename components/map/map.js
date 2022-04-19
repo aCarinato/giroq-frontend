@@ -3,6 +3,8 @@ import useSupercluster from 'use-supercluster';
 import { useRef, useEffect, useState } from 'react';
 import CustomMarker from './custom-marker';
 
+import classes from './map.module.css';
+
 import Popup from './popup';
 
 const Marker = ({ children }) => children;
@@ -60,7 +62,7 @@ function Map(props) {
   // console.log(clusters);
 
   return (
-    <div style={{ height: mapHeight }}>
+    <div className={classes.colMap} style={{ height: mapHeight }}>
       <GoogleMapReact
         // defaultCenter={coordinates}
         // center={coordinates}

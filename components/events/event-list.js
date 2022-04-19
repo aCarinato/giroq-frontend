@@ -17,7 +17,8 @@ function EventList(props) {
   } = props;
 
   return (
-    <ul className={classes.list}>
+    <div className={classes.colList}>
+      {/* <div className={classes.list}> */}
       {events.length === 0 && (
         <div>NESSUN EVENTO PER LE DATE E LUOGHI SELEZIONATI</div>
       )}
@@ -48,7 +49,8 @@ function EventList(props) {
             )}
           </Fragment>
         ))}
-    </ul>
+      {/* </div> */}
+    </div>
   );
 }
 

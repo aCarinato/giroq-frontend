@@ -1,5 +1,11 @@
 /* MAIN CONTAINER */
 
+.mainContainer {
+  display: flex;
+  height: 5rem;
+  width: 100%;
+}
+
 .filterSwitch {
   text-align: center;
   padding: 0.75rem;
@@ -185,31 +191,29 @@
 
 @media (min-width: 1201px) {
   .mainContainer {
-    /* display: flex; */
+    display: flex;
     height: 5rem;
   }
 
   .filterSwitch {
     font-size: 1.45rem;
-    width: 90%;
+    width: 100%;
     word-wrap: break-word;
-    padding: 0;
+    padding: 0 2rem;
 
     margin: auto;
     margin-top: 0.75rem;
   }
 
-  .mainContainer {
-    display: flex;
-  }
-
   .mainContainerSmallColumn {
     width: 33%;
+    flex-grow: 1;
   }
 
   .mainContainerLargeColumn {
     width: 67%;
     display: flex;
+    flex-grow: 1;
   }
 
   .largeColumnColumn {
@@ -265,27 +269,28 @@
 
 @media (min-width: 1025px) and (max-width: 1200px) {
   .mainContainer {
-    /* display: flex; */
+    display: flex;
     height: 5rem;
   }
 
   .filterSwitch {
     font-size: 1.25rem;
     height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    /* padding: 1rem; */
     /* line-height: 2.5rem; */
-  }
-
-  .mainContainer {
-    display: flex;
   }
 
   .mainContainerSmallColumn {
     width: 33%;
+    flex-grow: 1;
   }
 
   .mainContainerLargeColumn {
     width: 67%;
     display: flex;
+    flex-grow: 1;
   }
 
   .largeColumnColumn {

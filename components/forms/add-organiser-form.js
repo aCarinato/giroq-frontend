@@ -28,7 +28,7 @@ function AddOrganiserForm(props) {
         </label>
         <input
           type="number"
-          step=".0001"
+          step=".000001"
           id="lat"
           name="lat"
           ref={latInputRef}
@@ -40,7 +40,7 @@ function AddOrganiserForm(props) {
         </label>
         <input
           type="number"
-          step=".0001"
+          step=".000001"
           id="long"
           name="long"
           ref={longInputRef}

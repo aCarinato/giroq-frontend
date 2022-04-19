@@ -3,12 +3,13 @@
   border-radius: 4px;
   overflow: hidden;
   background-color: white;
-  /* margin: 1rem; */
+  margin: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  /* gap: 2rem;
   margin: 1rem 0;
-  padding: 1rem;
+  padding: 1rem; */
+  width: 100%;
 }
 
 .categoryContainer {
@@ -152,6 +153,9 @@
 @media (min-width: 768px) {
   .item {
     flex-direction: row;
+    width: 46%;
+    margin: 0.5rem;
+    height: 15rem;
   }
 
   .item img {
