@@ -3,12 +3,50 @@
   border-radius: 4px;
   overflow: hidden;
   background-color: white;
-  /* margin: 1rem; */
+  margin: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  /* gap: 2rem;
   margin: 1rem 0;
-  padding: 1rem;
+  padding: 1rem; */
+  width: 100%;
+}
+
+.categoryContainer {
+  display: flex;
+}
+
+.categoryLabel {
+  padding: 0.3rem;
+  /* background-color: red; */
+}
+
+.categoryLabelRed {
+  padding: 0.3rem;
+  background-color: #ff6b6b;
+  color: white;
+  font-weight: bold;
+}
+
+.categoryLabelBlue {
+  padding: 0.3rem;
+  background-color: #1a535c;
+  color: white;
+  font-weight: bold;
+}
+
+.categoryLabelYellow {
+  padding: 0.3rem;
+  background-color: #ffd100;
+  color: white;
+  font-weight: bold;
+}
+
+.categoryLabelCyan {
+  padding: 0.3rem;
+  background-color: #4ecdc4;
+  color: white;
+  font-weight: bold;
 }
 
 .addressOnMap {
@@ -115,6 +153,9 @@
 @media (min-width: 768px) {
   .item {
     flex-direction: row;
+    width: 46%;
+    margin: 0.5rem;
+    height: 15rem;
   }
 
   .item img {

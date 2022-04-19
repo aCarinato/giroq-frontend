@@ -39,6 +39,9 @@ function EventsFilter(props) {
   //   });
   // };
 
+  const today = new Date();
+  const todayISO = today.toISOString().split('T')[0];
+
   const selectCategoryGroup = (id) => {
     const newTypesCheck = [...categoryCheck];
     const newCategoryGroupCheck = [...categoryGroupCheck];
@@ -207,7 +210,7 @@ function EventsFilter(props) {
                   <input
                     type="date"
                     id="first-date"
-                    // min={minDate}
+                    // min={todayISO}
                     name="first-date"
                     value={firstDate}
                     onChange={(e) => setFirstDate(e.target.value)}

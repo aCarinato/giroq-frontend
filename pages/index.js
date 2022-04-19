@@ -218,32 +218,29 @@ const Home = () => {
   // }, [currentMarker]);
 
   return (
-    <div className="container-fluid">
-      {/* <div className="row">
-        <div className="col-lg-12">QUESTO É IL PLACEID: {currentPlaceId}</div>
-      </div> */}
-      <div className="row">
-        <div className="col-lg-12">
-          {mobileView ? (
-            <EventsFilterMobile
-              categoryCheck={categoryCheck}
-              setCategoryCheck={setCategoryCheck}
-              firstDate={firstDate}
-              setFirstDate={setFirstDate}
-              lastDate={lastDate}
-              setLastDate={setLastDate}
-            />
-          ) : (
-            <EventsFilter
-              categoryCheck={categoryCheck}
-              setCategoryCheck={setCategoryCheck}
-              firstDate={firstDate}
-              setFirstDate={setFirstDate}
-              lastDate={lastDate}
-              setLastDate={setLastDate}
-            />
-          )}
-        </div>
+    // <div className="container-fluid">
+    <div className="mainAppContainer">
+      <div className="appRow">
+        {/* <div className="col-lg-12"> */}
+        {mobileView ? (
+          <EventsFilterMobile
+            categoryCheck={categoryCheck}
+            setCategoryCheck={setCategoryCheck}
+            firstDate={firstDate}
+            setFirstDate={setFirstDate}
+            lastDate={lastDate}
+            setLastDate={setLastDate}
+          />
+        ) : (
+          <EventsFilter
+            categoryCheck={categoryCheck}
+            setCategoryCheck={setCategoryCheck}
+            firstDate={firstDate}
+            setFirstDate={setFirstDate}
+            lastDate={lastDate}
+            setLastDate={setLastDate}
+          />
+        )}
       </div>
       {mobileView && (
         <SwitchTab
@@ -253,22 +250,20 @@ const Home = () => {
           setShowList={setShowList}
         />
       )}
-      <div className="row">
-        <div className="col-lg-4">
-          {showList && (
-            <EventList
-              events={events}
-              categoryCheck={categoryCheck}
-              setCurrentMarker={setCurrentMarker}
-              mobileView={mobileView}
-              setMapSelected={setMapSelected}
-              setCoordinates={setCoordinates}
-              setCurrentPlaceId={setCurrentPlaceId}
-              coordinates={coordinates}
-            />
-          )}
-        </div>
-        <div className="col-lg-8">
+      <div className="appRow">
+        {showList && (
+          <EventList
+            events={events}
+            categoryCheck={categoryCheck}
+            setCurrentMarker={setCurrentMarker}
+            mobileView={mobileView}
+            setMapSelected={setMapSelected}
+            setCoordinates={setCoordinates}
+            setCurrentPlaceId={setCurrentPlaceId}
+            coordinates={coordinates}
+          />
+        )}
+        {mapSelected && (
           <Map
             mapHeight={mapHeight}
             // points={points}
@@ -288,7 +283,7 @@ const Home = () => {
             events={events}
             bounds={bounds}
           />
-        </div>
+        )}
       </div>
     </div>
   );
