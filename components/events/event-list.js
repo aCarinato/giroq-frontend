@@ -18,18 +18,21 @@ function EventList(props) {
 
   return (
     <ul className={classes.list}>
-      {events.length === 0 && <div>NESSUN EVENTO PER LE DATE SELEZIONATE</div>}
+      {events.length === 0 && (
+        <div>NESSUN EVENTO PER LE DATE E LUOGHI SELEZIONATI</div>
+      )}
       {events &&
         events.length > 0 &&
         events.map((event) => (
           <Fragment key={event._id}>
-            {categoryCheck[+event.category[0] - 1] && (
+            {categoryCheck[+event.category[0]] && (
               <EventItem
                 key={event._id}
                 id={event._id}
                 // bounds={bounds}
                 title={event.title}
                 // location={event.location}
+                category={+event.category[0]}
                 date={event.date}
                 image={event.image}
                 setCurrentMarker={setCurrentMarker}

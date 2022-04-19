@@ -1,5 +1,7 @@
 import classes from './custom-marker.module.css';
 import { Icon } from '@iconify/react';
+import categoriesList from '../../data/categories-list';
+import { useEffect, useState } from 'react';
 
 function CustomMarker(props) {
   const {
@@ -13,6 +15,30 @@ function CustomMarker(props) {
     // testID,
     // setTestId,
   } = props;
+
+  // const [colorCategory, setColorCategory] = useState(null);
+  const [imgSrc, setImgSrc] = useState('');
+
+  useEffect(() => {
+    if (category < 5) {
+      setImgSrc('/markers/icon-red.svg');
+    }
+
+    if (category > 4 && category < 13) {
+      // setColorCategory(2);
+      setImgSrc('/markers/icon-blue.svg');
+    }
+
+    if (category > 12 && category < 20) {
+      // setColorCategory(3);
+      setImgSrc('/markers/icon-yellow.svg');
+    }
+
+    if (category > 19) {
+      // setColorCategory(4);
+      setImgSrc('/markers/icon-cyan.svg');
+    }
+  }, []);
 
   const iconSet = [
     'bxs:party',
@@ -99,23 +125,25 @@ function CustomMarker(props) {
       onClick={() => handleClick(id)}
     >
       {/* {title} */}
-      {/* <img
+      <img
         style={{
           width: `${Math.pow(zoom, 2.7) * 0.0015}rem`,
           height: `${Math.pow(zoom, 2.7) * 0.0015}rem`,
         }}
         className={classes.markerIcon}
-        src={`/markers/${category}.svg`}
-      /> */}
-      <Icon
+        // src={`/markers/${category}.svg`}
+
+        src={imgSrc}
+      />
+      {/* <Icon
         icon={iconSet[category]}
         style={{
           width: `${Math.pow(zoom, 2.8) * 0.0015}rem`,
           height: `${Math.pow(zoom, 2.8) * 0.0015}rem`,
           color: `${colorSet[category]}`,
         }}
-        // className={iconClassName}
-      />
+
+      /> */}
       {/* {!mobileView ? (
         <div>CustomMarker</div>
       ) : (

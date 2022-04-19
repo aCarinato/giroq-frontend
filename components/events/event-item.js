@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import categoriesList from '../../data/categories-list';
 // import { event } from '../../lib/google-analytics';
 // import Image from 'next/image';
 
@@ -12,6 +14,7 @@ import classes from './event-item.module.css';
 function EventItem(props) {
   const {
     title,
+    category,
     date,
     id,
     setCurrentMarker,
@@ -25,6 +28,29 @@ function EventItem(props) {
     // setCurrentPlaceId,
     // setZoom,
   } = props;
+
+  const [colorCategory, setColorCategory] = useState(null);
+
+  useEffect(() => {
+    if (category < 5) {
+      setColorCategory(1);
+    }
+
+    if (category > 4 && category < 13) {
+      setColorCategory(2);
+    }
+
+    if (category > 12 && category < 20) {
+      setColorCategory(3);
+    }
+
+    if (category > 19) {
+      setColorCategory(4);
+    }
+
+    console.log(colorCategory);
+  }, []);
+
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
     month: 'long',
@@ -65,6 +91,32 @@ function EventItem(props) {
       <div className={classes.content}>
         <div>
           <h2>{title}</h2>
+          <div className={classes.categoryContainer}>
+            {/* <div className={classes.categoryLabelRed}>
+              {categoriesList[category]}
+            </div> */}
+            {colorCategory && colorCategory === 1 && (
+              <div className={classes.categoryLabelRed}>
+                {categoriesList[category]}
+              </div>
+            )}
+            {colorCategory && colorCategory === 2 && (
+              <div className={classes.categoryLabelBlue}>
+                {categoriesList[category]}
+              </div>
+            )}
+            {colorCategory && colorCategory === 3 && (
+              <div className={classes.categoryLabelYellow}>
+                {categoriesList[category]}
+              </div>
+            )}
+            {colorCategory && colorCategory === 4 && (
+              <div className={classes.categoryLabelCyan}>
+                {categoriesList[category]}
+              </div>
+            )}
+          </div>
+
           <div className={classes.date}>
             {/* <DateIcon /> */}
             <time>{humanReadableDate}</time>
