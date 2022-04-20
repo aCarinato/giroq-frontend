@@ -36,7 +36,8 @@ function CustomMarker(props) {
 
     if (category > 19) {
       // setColorCategory(4);
-      setImgSrc('/markers/icon-cyan.svg');
+      // setImgSrc('/markers/icon-cyan.svg');
+      setImgSrc(`/markers/icon-${category}.svg`);
     }
   }, []);
 

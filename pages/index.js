@@ -68,6 +68,11 @@ const Home = () => {
     true,
   ]);
 
+  // Dropdown menu
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDateDropdownOpen, setIsDateDropdownOpen] = useState(false);
+
   // MOBILE
   const [mapHeight, setMapHeight] = useState(null);
   const [mobileView, setMobileView] = useState(null);
@@ -217,6 +222,19 @@ const Home = () => {
   //   setCoordinates({ lat: 45.4, lng: 11.5 });
   // }, [currentMarker]);
 
+  const handleOnClick = () => {
+    console.log('click');
+    setCurrentPlaceId(null);
+
+    if (isOpen) {
+      setIsOpen(false);
+    }
+
+    if (isDateDropdownOpen) {
+      setIsDateDropdownOpen(!isDateDropdownOpen);
+    }
+  };
+
   return (
     // <div className="container-fluid">
     <div className="mainAppContainer">
@@ -230,6 +248,10 @@ const Home = () => {
             setFirstDate={setFirstDate}
             lastDate={lastDate}
             setLastDate={setLastDate}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            isDateDropdownOpen={isDateDropdownOpen}
+            setIsDateDropdownOpen={setIsDateDropdownOpen}
           />
         ) : (
           <EventsFilter
@@ -239,6 +261,10 @@ const Home = () => {
             setFirstDate={setFirstDate}
             lastDate={lastDate}
             setLastDate={setLastDate}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            isDateDropdownOpen={isDateDropdownOpen}
+            setIsDateDropdownOpen={setIsDateDropdownOpen}
           />
         )}
       </div>
@@ -282,6 +308,10 @@ const Home = () => {
             currentMarker={currentMarker}
             events={events}
             bounds={bounds}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            isDateDropdownOpen={isDateDropdownOpen}
+            setIsDateDropdownOpen={setIsDateDropdownOpen}
           />
         )}
       </div>

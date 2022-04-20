@@ -89,6 +89,8 @@
   height: 2.5rem;
   display: flex;
   line-height: 2.5rem;
+  /* position: relative;
+  z-index: 5; */
 }
 
 .checkmarkOuter {
