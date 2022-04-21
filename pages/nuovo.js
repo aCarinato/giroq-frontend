@@ -79,6 +79,8 @@ function AddEvent() {
         organiser,
         title,
         description,
+        street: currentOrganiser.street,
+        city: currentOrganiser.city,
         long: currentOrganiser.long,
         lat: currentOrganiser.lat,
         category,

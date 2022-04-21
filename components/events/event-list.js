@@ -40,6 +40,7 @@ function EventList(props) {
                 end={event.endTime}
                 image={event.image}
                 setCurrentMarker={setCurrentMarker}
+                city={event.city}
                 longitude={event.long}
                 latitude={event.lat}
                 mobileView={mobileView}

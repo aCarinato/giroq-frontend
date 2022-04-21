@@ -52,6 +52,10 @@
   padding: 0.4rem 0.5rem 0 0;
 }
 
+.city {
+  display: flex;
+}
+
 .categoryContainer {
   display: flex;
   font-size: 0.75rem;

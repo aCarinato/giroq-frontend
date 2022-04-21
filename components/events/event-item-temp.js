@@ -15,6 +15,7 @@ function EventItemTemp(props) {
     end,
     id,
     setCurrentMarker,
+    city,
     latitude,
     longitude,
     mobileView,
@@ -109,6 +110,13 @@ function EventItemTemp(props) {
             <div className={classes.dateContainer}>{`${start}-${end}`}</div>
           </div>
         )}
+      </div>
+
+      <div className={classes.city}>
+        <div className={classes.iconContainer}>
+          <Icon icon="maki:town" />
+        </div>
+        <div className={classes.dateContainer}>{city}</div>
       </div>
 
       {mobileView && (
