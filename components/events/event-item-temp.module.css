@@ -31,12 +31,31 @@
 }
 
 .dateTime {
-  padding: 0.3rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* padding: 0.3rem; */
+}
+
+.twoFlexItem {
+  display: flex;
+  /* width: 50%; */
+}
+
+.iconContainer {
+  padding: 0.3rem 0.4rem;
+}
+
+.dateContainer {
+  /* padding: 0.3rem; */
+  padding: 0.4rem 0.5rem 0 0;
 }
 
 .categoryContainer {
   display: flex;
   font-size: 0.75rem;
+  padding: 0.3rem;
 }
 
 .categoryLabelRed {
@@ -72,8 +91,9 @@
 }
 
 .addressOnMap {
-  padding: 0.3rem 0.4rem;
+  /* padding: 0.3rem 0.4rem; */
   font-weight: bold;
+  display: flex;
 }
 
 .actions {
@@ -118,6 +138,12 @@
 
 .foot {
   aspect-ratio: 16 / 1;
+}
+
+@media (min-width: 769px) and (max-width: 1350px) {
+  .dateTime {
+    font-size: 0.75rem;
+  }
 }
 
 @media (min-width: 768px) {

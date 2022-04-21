@@ -4,11 +4,15 @@ import categoriesList from '../../data/categories-list';
 
 import classes from './event-item-temp.module.css';
 
+import { Icon } from '@iconify/react';
+
 function EventItemTemp(props) {
   const {
     title,
     category,
     date,
+    start,
+    end,
     id,
     setCurrentMarker,
     latitude,
@@ -60,9 +64,9 @@ function EventItemTemp(props) {
 
   const exploreLink = `/event/${id}`;
 
-  const handleClickDesktop = () => {
-    window.open(exploreLink, '_blank');
-  };
+  //   const handleClickDesktop = () => {
+  //     window.open(exploreLink, '_blank');
+  //   };
 
   const handleOnClick = () => {
     if (mobileView === true) {
@@ -87,8 +91,34 @@ function EventItemTemp(props) {
       <h4 className={classes.title}>{title}</h4>
 
       <div className={classes.dateTime}>
-        <time>{humanReadableDate}</time>
+        <div className={classes.twoFlexItem}>
+          <div className={classes.iconContainer}>
+            <Icon icon="ant-design:calendar-outlined" />
+          </div>
+
+          <div className={classes.dateContainer}>
+            <time>{humanReadableDate}</time>
+          </div>
+        </div>
+
+        {start && end && (
+          <div className={classes.twoFlexItem}>
+            <div className={classes.iconContainer}>
+              <Icon icon="akar-icons:clock" />
+            </div>
+            <div className={classes.dateContainer}>{`${start}-${end}`}</div>
+          </div>
+        )}
       </div>
+
+      {mobileView && (
+        <div className={classes.addressOnMap} onClick={() => handleOnClick()}>
+          <div className={classes.iconContainer}>
+            <Icon icon="emojione-monotone:world-map" />
+          </div>
+          <div className={classes.dateContainer}>Mostra nella mappa</div>
+        </div>
+      )}
 
       <div className={classes.categoryContainer}>
         {colorCategory && colorCategory === 1 && (
@@ -113,68 +143,16 @@ function EventItemTemp(props) {
         )}
       </div>
       {mobileView && (
-        <>
-          <div className={classes.addressOnMap} onClick={() => handleOnClick()}>
-            Mostra nella mappa
-          </div>
-          <div className={classes.actions}>
-            <Link href={exploreLink}>
-              <a target="_blank">
-                <button className={classes.btnDetails}>Dettagli</button>
-              </a>
-            </Link>
-          </div>
-        </>
-      )}
-
-      <div className={classes.foot}></div>
-
-      {/* <div className={classes.content}>
-        <div>
-          <h2>{title}</h2>
-          <div className={classes.categoryContainer}>
-            {colorCategory && colorCategory === 1 && (
-              <div className={classes.categoryLabelRed}>
-                {categoriesList[category]}
-              </div>
-            )}
-            {colorCategory && colorCategory === 2 && (
-              <div className={classes.categoryLabelBlue}>
-                {categoriesList[category]}
-              </div>
-            )}
-            {colorCategory && colorCategory === 3 && (
-              <div className={classes.categoryLabelYellow}>
-                {categoriesList[category]}
-              </div>
-            )}
-            {colorCategory && colorCategory === 4 && (
-              <div className={classes.categoryLabelCyan}>
-                {categoriesList[category]}
-              </div>
-            )}
-          </div>
-
-          <div className={classes.date}>
-            <time>{humanReadableDate}</time>
-          </div>
-          {mobileView && (
-            <div
-              className={classes.addressOnMap}
-              onClick={() => handleOnClick()}
-            >
-              Mostra nella mappa
-            </div>
-          )}
-        </div> */}
-      {/* <div className={classes.actions}>
+        <div className={classes.actions}>
           <Link href={exploreLink}>
             <a target="_blank">
               <button className={classes.btnDetails}>Dettagli</button>
             </a>
           </Link>
-        </div> */}
-      {/* </div> */}
+        </div>
+      )}
+
+      <div className={classes.foot}></div>
     </div>
   );
 }

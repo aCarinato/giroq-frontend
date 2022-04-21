@@ -36,6 +36,8 @@ function EventList(props) {
                 // location={event.location}
                 category={+event.category[0]}
                 date={event.date}
+                start={event.startTime}
+                end={event.endTime}
                 image={event.image}
                 setCurrentMarker={setCurrentMarker}
                 longitude={event.long}

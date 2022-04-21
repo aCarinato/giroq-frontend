@@ -16,6 +16,9 @@ function AddEvent() {
   const [category, setCategory] = useState([]);
   const [date, setDate] = useState(today);
 
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+
   const [organisers, setOrganisers] = useState([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -80,6 +83,8 @@ function AddEvent() {
         lat: currentOrganiser.lat,
         category,
         date,
+        startTime,
+        endTime,
         image,
       };
 
@@ -135,6 +140,10 @@ function AddEvent() {
                 setCategory={setCategory}
                 date={date}
                 setDate={setDate}
+                startTime={startTime}
+                setStartTime={setStartTime}
+                endTime={endTime}
+                setEndTime={setEndTime}
                 // uploadImg={uploadImg}
                 image={image}
                 handleAddEvent={handleAddEvent}
