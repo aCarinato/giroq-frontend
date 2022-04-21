@@ -5,7 +5,9 @@ import AddOrganiserForm from '../../components/forms/add-organiser-form';
 
 function AddOrganiser() {
   const nameInputRef = useRef();
-  const addressInputRef = useRef();
+  // const addressInputRef = useRef();
+  const streetInputRef = useRef();
+  const cityInputRef = useRef();
   const longInputRef = useRef();
   const latInputRef = useRef();
 
@@ -16,7 +18,9 @@ function AddOrganiser() {
     try {
       const newOrganiser = {
         name: nameInputRef.current.value,
-        address: addressInputRef.current.value,
+        // address: addressInputRef.current.value,
+        street: streetInputRef.current.value,
+        city: cityInputRef.current.value,
         long: longInputRef.current.value,
         lat: latInputRef.current.value,
       };
@@ -31,7 +35,9 @@ function AddOrganiser() {
 
       //   Reset values after submit
       nameInputRef.current.value = '';
-      addressInputRef.current.value = '';
+      // addressInputRef.current.value = '';
+      streetInputRef.current.value = '';
+      cityInputRef.current.value = '';
       longInputRef.current.value = null;
       latInputRef.current.value = null;
     } catch (err) {
@@ -57,7 +63,9 @@ function AddOrganiser() {
             <div className="col-lg-4">
               <AddOrganiserForm
                 nameInputRef={nameInputRef}
-                addressInputRef={addressInputRef}
+                // addressInputRef={addressInputRef}
+                streetInputRef={streetInputRef}
+                cityInputRef={cityInputRef}
                 latInputRef={latInputRef}
                 longInputRef={longInputRef}
                 formSubmit={formSubmit}

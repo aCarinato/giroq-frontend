@@ -28,6 +28,10 @@ function Map(props) {
     // currentMarker,
     events,
     bounds,
+    isOpen,
+    setIsOpen,
+    isDateDropdownOpen,
+    setIsDateDropdownOpen,
   } = props;
   const mapRef = useRef();
 
@@ -60,6 +64,19 @@ function Map(props) {
     options: { radius: 75, maxZoom: 20 },
   });
   // console.log(clusters);
+
+  const handleOnClick = () => {
+    // console.log('click');
+    setCurrentPlaceId(null);
+
+    if (isOpen) {
+      setIsOpen(false);
+    }
+
+    if (isDateDropdownOpen) {
+      setIsDateDropdownOpen(!isDateDropdownOpen);
+    }
+  };
 
   return (
     <div className={classes.colMap} style={{ height: mapHeight }}>
@@ -99,6 +116,7 @@ function Map(props) {
             bounds.nw.lat,
           ]);
         }}
+        onClick={handleOnClick}
         // onClick={() => setCurrentPlaceId(null)}
         // onDrag={() => setCurrentPlaceId(null)}
         // onClick={() => setTestId(null)}

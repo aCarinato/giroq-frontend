@@ -1,0 +1,160 @@
+.item {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px 12px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: white;
+  margin: 1rem;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* gap: 2rem;
+    margin: 1rem 0;
+    padding: 1rem; */
+  width: 100%;
+  /* cursor: pointer; */
+}
+
+.imgContainer {
+  /* height: 7rem; */
+  aspect-ratio: 16 / 8;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* object-fit: contain; */
+}
+
+.title {
+  padding: 0.3rem;
+  margin: 0;
+}
+
+.dateTime {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* padding: 0.3rem; */
+}
+
+.twoFlexItem {
+  display: flex;
+  /* width: 50%; */
+}
+
+.iconContainer {
+  padding: 0.3rem 0.4rem;
+}
+
+.dateContainer {
+  /* padding: 0.3rem; */
+  padding: 0.4rem 0.5rem 0 0;
+}
+
+.city {
+  display: flex;
+}
+
+.categoryContainer {
+  display: flex;
+  font-size: 0.75rem;
+  padding: 0.3rem;
+}
+
+.categoryLabelRed {
+  padding: 0.3rem 0.4rem;
+  background-color: #ff6b6b;
+  color: white;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.categoryLabelBlue {
+  padding: 0.3rem 0.4rem;
+  background-color: #1a535c;
+  color: white;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.categoryLabelYellow {
+  padding: 0.3rem 0.4rem;
+  background-color: #ffd100;
+  color: white;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.categoryLabelCyan {
+  padding: 0.3rem 0.4rem;
+  background-color: #4ecdc4;
+  color: white;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.addressOnMap {
+  /* padding: 0.3rem 0.4rem; */
+  font-weight: bold;
+  display: flex;
+}
+
+.actions {
+  /* display: flex;
+  flex-direction: column;
+  padding: 1rem; */
+  padding: 0.3rem;
+  text-align: center;
+}
+
+/* .actions a {
+  display: block;
+}
+
+.actions a span {
+  vertical-align: middle;
+} */
+
+.btnDetails {
+  background-color: #616161;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 0px;
+}
+
+.btnDetails a {
+  text-decoration: none;
+  color: white;
+}
+
+.btnDetails:hover {
+  background-color: white;
+  border: 1px solid #616161;
+  color: #616161;
+}
+
+.btnDetails:hover > a {
+  background-color: white;
+  color: #616161;
+}
+
+.foot {
+  aspect-ratio: 16 / 1;
+}
+
+@media (min-width: 769px) and (max-width: 1350px) {
+  .dateTime {
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .item {
+    /* flex-direction: row; */
+    width: 46%;
+    margin: 0.5rem;
+    /* height: 15rem; */
+  }
+}

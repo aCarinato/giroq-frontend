@@ -40,8 +40,6 @@ function EventItem(props) {
     if (category > 19) {
       setColorCategory(4);
     }
-
-    console.log(colorCategory);
   }, []);
 
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
@@ -76,7 +74,7 @@ function EventItem(props) {
       <div className={classes.contenitore}>
         {image && (
           <div className={classes.verticale}>
-            <img src={image.url} alt={title} />
+            <img className={classes.imgBox} src={image.url} alt={title} />
           </div>
         )}
       </div>
@@ -85,9 +83,6 @@ function EventItem(props) {
         <div>
           <h2>{title}</h2>
           <div className={classes.categoryContainer}>
-            {/* <div className={classes.categoryLabelRed}>
-              {categoriesList[category]}
-            </div> */}
             {colorCategory && colorCategory === 1 && (
               <div className={classes.categoryLabelRed}>
                 {categoriesList[category]}

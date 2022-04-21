@@ -18,7 +18,6 @@
 
 .categoryLabel {
   padding: 0.3rem;
-  /* background-color: red; */
 }
 
 .categoryLabelRed {
@@ -50,7 +49,6 @@
 }
 
 .addressOnMap {
-  /* display: flex; */
   width: fit-content;
 }
 
@@ -68,12 +66,7 @@
 .content {
   width: 100%;
   text-align: center;
-  /* font-family: 'Comfortaa', cursive; */
 }
-
-/* .content h2 {
-  margin: 0.5rem 0;
-} */
 
 .btnDetails {
   background-color: #616161;
@@ -158,11 +151,10 @@
     height: 15rem;
   }
 
-  .item img {
+  /* .item img {
     width: 100%;
-    /* height: 14rem; */
     height: auto;
-  }
+  } */
 
   .contenitore {
     position: relative;
@@ -172,9 +164,9 @@
   .verticale {
     margin: 0;
     position: absolute;
-    top: 50%;
+    /* top: 50%;
     -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    transform: translateY(-50%); */
   }
 
   .content {

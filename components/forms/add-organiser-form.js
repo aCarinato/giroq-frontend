@@ -3,7 +3,8 @@ import classes from './add-organiser-form.module.css';
 function AddOrganiserForm(props) {
   const {
     nameInputRef,
-    addressInputRef,
+    streetInputRef,
+    cityInputRef,
     latInputRef,
     longInputRef,
     formSubmit,
@@ -17,10 +18,16 @@ function AddOrganiserForm(props) {
         <input type="text" id="organiser" name="organiser" ref={nameInputRef} />
       </div>
       <div className={classes.formRow}>
-        <label className={classes.formCol} htmlFor="address">
-          Indirizzo
+        <label className={classes.formCol} htmlFor="street">
+          Via
         </label>
-        <input type="text" id="address" name="address" ref={addressInputRef} />
+        <input type="text" id="street" name="street" ref={streetInputRef} />
+      </div>
+      <div className={classes.formRow}>
+        <label className={classes.formCol} htmlFor="city">
+          Città
+        </label>
+        <input type="text" id="city" name="city" ref={cityInputRef} />
       </div>
       <div className={classes.formRow}>
         <label className={classes.formCol} htmlFor="lat">

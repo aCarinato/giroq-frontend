@@ -16,10 +16,14 @@ function EventsFilter(props) {
     lastDate,
     setLastDate,
     // minDate,
+    isOpen,
+    setIsOpen,
+    isDateDropdownOpen,
+    setIsDateDropdownOpen,
   } = props;
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDateDropdownOpen, setIsDateDropdownOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  // const [isDateDropdownOpen, setIsDateDropdownOpen] = useState(false);
 
   const [categoryGroupCheck, setCategoryGroupCheck] = useState([
     true,
@@ -95,9 +99,26 @@ function EventsFilter(props) {
     }
   };
 
+  const handleOnClick = () => {
+    // console.log('click');
+
+    if (isOpen) {
+      setIsOpen(false);
+    }
+
+    if (isDateDropdownOpen) {
+      setIsDateDropdownOpen(!isDateDropdownOpen);
+    }
+  };
+
+  // const dropdownClick = () => {
+  //   setIsOpen(true);
+  //   selectCategoryGroup(category.id);
+  // };
+
   return (
     <div className={classes.mainContainer}>
-      <div className={classes.mainContainerSmallColumn}>
+      <div className={classes.mainContainerSmallColumn} onClick={handleOnClick}>
         <div className={classes.filterSwitch}>
           Seleziona eventi, attivitá e cose da fare vicino a te
         </div>
@@ -228,7 +249,7 @@ function EventsFilter(props) {
             )}
           </div>
         </div>
-        <div className={classes.largeColumnColumn}>
+        <div className={classes.largeColumnColumn} onClick={handleOnClick}>
           <div className={classes.btnPost}>Posta Evento o Attività</div>
         </div>
       </div>

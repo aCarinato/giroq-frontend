@@ -12,6 +12,10 @@ function AddEventForm(props) {
     setCategory,
     date,
     setDate,
+    startTime,
+    setStartTime,
+    endTime,
+    setEndTime,
     // uploadImg,
     image,
     handleAddEvent,
@@ -80,23 +84,6 @@ function AddEventForm(props) {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-
-        {/* <label htmlFor="long">long</label>
-                <input
-                  type="number"
-                  id="long"
-                  name="long"
-                  value={long}
-                  onChange={(e) => setLong(e.target.value)}
-                />
-                <label htmlFor="lat">lat</label>
-                <input
-                  type="number"
-                  id="lat"
-                  name="lat"
-                  value={lat}
-                  onChange={(e) => setLat(e.target.value)}
-                /> */}
         <div className={classes.formRow}>
           <label className={classes.formCol} htmlFor="type">
             Categoria
@@ -115,14 +102,6 @@ function AddEventForm(props) {
               </option>
             ))}
           </select>
-          {/* <input
-            className={classes.formInput}
-            type="text"
-            id="type"
-            name="type"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-          /> */}
         </div>
         <div className={classes.formRow}>
           <label className={classes.formCol} htmlFor="event-date">
@@ -135,6 +114,28 @@ function AddEventForm(props) {
             name="event-date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
+          />
+        </div>
+        <div className={classes.formRow}>
+          <label className={classes.formCol}>Orario inizio</label>
+          <input
+            className={classes.formInput}
+            type="time"
+            id="start-time"
+            name="start-time"
+            value={startTime}
+            onChange={(e) => setStartTime(e.target.value)}
+          />
+        </div>
+        <div className={classes.formRow}>
+          <label className={classes.formCol}>Orario fine</label>
+          <input
+            className={classes.formInput}
+            type="time"
+            id="end-time"
+            name="end-time"
+            value={endTime}
+            onChange={(e) => setEndTime(e.target.value)}
           />
         </div>
         <div className={classes.formRow}>

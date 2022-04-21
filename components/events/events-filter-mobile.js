@@ -16,11 +16,15 @@ function EventsFilterMobile(props) {
     lastDate,
     setLastDate,
     // minDate,
+    isOpen,
+    setIsOpen,
+    isDateDropdownOpen,
+    setIsDateDropdownOpen,
   } = props;
 
   const [mainSwitchOpen, setMainSwitchOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDateDropdownOpen, setIsDateDropdownOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  // const [isDateDropdownOpen, setIsDateDropdownOpen] = useState(false);
 
   const [categoryGroupCheck, setCategoryGroupCheck] = useState([
     true,
@@ -92,6 +96,20 @@ function EventsFilterMobile(props) {
       }
     }
   };
+
+  // const handleOnClick = () => {
+  //   // console.log('click');
+
+  //   setMainSwitchOpen(!mainSwitchOpen)
+
+  //   if (isOpen) {
+  //     setIsOpen(false);
+  //   }
+
+  //   if (isDateDropdownOpen) {
+  //     setIsDateDropdownOpen(!isDateDropdownOpen);
+  //   }
+  // };
 
   return (
     <div className={classes.mainContainer}>
