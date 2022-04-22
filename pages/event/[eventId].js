@@ -42,13 +42,17 @@ function EventDetailPage() {
       <EventId
         organiser={event.organiser}
         title={event.title}
+        description={event.description}
         image={event.image}
+        street={event.street}
+        city={event.city}
+        startDate={event.startDate}
+        endDate={event.endDate}
+        start={event.startTime}
+        end={event.endTime}
+        link={event.link}
       />
     </>
-    // <div>
-    //   <h2>{event.title}</h2>
-    //   <p>Organizzato da: {event.organiser}</p>
-    // </div>
   );
 }
 

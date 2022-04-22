@@ -14,7 +14,10 @@ function AddEvent() {
   // const [long, setLong] = useState('');
   // const [lat, setLat] = useState('');
   const [category, setCategory] = useState([]);
-  const [date, setDate] = useState(today);
+  // const [date, setDate] = useState(today);
+
+  const [startDate, setStartDate] = useState(today);
+  const [endDate, setEndDate] = useState(null);
 
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
@@ -24,6 +27,8 @@ function AddEvent() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [image, setImage] = useState({});
+
+  const [link, setLink] = useState('');
 
   // const [imageUpload, setImageUpload] = useState({});
 
@@ -84,10 +89,12 @@ function AddEvent() {
         long: currentOrganiser.long,
         lat: currentOrganiser.lat,
         category,
-        date,
+        startDate,
+        endDate,
         startTime,
         endTime,
         image,
+        link,
       };
 
       console.log(newEvent);
@@ -140,8 +147,10 @@ function AddEvent() {
                 description={description}
                 setDescription={setDescription}
                 setCategory={setCategory}
-                date={date}
-                setDate={setDate}
+                startDate={startDate}
+                setStartDate={setStartDate}
+                endDate={endDate}
+                setEndDate={setEndDate}
                 startTime={startTime}
                 setStartTime={setStartTime}
                 endTime={endTime}
@@ -152,6 +161,8 @@ function AddEvent() {
                 // imageUpload={imageUpload}
                 handleImage={handleImage}
                 categories={categoriesList}
+                link={link}
+                setLink={setLink}
               />
             </div>
             <div className="col-lg-4"></div>
