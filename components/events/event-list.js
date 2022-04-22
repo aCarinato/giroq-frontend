@@ -1,6 +1,5 @@
 import { Fragment } from 'react';
 import EventItem from './event-item';
-import EventItemTemp from './event-item-temp';
 import classes from './event-list.module.css';
 
 function EventList(props) {
@@ -28,16 +27,17 @@ function EventList(props) {
         events.map((event) => (
           <Fragment key={event._id}>
             {categoryCheck[+event.category[0]] && (
-              <EventItemTemp
+              <EventItem
                 key={event._id}
                 id={event._id}
                 // bounds={bounds}
                 title={event.title}
                 // location={event.location}
                 category={+event.category[0]}
-                date={event.date}
-                start={event.startTime}
-                end={event.endTime}
+                startDate={event.startDate}
+                endDate={event.endDate}
+                startTime={event.startTime}
+                endTime={event.endTime}
                 image={event.image}
                 setCurrentMarker={setCurrentMarker}
                 city={event.city}

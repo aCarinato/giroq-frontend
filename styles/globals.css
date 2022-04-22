@@ -1,3 +1,11 @@
+:root {
+  --main-neutral-color: #616161;
+  --main-red-color: #ff6b6b;
+  --main-blue-color: #1a535c;
+  --main-yellow-color: #ffd100;
+  --main-cyan-color: #4ecdc4;
+}
+
 body {
   font-family: 'Comfortaa', cursive;
 }

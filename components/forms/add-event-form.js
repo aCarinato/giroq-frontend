@@ -10,14 +10,18 @@ function AddEventForm(props) {
     description,
     setDescription,
     setCategory,
-    date,
-    setDate,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
     startTime,
     setStartTime,
     endTime,
     setEndTime,
     // uploadImg,
     image,
+    link,
+    setLink,
     handleAddEvent,
     // imageUpload,
     handleImage,
@@ -104,16 +108,29 @@ function AddEventForm(props) {
           </select>
         </div>
         <div className={classes.formRow}>
-          <label className={classes.formCol} htmlFor="event-date">
-            Data Evento
+          <label className={classes.formCol} htmlFor="event-startDate">
+            Data inizio
           </label>
           <input
             className={classes.formInput}
             type="date"
-            id="event-date"
-            name="event-date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
+            id="event-startDate"
+            name="event-startDate"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </div>
+        <div className={classes.formRow}>
+          <label className={classes.formCol} htmlFor="event-endDate">
+            Data fine
+          </label>
+          <input
+            className={classes.formInput}
+            type="date"
+            id="event-endDate"
+            name="event-endDate"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
           />
         </div>
         <div className={classes.formRow}>
@@ -136,6 +153,19 @@ function AddEventForm(props) {
             name="end-time"
             value={endTime}
             onChange={(e) => setEndTime(e.target.value)}
+          />
+        </div>
+        <div className={classes.formRow}>
+          <label className={classes.formCol} htmlFor="link">
+            Link
+          </label>
+          <input
+            className={classes.formInput}
+            type="text"
+            id="link"
+            name="link"
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
           />
         </div>
         <div className={classes.formRow}>

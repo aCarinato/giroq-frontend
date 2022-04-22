@@ -16,7 +16,7 @@
   width: 0.75rem;
   height: 0.75rem;
   cursor: pointer;
-  border: 1px solid #616161;
+  border: 1px solid var(--main-neutral-color);
   border-radius: 50%;
 }
 
@@ -27,40 +27,40 @@
 
 .checkmarkSelectedRed {
   position: relative;
-  background-color: #ff6b6b;
+  background-color: var(--main-red-color);
   width: 0.75rem;
   height: 0.75rem;
   cursor: pointer;
-  border: 1px solid #ff6b6b;
+  border: 1px solid var(--main-red-color);
   border-radius: 50%;
 }
 
 .checkmarkSelectedBlue {
   position: relative;
-  background-color: #1a535c;
+  background-color: var(--main-blue-color);
   width: 0.75rem;
   height: 0.75rem;
   cursor: pointer;
-  border: 1px solid #1a535c;
+  border: 1px solid var(--main-blue-color);
   border-radius: 50%;
 }
 
 .checkmarkSelectedYellow {
   position: relative;
-  background-color: #ffd100;
+  background-color: var(--main-yellow-color);
   width: 0.75rem;
   height: 0.75rem;
   cursor: pointer;
-  border: 1px solid #ffd100;
+  border: 1px solid var(--main-yellow-color);
   border-radius: 50%;
 }
 
 .checkmarkSelectedCyan {
   position: relative;
-  background-color: #4ecdc4;
+  background-color: var(--main-cyan-color);
   width: 0.75rem;
   height: 0.75rem;
   cursor: pointer;
-  border: 1px solid #4ecdc4;
+  border: 1px solid var(--main-cyan-color);
   border-radius: 50%;
 }
