@@ -12,8 +12,8 @@ function EventItem(props) {
     category,
     startDate,
     endDate,
-    start,
-    end,
+    startTime,
+    endTime,
     id,
     setCurrentMarker,
     city,
@@ -128,12 +128,14 @@ function EventItem(props) {
           )}
         </div>
 
-        {start && end && (
+        {startTime && endTime && (
           <div className={classes.twoFlexItem}>
             <div className={classes.iconContainer}>
               <Icon icon="akar-icons:clock" />
             </div>
-            <div className={classes.dateContainer}>{`${start}-${end}`}</div>
+            <div
+              className={classes.dateContainer}
+            >{`${startTime}-${endTime}`}</div>
           </div>
         )}
       </div>

@@ -4,17 +4,10 @@
   overflow: hidden;
   background-color: white;
   margin: 1rem;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* gap: 2rem;
-    margin: 1rem 0;
-    padding: 1rem; */
   width: 100%;
-  /* cursor: pointer; */
 }
 
 .imgContainer {
-  /* height: 7rem; */
   aspect-ratio: 16 / 8;
 }
 
@@ -35,12 +28,10 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  /* padding: 0.3rem; */
 }
 
 .twoFlexItem {
   display: flex;
-  /* width: 50%; */
 }
 
 .iconContainer {
@@ -48,7 +39,6 @@
 }
 
 .dateContainer {
-  /* padding: 0.3rem; */
   padding: 0.4rem 0.5rem 0 0;
 }
 
@@ -106,20 +96,9 @@
 }
 
 .actions {
-  /* display: flex;
-  flex-direction: column;
-  padding: 1rem; */
   padding: 0.3rem;
   text-align: center;
 }
-
-/* .actions a {
-  display: block;
-}
-
-.actions a span {
-  vertical-align: middle;
-} */
 
 .btnDetails {
   background-color: #616161;

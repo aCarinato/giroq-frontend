@@ -43,10 +43,15 @@ function Map(props) {
       cluster: false,
       eventId: event._id,
       eventCategory: event.category,
-      eventDate: event.date,
+      eventStartDate: event.startDate,
+      eventEndDate: event.endDate,
+      eventStartTime: event.startTime,
+      eventEndTime: event.endTime,
       eventTitle: event.title,
       eventOrganiser: event.organiser,
       eventDescription: event.description,
+      eventCity: event.city,
+      eventStreet: event.street,
       eventImage: event.image,
       eventLat: event.lat,
       eventLong: event.long,
@@ -164,6 +169,13 @@ function Map(props) {
                   id={cluster.properties.eventId}
                   title={cluster.properties.eventTitle}
                   organiser={cluster.properties.eventOrganiser}
+                  category={cluster.properties.eventCategory}
+                  startDate={cluster.properties.eventStartDate}
+                  endDate={cluster.properties.eventEndDate}
+                  startTime={cluster.properties.eventStartTime}
+                  endTime={cluster.properties.eventEndTime}
+                  city={cluster.properties.eventCity}
+                  street={cluster.properties.eventStreet}
                   image={cluster.properties.eventImage}
                   lat={cluster.properties.eventLat}
                   lng={cluster.properties.eventLong}

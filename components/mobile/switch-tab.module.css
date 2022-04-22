@@ -10,7 +10,8 @@
 
 .tabSelected {
   color: darkslategrey;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
+  border-bottom: 3px solid var(--main-neutral-color);
   cursor: pointer;
   padding: 0.5rem;
 }

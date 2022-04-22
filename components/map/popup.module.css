@@ -2,32 +2,136 @@
   position: absolute;
   z-index: 2;
   width: 10rem;
+  border-radius: 4px;
+  background-color: white;
 }
 
-.frame {
-  /* height: 100px;
-  width: 100px; */
-  /* position: absolute; */
-  width: fit-content;
-  height: fit-content;
-  background-color: aliceblue;
-  padding: 1rem;
+.imgContainer {
+  aspect-ratio: 16 / 8;
 }
 
-.frame img {
+.image {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* object-fit: contain; */
+}
+
+.title {
+  font-size: 1rem;
+  padding: 0.3rem;
+  margin: 0;
+}
+
+.iconContainer {
+  padding: 0.3rem 0.4rem;
+}
+
+.dateTime {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.twoFlexItem {
+  display: flex;
+}
+
+.iconContainer {
+  padding: 0.3rem 0.4rem;
+}
+
+.dateContainer {
+  padding: 0.4rem 0.5rem 0 0;
+}
+
+.trickyText {
+  padding: 0.4rem 0.5rem 0 0;
+  color: rgba(0, 0, 0, 0);
+}
+
+.city {
+  display: flex;
+}
+
+.categoryContainer {
+  display: flex;
+  font-size: 0.75rem;
+  padding: 0.3rem;
+}
+
+.categoryLabelRed {
+  padding: 0.3rem 0.4rem;
+  background-color: #ff6b6b;
+  color: white;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.categoryLabelBlue {
+  padding: 0.3rem 0.4rem;
+  background-color: #1a535c;
+  color: white;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.categoryLabelYellow {
+  padding: 0.3rem 0.4rem;
+  background-color: #ffd100;
+  color: white;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.categoryLabelCyan {
+  padding: 0.3rem 0.4rem;
+  background-color: #4ecdc4;
+  color: white;
+  font-weight: bold;
+  margin: 0.2rem;
 }
 
 .close {
+  text-align: right;
   cursor: pointer;
   font-weight: bold;
-  color: red;
+  padding: 0.5rem;
 }
 
-.imageBox {
+.actions {
+  padding: 0.3rem;
+  text-align: center;
+}
+
+.btnDetails {
+  background-color: #616161;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 0px;
+  width: 80%;
+}
+
+.btnDetails a {
+  text-decoration: none;
+  color: white;
+}
+
+.btnDetails:hover {
+  background-color: white;
+  border: 1px solid #616161;
+  color: #616161;
+}
+
+.btnDetails:hover > a {
+  background-color: white;
+  color: #616161;
+}
+
+/* .imageBox {
   padding: 0.5rem;
-  /* position: absolute; */
-  /* width: 100%; */
   height: auto;
   z-index: 20;
-}
+} */

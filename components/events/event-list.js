@@ -36,8 +36,8 @@ function EventList(props) {
                 category={+event.category[0]}
                 startDate={event.startDate}
                 endDate={event.endDate}
-                start={event.startTime}
-                end={event.endTime}
+                startTime={event.startTime}
+                endTime={event.endTime}
                 image={event.image}
                 setCurrentMarker={setCurrentMarker}
                 city={event.city}
