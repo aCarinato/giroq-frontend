@@ -8,7 +8,11 @@ import EventsFilterMobile from '../components/events/events-filter-mobile';
 import EventList from '../components/events/event-list';
 import SwitchTab from '../components/mobile/switch-tab';
 
+import { useMainContext } from '../context/Context';
+
 const Home = () => {
+  const { setEventsCtx } = useMainContext();
+
   // MAP
   const [bounds, setBounds] = useState([
     10.603240966796875, 44.636030435233096, 12.396759033203125,
