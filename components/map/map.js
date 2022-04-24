@@ -11,7 +11,6 @@ const Marker = ({ children }) => children;
 
 function Map(props) {
   const {
-    isLoadingEvents,
     mapHeight,
     // points,
     // clusters,
@@ -128,8 +127,7 @@ function Map(props) {
         // onClick={() => setTestId(null)}
         // onDrag={() => setTestId(null)}
       >
-        {!isLoadingEvents &&
-          clusters &&
+        {clusters &&
           clusters.length > 0 &&
           clusters.map((cluster) => {
             const [longitude, latitude] = cluster.geometry.coordinates;

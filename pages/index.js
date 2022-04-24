@@ -134,10 +134,8 @@ const Home = () => {
   useEffect(() => {
     // if (bounds) {
     const getEvents = async () => {
-      // console.log('THESE ARE THE BOUNDS FROM useEffect:');
-      // console.log(bounds);
-      setIsLoadingEvents(true);
-      console.log('setIsLoadingEvents(true);');
+      // setIsLoadingEvents(true);
+      // console.log('setIsLoadingEvents(true);');
       const blLat = bounds[1];
       const trLat = bounds[3];
       const blLong = bounds[0];
@@ -168,8 +166,8 @@ const Home = () => {
           filterParams
         );
         setEvents(retrievedEvents.data);
-        setIsLoadingEvents(false);
-        console.log('setIsLoadingEvents(false);');
+        // setIsLoadingEvents(false);
+        // console.log('setIsLoadingEvents(false);');
       } catch (err) {
         console.log(err);
       }
@@ -240,12 +238,6 @@ const Home = () => {
   return (
     // <div className="container-fluid">
     <div className="mainAppContainer">
-      {isLoadingEvents ? (
-        <div className="appRow">LOADING EVENTS</div>
-      ) : (
-        <div className="appRow">EVENTS LOADED</div>
-      )}
-
       <div className="appRow">
         {/* <div className="col-lg-12"> */}
         {mobileView ? (
@@ -285,26 +277,21 @@ const Home = () => {
         />
       )}
       <div className="appRow">
-        {isLoadingEvents ? (
-          <div>LOADING EVENTS</div>
-        ) : (
-          showList && (
-            <EventList
-              events={events}
-              categoryCheck={categoryCheck}
-              setCurrentMarker={setCurrentMarker}
-              mobileView={mobileView}
-              setMapSelected={setMapSelected}
-              setCoordinates={setCoordinates}
-              setCurrentPlaceId={setCurrentPlaceId}
-              coordinates={coordinates}
-            />
-          )
+        {showList && (
+          <EventList
+            events={events}
+            categoryCheck={categoryCheck}
+            setCurrentMarker={setCurrentMarker}
+            mobileView={mobileView}
+            setMapSelected={setMapSelected}
+            setCoordinates={setCoordinates}
+            setCurrentPlaceId={setCurrentPlaceId}
+            coordinates={coordinates}
+          />
         )}
 
         {mapSelected && (
           <Map
-            isLoadingEvents={isLoadingEvents}
             mapHeight={mapHeight}
             // points={points}
             // clusters={clusters}
