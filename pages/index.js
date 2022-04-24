@@ -285,20 +285,26 @@ const Home = () => {
         />
       )}
       <div className="appRow">
-        {showList && (
-          <EventList
-            events={events}
-            categoryCheck={categoryCheck}
-            setCurrentMarker={setCurrentMarker}
-            mobileView={mobileView}
-            setMapSelected={setMapSelected}
-            setCoordinates={setCoordinates}
-            setCurrentPlaceId={setCurrentPlaceId}
-            coordinates={coordinates}
-          />
+        {isLoadingEvents ? (
+          <div>LOADING EVENTS</div>
+        ) : (
+          showList && (
+            <EventList
+              events={events}
+              categoryCheck={categoryCheck}
+              setCurrentMarker={setCurrentMarker}
+              mobileView={mobileView}
+              setMapSelected={setMapSelected}
+              setCoordinates={setCoordinates}
+              setCurrentPlaceId={setCurrentPlaceId}
+              coordinates={coordinates}
+            />
+          )
         )}
+
         {mapSelected && (
           <Map
+            isLoadingEvents={isLoadingEvents}
             mapHeight={mapHeight}
             // points={points}
             // clusters={clusters}
