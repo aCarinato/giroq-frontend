@@ -170,6 +170,7 @@ const Home = () => {
           filterParams
         );
         setEvents(retrievedEvents.data);
+        setEventsCtx(retrievedEvents.data);
         // setIsLoadingEvents(false);
         // console.log('setIsLoadingEvents(false);');
       } catch (err) {
