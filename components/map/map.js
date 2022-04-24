@@ -7,6 +7,8 @@ import classes from './map.module.css';
 
 import Popup from './popup';
 
+import { useMainContext } from '../../context/Context';
+
 const Marker = ({ children }) => children;
 
 function Map(props) {
@@ -35,9 +37,11 @@ function Map(props) {
   } = props;
   const mapRef = useRef();
 
+  const { eventsCtx } = useMainContext();
+
   // const [testID, setTestId] = useState(null);
 
-  const points = events.map((event) => ({
+  const points = eventsCtx.map((event) => ({
     type: 'Feature',
     properties: {
       cluster: false,

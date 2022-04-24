@@ -2,6 +2,8 @@ import { Fragment } from 'react';
 import EventItem from './event-item';
 import classes from './event-list.module.css';
 
+import { useMainContext } from '../../context/Context';
+
 function EventList(props) {
   const {
     // bounds,
@@ -16,17 +18,19 @@ function EventList(props) {
     // setZoom,
   } = props;
 
+  const { eventsCtx } = useMainContext();
+
   return (
     <div className={classes.colList}>
       {/* <div className={classes.list}> */}
-      {events.length === 0 && (
+      {eventsCtx.length === 0 && (
         <div>
           IN CARICAMENTO. NESSUN EVENTO PER LE DATE E LUOGHI SELEZIONATI
         </div>
       )}
-      {events &&
-        events.length > 0 &&
-        events.map((event) => (
+      {eventsCtx &&
+        eventsCtx.length > 0 &&
+        eventsCtx.map((event) => (
           <Fragment key={event._id}>
             {categoryCheck[+event.category[0]] && (
               <EventItem
