@@ -24,7 +24,10 @@ function EventList(props) {
     <div className={classes.colList}>
       {/* <div className={classes.list}> */}
       {eventsCtx.length === 0 && (
-        <div>NESSUN EVENTO PER LE DATE E LUOGHI SELEZIONATI</div>
+        <div>
+          NESSUN EVENTO TROVATO PER LE DATE E LUOGHI SELEZIONATI. PROVA A
+          RICARICARE LA PAGINA
+        </div>
       )}
       {eventsCtx &&
         eventsCtx.length > 0 &&
