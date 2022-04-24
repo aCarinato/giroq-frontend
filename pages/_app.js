@@ -5,6 +5,7 @@ import Script from 'next/script';
 import Head from 'next/head';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { ContextProvider } from '../context/Context';
 
 import * as ga from '../lib/google-analytics';
 
@@ -23,29 +24,31 @@ function MyApp({ Component, pageProps }) {
   }, [router.events]);
 
   return (
-    <Layout>
-      <Head>
-        <title>giroq</title>
-        <meta
-          name="description"
-          content="eventi, attivitá e cose da fare vicino a te"
+    <ContextProvider>
+      <Layout>
+        <Head>
+          <title>giroq</title>
+          <meta
+            name="description"
+            content="eventi, attivitá e cose da fare vicino a te"
+          />
+        </Head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+          strategy="afterInteractive"
         />
-      </Head>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics-script" strategy="afterInteractive">
-        {`
+        <Script id="google-analytics-script" strategy="afterInteractive">
+          {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
           
             gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
           `}
-      </Script>
-      <Component {...pageProps} />;
-    </Layout>
+        </Script>
+        <Component {...pageProps} />;
+      </Layout>
+    </ContextProvider>
   );
 }
 

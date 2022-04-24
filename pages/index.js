@@ -8,6 +8,8 @@ import EventsFilterMobile from '../components/events/events-filter-mobile';
 import EventList from '../components/events/event-list';
 import SwitchTab from '../components/mobile/switch-tab';
 
+import { useMainContext } from '../context/Context';
+
 const Home = () => {
   // MAP
   const [bounds, setBounds] = useState([
@@ -19,6 +21,9 @@ const Home = () => {
     lat: 45.76,
     lng: 11.73,
   });
+
+  // CONTEXT
+  const { eventsCtx, setEventsCtx } = useMainContext();
 
   // SELECTION
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
@@ -166,6 +171,8 @@ const Home = () => {
           filterParams
         );
         setEvents(retrievedEvents.data);
+        setEventsCtx(retrievedEvents.data);
+        // console.log(eventsCtx);
         // setIsLoadingEvents(false);
         // console.log('setIsLoadingEvents(false);');
       } catch (err) {
@@ -279,7 +286,7 @@ const Home = () => {
       <div className="appRow">
         {showList && (
           <EventList
-            events={events}
+            // events={events}
             categoryCheck={categoryCheck}
             setCurrentMarker={setCurrentMarker}
             mobileView={mobileView}
@@ -307,7 +314,7 @@ const Home = () => {
             setCurrentMarker={setCurrentMarker}
             mobileView={mobileView}
             currentMarker={currentMarker}
-            events={events}
+            // events={events}
             bounds={bounds}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
