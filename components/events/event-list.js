@@ -20,7 +20,9 @@ function EventList(props) {
     <div className={classes.colList}>
       {/* <div className={classes.list}> */}
       {events.length === 0 && (
-        <div>NESSUN EVENTO PER LE DATE E LUOGHI SELEZIONATI</div>
+        <div>
+          IN CARICAMENTO. NESSUN EVENTO PER LE DATE E LUOGHI SELEZIONATI
+        </div>
       )}
       {events &&
         events.length > 0 &&
