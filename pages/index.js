@@ -25,7 +25,7 @@ const Home = () => {
   const [currentMarker, setCurrentMarker] = useState({});
 
   // EVENTS
-  // const [isLoadingEvents, setIsLoadingEvents] = useState(true);
+  const [isLoadingEvents, setIsLoadingEvents] = useState(true);
   const [events, setEvents] = useState([]);
 
   // FILTER EVENTS
@@ -136,7 +136,8 @@ const Home = () => {
     const getEvents = async () => {
       // console.log('THESE ARE THE BOUNDS FROM useEffect:');
       // console.log(bounds);
-      // setIsLoadingEvents(true);
+      setIsLoadingEvents(true);
+      console.log('setIsLoadingEvents(true);');
       const blLat = bounds[1];
       const trLat = bounds[3];
       const blLong = bounds[0];
@@ -167,7 +168,8 @@ const Home = () => {
           filterParams
         );
         setEvents(retrievedEvents.data);
-        // setIsLoadingEvents(false);
+        setIsLoadingEvents(false);
+        console.log('setIsLoadingEvents(false);');
       } catch (err) {
         console.log(err);
       }
@@ -238,6 +240,12 @@ const Home = () => {
   return (
     // <div className="container-fluid">
     <div className="mainAppContainer">
+      {isLoadingEvents ? (
+        <div className="appRow">LOADING EVENTS</div>
+      ) : (
+        <div className="appRow">EVENTS LOADED</div>
+      )}
+
       <div className="appRow">
         {/* <div className="col-lg-12"> */}
         {mobileView ? (
