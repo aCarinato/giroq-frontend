@@ -112,7 +112,7 @@ const Home = () => {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/events/`);
       //Extract the Array contained in the 'events' field.
       const events = res.data;
-      console.log(events);
+      // console.log(events);
       //Event data is globally accessible. But 'renderEvent' is just to render out the MAP with the markers
       setEventData(events);
       setRenderEvent(events);
@@ -164,18 +164,18 @@ const Home = () => {
     }
   }, [firstDate, lastDate, bounds, categoryCheck]);
 
-  const handleOnClick = () => {
-    console.log('click');
-    setCurrentPlaceId(null);
+  // const handleOnClick = () => {
+  //   console.log('click');
+  //   setCurrentPlaceId(null);
 
-    if (isOpen) {
-      setIsOpen(false);
-    }
+  //   if (isOpen) {
+  //     setIsOpen(false);
+  //   }
 
-    if (isDateDropdownOpen) {
-      setIsDateDropdownOpen(!isDateDropdownOpen);
-    }
-  };
+  //   if (isDateDropdownOpen) {
+  //     setIsDateDropdownOpen(!isDateDropdownOpen);
+  //   }
+  // };
 
   return (
     // <div className="container-fluid">

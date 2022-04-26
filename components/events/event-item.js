@@ -6,6 +6,8 @@ import classes from './event-item.module.css';
 
 import { Icon } from '@iconify/react';
 
+import { useMainContext } from '../../context/Context';
+
 function EventItem(props) {
   const {
     title,
@@ -15,18 +17,16 @@ function EventItem(props) {
     startTime,
     endTime,
     id,
-    setCurrentMarker,
     city,
     latitude,
     longitude,
     mobileView,
     setMapSelected,
     image,
-    setCoordinates,
-    coordinates,
     // setCurrentPlaceId,
     // setZoom,
   } = props;
+  const { setMapCenter, setZoom } = useMainContext();
 
   const [colorCategory, setColorCategory] = useState(null);
 
@@ -84,10 +84,10 @@ function EventItem(props) {
   const handleOnClick = () => {
     if (mobileView === true) {
       setMapSelected(true);
+      // setSelectedEvent([latitude, longitude]);
+      setMapCenter({ lat: latitude, lng: longitude });
+      setZoom(15);
     }
-    setCurrentMarker({ latitude, longitude });
-    // setCoordinates({ latitude, longitude });
-    // console.log(coordinates);
   };
 
   return (
