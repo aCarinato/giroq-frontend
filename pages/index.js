@@ -35,7 +35,7 @@ const Home = () => {
   const today = new Date();
   const todayISO = today.toISOString().split('T')[0];
 
-  const sett = today.setDate(today.getDate() + 7);
+  const sett = today.setDate(today.getDate() + 90);
   const oneWeek = new Date(sett);
   const oneWeekISO = oneWeek.toISOString().split('T')[0];
 

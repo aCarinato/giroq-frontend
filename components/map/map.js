@@ -109,6 +109,9 @@ function Map(props) {
               cluster.properties;
 
             if (isCluster) {
+              let changeSize = Math.round((pointCount / points.length) * 5);
+              //Can't exceed 40 px
+              let addSize = Math.min(changeSize * 10, 40);
               return (
                 <Marker
                   key={`cluster-${cluster.id}`}
@@ -118,8 +121,10 @@ function Map(props) {
                   <div
                     className="cluster-marker"
                     style={{
-                      width: `${10 + (pointCount / points.length) * 20}px`,
-                      height: `${10 + (pointCount / points.length) * 20}px`,
+                      // width: `${10 + (pointCount / points.length) * 20}px`,
+                      // height: `${10 + (pointCount / points.length) * 20}px`,
+                      width: `${addSize + changeSize}px`,
+                      height: `${addSize + changeSize}px`,
                     }}
                     onClick={() => {
                       const expansionZoom = Math.min(

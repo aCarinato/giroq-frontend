@@ -46,6 +46,10 @@ function EventsFilter(props) {
   const today = new Date();
   const todayISO = today.toISOString().split('T')[0];
 
+  const dateInterval = today.setDate(today.getDate() + 1);
+  const minLastDate = new Date(dateInterval);
+  const minLastDateISO = minLastDate.toISOString().split('T')[0];
+
   const selectCategoryGroup = (id) => {
     const newTypesCheck = [...categoryCheck];
     const newCategoryGroupCheck = [...categoryGroupCheck];
@@ -240,6 +244,7 @@ function EventsFilter(props) {
                   <input
                     type="date"
                     id="last-date"
+                    min={minLastDateISO}
                     name="last-date"
                     value={lastDate}
                     onChange={(e) => setLastDate(e.target.value)}
