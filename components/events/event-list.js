@@ -18,19 +18,19 @@ function EventList(props) {
     // setZoom,
   } = props;
 
-  const { eventsCtx } = useMainContext();
+  // const { eventsCtx } = useMainContext();
 
   return (
     <div className={classes.colList}>
       {/* <div className={classes.list}> */}
-      {eventsCtx.length === 0 && (
+      {events.length === 0 && (
         <div>
           IN CARICAMENTO. NESSUN EVENTO PER LE DATE E LUOGHI SELEZIONATI
         </div>
       )}
-      {eventsCtx &&
-        eventsCtx.length > 0 &&
-        eventsCtx.map((event) => (
+      {events &&
+        events.length > 0 &&
+        events.map((event) => (
           <Fragment key={event._id}>
             {categoryCheck[+event.category[0]] && (
               <EventItem

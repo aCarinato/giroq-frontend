@@ -8,16 +8,21 @@ export function useMainContext() {
 
 export function ContextProvider({ children }) {
   // All data from API
-  const [eventsCtx, setEventsCtx] = useState([]);
+  const [eventData, setEventData] = useState([]);
 
   // SELECTION
   const [currentPlaceIdCtx, setCurrentPlaceIdCtx] = useState(null);
 
+  //Need to re-render markers because user has changed filer option
+  const [reRenderMarkers, setReRenderMarkers] = useState(null);
+
   const value = {
-    eventsCtx,
-    setEventsCtx,
+    eventData,
+    setEventData,
     currentPlaceIdCtx,
     setCurrentPlaceIdCtx,
+    reRenderMarkers,
+    setReRenderMarkers,
   };
 
   return <mainContext.Provider value={value}>{children}</mainContext.Provider>;
