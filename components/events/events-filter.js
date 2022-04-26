@@ -231,7 +231,7 @@ function EventsFilter(props) {
                   <input
                     type="date"
                     id="first-date"
-                    // min={todayISO}
+                    min={todayISO}
                     name="first-date"
                     value={firstDate}
                     onChange={(e) => setFirstDate(e.target.value)}
