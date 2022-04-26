@@ -12,7 +12,7 @@ export function ContextProvider({ children }) {
 
   // MAP reference object
   const [mapCenter, setMapCenter] = useState({ lat: 45.76, lng: 11.73 });
-  const [zoom, setZoom] = useState(13);
+  const [zoom, setZoom] = useState(10);
 
   // SELECTION
   const [currentPlaceIdCtx, setCurrentPlaceIdCtx] = useState(null);
