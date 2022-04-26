@@ -125,13 +125,6 @@ const Home = () => {
   useEffect(() => {
     if (bounds !== null) {
       const getEvents = async () => {
-        // console.log('RCCOTI I BOUNDSSSS');
-        // console.log(bounds);
-        //     const blLat = bounds.sw.lat;
-        //     const trLat = bounds.ne.lat;
-        //     const blLong = bounds.sw.lng;
-        //     const trLong = bounds.ne.lng;
-
         const tlLng = bounds[0]; // bounds.nw.lng;
         const brLat = bounds[1]; //bounds.se.lat;
         const brLng = bounds[2]; //bounds.se.lng;
@@ -170,51 +163,6 @@ const Home = () => {
       getEvents();
     }
   }, [firstDate, lastDate, bounds, categoryCheck]);
-
-  // useEffect(() => {
-  //   // if (bounds) {
-  //   const getEvents = async () => {
-  //     // setIsLoadingEvents(true);
-  //     // console.log('setIsLoadingEvents(true);');
-  //     const blLat = bounds[1];
-  //     const trLat = bounds[3];
-  //     const blLong = bounds[0];
-  //     const trLong = bounds[2];
-
-  //     const types = categoryCheck.map((tipo, index) => {
-  //       if (tipo) {
-  //         return index;
-  //       } else {
-  //         return 1000;
-  //       }
-  //     });
-
-  //     const filterParams = {
-  //       firstDate,
-  //       lastDate,
-  //       trLat,
-  //       trLong,
-  //       blLat,
-  //       blLong,
-  //       types,
-  //     };
-
-  //     // console.log(filterParams);
-  //     try {
-  //       const retrievedEvents = await axios.post(
-  //         `${process.env.NEXT_PUBLIC_API}/events/`,
-  //         filterParams
-  //       );
-  //       setEvents(retrievedEvents.data);
-  //       setEventData(retrievedEvents.data);
-  //       // setIsLoadingEvents(false);
-  //       // console.log('setIsLoadingEvents(false);');
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getEvents();
-  // }, [firstDate, lastDate, bounds, categoryCheck]);
 
   const handleOnClick = () => {
     console.log('click');

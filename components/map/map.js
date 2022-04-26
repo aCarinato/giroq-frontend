@@ -10,30 +10,6 @@ import Popup from './popup';
 const Marker = ({ children }) => children;
 
 function Map(props) {
-  // const {
-  //   mapHeight,
-  //   setMapHeight,
-  //   // points,
-  //   // clusters,
-  //   // supercluster,
-  //   coordinates,
-  //   // setCoordinates,
-  //   setBounds,
-  //   // zoom,
-  //   // setZoom,
-  //   categoryCheck,
-  //   currentPlaceId,
-  //   setCurrentPlaceId,
-  //   setCurrentMarker,
-  //   mobileView,
-  //   // currentMarker,
-  //   events,
-  //   bounds,
-  //   isOpen,
-  //   setIsOpen,
-  //   isDateDropdownOpen,
-  //   setIsDateDropdownOpen,
-  // } = props;
   const {
     mapHeight,
     setMapHeight,
@@ -92,7 +68,6 @@ function Map(props) {
   const handleOnClick = () => {
     // console.log('click');
     setCurrentPlaceId(null);
-    setMapHeight('50vh');
 
     if (isOpen) {
       setIsOpen(false);
@@ -124,10 +99,7 @@ function Map(props) {
           ]);
         }}
         onClick={handleOnClick}
-        // onClick={() => setCurrentPlaceId(null)}
         // onDrag={() => setCurrentPlaceId(null)}
-        // onClick={() => setTestId(null)}
-        // onDrag={() => setTestId(null)}
       >
         {clusters &&
           clusters.length > 0 &&
