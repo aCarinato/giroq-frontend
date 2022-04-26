@@ -1,33 +1,50 @@
 import GoogleMapReact from 'google-map-react';
 import useSupercluster from 'use-supercluster';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import CustomMarker from './custom-marker';
 
 import classes from './map.module.css';
 
 import Popup from './popup';
 
-import { useMainContext } from '../../context/Context';
-
 const Marker = ({ children }) => children;
 
 function Map(props) {
+  // const {
+  //   mapHeight,
+  //   setMapHeight,
+  //   // points,
+  //   // clusters,
+  //   // supercluster,
+  //   coordinates,
+  //   // setCoordinates,
+  //   setBounds,
+  //   // zoom,
+  //   // setZoom,
+  //   categoryCheck,
+  //   currentPlaceId,
+  //   setCurrentPlaceId,
+  //   setCurrentMarker,
+  //   mobileView,
+  //   // currentMarker,
+  //   events,
+  //   bounds,
+  //   isOpen,
+  //   setIsOpen,
+  //   isDateDropdownOpen,
+  //   setIsDateDropdownOpen,
+  // } = props;
   const {
     mapHeight,
-    // points,
-    // clusters,
-    // supercluster,
-    coordinates,
-    setCoordinates,
+    setMapHeight,
+    center,
     setBounds,
-    zoom,
-    setZoom,
     categoryCheck,
     currentPlaceId,
     setCurrentPlaceId,
     setCurrentMarker,
     mobileView,
-    // currentMarker,
+    currentMarker,
     events,
     bounds,
     isOpen,
@@ -35,13 +52,11 @@ function Map(props) {
     isDateDropdownOpen,
     setIsDateDropdownOpen,
   } = props;
+
   const mapRef = useRef();
+  const [zoom, setZoom] = useState(13);
 
-  const { eventsCtx } = useMainContext();
-
-  // const [testID, setTestId] = useState(null);
-
-  const points = eventsCtx.map((event) => ({
+  const points = events.map((event) => ({
     type: 'Feature',
     properties: {
       cluster: false,
@@ -77,6 +92,7 @@ function Map(props) {
   const handleOnClick = () => {
     // console.log('click');
     setCurrentPlaceId(null);
+    setMapHeight('50vh');
 
     if (isOpen) {
       setIsOpen(false);
@@ -90,34 +106,16 @@ function Map(props) {
   return (
     <div className={classes.colMap} style={{ height: mapHeight }}>
       <GoogleMapReact
-        // defaultCenter={coordinates}
-        // center={coordinates}
-        // defaultZoom={zoom}
-        // zoom={zoom}
-        // margin={[0, 0, 0, 0]}
-        // options={''}
-        // yesIWantToUseGoogleMapApiInternals
-        // onGoogleApiLoaded={({ map }) => {
-        //   mapRef.current = map;
-        // }}
-        // onChange={(e) => {
-        //   setCoordinates({ lat: e.center.lat, lng: e.center.lng });
-        //   setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
-        //   setZoom(e.zoom);
-        // }}
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_API_KEY }}
-        // defaultCenter={{ lat: 45.76, lng: 11.73 }}
-        center={coordinates}
-        // defaultZoom={10}
+        center={center}
         zoom={zoom}
-        margin={[0, 0, 0, 0]}
+        // margin={[0, 0, 0, 0]}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map }) => {
           mapRef.current = map;
         }}
         onChange={({ zoom, bounds }) => {
           setZoom(zoom);
-          console.log(zoom);
           setBounds([
             bounds.nw.lng,
             bounds.se.lat,
@@ -164,9 +162,7 @@ function Map(props) {
                   </div>
                 </Marker>
               );
-            }
-
-            if (cluster.properties.eventId === currentPlaceId) {
+            } else if (cluster.properties.eventId === currentPlaceId) {
               return (
                 <Popup
                   key={cluster.properties.eventId}
@@ -188,9 +184,7 @@ function Map(props) {
                   // setTestId={setTestId}
                 />
               );
-            }
-
-            if (categoryCheck[+cluster.properties.eventCategory[0]]) {
+            } else {
               return (
                 <Marker
                   key={`${cluster.properties.eventId}`}
@@ -214,5 +208,12 @@ function Map(props) {
     </div>
   );
 }
+
+Map.defaultProps = {
+  center: {
+    lat: 45.76,
+    lng: 11.73,
+  },
+};
 
 export default Map;

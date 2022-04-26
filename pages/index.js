@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-// import useSupercluster from 'use-supercluster';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import LoaderMap from '../components/map/loader-map';
+import LoaderList from '../components/events/loader-list';
 import Map from '../components/map/map';
 import EventsFilter from '../components/events/events-filter';
 import EventsFilterMobile from '../components/events/events-filter-mobile';
@@ -11,26 +12,24 @@ import SwitchTab from '../components/mobile/switch-tab';
 import { useMainContext } from '../context/Context';
 
 const Home = () => {
-  const { setEventsCtx } = useMainContext();
+  const { setEventData } = useMainContext();
+
+  // LOADING DATA
+  const [loading, setLoading] = useState(false);
+
+  //Event to render
+  const [renderEvent, setRenderEvent] = useState([]);
 
   // MAP
-  const [bounds, setBounds] = useState([
-    10.603240966796875, 44.636030435233096, 12.396759033203125,
-    46.15377768145734,
-  ]);
-  const [zoom, setZoom] = useState(13);
-  const [coordinates, setCoordinates] = useState({
-    lat: 45.76,
-    lng: 11.73,
-  });
+  const [bounds, setBounds] = useState(null);
 
   // SELECTION
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
   const [currentMarker, setCurrentMarker] = useState({});
 
   // EVENTS
-  const [isLoadingEvents, setIsLoadingEvents] = useState(true);
-  const [events, setEvents] = useState([]);
+
+  // const [events, setEvents] = useState([]);
 
   // FILTER EVENTS
   const today = new Date();
@@ -73,18 +72,14 @@ const Home = () => {
   ]);
 
   // Dropdown menu
-
   const [isOpen, setIsOpen] = useState(false);
   const [isDateDropdownOpen, setIsDateDropdownOpen] = useState(false);
 
   // MOBILE
-  const [mapHeight, setMapHeight] = useState(null);
+  const [mapHeight, setMapHeight] = useState('');
   const [mobileView, setMobileView] = useState(null);
   const [showList, setShowList] = useState(false);
   const [mapSelected, setMapSelected] = useState(true);
-
-  // const mapHeightRef = useRef(mapHeight);
-  // mapHeightRef.current = mapHeight;
 
   const calcHeight = () => {
     if (window.innerWidth <= 820) {
@@ -105,127 +100,121 @@ const Home = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     // console.log('This will run after 1 second!');
-  //     setMapHeight('50vh');
-  //   }, 2000);
-  //   return () => clearTimeout(timer);
-  // }, []);
-
   useEffect(() => {
     setMapHeight(calcHeight());
     // setTimeout(calcHeightAgain(), 2000);
   }, [calcHeight]);
 
-  // useEffect(() => {
-  //   const getEvents = async () => {
-  //     try {
-  //       const retrievedEvents = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_API}/events/`
-  //       );
-  //       setEvents(retrievedEvents.data);
-  //       console.log('RECUPERATI EVENTI DAL GET');
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getEvents();
-  //   console.log('Questi sono gli eventi trovati:');
-  //   console.log(events);
-  // }, []);
-
+  // RETRIEVE ALL EVENTS ON APP LOADING
   useEffect(() => {
-    // if (bounds) {
-    const getEvents = async () => {
-      // setIsLoadingEvents(true);
-      // console.log('setIsLoadingEvents(true);');
-      const blLat = bounds[1];
-      const trLat = bounds[3];
-      const blLong = bounds[0];
-      const trLong = bounds[2];
-
-      const types = categoryCheck.map((tipo, index) => {
-        if (tipo) {
-          return index;
-        } else {
-          return 1000;
-        }
-      });
-
-      const filterParams = {
-        firstDate,
-        lastDate,
-        trLat,
-        trLong,
-        blLat,
-        blLong,
-        types,
-      };
-
-      // console.log(filterParams);
-      try {
-        const retrievedEvents = await axios.post(
-          `${process.env.NEXT_PUBLIC_API}/events/`,
-          filterParams
-        );
-        setEvents(retrievedEvents.data);
-        setEventsCtx(retrievedEvents.data);
-        // setIsLoadingEvents(false);
-        // console.log('setIsLoadingEvents(false);');
-      } catch (err) {
-        console.log(err);
-      }
+    const fetchEvents = async () => {
+      setLoading(true);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/events/`);
+      //Extract the Array contained in the 'events' field.
+      const events = res.data;
+      console.log(events);
+      //Event data is globally accessible. But 'renderEvent' is just to render out the MAP with the markers
+      setEventData(events);
+      setRenderEvent(events);
+      setLoading(false);
     };
-    getEvents();
+    fetchEvents();
+  }, []);
+
+  // RETRIEVE EVENTS ON FILTERING
+  useEffect(() => {
+    if (bounds !== null) {
+      const getEvents = async () => {
+        // console.log('RCCOTI I BOUNDSSSS');
+        // console.log(bounds);
+        //     const blLat = bounds.sw.lat;
+        //     const trLat = bounds.ne.lat;
+        //     const blLong = bounds.sw.lng;
+        //     const trLong = bounds.ne.lng;
+
+        const tlLng = bounds[0]; // bounds.nw.lng;
+        const brLat = bounds[1]; //bounds.se.lat;
+        const brLng = bounds[2]; //bounds.se.lng;
+        const tlLat = bounds[3]; //bounds.nw.lat;
+
+        const types = categoryCheck.map((tipo, index) => {
+          if (tipo) {
+            return index;
+          } else {
+            return 1000;
+          }
+        });
+
+        const filterParams = {
+          firstDate,
+          lastDate,
+          tlLng,
+          brLat,
+          brLng,
+          tlLat,
+          types,
+        };
+
+        // console.log(filterParams);
+        try {
+          const retrievedEvents = await axios.post(
+            `${process.env.NEXT_PUBLIC_API}/events/`,
+            filterParams
+          );
+          //   console.log(retrievedEvents);
+          setRenderEvent(retrievedEvents.data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getEvents();
+    }
   }, [firstDate, lastDate, bounds, categoryCheck]);
 
   // useEffect(() => {
   //   // if (bounds) {
   //   const getEvents = async () => {
-  //     // console.log('THESE ARE THE BOUNDS FROM useEffect:');
-  //     // console.log(bounds);
   //     // setIsLoadingEvents(true);
+  //     // console.log('setIsLoadingEvents(true);');
   //     const blLat = bounds[1];
   //     const trLat = bounds[3];
   //     const blLong = bounds[0];
   //     const trLong = bounds[2];
 
-  //     // const types = categoryCheck.map((tipo, index) => {
-  //     //   if (tipo) {
-  //     //     return index + 1;
-  //     //   } else {
-  //     //     return 0;
-  //     //   }
-  //     // });
+  //     const types = categoryCheck.map((tipo, index) => {
+  //       if (tipo) {
+  //         return index;
+  //       } else {
+  //         return 1000;
+  //       }
+  //     });
 
+  //     const filterParams = {
+  //       firstDate,
+  //       lastDate,
+  //       trLat,
+  //       trLong,
+  //       blLat,
+  //       blLong,
+  //       types,
+  //     };
+
+  //     // console.log(filterParams);
   //     try {
-  //       const retrievedEvents = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_API}/events/${firstDate}/${lastDate}/${trLat}/${trLong}/${blLat}/${blLong}`
+  //       const retrievedEvents = await axios.post(
+  //         `${process.env.NEXT_PUBLIC_API}/events/`,
+  //         filterParams
   //       );
   //       setEvents(retrievedEvents.data);
+  //       setEventData(retrievedEvents.data);
+  //       // setIsLoadingEvents(false);
+  //       // console.log('setIsLoadingEvents(false);');
   //     } catch (err) {
   //       console.log(err);
   //     }
   //   };
   //   getEvents();
-  // }, [firstDate, lastDate, bounds]);
-
-  // useEffect(() => {
-  //   if (currentMarker !== {}) {
-  //     const currMarkerLat = currentMarker.latitude;
-  //     const currMarkerLng = currentMarker.longitude;
-  //     // mapRef.current.panTo({ lat, lng });
-  //     // mapRef.current.setZoom(15);
-
-  //     setCoordinates({ lat: currMarkerLat, lng: currMarkerLng });
-  //     // console.log(currentMarker);
-  //     // console.log(coordinates);
-  //     // setZoom(12);
-  //     // setCurrentMarker(null);
-  //   }
-  //   setCoordinates({ lat: 45.4, lng: 11.5 });
-  // }, [currentMarker]);
+  // }, [firstDate, lastDate, bounds, categoryCheck]);
 
   const handleOnClick = () => {
     console.log('click');
@@ -282,44 +271,44 @@ const Home = () => {
         />
       )}
       <div className="appRow">
-        {showList && (
-          <EventList
-            events={events}
-            categoryCheck={categoryCheck}
-            setCurrentMarker={setCurrentMarker}
-            mobileView={mobileView}
-            setMapSelected={setMapSelected}
-            setCoordinates={setCoordinates}
-            setCurrentPlaceId={setCurrentPlaceId}
-            coordinates={coordinates}
-          />
-        )}
+        {showList &&
+          (!loading ? (
+            <EventList
+              events={renderEvent}
+              categoryCheck={categoryCheck}
+              setCurrentMarker={setCurrentMarker}
+              mobileView={mobileView}
+              setMapSelected={setMapSelected}
+              // setCoordinates={setCoordinates}
+              setCurrentPlaceId={setCurrentPlaceId}
+              // coordinates={coordinates}
+            />
+          ) : (
+            <LoaderList />
+          ))}
 
-        {mapSelected && (
-          <Map
-            mapHeight={mapHeight}
-            // points={points}
-            // clusters={clusters}
-            // supercluster={supercluster}
-            coordinates={coordinates}
-            setCoordinates={setCoordinates}
-            setBounds={setBounds}
-            zoom={zoom}
-            setZoom={setZoom}
-            categoryCheck={categoryCheck}
-            currentPlaceId={currentPlaceId}
-            setCurrentPlaceId={setCurrentPlaceId}
-            setCurrentMarker={setCurrentMarker}
-            mobileView={mobileView}
-            currentMarker={currentMarker}
-            events={events}
-            bounds={bounds}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            isDateDropdownOpen={isDateDropdownOpen}
-            setIsDateDropdownOpen={setIsDateDropdownOpen}
-          />
-        )}
+        {mapSelected &&
+          (!loading ? (
+            <Map
+              mapHeight={mapHeight}
+              setMapHeight={setMapHeight}
+              setBounds={setBounds}
+              categoryCheck={categoryCheck}
+              currentPlaceId={currentPlaceId}
+              setCurrentPlaceId={setCurrentPlaceId}
+              setCurrentMarker={setCurrentMarker}
+              mobileView={mobileView}
+              currentMarker={currentMarker}
+              events={renderEvent}
+              bounds={bounds}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              isDateDropdownOpen={isDateDropdownOpen}
+              setIsDateDropdownOpen={setIsDateDropdownOpen}
+            />
+          ) : (
+            <LoaderMap />
+          ))}
       </div>
     </div>
   );
