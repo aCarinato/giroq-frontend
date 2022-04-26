@@ -1,26 +1,26 @@
 import GoogleMapReact from 'google-map-react';
 import useSupercluster from 'use-supercluster';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import CustomMarker from './custom-marker';
 
 import classes from './map.module.css';
 
 import Popup from './popup';
 
-const Marker = ({ children }) => children;
+import { useMainContext } from '../../context/Context';
+
+// const Marker = ({ children }) => children;
 
 function Map(props) {
   const {
     mapHeight,
-    setMapHeight,
-    center,
     setBounds,
-    categoryCheck,
+    // categoryCheck,
     currentPlaceId,
     setCurrentPlaceId,
-    setCurrentMarker,
+    // setCurrentMarker,
     mobileView,
-    currentMarker,
+    // currentMarker,
     events,
     bounds,
     isOpen,
@@ -29,8 +29,11 @@ function Map(props) {
     setIsDateDropdownOpen,
   } = props;
 
+  const { mapCenter, zoom, setZoom } = useMainContext();
+
   const mapRef = useRef();
-  const [zoom, setZoom] = useState(13);
+
+  // const [zoom, setZoom] = useState(13);
 
   const points = events.map((event) => ({
     type: 'Feature',
@@ -66,7 +69,7 @@ function Map(props) {
   // console.log(clusters);
 
   const handleOnClick = () => {
-    // console.log('click');
+    // console.log('click on map');
     setCurrentPlaceId(null);
 
     if (isOpen) {
@@ -82,7 +85,8 @@ function Map(props) {
     <div className={classes.colMap} style={{ height: mapHeight }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_API_KEY }}
-        center={center}
+        // center={center}
+        center={mapCenter}
         zoom={zoom}
         // margin={[0, 0, 0, 0]}
         yesIWantToUseGoogleMapApiInternals
@@ -99,7 +103,7 @@ function Map(props) {
           ]);
         }}
         onClick={handleOnClick}
-        // onDrag={() => setCurrentPlaceId(null)}
+        onDrag={handleOnClick}
       >
         {clusters &&
           clusters.length > 0 &&
@@ -113,31 +117,34 @@ function Map(props) {
               //Can't exceed 40 px
               let addSize = Math.min(changeSize * 10, 40);
               return (
-                <Marker
+                // <Marker
+                //   key={`cluster-${cluster.id}`}
+                //   lat={latitude}
+                //   lng={longitude}
+                // >
+                <div
                   key={`cluster-${cluster.id}`}
                   lat={latitude}
                   lng={longitude}
+                  className="cluster-marker"
+                  style={{
+                    // width: `${10 + (pointCount / points.length) * 20}px`,
+                    // height: `${10 + (pointCount / points.length) * 20}px`,
+                    width: `${addSize + changeSize}px`,
+                    height: `${addSize + changeSize}px`,
+                  }}
+                  onClick={() => {
+                    const expansionZoom = Math.min(
+                      supercluster.getClusterExpansionZoom(cluster.id),
+                      20
+                    );
+                    mapRef.current.setZoom(expansionZoom);
+                    mapRef.current.panTo({ lat: latitude, lng: longitude });
+                  }}
                 >
-                  <div
-                    className="cluster-marker"
-                    style={{
-                      // width: `${10 + (pointCount / points.length) * 20}px`,
-                      // height: `${10 + (pointCount / points.length) * 20}px`,
-                      width: `${addSize + changeSize}px`,
-                      height: `${addSize + changeSize}px`,
-                    }}
-                    onClick={() => {
-                      const expansionZoom = Math.min(
-                        supercluster.getClusterExpansionZoom(cluster.id),
-                        20
-                      );
-                      mapRef.current.setZoom(expansionZoom);
-                      mapRef.current.panTo({ lat: latitude, lng: longitude });
-                    }}
-                  >
-                    {pointCount}
-                  </div>
-                </Marker>
+                  {pointCount}
+                </div>
+                // </Marker>
               );
             } else if (cluster.properties.eventId === currentPlaceId) {
               return (
@@ -163,21 +170,23 @@ function Map(props) {
               );
             } else {
               return (
-                <Marker
-                  key={`${cluster.properties.eventId}`}
+                // <Marker
+                //   key={`${cluster.properties.eventId}`}
+                //   lat={latitude}
+                //   lng={longitude}
+                // >
+                <CustomMarker
+                  key={cluster.properties.eventId}
                   lat={latitude}
                   lng={longitude}
-                >
-                  <CustomMarker
-                    key={cluster.properties.eventId}
-                    id={cluster.properties.eventId}
-                    title={cluster.properties.eventTitle}
-                    setCurrentPlaceId={setCurrentPlaceId}
-                    mobileView={mobileView}
-                    category={cluster.properties.eventCategory[0]}
-                    zoom={zoom}
-                  />
-                </Marker>
+                  id={cluster.properties.eventId}
+                  title={cluster.properties.eventTitle}
+                  setCurrentPlaceId={setCurrentPlaceId}
+                  mobileView={mobileView}
+                  category={cluster.properties.eventCategory[0]}
+                  zoom={zoom}
+                />
+                // </Marker>
               );
             }
           })}
@@ -186,11 +195,11 @@ function Map(props) {
   );
 }
 
-Map.defaultProps = {
-  center: {
-    lat: 45.76,
-    lng: 11.73,
-  },
-};
+// Map.defaultProps = {
+//   center: {
+//     lat: 45.76,
+//     lng: 11.73,
+//   },
+// };
 
 export default Map;

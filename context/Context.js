@@ -10,6 +10,10 @@ export function ContextProvider({ children }) {
   // All data from API
   const [eventData, setEventData] = useState([]);
 
+  // MAP reference object
+  const [mapCenter, setMapCenter] = useState({ lat: 45.76, lng: 11.73 });
+  const [zoom, setZoom] = useState(13);
+
   // SELECTION
   const [currentPlaceIdCtx, setCurrentPlaceIdCtx] = useState(null);
 
@@ -19,6 +23,10 @@ export function ContextProvider({ children }) {
   const value = {
     eventData,
     setEventData,
+    mapCenter,
+    setMapCenter,
+    zoom,
+    setZoom,
     currentPlaceIdCtx,
     setCurrentPlaceIdCtx,
     reRenderMarkers,
