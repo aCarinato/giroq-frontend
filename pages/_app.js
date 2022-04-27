@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
     <ContextProvider>
       <Layout>
         <Head>
-          <title>giroq</title>
+          <title>giroQ</title>
           <meta
             name="description"
             content="eventi, attivitá e cose da fare vicino a te"

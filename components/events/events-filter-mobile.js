@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react';
+import Link from 'next/link';
 import classes from './events-filter-mobile.module.css';
 
 import DropdownCategories from './dropdown-categories';
@@ -32,6 +33,13 @@ function EventsFilterMobile(props) {
     true,
     true,
   ]);
+
+  const today = new Date();
+  const todayISO = today.toISOString().split('T')[0];
+
+  const dateInterval = today.setDate(today.getDate() + 1);
+  const minLastDate = new Date(dateInterval);
+  const minLastDateISO = minLastDate.toISOString().split('T')[0];
 
   // const handleClick = () => {
   //   setFilterVisible(!filterVisible);
@@ -120,152 +128,154 @@ function EventsFilterMobile(props) {
         <div className={classes.containerFilterSwitch}>
           Seleziona eventi, attivitá e cose da fare vicino a te
         </div>
-        <div className={classes.containerFilterSwitchArrow}>
+        {/* <div className={classes.containerFilterSwitchArrow}>
           {mainSwitchOpen ? (
             <div className={classes.filterSwitchArrowUp}></div>
           ) : (
             <div className={classes.filterSwitchArrowDown}></div>
           )}
+        </div> */}
+      </div>
+      {/* {mainSwitchOpen && (
+        <> */}
+      <div className={classes.mainContainerLargeColumn}>
+        <div className={classes.largeColumnColumn}>
+          <div className={classes.drowdownWrapper}>
+            <div
+              className={classes.categoriesDropdown}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <div className={classes.containerOpener}>
+                <div className={classes.containerOpenerLabel}>CATEGORIE</div>
+                <div className={classes.containerOpenerArrow}>
+                  {isOpen ? (
+                    <div className={classes.arrowUp}></div>
+                  ) : (
+                    <div className={classes.arrowDown}></div>
+                  )}
+                </div>
+              </div>
+            </div>
+            {isOpen && (
+              <div className={classes.categoriesList}>
+                {CATEGORIES.map((category) => (
+                  <Fragment key={category.id}>
+                    <div
+                      key={category.id}
+                      className={classes.container}
+                      onClick={() => selectCategoryGroup(category.id)}
+                    >
+                      <div className={classes.checkmarkOuter}>
+                        {+category.id < 5 &&
+                          (categoryGroupCheck[0] ? (
+                            <div className={classes.checkmarkSelectedRed}></div>
+                          ) : (
+                            <div className={classes.checkmark}></div>
+                          ))}
+                        {+category.id > 4 &&
+                          +category.id < 13 &&
+                          (categoryGroupCheck[1] ? (
+                            <div
+                              className={classes.checkmarkSelectedBlue}
+                            ></div>
+                          ) : (
+                            <div className={classes.checkmark}></div>
+                          ))}
+                        {+category.id > 12 &&
+                          +category.id < 20 &&
+                          (categoryGroupCheck[2] ? (
+                            <div
+                              className={classes.checkmarkSelectedYellow}
+                            ></div>
+                          ) : (
+                            <div className={classes.checkmark}></div>
+                          ))}
+                        {+category.id > 19 &&
+                          (categoryGroupCheck[3] ? (
+                            <div
+                              className={classes.checkmarkSelectedCyan}
+                            ></div>
+                          ) : (
+                            <div className={classes.checkmark}></div>
+                          ))}
+                      </div>
+                      <div className={classes.label}>
+                        {category.mainCategory}
+                      </div>
+                    </div>
+
+                    {category.subCategories.map((cat, index) => (
+                      <DropdownCategories
+                        key={index + Number(category.id)}
+                        id={category.id}
+                        index={index}
+                        cat={cat}
+                        categoryCheck={categoryCheck}
+                        setCategoryCheck={setCategoryCheck}
+                        categoryGroupCheck={categoryGroupCheck}
+                        setCategoryGroupCheck={setCategoryGroupCheck}
+                      />
+                    ))}
+                  </Fragment>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+        <div className={classes.largeColumnColumn}>
+          <div className={classes.drowdownWrapper}>
+            <div
+              className={classes.categoriesDropdown}
+              onClick={() => setIsDateDropdownOpen(!isDateDropdownOpen)}
+            >
+              <div className={classes.containerOpener}>
+                <div className={classes.containerOpenerLabel}>DATE</div>
+                <div className={classes.containerOpenerArrow}>
+                  {isDateDropdownOpen ? (
+                    <div className={classes.arrowUp}></div>
+                  ) : (
+                    <div className={classes.arrowDown}></div>
+                  )}
+                </div>
+              </div>
+            </div>
+            {isDateDropdownOpen && (
+              <div className={classes.datesList}>
+                <form>
+                  <label htmlFor="first-date">Seleziona data inizio:</label>
+                  <input
+                    type="date"
+                    id="first-date"
+                    min={todayISO}
+                    name="first-date"
+                    value={firstDate}
+                    onChange={(e) => setFirstDate(e.target.value)}
+                  />
+                  <label htmlFor="last-date">Seleziona data fine:</label>
+                  <input
+                    type="date"
+                    id="last-date"
+                    min={minLastDateISO}
+                    name="last-date"
+                    value={lastDate}
+                    onChange={(e) => setLastDate(e.target.value)}
+                  />
+                </form>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-      {mainSwitchOpen && (
-        <>
-          <div className={classes.mainContainerLargeColumn}>
-            <div className={classes.largeColumnColumn}>
-              <div className={classes.drowdownWrapper}>
-                <div
-                  className={classes.categoriesDropdown}
-                  onClick={() => setIsOpen(!isOpen)}
-                >
-                  <div className={classes.containerOpener}>
-                    <div className={classes.containerOpenerLabel}>
-                      CATEGORIE
-                    </div>
-                    <div className={classes.containerOpenerArrow}>
-                      {isOpen ? (
-                        <div className={classes.arrowUp}></div>
-                      ) : (
-                        <div className={classes.arrowDown}></div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                {isOpen && (
-                  <div className={classes.categoriesList}>
-                    {CATEGORIES.map((category) => (
-                      <Fragment key={category.id}>
-                        <div
-                          key={category.id}
-                          className={classes.container}
-                          onClick={() => selectCategoryGroup(category.id)}
-                        >
-                          <div className={classes.checkmarkOuter}>
-                            {+category.id < 5 &&
-                              (categoryGroupCheck[0] ? (
-                                <div
-                                  className={classes.checkmarkSelectedRed}
-                                ></div>
-                              ) : (
-                                <div className={classes.checkmark}></div>
-                              ))}
-                            {+category.id > 4 &&
-                              +category.id < 13 &&
-                              (categoryGroupCheck[1] ? (
-                                <div
-                                  className={classes.checkmarkSelectedBlue}
-                                ></div>
-                              ) : (
-                                <div className={classes.checkmark}></div>
-                              ))}
-                            {+category.id > 12 &&
-                              +category.id < 20 &&
-                              (categoryGroupCheck[2] ? (
-                                <div
-                                  className={classes.checkmarkSelectedYellow}
-                                ></div>
-                              ) : (
-                                <div className={classes.checkmark}></div>
-                              ))}
-                            {+category.id > 19 &&
-                              (categoryGroupCheck[3] ? (
-                                <div
-                                  className={classes.checkmarkSelectedCyan}
-                                ></div>
-                              ) : (
-                                <div className={classes.checkmark}></div>
-                              ))}
-                          </div>
-                          <div className={classes.label}>
-                            {category.mainCategory}
-                          </div>
-                        </div>
-
-                        {category.subCategories.map((cat, index) => (
-                          <DropdownCategories
-                            key={index + Number(category.id)}
-                            id={category.id}
-                            index={index}
-                            cat={cat}
-                            categoryCheck={categoryCheck}
-                            setCategoryCheck={setCategoryCheck}
-                            categoryGroupCheck={categoryGroupCheck}
-                            setCategoryGroupCheck={setCategoryGroupCheck}
-                          />
-                        ))}
-                      </Fragment>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-            <div className={classes.largeColumnColumn}>
-              <div className={classes.drowdownWrapper}>
-                <div
-                  className={classes.categoriesDropdown}
-                  onClick={() => setIsDateDropdownOpen(!isDateDropdownOpen)}
-                >
-                  <div className={classes.containerOpener}>
-                    <div className={classes.containerOpenerLabel}>DATE</div>
-                    <div className={classes.containerOpenerArrow}>
-                      {isDateDropdownOpen ? (
-                        <div className={classes.arrowUp}></div>
-                      ) : (
-                        <div className={classes.arrowDown}></div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                {isDateDropdownOpen && (
-                  <div className={classes.datesList}>
-                    <form>
-                      <label htmlFor="first-date">Seleziona data inizio:</label>
-                      <input
-                        type="date"
-                        id="first-date"
-                        // min={minDate}
-                        name="first-date"
-                        value={firstDate}
-                        onChange={(e) => setFirstDate(e.target.value)}
-                      />
-                      <label htmlFor="last-date">Seleziona data fine:</label>
-                      <input
-                        type="date"
-                        id="last-date"
-                        name="last-date"
-                        value={lastDate}
-                        onChange={(e) => setLastDate(e.target.value)}
-                      />
-                    </form>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className={classes.largeColumnBtn}>
-            <div className={classes.btnPost}>Posta Evento o Attività</div>
-          </div>
-        </>
-      )}
+      <div className={classes.largeColumnBtn}>
+        {/* <div className={classes.btnPost}>Posta Evento o Attività</div> */}
+        <Link href="/posta-evento">
+          <a target="_blank">
+            <button className={classes.btnPost}>Posta il tuo Evento</button>
+          </a>
+        </Link>
+      </div>
+      {/* </>
+      )} */}
     </div>
   );
 }

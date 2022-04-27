@@ -17,12 +17,10 @@
 .containerFilterSwitchArrow {
   position: relative;
   width: 4rem;
-  /* padding: 5%; */
 }
 
 .filterSwitchArrowUp {
   position: relative;
-  /* margin: 2rem; */
   width: 0;
   height: 0;
   border-left: 0.75rem solid transparent;
@@ -33,7 +31,6 @@
 
 .filterSwitchArrowDown {
   position: relative;
-  /* margin: 2rem; */
   width: 0;
   height: 0;
   border-left: 0.75rem solid transparent;
@@ -274,6 +271,7 @@
 
   .largeColumnBtn {
     padding: 0.5rem;
+    text-align: center;
   }
 
   .btnPost {
@@ -286,5 +284,6 @@
     text-align: center;
     word-wrap: break-word;
     font-weight: bolder;
+    border: 0px;
   }
 }

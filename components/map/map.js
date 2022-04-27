@@ -82,7 +82,11 @@ function Map(props) {
   };
 
   return (
-    <div className={classes.colMap} style={{ height: mapHeight }}>
+    <div
+      className={classes.colMap}
+      style={{ height: mapHeight }}
+      onClick={handleOnClick}
+    >
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_API_KEY }}
         // center={center}
@@ -102,7 +106,7 @@ function Map(props) {
             bounds.nw.lat,
           ]);
         }}
-        onClick={handleOnClick}
+        // onClick={handleOnClick}
         onDrag={handleOnClick}
       >
         {clusters &&

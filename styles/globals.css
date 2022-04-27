@@ -10,11 +10,6 @@ body {
   font-family: 'Comfortaa', cursive;
 }
 
-.mainAppContainer {
-  /* display: flex; */
-  /* padding: 2rem; */
-}
-
 .appRow {
   display: flex;
   width: 100%;
@@ -30,4 +25,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.posta-evento {
+  padding: 2rem;
+}
+
+.posta-evento h6 {
+  font-size: 1.5rem;
+  font-weight: bolds;
+  /* text-decoration: underline; */
+}
+
+.span-bold {
+  font-weight: bold;
 }

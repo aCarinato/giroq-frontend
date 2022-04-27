@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react';
+import Link from 'next/link';
 import classes from './events-filter.module.css';
 
 import DropdownCategories from './dropdown-categories';
@@ -254,8 +255,13 @@ function EventsFilter(props) {
             )}
           </div>
         </div>
-        <div className={classes.largeColumnColumn} onClick={handleOnClick}>
-          <div className={classes.btnPost}>Posta Evento o Attività</div>
+
+        <div className={classes.largeColumnColumn}>
+          <Link href="/posta-evento">
+            <a target="_blank">
+              <button className={classes.btnPost}>Posta il tuo Evento</button>
+            </a>
+          </Link>
         </div>
       </div>
     </div>

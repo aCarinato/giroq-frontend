@@ -85,9 +85,10 @@ function EventItem(props) {
     if (mobileView === true) {
       setMapSelected(true);
       // setSelectedEvent([latitude, longitude]);
-      setMapCenter({ lat: latitude, lng: longitude });
-      setZoom(15);
     }
+
+    setMapCenter({ lat: latitude, lng: longitude });
+    setZoom(15);
   };
 
   return (
@@ -147,14 +148,14 @@ function EventItem(props) {
         <div className={classes.dateContainer}>{city}</div>
       </div>
 
-      {mobileView && (
-        <div className={classes.addressOnMap} onClick={() => handleOnClick()}>
-          <div className={classes.iconContainer}>
-            <Icon icon="emojione-monotone:world-map" />
-          </div>
-          <div className={classes.dateContainer}>Mostra nella mappa</div>
+      {/* {mobileView && ( */}
+      <div className={classes.addressOnMap} onClick={() => handleOnClick()}>
+        <div className={classes.iconContainer}>
+          <Icon icon="emojione-monotone:world-map" />
         </div>
-      )}
+        <div className={classes.dateContainer}>Mostra nella mappa</div>
+      </div>
+      {/* )} */}
 
       <div className={classes.categoryContainer}>
         {colorCategory && colorCategory === 1 && (

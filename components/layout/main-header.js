@@ -8,7 +8,7 @@ function MainHeader() {
       <div className={classes.logo}>
         <Link href="/">
           {/* <Image src="/BRAND.png" alt="giroq" width="64" height="64" /> */}
-          <img src="/BRAND-giroQ.svg" alt="giroq" />
+          <img src="/BRAND-giroQ.svg" alt="giroQ" />
         </Link>
       </div>
       {/* <div className={classes.slogan}>

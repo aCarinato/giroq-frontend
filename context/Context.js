@@ -14,9 +14,6 @@ export function ContextProvider({ children }) {
   const [mapCenter, setMapCenter] = useState({ lat: 45.76, lng: 11.73 });
   const [zoom, setZoom] = useState(10);
 
-  // SELECTION
-  const [currentPlaceIdCtx, setCurrentPlaceIdCtx] = useState(null);
-
   //Need to re-render markers because user has changed filer option
   const [reRenderMarkers, setReRenderMarkers] = useState(null);
 
@@ -27,8 +24,6 @@ export function ContextProvider({ children }) {
     setMapCenter,
     zoom,
     setZoom,
-    currentPlaceIdCtx,
-    setCurrentPlaceIdCtx,
     reRenderMarkers,
     setReRenderMarkers,
   };

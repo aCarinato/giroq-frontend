@@ -8,11 +8,6 @@ function EventDetailPage() {
   const [event, setEvent] = useState({});
   const router = useRouter();
 
-  // console.log(`Router.pathname: ${router.pathname}`);
-  // console.log(`Router.query: ${router.query}`);
-  // console.log(router.pathname);
-  // console.log(router.query.eventId);
-
   const eventId = router.query.eventId;
   // console.log('event id is:' + eventId);
 
@@ -22,8 +17,6 @@ function EventDetailPage() {
         `${process.env.NEXT_PUBLIC_API}/event/${eventId}`
       );
       setEvent(data);
-      console.log('evento ritrovato:');
-      console.log(event);
     } catch (err) {
       console.log(err);
     }
