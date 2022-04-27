@@ -9,9 +9,10 @@ function PostaEvento() {
         iniziative a tutti coloro che sono alla ricerca di nuove idee per
         trascorrere il proprio tempo libero fuori da casa. <br></br> Vogliamo
         offrire al pubblico la possibilità di trovare tutto quello che cerca,
-        dai piccoli eventi pubblici e privati alle grandi manifestazioni.{' '}
-        <br></br> Al tempo stesso vogliamo creare uno spazio in cui gli
-        organizzatori di tali attività possano avere la{' '}
+        dai piccoli eventi pubblici e privati alle grandi manifestazioni. E
+        rendere questa esperienza di ricerca piacevole. <br></br> Al tempo
+        stesso vogliamo creare uno spazio in cui gli organizzatori di tali
+        attività possano avere la{' '}
         <span className="span-bold">visibilità che meritano</span>.
       </p>
       <br></br>
@@ -22,8 +23,9 @@ function PostaEvento() {
         Ne siamo lieti e ti diamo il benvenuto! <br></br>
         Segnalando il tuo evento parteciperai attivamente alla creazione di una
         piattaforma sempre più ricca e completa.<br></br> Molto spesso le
-        ricerche online risultano frammentate, tediose e poco efficaci: anche
-        grazie a te si potrà finalmente renderle fuori moda 🎩
+        tradizionali ricerche online di 'cose da fare' risultano frammentate,
+        tediose e poco efficaci: anche grazie a te si potrà finalmente renderle
+        fuori moda 🎩
       </p>
       <br></br>
       <h5>Come promuoverti?</h5>
@@ -47,14 +49,17 @@ function PostaEvento() {
         Una volta ricevuta la tua email ti notificheremo{' '}
         <span className="span-bold">entro 5 giorni</span> la conferma della
         pubblicazione del tuo evento o eventuale richiesta di ulteriori
-        informazioni.
+        informazioni. Il tutto gratuitamente.
+        {/* <br></br> E nel caso te lo stessi chiedendo - si, il
+        servizio è <span className="span-bold">gratuito</span>. */}
       </p>
       <p>
         Ovviamente ci puoi contattare per{' '}
         <span className="span-bold">qualsiasi altra domanda</span> riguardo alla
         promozione della tua attività su giroQ. O per suggerimenti su come
-        potremo migliorare il servizio. Saremo felici di poterti fornire tutte
-        le informazioni a te necessarie o di conoscere le tue aspettative.
+        potremo migliorare il servizio. <br></br>Saremo felici di poterti
+        fornire tutte le informazioni necessarie o di conoscere le tue
+        aspettative.
       </p>
       <br></br>
       <p>Ti aspettiamo!</p>
