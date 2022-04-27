@@ -17,6 +17,9 @@ export function ContextProvider({ children }) {
   //Need to re-render markers because user has changed filer option
   const [reRenderMarkers, setReRenderMarkers] = useState(null);
 
+  // Selected event
+  const [selectedEvent, setSetSelectedEvent] = useState(null);
+
   const value = {
     eventData,
     setEventData,
@@ -26,6 +29,8 @@ export function ContextProvider({ children }) {
     setZoom,
     reRenderMarkers,
     setReRenderMarkers,
+    selectedEvent,
+    setSetSelectedEvent,
   };
 
   return <mainContext.Provider value={value}>{children}</mainContext.Provider>;

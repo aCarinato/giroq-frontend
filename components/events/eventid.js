@@ -42,14 +42,25 @@ function EventId(props) {
 
       <div className={classes.question}>Quando</div>
       {endDate ? (
-        <p
-          className={classes.answer}
-        >{`dal ${humanReadableStartDate} al ${humanReadableEndDate}, dalle ${start} alle ${end}`}</p>
-      ) : (
+        end ? (
+          <p
+            className={classes.answer}
+          >{`dal ${humanReadableStartDate} al ${humanReadableEndDate}, dalle ${start} alle ${end}`}</p>
+        ) : (
+          <p
+            className={classes.answer}
+          >{`dal ${humanReadableStartDate} al ${humanReadableEndDate}, alle ${start}`}</p>
+        )
+      ) : end ? (
         <p
           className={classes.answer}
         >{`il ${humanReadableStartDate}, dalle ${start} alle ${end}`}</p>
+      ) : (
+        <p
+          className={classes.answer}
+        >{`il ${humanReadableStartDate}, alle ${start}`}</p>
       )}
+
       <div className={classes.question}>Descrizione</div>
       <p className={classes.answer}>{description} </p>
       <div className={classes.question}>Scopri di più</div>

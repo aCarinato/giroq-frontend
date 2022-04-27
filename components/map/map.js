@@ -18,9 +18,7 @@ function Map(props) {
     // categoryCheck,
     currentPlaceId,
     setCurrentPlaceId,
-    // setCurrentMarker,
     mobileView,
-    // currentMarker,
     events,
     bounds,
     isOpen,
@@ -29,7 +27,7 @@ function Map(props) {
     setIsDateDropdownOpen,
   } = props;
 
-  const { mapCenter, zoom, setZoom } = useMainContext();
+  const { mapCenter, zoom, setZoom, selectedEvent } = useMainContext();
 
   const mapRef = useRef();
 
@@ -85,7 +83,7 @@ function Map(props) {
     <div
       className={classes.colMap}
       style={{ height: mapHeight }}
-      onClick={handleOnClick}
+      // onClick={handleOnClick}
     >
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_API_KEY }}
@@ -106,7 +104,7 @@ function Map(props) {
             bounds.nw.lat,
           ]);
         }}
-        // onClick={handleOnClick}
+        onClick={handleOnClick}
         onDrag={handleOnClick}
       >
         {clusters &&
@@ -185,6 +183,7 @@ function Map(props) {
                   lng={longitude}
                   id={cluster.properties.eventId}
                   title={cluster.properties.eventTitle}
+                  currentPlaceId={currentPlaceId}
                   setCurrentPlaceId={setCurrentPlaceId}
                   mobileView={mobileView}
                   category={cluster.properties.eventCategory[0]}

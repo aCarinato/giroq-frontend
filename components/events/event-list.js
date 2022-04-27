@@ -36,16 +36,13 @@ function EventList(props) {
               <EventItem
                 key={event._id}
                 id={event._id}
-                // bounds={bounds}
                 title={event.title}
-                // location={event.location}
                 category={+event.category[0]}
                 startDate={event.startDate}
                 endDate={event.endDate}
                 startTime={event.startTime}
                 endTime={event.endTime}
                 image={event.image}
-                setCurrentMarker={setCurrentMarker}
                 city={event.city}
                 longitude={event.long}
                 latitude={event.lat}
@@ -54,7 +51,6 @@ function EventList(props) {
                 setCoordinates={setCoordinates}
                 coordinates={coordinates}
                 setCurrentPlaceId={setCurrentPlaceId}
-                // setZoom={setZoom}
               />
             )}
           </Fragment>

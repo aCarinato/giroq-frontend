@@ -25,7 +25,6 @@ const Home = () => {
 
   // SELECTION
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
-  const [currentMarker, setCurrentMarker] = useState({});
 
   // EVENTS
 
@@ -102,7 +101,6 @@ const Home = () => {
 
   useEffect(() => {
     setMapHeight(calcHeight());
-    // setTimeout(calcHeightAgain(), 2000);
   }, [calcHeight]);
 
   // RETRIEVE ALL EVENTS ON APP LOADING
@@ -224,12 +222,9 @@ const Home = () => {
             <EventList
               events={renderEvent}
               categoryCheck={categoryCheck}
-              setCurrentMarker={setCurrentMarker}
               mobileView={mobileView}
               setMapSelected={setMapSelected}
-              // setCoordinates={setCoordinates}
               setCurrentPlaceId={setCurrentPlaceId}
-              // coordinates={coordinates}
             />
           ) : (
             <LoaderList />
@@ -244,9 +239,7 @@ const Home = () => {
               categoryCheck={categoryCheck}
               currentPlaceId={currentPlaceId}
               setCurrentPlaceId={setCurrentPlaceId}
-              setCurrentMarker={setCurrentMarker}
               mobileView={mobileView}
-              currentMarker={currentMarker}
               events={renderEvent}
               bounds={bounds}
               isOpen={isOpen}

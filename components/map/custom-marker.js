@@ -3,21 +3,23 @@ import { Icon } from '@iconify/react';
 import categoriesList from '../../data/categories-list';
 import { useEffect, useState } from 'react';
 
+import { useMainContext } from '../../context/Context';
+
 function CustomMarker(props) {
   const {
     id,
     title,
     setCurrentPlaceId,
+    currentPlaceId,
     mobileView,
     category,
     zoom,
     // currentPlaceId,
-    // testID,
-    // setTestId,
   } = props;
 
-  // const [colorCategory, setColorCategory] = useState(null);
   const [imgSrc, setImgSrc] = useState('');
+
+  const { selectedEvent, setSetSelectedEvent } = useMainContext();
 
   useEffect(() => {
     if (category < 5) {
@@ -41,61 +43,61 @@ function CustomMarker(props) {
     }
   }, []);
 
-  const iconSet = [
-    'bxs:party',
-    'fluent:food-pizza-20-filled',
-    'mdi:fruit-grapes',
-    'ic:baseline-restaurant',
-    'ant-design:sound-filled',
-    'bi:file-music-fill',
-    'clarity:eye-show-solid',
-    'map:art-gallery',
-    'ic:baseline-theater-comedy',
-    'mdi:human-female-dance',
-    'bxs:camera-movie',
-    'raphael:books',
-    'mdi:school',
-    'iconoir:trekking',
-    'bx:cycling',
-    'ic:baseline-explore',
-    'bx:water',
-    'akar-icons:air',
-    'bxs:medal',
-    'ri:motorbike-fill',
-    'fa-solid:exchange-alt',
-    'bi:currency-exchange',
-    'fa-solid:person-booth',
-    'eva:shopping-cart-fill',
-    'bxs:shopping-bags',
-  ];
+  // const iconSet = [
+  //   'bxs:party',
+  //   'fluent:food-pizza-20-filled',
+  //   'mdi:fruit-grapes',
+  //   'ic:baseline-restaurant',
+  //   'ant-design:sound-filled',
+  //   'bi:file-music-fill',
+  //   'clarity:eye-show-solid',
+  //   'map:art-gallery',
+  //   'ic:baseline-theater-comedy',
+  //   'mdi:human-female-dance',
+  //   'bxs:camera-movie',
+  //   'raphael:books',
+  //   'mdi:school',
+  //   'iconoir:trekking',
+  //   'bx:cycling',
+  //   'ic:baseline-explore',
+  //   'bx:water',
+  //   'akar-icons:air',
+  //   'bxs:medal',
+  //   'ri:motorbike-fill',
+  //   'fa-solid:exchange-alt',
+  //   'bi:currency-exchange',
+  //   'fa-solid:person-booth',
+  //   'eva:shopping-cart-fill',
+  //   'bxs:shopping-bags',
+  // ];
 
-  const colorSet = [
-    '#ff6b6b',
-    '#ff6b6b',
-    '#ff6b6b',
-    '#ff6b6b',
-    '#ff6b6b',
-    '#1a535c',
-    '#1a535c',
-    '#1a535c',
-    '#1a535c',
-    '#1a535c',
-    '#1a535c',
-    '#1a535c',
-    '#1a535c',
-    '#ffd100',
-    '#ffd100',
-    '#ffd100',
-    '#ffd100',
-    '#ffd100',
-    '#ffd100',
-    '#ffd100',
-    '#4ecdc4',
-    '#4ecdc4',
-    '#4ecdc4',
-    '#4ecdc4',
-    '#4ecdc4',
-  ];
+  // const colorSet = [
+  //   '#ff6b6b',
+  //   '#ff6b6b',
+  //   '#ff6b6b',
+  //   '#ff6b6b',
+  //   '#ff6b6b',
+  //   '#1a535c',
+  //   '#1a535c',
+  //   '#1a535c',
+  //   '#1a535c',
+  //   '#1a535c',
+  //   '#1a535c',
+  //   '#1a535c',
+  //   '#1a535c',
+  //   '#ffd100',
+  //   '#ffd100',
+  //   '#ffd100',
+  //   '#ffd100',
+  //   '#ffd100',
+  //   '#ffd100',
+  //   '#ffd100',
+  //   '#4ecdc4',
+  //   '#4ecdc4',
+  //   '#4ecdc4',
+  //   '#4ecdc4',
+  //   '#4ecdc4',
+  // ];
 
   // const iconClassName = `classes.markerIcon${String(category)}`;
 
@@ -115,7 +117,12 @@ function CustomMarker(props) {
   const handleClick = (id) => {
     if (mobileView === true) {
       setCurrentPlaceId(id);
-      // setTestId(id);
+      // console.log('clicked on marker');
+      // console.log(id);
+      // console.log(currentPlaceId);
+
+      setSetSelectedEvent(id);
+      // console.log(selectedEvent);
     }
   };
   return (
