@@ -23,7 +23,7 @@ function CustomMarker(props) {
 
   useEffect(() => {
     if (category < 5) {
-      setImgSrc('/markers/icon-red.svg');
+      setImgSrc(`/markers/icon-${category}.svg`);
     }
 
     if (category > 4 && category < 13) {
