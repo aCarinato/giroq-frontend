@@ -139,6 +139,14 @@ function EventItem(props) {
             >{`${startTime}-${endTime}`}</div>
           </div>
         )}
+        {startTime && !endTime && (
+          <div className={classes.twoFlexItem}>
+            <div className={classes.iconContainer}>
+              <Icon icon="akar-icons:clock" />
+            </div>
+            <div className={classes.dateContainer}>{`${startTime}`}</div>
+          </div>
+        )}
       </div>
 
       <div className={classes.city}>

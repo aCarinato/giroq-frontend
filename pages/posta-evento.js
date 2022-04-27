@@ -23,9 +23,9 @@ function PostaEvento() {
         Ne siamo lieti e ti diamo il benvenuto! <br></br>
         Segnalando il tuo evento parteciperai attivamente alla creazione di una
         piattaforma sempre più ricca e completa.<br></br> Molto spesso le
-        tradizionali ricerche online di 'cose da fare' risultano frammentate,
-        tediose e poco efficaci: anche grazie a te si potrà finalmente renderle
-        fuori moda 🎩
+        tradizionali ricerche online di 'cose da fare' risultano tediose, poco
+        efficaci e forniscono informazioni frammentate: anche grazie a te si
+        potrà finalmente renderle fuori moda 🎩
       </p>
       <br></br>
       <h5>Come promuoverti?</h5>
@@ -46,20 +46,18 @@ function PostaEvento() {
       </ul>
       <br></br>
       <p>
-        Una volta ricevuta la tua email ti notificheremo{' '}
-        <span className="span-bold">entro 5 giorni</span> la conferma della
-        pubblicazione del tuo evento o eventuale richiesta di ulteriori
-        informazioni. Il tutto gratuitamente.
+        Una volta ricevuta la tua email ti daremo conferma{' '}
+        <span className="span-bold">entro 5 giorni</span> della pubblicazione
+        del tuo evento o eventuale richiesta di ulteriori informazioni. Il tutto
+        gratuitamente.
         {/* <br></br> E nel caso te lo stessi chiedendo - si, il
         servizio è <span className="span-bold">gratuito</span>. */}
       </p>
       <p>
-        Ovviamente ci puoi contattare per{' '}
+        Ovviamente ci potrai contattare per{' '}
         <span className="span-bold">qualsiasi altra domanda</span> riguardo alla
-        promozione della tua attività su giroQ. O per suggerimenti su come
-        potremo migliorare il servizio. <br></br>Saremo felici di poterti
-        fornire tutte le informazioni necessarie o di conoscere le tue
-        aspettative.
+        promozione della tua attività su giroQ o per suggerimenti su come
+        potremo migliorare il servizio.
       </p>
       <br></br>
       <p>Ti aspettiamo!</p>

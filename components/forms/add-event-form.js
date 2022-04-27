@@ -122,7 +122,7 @@ function AddEventForm(props) {
         </div>
         <div className={classes.formRow}>
           <label className={classes.formCol} htmlFor="event-endDate">
-            Data fine
+            Data fine <span style={{ color: 'red' }}>(facoltativo)</span>
           </label>
           <input
             className={classes.formInput}
@@ -145,7 +145,9 @@ function AddEventForm(props) {
           />
         </div>
         <div className={classes.formRow}>
-          <label className={classes.formCol}>Orario fine</label>
+          <label className={classes.formCol}>
+            Orario fine <span style={{ color: 'red' }}>(facoltativo)</span>
+          </label>
           <input
             className={classes.formInput}
             type="time"

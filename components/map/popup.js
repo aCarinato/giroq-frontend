@@ -75,11 +75,11 @@ function Popup(props) {
       lat={lat}
       lng={lng}
     >
-      {mobileView && (
+      {/* {mobileView && (
         <div className={classes.close} onClick={() => setCurrentPlaceId(null)}>
           CHIUDI X
         </div>
-      )}
+      )} */}
       <div className={classes.imgContainer}>
         <Link href={exploreLink}>
           <a target="_blank">
@@ -124,6 +124,14 @@ function Popup(props) {
             <div
               className={classes.dateContainer}
             >{`${startTime}-${endTime}`}</div>
+          </div>
+        )}
+        {startTime && !endTime && (
+          <div className={classes.twoFlexItem}>
+            <div className={classes.iconContainer}>
+              <Icon icon="akar-icons:clock" />
+            </div>
+            <div className={classes.dateContainer}>{`${startTime}`}</div>
           </div>
         )}
       </div>
