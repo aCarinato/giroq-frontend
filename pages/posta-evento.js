@@ -17,8 +17,9 @@ function PostaEvento() {
       <br></br>
       <h5>Una bella novità per noi</h5>
       <p>
-        Se sei in questa pagina può darsi tu abbia interesse a promuovere un tuo
-        evento o attività. Ne siamo lieti e ti diamo il benvenuto! <br></br>
+        Se sei in questa pagina può darsi tu abbia interesse a{' '}
+        <span className="span-bold">promuovere un tuo evento o attività</span>.
+        Ne siamo lieti e ti diamo il benvenuto! <br></br>
         Segnalando il tuo evento parteciperai attivamente alla creazione di una
         piattaforma sempre più ricca e completa.<br></br> Molto spesso le
         ricerche online risultano frammentate, tediose e poco efficaci: anche
@@ -53,7 +54,7 @@ function PostaEvento() {
         <span className="span-bold">qualsiasi altra domanda</span> riguardo alla
         promozione della tua attività su giroQ. O per suggerimenti su come
         potremo migliorare il servizio. Saremo felici di poterti fornire tutte
-        le informazioni a te necessarie o di conoscere il tuo punto di vista.
+        le informazioni a te necessarie o di conoscere le tue aspettative.
       </p>
       <br></br>
       <p>Ti aspettiamo!</p>
