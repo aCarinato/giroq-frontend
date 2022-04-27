@@ -11,7 +11,8 @@ function PostaEvento() {
         offrire al pubblico la possibilità di trovare tutto quello che cerca,
         dai piccoli eventi pubblici e privati alle grandi manifestazioni.{' '}
         <br></br> Al tempo stesso vogliamo creare uno spazio in cui gli
-        organizzatori di tali attività possano avere la visibilità che meritano.
+        organizzatori di tali attività possano avere la{' '}
+        <span className="span-bold">visibilità che meritano</span>.
       </p>
       <br></br>
       <h5>Una bella novità per noi</h5>
@@ -23,6 +24,7 @@ function PostaEvento() {
         ricerche online risultano frammentate, tediose e poco efficaci: anche
         grazie a te si potrà finalmente renderle fuori moda 🎩
       </p>
+      <br></br>
       <h5>Come promuoverti?</h5>
       <p>Per segnalare il tuo evento / attività scrivi all'indirizzo:</p>
       <h6>giroq.eventi@gmail.com</h6>
@@ -46,6 +48,16 @@ function PostaEvento() {
         pubblicazione del tuo evento o eventuale richiesta di ulteriori
         informazioni.
       </p>
+      <p>
+        Ovviamente ci puoi contattare per{' '}
+        <span className="span-bold">qualsiasi altra domanda</span> riguardo alla
+        promozione della tua attività su giroQ. O per suggerimenti su come
+        potremo migliorare il servizio. Saremo felici di poterti fornire tutte
+        le informazioni a te necessarie o di conoscere il tuo punto di vista.
+      </p>
+      <br></br>
+      <p>Ti aspettiamo!</p>
+      <p>Il Team di giroQ</p>
     </div>
   );
 }

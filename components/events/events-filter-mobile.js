@@ -105,25 +105,24 @@ function EventsFilterMobile(props) {
     }
   };
 
-  // const handleOnClick = () => {
-  //   // console.log('click');
+  const handleOnClick = () => {
+    // console.log('click');
 
-  //   setMainSwitchOpen(!mainSwitchOpen)
+    if (isOpen) {
+      setIsOpen(false);
+    }
 
-  //   if (isOpen) {
-  //     setIsOpen(false);
-  //   }
-
-  //   if (isDateDropdownOpen) {
-  //     setIsDateDropdownOpen(!isDateDropdownOpen);
-  //   }
-  // };
+    if (isDateDropdownOpen) {
+      setIsDateDropdownOpen(!isDateDropdownOpen);
+    }
+  };
 
   return (
     <div className={classes.mainContainer}>
       <div
         className={classes.mainContainerSmallColumn}
-        onClick={() => setMainSwitchOpen(!mainSwitchOpen)}
+        // onClick={() => setMainSwitchOpen(!mainSwitchOpen)}
+        onClick={handleOnClick}
       >
         <div className={classes.containerFilterSwitch}>
           Seleziona eventi, attivitá e cose da fare vicino a te
