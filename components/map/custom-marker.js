@@ -1,6 +1,6 @@
 import classes from './custom-marker.module.css';
-import { Icon } from '@iconify/react';
-import categoriesList from '../../data/categories-list';
+// import { Icon } from '@iconify/react';
+// import categoriesList from '../../data/categories-list';
 import { useEffect, useState } from 'react';
 
 import { useMainContext } from '../../context/Context';
@@ -104,13 +104,6 @@ function CustomMarker(props) {
   const handleOnEnter = (id) => {
     if (!mobileView === true) {
       setCurrentPlaceId(id);
-      // console.log(category);
-      // console.log(iconClassName);
-      // setTestId(id);
-      // console.log(`From the custom marker, is this mobile view? ${mobileView}`);
-      // console.log(`From the custom marker, id? ${id}`);
-      // console.log(`From the custom marker, currentPlaceId? ${currentPlaceId}`);
-      // console.log(`From the custom marker, testID? ${testID}`);
     }
   };
 

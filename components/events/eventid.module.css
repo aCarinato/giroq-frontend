@@ -31,6 +31,10 @@
 }
 
 @media (max-width: 768px) {
+  .answer {
+    width: 80%;
+  }
+
   .image {
     width: 75%;
   }
