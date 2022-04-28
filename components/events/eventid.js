@@ -36,9 +36,9 @@ function EventId(props) {
     <div className={classes.pageWrapper}>
       <h2 className={classes.title}>{title}</h2>
       <div className={classes.question}>Organizzatore</div>
-      <p className={classes.answer}>{organiser}</p>
+      <div className={classes.answer}>{organiser}</div>
       <div className={classes.question}>Dove</div>
-      <p className={classes.answer}>{`${street}, ${city}`}</p>
+      <div className={classes.answer}>{`${street}, ${city}`}</div>
 
       <div className={classes.question}>Quando</div>
       {endDate ? (
@@ -66,7 +66,8 @@ function EventId(props) {
       <div className={classes.question}>Scopri di più</div>
       <p className={classes.answer}>
         {' '}
-        <a href={link}>{link}</a>
+        {/* <a href={link}>{link}</a> */}
+        <a href={link}>Link al sito</a>
       </p>
       <div>
         {image && <img className={classes.image} src={image.url} alt={title} />}

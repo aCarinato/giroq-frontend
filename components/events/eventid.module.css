@@ -2,6 +2,7 @@
   text-align: center;
   padding: 1rem;
   color: var(--main-neutral-color);
+  /* width: 100%; */
 }
 
 .title {
@@ -18,6 +19,10 @@
   font-size: 1.25rem;
 }
 
+.answer a {
+  width: 50%;
+}
+
 .image {
   margin-top: 1.5rem;
   width: 30%;
@@ -32,8 +37,12 @@
 
 @media (max-width: 768px) {
   .answer {
-    width: 80%;
+    width: 100%;
   }
+
+  /* .answer a {
+    width: 50%;
+  } */
 
   .image {
     width: 75%;
