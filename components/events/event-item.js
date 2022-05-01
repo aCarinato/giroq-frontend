@@ -88,7 +88,7 @@ function EventItem(props) {
     }
 
     setMapCenter({ lat: latitude, lng: longitude });
-    setZoom(15);
+    setZoom(18);
   };
 
   return (
