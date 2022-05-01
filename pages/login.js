@@ -28,7 +28,7 @@ function Login() {
 
       localStorage.setItem('user', res.data.username);
       setIsLoggedIn(true);
-      router.push('/nuovo');
+      router.push('/admin/nuovo');
     } catch (err) {
       console.log(err);
     }
@@ -52,28 +52,42 @@ function Login() {
     // <AuthContext.Provider value={{ isLoggedIn: isLoggedIn }}>
     <div>
       {!isLoggedIn && (
-        <form onSubmit={handleLogin}>
-          <label htmlFor="password">Password</label>
-          <input
-            type="text"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button className="btn btn-outline-primary col-12" type="submit">
-            Log in
-          </button>
-        </form>
+        <div className="row">
+          {' '}
+          <div className="col-lg-4"></div>
+          <div className="col-lg-4">
+            <form onSubmit={handleLogin}>
+              <label htmlFor="password">Password</label>
+              <input
+                type="text"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button className="btn btn-outline-primary col-12" type="submit">
+                Log in
+              </button>
+            </form>
+          </div>
+          <div className="col-lg-4"></div>
+        </div>
       )}
       {isLoggedIn && (
-        <button
-          className="btn btn-outline-primary col-12"
-          type="submit"
-          onClick={handleLogout}
-        >
-          Log out
-        </button>
+        <div className="row">
+          {' '}
+          <div className="col-lg-4"></div>
+          <div className="col-lg-4">
+            <button
+              className="btn btn-outline-primary col-12"
+              type="submit"
+              onClick={handleLogout}
+            >
+              Log out
+            </button>
+          </div>
+          <div className="col-lg-4"></div>
+        </div>
       )}
     </div>
     // </AuthContext.Provider>

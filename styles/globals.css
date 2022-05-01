@@ -40,3 +40,21 @@ body {
 .span-bold {
   font-weight: bold;
 }
+
+/* ADMIN DASHBOARD */
+.headers {
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.headers-hover {
+  text-align: center;
+  padding-top: 2rem;
+  cursor: pointer;
+}
+
+.headers-hover:hover {
+  color: red;
+  font-weight: bold;
+  /* width: fit-content; */
+}

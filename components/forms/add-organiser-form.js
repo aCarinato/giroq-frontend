@@ -13,7 +13,7 @@ function AddOrganiserForm(props) {
     <form onSubmit={formSubmit}>
       <div className={classes.formRow}>
         <label className={classes.formCol} htmlFor="organiser">
-          Organizzatore
+          Nome Organizzatore
         </label>
         <input type="text" id="organiser" name="organiser" ref={nameInputRef} />
       </div>

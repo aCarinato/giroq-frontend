@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, Fragment } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import AddEventForm from '../components/forms/add-event-form';
-import categoriesList from '../data/categories-list';
+import AddEventForm from '../../components/forms/add-event-form';
+import categoriesList from '../../data/categories-list';
+import AddOrganiserForm from '../../components/forms/add-organiser-form';
 
 function AddEvent() {
   const today = new Date().toISOString().split('T')[0];
@@ -32,7 +33,52 @@ function AddEvent() {
 
   // const [imageUpload, setImageUpload] = useState({});
 
+  const [isOrgOpen, setIsOrgOpen] = useState(false);
+
   const router = useRouter();
+
+  // // // // // // //
+  // ORGANISER REFS //
+  // // // // // // //
+
+  const nameInputRef = useRef();
+  // const addressInputRef = useRef();
+  const streetInputRef = useRef();
+  const cityInputRef = useRef();
+  const longInputRef = useRef();
+  const latInputRef = useRef();
+
+  const formSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const newOrganiser = {
+        name: nameInputRef.current.value,
+        // address: addressInputRef.current.value,
+        street: streetInputRef.current.value,
+        city: cityInputRef.current.value,
+        long: longInputRef.current.value,
+        lat: latInputRef.current.value,
+      };
+      // console.log(newOrganiser);
+
+      const res = axios.post(
+        `${process.env.NEXT_PUBLIC_API}/auth/organiser`,
+        newOrganiser
+      );
+
+      // console.log(res);
+
+      //   Reset values after submit
+      nameInputRef.current.value = '';
+      // addressInputRef.current.value = '';
+      streetInputRef.current.value = '';
+      cityInputRef.current.value = '';
+      longInputRef.current.value = null;
+      latInputRef.current.value = null;
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // const uploadImg = async (e) => {
   //   const file = e.target.files[0];
@@ -133,7 +179,38 @@ function AddEvent() {
 
   return (
     <div>
-      <h3>Aggiungi nuovo evento</h3>
+      <div className="row">
+        <div className="col-lg-4"></div>
+        <div className="col-lg-4" onClick={() => setIsOrgOpen(!isOrgOpen)}>
+          <h4 className="headers-hover">Aggiungi Organizzatore</h4>
+        </div>
+        <div className="col-lg-4"></div>
+      </div>
+      {isOrgOpen && (
+        <Fragment>
+          <div className="row">
+            {isLoggedIn && (
+              <>
+                <div className="col-lg-4"></div>
+                <div className="col-lg-4">
+                  <AddOrganiserForm
+                    nameInputRef={nameInputRef}
+                    // addressInputRef={addressInputRef}
+                    streetInputRef={streetInputRef}
+                    cityInputRef={cityInputRef}
+                    latInputRef={latInputRef}
+                    longInputRef={longInputRef}
+                    formSubmit={formSubmit}
+                  />
+                </div>
+                <div className="col-lg-4"></div>
+              </>
+            )}
+          </div>
+        </Fragment>
+      )}
+
+      <h4 className="headers">Aggiungi nuovo evento</h4>
       <div className="row">
         {isLoggedIn && (
           <>
@@ -177,14 +254,14 @@ function AddEvent() {
           </button>
         </>
       )}
-      {isLoggedIn && (
+      {/* {isLoggedIn && (
         <>
           <h3>Aggiungere nuovo Organizzatore</h3>
           <button>
             <Link href="/organizzatore">Nuovo Organizzatore</Link>
           </button>
         </>
-      )}
+      )} */}
     </div>
   );
 }
