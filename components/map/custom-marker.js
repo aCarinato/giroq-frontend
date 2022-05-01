@@ -28,7 +28,7 @@ function CustomMarker(props) {
 
     if (category > 4 && category < 13) {
       // setColorCategory(2);
-      setImgSrc('/markers/icon-blue.svg');
+      setImgSrc(`/markers/icon-${category}.svg`);
     }
 
     if (category > 12 && category < 20) {

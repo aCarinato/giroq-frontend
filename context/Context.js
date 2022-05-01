@@ -11,8 +11,8 @@ export function ContextProvider({ children }) {
   const [eventData, setEventData] = useState([]);
 
   // MAP reference object
-  const [mapCenter, setMapCenter] = useState({ lat: 45.76, lng: 11.73 });
-  const [zoom, setZoom] = useState(10);
+  const [mapCenter, setMapCenter] = useState({ lat: 45.671519, lng: 11.68314 });
+  const [zoom, setZoom] = useState(11);
 
   //Need to re-render markers because user has changed filer option
   const [reRenderMarkers, setReRenderMarkers] = useState(null);
