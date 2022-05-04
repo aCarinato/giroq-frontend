@@ -124,9 +124,11 @@ function EventsFilter(props) {
   return (
     <div className={classes.mainContainer}>
       <div className={classes.mainContainerSmallColumn} onClick={handleOnClick}>
-        <div className={classes.filterSwitch}>
+        {/* <div className={classes.filterSwitch}> */}
+        <h1 className={classes.filterSwitch}>
           Seleziona eventi, attivitá e cose da fare vicino a te
-        </div>
+        </h1>
+        {/* </div> */}
       </div>
       <div className={classes.mainContainerLargeColumn}>
         <div className={classes.largeColumnColumn}>

@@ -66,6 +66,8 @@ function AddEvent() {
         newOrganiser
       );
 
+      window.location.reload();
+
       // console.log(res);
 
       //   Reset values after submit

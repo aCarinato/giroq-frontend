@@ -7,7 +7,7 @@ const CATEGORIES = [
     subCategories: [
       'Feste e sagre',
       'Street food',
-      'Vino',
+      'Enogastronomia',
       'Ristoranti',
       'Disco & Club',
     ],

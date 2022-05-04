@@ -19,11 +19,12 @@ function EventList(props) {
   } = props;
 
   // const { eventsCtx } = useMainContext();
+  const { eventData } = useMainContext();
 
   return (
     <div className={classes.colList}>
       {/* <div className={classes.list}> */}
-      {events.length === 0 && (
+      {eventData.length === 0 && (
         <div>
           IN CARICAMENTO. NESSUN EVENTO PER LE DATE E LUOGHI SELEZIONATI
         </div>
@@ -55,7 +56,6 @@ function EventList(props) {
             )}
           </Fragment>
         ))}
-      {/* </div> */}
     </div>
   );
 }
