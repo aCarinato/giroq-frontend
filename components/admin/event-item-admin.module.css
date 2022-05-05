@@ -1,0 +1,71 @@
+.item {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px 12px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: white;
+  margin: 1rem;
+  width: 100%;
+  padding: 1rem;
+}
+
+.btnCol {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btnEdit {
+  background-color: green;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 0px;
+}
+
+.btnEdit a {
+  text-decoration: none;
+  color: white;
+}
+
+.btnEdit:hover {
+  background-color: white;
+  border: 1px solid green;
+  color: green;
+}
+
+.btnEdit:hover > a {
+  background-color: white;
+  color: green;
+}
+
+.btnDelete {
+  background-color: red;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 0px;
+}
+
+.btnDelete a {
+  text-decoration: none;
+  color: white;
+}
+
+.btnDelete:hover {
+  background-color: white;
+  border: 1px solid red;
+  color: red;
+}
+
+.btnDelete:hover > a {
+  background-color: white;
+  color: red;
+}
+
+@media (min-width: 768px) {
+  .item {
+    /* flex-direction: row; */
+    /* width: 46%; */
+    margin: 0.5rem;
+    /* height: 15rem; */
+  }
+}

@@ -3,7 +3,7 @@
 const categoriesList = [
   'Feste e sagre',
   'Street food',
-  'Vino',
+  'Enogastronomia',
   'Ristoranti',
   'Disco & Club',
   'Musica',
