@@ -79,14 +79,21 @@ function AddEventForm(props) {
           <label className={classes.formCol} htmlFor="description">
             Descrizione
           </label>
-          <input
+          {/* <input
             className={classes.formInput}
             type="text"
             id="description"
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-          />
+          /> */}
+          <textarea
+            id="description"
+            rows="10"
+            cols="20"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
         </div>
         <div className={classes.formRow}>
           <label className={classes.formCol} htmlFor="type">

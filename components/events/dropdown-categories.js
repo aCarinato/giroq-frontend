@@ -100,14 +100,26 @@ function DropdownCategories(props) {
     <div onClick={handleCategoryChange} className={classes.container} key={idx}>
       {categoryCheck[idx] ? (
         <div className={classes.checkmarkOuter}>
-          {+id < 5 && <div className={classes.checkmarkSelectedRed}></div>}
+          {+id < 5 && (
+            <div className={classes.checkmark}>
+              <div className={classes.checkmarkSelectedRed}></div>
+            </div>
+          )}
           {+id > 4 && +id < 13 && (
-            <div className={classes.checkmarkSelectedBlue}></div>
+            <div className={classes.checkmark}>
+              <div className={classes.checkmarkSelectedBlue}></div>
+            </div>
           )}
           {+id > 12 && +id < 20 && (
-            <div className={classes.checkmarkSelectedYellow}></div>
+            <div className={classes.checkmark}>
+              <div className={classes.checkmarkSelectedYellow}></div>
+            </div>
           )}
-          {+id > 19 && <div className={classes.checkmarkSelectedCyan}></div>}
+          {+id > 19 && (
+            <div className={classes.checkmark}>
+              <div className={classes.checkmarkSelectedCyan}></div>
+            </div>
+          )}
         </div>
       ) : (
         <div className={classes.checkmarkOuter}>

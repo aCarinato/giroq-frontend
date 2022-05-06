@@ -167,33 +167,43 @@ function EventsFilterMobile(props) {
                       <div className={classes.checkmarkOuter}>
                         {+category.id < 5 &&
                           (categoryGroupCheck[0] ? (
-                            <div className={classes.checkmarkSelectedRed}></div>
+                            <div className={classes.checkmark}>
+                              <div
+                                className={classes.checkmarkSelectedRed}
+                              ></div>
+                            </div>
                           ) : (
                             <div className={classes.checkmark}></div>
                           ))}
                         {+category.id > 4 &&
                           +category.id < 13 &&
                           (categoryGroupCheck[1] ? (
-                            <div
-                              className={classes.checkmarkSelectedBlue}
-                            ></div>
+                            <div className={classes.checkmark}>
+                              <div
+                                className={classes.checkmarkSelectedBlue}
+                              ></div>
+                            </div>
                           ) : (
                             <div className={classes.checkmark}></div>
                           ))}
                         {+category.id > 12 &&
                           +category.id < 20 &&
                           (categoryGroupCheck[2] ? (
-                            <div
-                              className={classes.checkmarkSelectedYellow}
-                            ></div>
+                            <div className={classes.checkmark}>
+                              <div
+                                className={classes.checkmarkSelectedYellow}
+                              ></div>
+                            </div>
                           ) : (
                             <div className={classes.checkmark}></div>
                           ))}
                         {+category.id > 19 &&
                           (categoryGroupCheck[3] ? (
-                            <div
-                              className={classes.checkmarkSelectedCyan}
-                            ></div>
+                            <div className={classes.checkmark}>
+                              <div
+                                className={classes.checkmarkSelectedCyan}
+                              ></div>
+                            </div>
                           ) : (
                             <div className={classes.checkmark}></div>
                           ))}

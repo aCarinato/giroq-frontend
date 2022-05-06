@@ -9,7 +9,7 @@
 .filterSwitch {
   text-align: center;
   padding: 0.75rem;
-  color: #616161;
+  color: var(--main-neutral-color);
   font-weight: bold;
 }
 
@@ -28,7 +28,7 @@
   height: 3rem;
   width: 100%;
   background-color: white;
-  border: 1px solid #616161;
+  border: 1px solid var(--main-neutral-color);
   cursor: pointer;
   /* margin: auto; */
 }
@@ -59,7 +59,7 @@
   border-left: 0.75rem solid transparent;
   border-right: 0.75rem solid transparent;
 
-  border-bottom: 0.75rem solid #616161;
+  border-bottom: 0.75rem solid var(--main-neutral-color);
 }
 
 .arrowDown {
@@ -69,7 +69,7 @@
   border-left: 0.75rem solid transparent;
   border-right: 0.75rem solid transparent;
 
-  border-top: 0.75rem solid #616161;
+  border-top: 0.75rem solid var(--main-neutral-color);
 }
 
 /* Dropdown Category Items */
@@ -80,7 +80,7 @@
   height: 40rem;
   padding: 0.5rem;
   background-color: white;
-  border: 1px solid #616161;
+  border: 1px solid var(--main-neutral-color);
   position: absolute;
   overflow-y: scroll;
   z-index: 6;
@@ -105,50 +105,55 @@
 
 .checkmark {
   position: relative;
+  display: flex;
   width: 1rem;
   height: 1rem;
   cursor: pointer;
-  border: 1px solid #616161;
+  border: 0.75px solid var(--main-neutral-color);
   border-radius: 50%;
 }
 
 .checkmarkSelectedRed {
   position: relative;
-  background-color: #ff6b6b;
-  width: 1rem;
-  height: 1rem;
+  margin: auto;
+  background-color: var(--main-red-color);
+  width: 0.75rem;
+  height: 0.75rem;
   cursor: pointer;
-  border: 1px solid #ff6b6b;
+  /* border: 1px solid #ff6b6b; */
   border-radius: 50%;
 }
 
 .checkmarkSelectedBlue {
   position: relative;
-  background-color: #1a535c;
-  width: 1rem;
-  height: 1rem;
+  margin: auto;
+  background-color: var(--main-blue-color);
+  width: 0.75rem;
+  height: 0.75rem;
   cursor: pointer;
-  border: 1px solid #1a535c;
+  /* border: 1px solid #1a535c; */
   border-radius: 50%;
 }
 
 .checkmarkSelectedYellow {
   position: relative;
-  background-color: #ffd100;
-  width: 1rem;
-  height: 1rem;
+  margin: auto;
+  background-color: var(--main-yellow-color);
+  width: 0.75rem;
+  height: 0.75rem;
   cursor: pointer;
-  border: 1px solid #ffd100;
+  /* border: 1px solid #ffd100; */
   border-radius: 50%;
 }
 
 .checkmarkSelectedCyan {
   position: relative;
-  background-color: #4ecdc4;
-  width: 1rem;
-  height: 1rem;
+  margin: auto;
+  background-color: var(--main-cyan-color);
+  width: 0.75rem;
+  height: 0.75rem;
   cursor: pointer;
-  border: 1px solid #4ecdc4;
+  /* border: 1px solid #4ecdc4; */
   border-radius: 50%;
 }
 
@@ -165,7 +170,7 @@
   width: 15rem;
   padding: 0.5rem;
   background-color: white;
-  border: 1px solid #616161;
+  border: 1px solid var(--main-neutral-color);
   position: absolute;
   overflow-y: scroll;
   /* z-index: 4; */
@@ -179,7 +184,7 @@
   height: 3rem;
   line-height: 3rem;
   margin: auto;
-  background-color: #616161;
+  background-color: var(--main-neutral-color);
   color: white;
   cursor: pointer;
   font-weight: bolder;
@@ -189,8 +194,8 @@
 
 .btnPost:hover {
   background-color: white;
-  border: 1px solid #616161;
-  color: #616161;
+  border: 1px solid var(--main-neutral-color);
+  color: var(--main-neutral-color);
 }
 
 .btnPost a {
@@ -255,7 +260,7 @@
     border-left: 0.5rem solid transparent;
     border-right: 0.5rem solid transparent;
 
-    border-bottom: 0.5rem solid #616161;
+    border-bottom: 0.5rem solid var(--main-neutral-color);
   }
 
   .arrowDown {
@@ -264,7 +269,7 @@
     border-left: 0.5rem solid transparent;
     border-right: 0.5rem solid transparent;
 
-    border-top: 0.5rem solid #616161;
+    border-top: 0.5rem solid var(--main-neutral-color);
   }
 
   .btnPost {
@@ -346,7 +351,7 @@
     border-left: 0.5rem solid transparent;
     border-right: 0.5rem solid transparent;
 
-    border-bottom: 0.5rem solid #616161;
+    border-bottom: 0.5rem solid var(--main-neutral-color);
   }
 
   .arrowDown {
@@ -355,7 +360,7 @@
     border-left: 0.5rem solid transparent;
     border-right: 0.5rem solid transparent;
 
-    border-top: 0.5rem solid #616161;
+    border-top: 0.5rem solid var(--main-neutral-color);
   }
 
   .btnPost {
@@ -435,7 +440,7 @@
     border-left: 0.5rem solid transparent;
     border-right: 0.5rem solid transparent;
 
-    border-bottom: 0.5rem solid #616161;
+    border-bottom: 0.5rem solid var(--main-neutral-color);
   }
 
   .arrowDown {
@@ -444,7 +449,7 @@
     border-left: 0.5rem solid transparent;
     border-right: 0.5rem solid transparent;
 
-    border-top: 0.5rem solid #616161;
+    border-top: 0.5rem solid var(--main-neutral-color);
   }
 
   /* Segnala Evento Button */

@@ -59,7 +59,7 @@
 
 .categoryLabelRed {
   padding: 0.3rem 0.4rem;
-  background-color: #ff6b6b;
+  background-color: var(--main-red-color);
   color: white;
   font-weight: bold;
   margin: 0.2rem;
@@ -67,7 +67,7 @@
 
 .categoryLabelBlue {
   padding: 0.3rem 0.4rem;
-  background-color: #1a535c;
+  background-color: var(--main-blue-color);
   color: white;
   font-weight: bold;
   margin: 0.2rem;
@@ -75,7 +75,7 @@
 
 .categoryLabelYellow {
   padding: 0.3rem 0.4rem;
-  background-color: #ffd100;
+  background-color: var(--main-yellow-color);
   color: white;
   font-weight: bold;
   margin: 0.2rem;
@@ -83,7 +83,7 @@
 
 .categoryLabelCyan {
   padding: 0.3rem 0.4rem;
-  background-color: #4ecdc4;
+  background-color: var(--main-cyan-color);
   color: white;
   font-weight: bold;
   margin: 0.2rem;
@@ -102,7 +102,7 @@
 }
 
 .btnDetails {
-  background-color: #616161;
+  background-color: var(--main-neutral-color);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
@@ -116,13 +116,13 @@
 
 .btnDetails:hover {
   background-color: white;
-  border: 1px solid #616161;
-  color: #616161;
+  border: 1px solid var(--main-neutral-color);
+  color: var(--main-neutral-color);
 }
 
 .btnDetails:hover > a {
   background-color: white;
-  color: #616161;
+  color: var(--main-neutral-color);
 }
 
 .foot {
