@@ -1,4 +1,5 @@
 import classes from './dropdown-categories.module.css';
+import * as ga from '../../lib/google-analytics';
 
 function DropdownCategories(props) {
   const {
@@ -36,15 +37,39 @@ function DropdownCategories(props) {
 
       if (id === '0') {
         newCategoryGroupCheck[0] = false;
+        ga.event({
+          action: 'Filter section',
+          category: 'deselected Gusto e Divertimento',
+          label: '',
+          value: '9',
+        });
       }
       if (id === '5') {
         newCategoryGroupCheck[1] = false;
+        ga.event({
+          action: 'Filter section',
+          category: 'deselected Cultura e Spettacolo',
+          label: '',
+          value: '9',
+        });
       }
       if (id === '13') {
         newCategoryGroupCheck[2] = false;
+        ga.event({
+          action: 'Filter section',
+          category: 'deselected Sport e Natura',
+          label: '',
+          value: '9',
+        });
       }
       if (id === '20') {
         newCategoryGroupCheck[3] = false;
+        ga.event({
+          action: 'Filter section',
+          category: 'deselected Expo e Acquisti',
+          label: '',
+          value: '9',
+        });
       }
       setCategoryGroupCheck(newCategoryGroupCheck);
     }

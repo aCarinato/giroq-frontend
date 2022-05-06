@@ -44,6 +44,17 @@ function EventsFilter(props) {
   //   });
   // };
 
+  const clickCategoriesDropdown = () => {
+    setIsOpen(!isOpen);
+
+    ga.event({
+      action: 'Filter section',
+      category: 'click menu categorie',
+      label: 'Selezionare o deselezionare categorie eventi',
+      value: '9',
+    });
+  };
+
   const today = new Date();
   const todayISO = today.toISOString().split('T')[0];
 
@@ -135,7 +146,8 @@ function EventsFilter(props) {
           <div className={classes.drowdownWrapper}>
             <div
               className={classes.categoriesDropdown}
-              onClick={() => setIsOpen(!isOpen)}
+              // onClick={() => setIsOpen(!isOpen)}
+              onClick={clickCategoriesDropdown}
             >
               <div className={classes.containerOpener}>
                 <div className={classes.containerOpenerLabel}>CATEGORIE</div>
