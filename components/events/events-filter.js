@@ -49,8 +49,53 @@ function EventsFilter(props) {
 
     ga.event({
       action: 'Filter section',
-      category: 'click menu categorie',
+      category: 'Click menu categorie',
       label: 'Selezionare o deselezionare categorie eventi',
+      value: '9',
+    });
+  };
+
+  const clickDatesDropdown = () => {
+    setIsDateDropdownOpen(!isDateDropdownOpen);
+
+    ga.event({
+      action: 'Filter section',
+      category: 'Click menu date',
+      label: '',
+      value: '9',
+    });
+  };
+
+  const selectFirstDate = (e) => {
+    setFirstDate(e.target.value);
+
+    ga.event({
+      action: 'Filter section',
+      category: 'Selezione data inizio',
+      label: '',
+      value: '9',
+    });
+  };
+
+  const selectLastDate = (e) => {
+    setLastDate(e.target.value);
+
+    ga.event({
+      action: 'Filter section',
+      category: 'Selezione data fine',
+      label: '',
+      value: '9',
+    });
+  };
+
+  const clickOnPostEvent = () => {
+    window.open('https://www.giroq.com/posta-evento');
+    // console.log('posteoo');
+
+    ga.event({
+      action: 'Filter section',
+      category: 'Click posta il tuo evento',
+      label: '',
       value: '9',
     });
   };
@@ -66,6 +111,7 @@ function EventsFilter(props) {
     const newTypesCheck = [...categoryCheck];
     const newCategoryGroupCheck = [...categoryGroupCheck];
 
+    // GUSTO E DIVERTIMENTO
     if (id === '0') {
       newCategoryGroupCheck[0] = !newCategoryGroupCheck[0];
       setCategoryGroupCheck(newCategoryGroupCheck);
@@ -76,8 +122,28 @@ function EventsFilter(props) {
           setCategoryCheck(newTypesCheck);
         }
       }
+
+      // GA
+      if (newCategoryGroupCheck[0]) {
+        // console.log('Selezionato gusto e divertimento');
+        ga.event({
+          action: 'Filter section',
+          category: 'Selezionato gusto e divertimento',
+          label: '',
+          value: '9',
+        });
+      } else {
+        // console.log('Deselezionato gusto e divertimento');
+        ga.event({
+          action: 'Filter section',
+          category: 'Deselezionato gusto e divertimento',
+          label: '',
+          value: '9',
+        });
+      }
     }
 
+    // CULTURA E SPETTACOLO
     if (id === '5') {
       newCategoryGroupCheck[1] = !newCategoryGroupCheck[1];
       setCategoryGroupCheck(newCategoryGroupCheck);
@@ -87,6 +153,25 @@ function EventsFilter(props) {
           newTypesCheck[idx] = newCategoryGroupCheck[1];
           setCategoryCheck(newTypesCheck);
         }
+      }
+
+      // GA
+      if (newCategoryGroupCheck[1]) {
+        // console.log('Selezionato cultura e spettacolo');
+        ga.event({
+          action: 'Filter section',
+          category: 'Selezionato cultura e spettacolo',
+          label: '',
+          value: '9',
+        });
+      } else {
+        // console.log('Deselezionato cultura e spettacolo');
+        ga.event({
+          action: 'Filter section',
+          category: 'Deselezionato cultura e spettacolo',
+          label: '',
+          value: '9',
+        });
       }
     }
 
@@ -100,6 +185,25 @@ function EventsFilter(props) {
           setCategoryCheck(newTypesCheck);
         }
       }
+
+      // GA
+      if (newCategoryGroupCheck[2]) {
+        // console.log('Selezionato sport e natura');
+        ga.event({
+          action: 'Filter section',
+          category: 'Selezionato sport e natura',
+          label: '',
+          value: '9',
+        });
+      } else {
+        // console.log('Deselezionato sport e natura');
+        ga.event({
+          action: 'Filter section',
+          category: 'Deselezionato sport e natura',
+          label: '',
+          value: '9',
+        });
+      }
     }
 
     if (id === '20') {
@@ -111,6 +215,25 @@ function EventsFilter(props) {
           newTypesCheck[idx] = newCategoryGroupCheck[3];
           setCategoryCheck(newTypesCheck);
         }
+      }
+
+      // GA
+      if (newCategoryGroupCheck[3]) {
+        // console.log('Selezionato expo e acquisti');
+        ga.event({
+          action: 'Filter section',
+          category: 'Selezionato expo e acquisti',
+          label: '',
+          value: '9',
+        });
+      } else {
+        // console.log('Deselezionato expo e acquisti');
+        ga.event({
+          action: 'Filter section',
+          category: 'Deselezionato expo e acquisti',
+          label: '',
+          value: '9',
+        });
       }
     }
   };
@@ -240,7 +363,7 @@ function EventsFilter(props) {
           <div className={classes.drowdownWrapper}>
             <div
               className={classes.categoriesDropdown}
-              onClick={() => setIsDateDropdownOpen(!isDateDropdownOpen)}
+              onClick={clickDatesDropdown}
             >
               <div className={classes.containerOpener}>
                 <div className={classes.containerOpenerLabel}>DATE</div>
@@ -263,7 +386,7 @@ function EventsFilter(props) {
                     min={todayISO}
                     name="first-date"
                     value={firstDate}
-                    onChange={(e) => setFirstDate(e.target.value)}
+                    onChange={selectFirstDate}
                   />
                   <label htmlFor="last-date">Seleziona data fine:</label>
                   <input
@@ -272,7 +395,7 @@ function EventsFilter(props) {
                     min={minLastDateISO}
                     name="last-date"
                     value={lastDate}
-                    onChange={(e) => setLastDate(e.target.value)}
+                    onChange={selectLastDate}
                   />
                 </form>
               </div>
@@ -281,11 +404,13 @@ function EventsFilter(props) {
         </div>
 
         <div className={classes.largeColumnColumn}>
-          <Link href="/posta-evento">
-            <a target="_blank">
-              <button className={classes.btnPost}>Posta il tuo Evento</button>
-            </a>
-          </Link>
+          {/* <Link href="/posta-evento">
+            <a target="_blank"> */}
+          <button className={classes.btnPost} onClick={clickOnPostEvent}>
+            Posta il tuo Evento
+          </button>
+          {/* </a>
+          </Link> */}
         </div>
       </div>
     </div>

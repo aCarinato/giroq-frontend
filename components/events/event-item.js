@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import categoriesList from '../../data/categories-list';
 
+import * as ga from '../../lib/google-analytics';
+
 import classes from './event-item.module.css';
 
 import { Icon } from '@iconify/react';
@@ -29,6 +31,20 @@ function EventItem(props) {
   const { setMapCenter, setZoom } = useMainContext();
 
   const [colorCategory, setColorCategory] = useState(null);
+
+  const handleClickDetails = () => {
+    // window.open(`https://www.giroq.com/posta-evento`);
+    // window.open(exploreLink);
+
+    console.log('clikkeee');
+
+    ga.event({
+      action: 'Lista eventi',
+      category: 'Click bottone dettagli evento',
+      label: '',
+      value: '9',
+    });
+  };
 
   useEffect(() => {
     if (category < 5) {
@@ -89,11 +105,18 @@ function EventItem(props) {
 
     setMapCenter({ lat: latitude, lng: longitude });
     setZoom(18);
+
+    ga.event({
+      action: 'Lista eventi',
+      category: 'Click mostra nella mappa',
+      label: '',
+      value: '9',
+    });
   };
 
   return (
     <div className={classes.item}>
-      <div className={classes.imgContainer}>
+      <div className={classes.imgContainer} onClick={handleClickDetails}>
         <Link href={exploreLink}>
           <a target="_blank">
             {image && (
@@ -191,7 +214,12 @@ function EventItem(props) {
         <div className={classes.actions}>
           <Link href={exploreLink}>
             <a target="_blank">
-              <button className={classes.btnDetails}>Dettagli</button>
+              <button
+                className={classes.btnDetails}
+                onClick={handleClickDetails}
+              >
+                Dettagli
+              </button>
             </a>
           </Link>
         </div>
