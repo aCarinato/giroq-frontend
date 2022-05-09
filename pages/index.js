@@ -41,33 +41,42 @@ const Home = () => {
   const [firstDate, setFirstDate] = useState(todayISO);
   const [lastDate, setLastDate] = useState(oneWeekISO);
 
+  const [allCategoriesCheck, setAllCategoriesCheck] = useState(false);
+
   const [categoryCheck, setCategoryCheck] = useState([
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+
+  const [categoryGroupCheck, setCategoryGroupCheck] = useState([
+    false,
+    false,
+    false,
+    false,
   ]);
 
   // Dropdown menu
@@ -119,10 +128,10 @@ const Home = () => {
     fetchEvents();
   }, []);
 
-  // RETRIEVE EVENTS ON FILTERING
+  // // RETRIEVE EVENTS ON FILTERING
   useEffect(() => {
-    if (bounds !== null) {
-      const getEvents = async () => {
+    const filterCategories = async () => {
+      if (bounds) {
         const tlLng = bounds[0]; // bounds.nw.lng;
         const brLat = bounds[1]; //bounds.se.lat;
         const brLng = bounds[2]; //bounds.se.lng;
@@ -146,34 +155,69 @@ const Home = () => {
           types,
         };
 
-        // console.log(filterParams);
         try {
           const retrievedEvents = await axios.post(
             `${process.env.NEXT_PUBLIC_API}/events/`,
             filterParams
           );
-          //   console.log(retrievedEvents);
           setRenderEvent(retrievedEvents.data);
         } catch (err) {
           console.log(err);
         }
-      };
-      getEvents();
-    }
-  }, [firstDate, lastDate, bounds, categoryCheck]);
+      }
+    };
+    filterCategories();
+  }, [categoryCheck]);
 
-  // const handleOnClick = () => {
-  //   console.log('click');
-  //   setCurrentPlaceId(null);
+  useEffect(() => {
+    const filterDates = async () => {
+      if (bounds) {
+        const tlLng = bounds[0]; // bounds.nw.lng;
+        const brLat = bounds[1]; //bounds.se.lat;
+        const brLng = bounds[2]; //bounds.se.lng;
+        const tlLat = bounds[3]; //bounds.nw.lat;
 
-  //   if (isOpen) {
-  //     setIsOpen(false);
-  //   }
+        const checker = categoryCheck.every((v) => v === false);
 
-  //   if (isDateDropdownOpen) {
-  //     setIsDateDropdownOpen(!isDateDropdownOpen);
-  //   }
-  // };
+        let types = [];
+
+        if (checker) {
+          types = categoryCheck.map((tipo, index) => {
+            return index;
+          });
+        } else {
+          types = categoryCheck.map((tipo, index) => {
+            if (tipo) {
+              return index;
+            } else {
+              return 1000;
+            }
+          });
+        }
+
+        const filterParams = {
+          firstDate,
+          lastDate,
+          tlLng,
+          brLat,
+          brLng,
+          tlLat,
+          types,
+        };
+
+        try {
+          const retrievedEvents = await axios.post(
+            `${process.env.NEXT_PUBLIC_API}/events/`,
+            filterParams
+          );
+          setRenderEvent(retrievedEvents.data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    };
+    filterDates();
+  }, [firstDate, lastDate]);
 
   return (
     // <div className="container-fluid">
@@ -184,6 +228,8 @@ const Home = () => {
           <EventsFilterMobile
             categoryCheck={categoryCheck}
             setCategoryCheck={setCategoryCheck}
+            categoryGroupCheck={categoryGroupCheck}
+            setCategoryGroupCheck={setCategoryGroupCheck}
             firstDate={firstDate}
             setFirstDate={setFirstDate}
             lastDate={lastDate}
@@ -192,11 +238,15 @@ const Home = () => {
             setIsOpen={setIsOpen}
             isDateDropdownOpen={isDateDropdownOpen}
             setIsDateDropdownOpen={setIsDateDropdownOpen}
+            allCategoriesCheck={allCategoriesCheck}
+            setAllCategoriesCheck={setAllCategoriesCheck}
           />
         ) : (
           <EventsFilter
             categoryCheck={categoryCheck}
             setCategoryCheck={setCategoryCheck}
+            categoryGroupCheck={categoryGroupCheck}
+            setCategoryGroupCheck={setCategoryGroupCheck}
             firstDate={firstDate}
             setFirstDate={setFirstDate}
             lastDate={lastDate}
@@ -205,6 +255,8 @@ const Home = () => {
             setIsOpen={setIsOpen}
             isDateDropdownOpen={isDateDropdownOpen}
             setIsDateDropdownOpen={setIsDateDropdownOpen}
+            allCategoriesCheck={allCategoriesCheck}
+            setAllCategoriesCheck={setAllCategoriesCheck}
           />
         )}
       </div>
@@ -221,7 +273,6 @@ const Home = () => {
           (!loading ? (
             <EventList
               events={renderEvent}
-              categoryCheck={categoryCheck}
               mobileView={mobileView}
               setMapSelected={setMapSelected}
               setCurrentPlaceId={setCurrentPlaceId}
@@ -236,7 +287,6 @@ const Home = () => {
               mapHeight={mapHeight}
               setMapHeight={setMapHeight}
               setBounds={setBounds}
-              categoryCheck={categoryCheck}
               currentPlaceId={currentPlaceId}
               setCurrentPlaceId={setCurrentPlaceId}
               mobileView={mobileView}
@@ -254,23 +304,5 @@ const Home = () => {
     </div>
   );
 };
-
-// export async function getServerSideProps(context) {
-//   try {
-//     const retrievedEvents = await axios.get(
-//       `${process.env.NEXT_PUBLIC_API}/events/`
-//     );
-//     // setEvents(retrievedEvents.data);
-//     // console.log(events);
-//   } catch (err) {
-//     console.log(err);
-//   }
-
-//   return {
-//     props: {
-//       allEvents: retrievedEvents,
-//     },
-//   };
-// }
 
 export default Home;

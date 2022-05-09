@@ -8,8 +8,8 @@ function EventList(props) {
   const {
     // bounds,
     events,
-    categoryCheck,
-    setCurrentMarker,
+    // categoryCheck,
+    // setCurrentMarker,
     mobileView,
     setMapSelected,
     setCoordinates,
@@ -33,27 +33,27 @@ function EventList(props) {
         events.length > 0 &&
         events.map((event) => (
           <Fragment key={event._id}>
-            {categoryCheck[+event.category[0]] && (
-              <EventItem
-                key={event._id}
-                id={event._id}
-                title={event.title}
-                category={+event.category[0]}
-                startDate={event.startDate}
-                endDate={event.endDate}
-                startTime={event.startTime}
-                endTime={event.endTime}
-                image={event.image}
-                city={event.city}
-                longitude={event.long}
-                latitude={event.lat}
-                mobileView={mobileView}
-                setMapSelected={setMapSelected}
-                setCoordinates={setCoordinates}
-                coordinates={coordinates}
-                setCurrentPlaceId={setCurrentPlaceId}
-              />
-            )}
+            {/* {categoryCheck[+event.category[0]] && ( */}
+            <EventItem
+              key={event._id}
+              id={event._id}
+              title={event.title}
+              category={+event.category[0]}
+              startDate={event.startDate}
+              endDate={event.endDate}
+              startTime={event.startTime}
+              endTime={event.endTime}
+              image={event.image}
+              city={event.city}
+              longitude={event.long}
+              latitude={event.lat}
+              mobileView={mobileView}
+              setMapSelected={setMapSelected}
+              setCoordinates={setCoordinates}
+              coordinates={coordinates}
+              setCurrentPlaceId={setCurrentPlaceId}
+            />
+            {/* )} */}
           </Fragment>
         ))}
     </div>

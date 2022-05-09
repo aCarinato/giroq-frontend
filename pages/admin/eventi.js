@@ -24,7 +24,7 @@ function EventDashoardPage() {
   }, []);
 
   const deleteEvent = async (event) => {
-    console.log(`${event._id}`);
+    // console.log(`${event._id}`);
     try {
       const answer = window.confirm('Sito PROPRIO sicuro?');
       if (!answer) return;

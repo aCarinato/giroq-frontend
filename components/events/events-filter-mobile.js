@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
 import classes from './events-filter-mobile.module.css';
 
@@ -12,27 +12,140 @@ function EventsFilterMobile(props) {
   const {
     categoryCheck,
     setCategoryCheck,
+    categoryGroupCheck,
+    setCategoryGroupCheck,
     firstDate,
     setFirstDate,
     lastDate,
     setLastDate,
-    // minDate,
     isOpen,
     setIsOpen,
     isDateDropdownOpen,
     setIsDateDropdownOpen,
+    allCategoriesCheck,
+    setAllCategoriesCheck,
   } = props;
 
-  const [mainSwitchOpen, setMainSwitchOpen] = useState(false);
-  // const [isOpen, setIsOpen] = useState(false);
-  // const [isDateDropdownOpen, setIsDateDropdownOpen] = useState(false);
+  useEffect(() => {
+    if (allCategoriesCheck) {
+      setCategoryCheck([
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+      ]);
 
-  const [categoryGroupCheck, setCategoryGroupCheck] = useState([
-    true,
-    true,
-    true,
-    true,
-  ]);
+      setCategoryGroupCheck([true, true, true, true]);
+    } else {
+      setCategoryCheck([
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+      ]);
+      setCategoryGroupCheck([false, false, false, false]);
+    }
+  }, [allCategoriesCheck]);
+
+  const clickCategoriesDropdown = () => {
+    setIsOpen(!isOpen);
+
+    ga.event({
+      action: 'Filter section',
+      category: 'Click menu categorie',
+      label: 'Selezionare o deselezionare categorie eventi',
+      value: '9',
+    });
+  };
+
+  const clickDatesDropdown = () => {
+    setIsDateDropdownOpen(!isDateDropdownOpen);
+
+    ga.event({
+      action: 'Filter section',
+      category: 'Click menu date',
+      label: '',
+      value: '9',
+    });
+  };
+
+  const selectFirstDate = (e) => {
+    setFirstDate(e.target.value);
+
+    ga.event({
+      action: 'Filter section',
+      category: 'Selezione data inizio',
+      label: '',
+      value: '9',
+    });
+  };
+
+  const selectLastDate = (e) => {
+    setLastDate(e.target.value);
+
+    ga.event({
+      action: 'Filter section',
+      category: 'Selezione data fine',
+      label: '',
+      value: '9',
+    });
+  };
+
+  const clickOnPostEvent = () => {
+    window.open('https://www.giroq.com/posta-evento');
+    // console.log('posteoo');
+
+    ga.event({
+      action: 'Filter section',
+      category: 'Click posta il tuo evento',
+      label: '',
+      value: '9',
+    });
+  };
 
   const today = new Date();
   const todayISO = today.toISOString().split('T')[0];
@@ -41,21 +154,11 @@ function EventsFilterMobile(props) {
   const minLastDate = new Date(dateInterval);
   const minLastDateISO = minLastDate.toISOString().split('T')[0];
 
-  // const handleClick = () => {
-  //   setFilterVisible(!filterVisible);
-
-  //   ga.event({
-  //     action: 'open_filter',
-  //     category: 'selection',
-  //     label: 'Filter clicked',
-  //     value: 'Valore',
-  //   });
-  // };
-
   const selectCategoryGroup = (id) => {
     const newTypesCheck = [...categoryCheck];
     const newCategoryGroupCheck = [...categoryGroupCheck];
 
+    // GUSTO E DIVERTIMENTO
     if (id === '0') {
       newCategoryGroupCheck[0] = !newCategoryGroupCheck[0];
       setCategoryGroupCheck(newCategoryGroupCheck);
@@ -66,8 +169,28 @@ function EventsFilterMobile(props) {
           setCategoryCheck(newTypesCheck);
         }
       }
+
+      // GA
+      if (newCategoryGroupCheck[0]) {
+        // console.log('Selezionato gusto e divertimento');
+        ga.event({
+          action: 'Filter section',
+          category: 'Selezionato gusto e divertimento',
+          label: '',
+          value: '9',
+        });
+      } else {
+        // console.log('Deselezionato gusto e divertimento');
+        ga.event({
+          action: 'Filter section',
+          category: 'Deselezionato gusto e divertimento',
+          label: '',
+          value: '9',
+        });
+      }
     }
 
+    // CULTURA E SPETTACOLO
     if (id === '5') {
       newCategoryGroupCheck[1] = !newCategoryGroupCheck[1];
       setCategoryGroupCheck(newCategoryGroupCheck);
@@ -77,6 +200,25 @@ function EventsFilterMobile(props) {
           newTypesCheck[idx] = newCategoryGroupCheck[1];
           setCategoryCheck(newTypesCheck);
         }
+      }
+
+      // GA
+      if (newCategoryGroupCheck[1]) {
+        // console.log('Selezionato cultura e spettacolo');
+        ga.event({
+          action: 'Filter section',
+          category: 'Selezionato cultura e spettacolo',
+          label: '',
+          value: '9',
+        });
+      } else {
+        // console.log('Deselezionato cultura e spettacolo');
+        ga.event({
+          action: 'Filter section',
+          category: 'Deselezionato cultura e spettacolo',
+          label: '',
+          value: '9',
+        });
       }
     }
 
@@ -90,6 +232,25 @@ function EventsFilterMobile(props) {
           setCategoryCheck(newTypesCheck);
         }
       }
+
+      // GA
+      if (newCategoryGroupCheck[2]) {
+        // console.log('Selezionato sport e natura');
+        ga.event({
+          action: 'Filter section',
+          category: 'Selezionato sport e natura',
+          label: '',
+          value: '9',
+        });
+      } else {
+        // console.log('Deselezionato sport e natura');
+        ga.event({
+          action: 'Filter section',
+          category: 'Deselezionato sport e natura',
+          label: '',
+          value: '9',
+        });
+      }
     }
 
     if (id === '20') {
@@ -102,12 +263,29 @@ function EventsFilterMobile(props) {
           setCategoryCheck(newTypesCheck);
         }
       }
+
+      // GA
+      if (newCategoryGroupCheck[3]) {
+        // console.log('Selezionato expo e acquisti');
+        ga.event({
+          action: 'Filter section',
+          category: 'Selezionato expo e acquisti',
+          label: '',
+          value: '9',
+        });
+      } else {
+        // console.log('Deselezionato expo e acquisti');
+        ga.event({
+          action: 'Filter section',
+          category: 'Deselezionato expo e acquisti',
+          label: '',
+          value: '9',
+        });
+      }
     }
   };
 
   const handleOnClick = () => {
-    // console.log('click');
-
     if (isOpen) {
       setIsOpen(false);
     }
@@ -142,7 +320,8 @@ function EventsFilterMobile(props) {
           <div className={classes.drowdownWrapper}>
             <div
               className={classes.categoriesDropdown}
-              onClick={() => setIsOpen(!isOpen)}
+              // onClick={() => setIsOpen(!isOpen)}
+              onClick={clickCategoriesDropdown}
             >
               <div className={classes.containerOpener}>
                 <div className={classes.containerOpenerLabel}>CATEGORIE</div>
@@ -157,6 +336,26 @@ function EventsFilterMobile(props) {
             </div>
             {isOpen && (
               <div className={classes.categoriesList}>
+                {/* <div>
+                  <button className={classes.btnFilter} onClick={applyFilter}>
+                    Applica Filtro
+                  </button>
+                </div> */}
+                <div
+                  className={classes.container}
+                  onClick={() => setAllCategoriesCheck(!allCategoriesCheck)}
+                >
+                  <div className={classes.checkmarkOuter}>
+                    {allCategoriesCheck ? (
+                      <div className={classes.checkmark}>
+                        <div className={classes.checkmarkGreyRed}></div>
+                      </div>
+                    ) : (
+                      <div className={classes.checkmark}></div>
+                    )}
+                  </div>
+                  <div className={classes.label}>SELEZIONA TUTTE</div>
+                </div>
                 {CATEGORIES.map((category) => (
                   <Fragment key={category.id}>
                     <div
@@ -235,7 +434,7 @@ function EventsFilterMobile(props) {
           <div className={classes.drowdownWrapper}>
             <div
               className={classes.categoriesDropdown}
-              onClick={() => setIsDateDropdownOpen(!isDateDropdownOpen)}
+              onClick={clickDatesDropdown}
             >
               <div className={classes.containerOpener}>
                 <div className={classes.containerOpenerLabel}>DATE</div>
@@ -250,6 +449,11 @@ function EventsFilterMobile(props) {
             </div>
             {isDateDropdownOpen && (
               <div className={classes.datesList}>
+                {/* <div>
+                  <button className={classes.btnFilter} onClick={applyFilter}>
+                    Applica Filtro
+                  </button>
+                </div> */}
                 <form>
                   <label htmlFor="first-date">Seleziona data inizio:</label>
                   <input
@@ -258,7 +462,7 @@ function EventsFilterMobile(props) {
                     min={todayISO}
                     name="first-date"
                     value={firstDate}
-                    onChange={(e) => setFirstDate(e.target.value)}
+                    onChange={selectFirstDate}
                   />
                   <label htmlFor="last-date">Seleziona data fine:</label>
                   <input
@@ -267,7 +471,7 @@ function EventsFilterMobile(props) {
                     min={minLastDateISO}
                     name="last-date"
                     value={lastDate}
-                    onChange={(e) => setLastDate(e.target.value)}
+                    onChange={selectLastDate}
                   />
                 </form>
               </div>
@@ -275,16 +479,17 @@ function EventsFilterMobile(props) {
           </div>
         </div>
       </div>
+
       <div className={classes.largeColumnBtn}>
-        {/* <div className={classes.btnPost}>Posta Evento o Attività</div> */}
+        {/* 
         <Link href="/posta-evento">
-          <a target="_blank">
-            <button className={classes.btnPost}>Posta il tuo Evento</button>
-          </a>
-        </Link>
+          <a target="_blank"> */}
+        <button className={classes.btnPost} onClick={clickOnPostEvent}>
+          Posta il tuo Evento
+        </button>
+        {/* </a>
+        </Link> */}
       </div>
-      {/* </>
-      )} */}
     </div>
   );
 }
