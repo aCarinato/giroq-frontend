@@ -28,7 +28,7 @@ function DropdownCategories(props) {
 
     const newTypesCheck = [...categoryCheck];
     newTypesCheck[idx] = !newTypesCheck[idx];
-    console.log(newTypesCheck);
+    // console.log(newTypesCheck);
     setCategoryCheck(newTypesCheck);
 
     const newCategoryGroupCheck = [...categoryGroupCheck];
@@ -117,12 +117,19 @@ function DropdownCategories(props) {
           newCategoryGroupCheck[3] = true;
         }
       }
+
       setCategoryGroupCheck(newCategoryGroupCheck);
     }
   };
 
   return (
-    <div onClick={handleCategoryChange} className={classes.container} key={idx}>
+    <div
+      onClick={() => {
+        handleCategoryChange();
+      }}
+      className={classes.container}
+      key={idx}
+    >
       {categoryCheck[idx] ? (
         <div className={classes.checkmarkOuter}>
           {+id < 5 && (

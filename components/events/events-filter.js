@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import classes from './events-filter.module.css';
 
@@ -12,37 +12,84 @@ function EventsFilter(props) {
   const {
     categoryCheck,
     setCategoryCheck,
+    categoryGroupCheck,
+    setCategoryGroupCheck,
     firstDate,
     setFirstDate,
     lastDate,
     setLastDate,
-    // minDate,
     isOpen,
     setIsOpen,
     isDateDropdownOpen,
     setIsDateDropdownOpen,
+    allCategoriesCheck,
+    setAllCategoriesCheck,
   } = props;
 
-  // const [isOpen, setIsOpen] = useState(false);
-  // const [isDateDropdownOpen, setIsDateDropdownOpen] = useState(false);
+  useEffect(() => {
+    if (allCategoriesCheck) {
+      setCategoryCheck([
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+      ]);
 
-  const [categoryGroupCheck, setCategoryGroupCheck] = useState([
-    true,
-    true,
-    true,
-    true,
-  ]);
-
-  // const handleClick = () => {
-  //   setFilterVisible(!filterVisible);
-
-  //   ga.event({
-  //     action: 'open_filter',
-  //     category: 'selection',
-  //     label: 'Filter clicked',
-  //     value: 'Valore',
-  //   });
-  // };
+      setCategoryGroupCheck([true, true, true, true]);
+    } else {
+      setCategoryCheck([
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+      ]);
+      setCategoryGroupCheck([false, false, false, false]);
+    }
+  }, [allCategoriesCheck]);
 
   const clickCategoriesDropdown = () => {
     setIsOpen(!isOpen);
@@ -239,8 +286,6 @@ function EventsFilter(props) {
   };
 
   const handleOnClick = () => {
-    // console.log('click');
-
     if (isOpen) {
       setIsOpen(false);
     }
@@ -249,11 +294,6 @@ function EventsFilter(props) {
       setIsDateDropdownOpen(!isDateDropdownOpen);
     }
   };
-
-  // const dropdownClick = () => {
-  //   setIsOpen(true);
-  //   selectCategoryGroup(category.id);
-  // };
 
   return (
     <div className={classes.mainContainer}>
@@ -285,6 +325,21 @@ function EventsFilter(props) {
             </div>
             {isOpen && (
               <div className={classes.categoriesList}>
+                <div
+                  className={classes.container}
+                  onClick={() => setAllCategoriesCheck(!allCategoriesCheck)}
+                >
+                  <div className={classes.checkmarkOuter}>
+                    {allCategoriesCheck ? (
+                      <div className={classes.checkmark}>
+                        <div className={classes.checkmarkGreyRed}></div>
+                      </div>
+                    ) : (
+                      <div className={classes.checkmark}></div>
+                    )}
+                  </div>
+                  <div className={classes.label}>SELEZIONA TUTTE</div>
+                </div>
                 {CATEGORIES.map((category) => (
                   <Fragment key={category.id}>
                     <div
@@ -351,6 +406,7 @@ function EventsFilter(props) {
                         setCategoryCheck={setCategoryCheck}
                         categoryGroupCheck={categoryGroupCheck}
                         setCategoryGroupCheck={setCategoryGroupCheck}
+                        // applyFilter={applyFilter}
                       />
                     ))}
                   </Fragment>
@@ -378,6 +434,9 @@ function EventsFilter(props) {
             </div>
             {isDateDropdownOpen && (
               <div className={classes.datesList}>
+                {/* <div>
+                  <button className={classes.btnFilter}>Applica Filtro</button>
+                </div> */}
                 <form>
                   <label htmlFor="first-date">Seleziona data inizio:</label>
                   <input

@@ -135,6 +135,17 @@
   border-radius: 50%;
 }
 
+.checkmarkGreyRed {
+  position: relative;
+  margin: auto;
+  background-color: var(--main-neutral-color);
+  width: 0.75rem;
+  height: 0.75rem;
+  cursor: pointer;
+  /* border: 1px solid #ff6b6b; */
+  border-radius: 50%;
+}
+
 .checkmarkSelectedRed {
   position: relative;
   margin: auto;
@@ -231,6 +242,25 @@
   overflow-y: scroll;
   z-index: 4;
   margin: auto;
+}
+
+/* BUTTON FILTER */
+
+.btnFilter {
+  background-color: var(--main-neutral-color);
+  color: white;
+  cursor: pointer;
+  font-weight: bolder;
+  border-radius: 0.25rem;
+  border: 0px;
+  margin: 1rem auto;
+  padding: 0.25rem 1rem;
+}
+
+.btnFilter:hover {
+  background-color: white;
+  border: 1px solid var(--main-neutral-color);
+  color: var(--main-neutral-color);
 }
 
 /* Segnala Evento Button */
