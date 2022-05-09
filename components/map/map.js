@@ -7,6 +7,8 @@ import classes from './map.module.css';
 
 import Popup from './popup';
 
+import * as ga from '../../lib/google-analytics';
+
 import { useMainContext } from '../../context/Context';
 
 // const Marker = ({ children }) => children;
@@ -66,6 +68,31 @@ function Map(props) {
   });
   // console.log(clusters);
 
+  const handleOnChange = ({ zoom, bounds }) => {
+    setZoom(zoom);
+    setBounds([bounds.nw.lng, bounds.se.lat, bounds.se.lng, bounds.nw.lat]);
+
+    ga.event({
+      action: 'Map',
+      category: 'Zoom mappa',
+      label: '',
+      value: '9',
+    });
+  };
+
+  const handleOnDrag = () => {
+    // console.log('click on map');
+    setCurrentPlaceId(null);
+
+    if (isOpen) {
+      setIsOpen(false);
+    }
+
+    if (isDateDropdownOpen) {
+      setIsDateDropdownOpen(!isDateDropdownOpen);
+    }
+  };
+
   const handleOnClick = () => {
     // console.log('click on map');
     setCurrentPlaceId(null);
@@ -77,6 +104,13 @@ function Map(props) {
     if (isDateDropdownOpen) {
       setIsDateDropdownOpen(!isDateDropdownOpen);
     }
+
+    ga.event({
+      action: 'Map',
+      category: 'Click map',
+      label: '',
+      value: '9',
+    });
   };
 
   return (
@@ -95,17 +129,9 @@ function Map(props) {
         onGoogleApiLoaded={({ map }) => {
           mapRef.current = map;
         }}
-        onChange={({ zoom, bounds }) => {
-          setZoom(zoom);
-          setBounds([
-            bounds.nw.lng,
-            bounds.se.lat,
-            bounds.se.lng,
-            bounds.nw.lat,
-          ]);
-        }}
+        onChange={handleOnChange}
         onClick={handleOnClick}
-        onDrag={handleOnClick}
+        onDrag={handleOnDrag}
       >
         {clusters &&
           clusters.length > 0 &&
@@ -142,6 +168,13 @@ function Map(props) {
                     );
                     mapRef.current.setZoom(expansionZoom);
                     mapRef.current.panTo({ lat: latitude, lng: longitude });
+
+                    ga.event({
+                      action: 'Map',
+                      category: 'Click cluster',
+                      label: '',
+                      value: '9',
+                    });
                   }}
                 >
                   {pointCount}

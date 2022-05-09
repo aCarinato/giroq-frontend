@@ -1,4 +1,5 @@
 import classes from './custom-marker.module.css';
+import * as ga from '../../lib/google-analytics';
 // import { Icon } from '@iconify/react';
 // import categoriesList from '../../data/categories-list';
 import { useEffect, useState } from 'react';
@@ -49,18 +50,27 @@ function CustomMarker(props) {
   const handleOnEnter = (id) => {
     if (!mobileView === true) {
       setCurrentPlaceId(id);
+
+      ga.event({
+        action: 'Map',
+        category: 'Mouse sul marker (desktop)',
+        label: '',
+        value: '9',
+      });
     }
   };
 
   const handleClick = (id) => {
     if (mobileView === true) {
       setCurrentPlaceId(id);
-      // console.log('clicked on marker');
-      // console.log(id);
-      // console.log(currentPlaceId);
-
       setSetSelectedEvent(id);
-      // console.log(selectedEvent);
+
+      ga.event({
+        action: 'Map',
+        category: 'Click sul marker (mobile)',
+        label: '',
+        value: '9',
+      });
     }
   };
   return (

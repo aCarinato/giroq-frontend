@@ -1,5 +1,7 @@
 import classes from './switch-tab.module.css';
 
+import * as ga from '../../lib/google-analytics';
+
 function SwitchTab(props) {
   //   const [mapSelected, setMapSelected] = useState(true);
 
@@ -8,11 +10,25 @@ function SwitchTab(props) {
   const clickMapTab = () => {
     setMapSelected(true);
     setShowList(false);
+
+    ga.event({
+      action: 'Switch mappa-lista (mobile)',
+      category: 'Click seleziona mappa',
+      label: '',
+      value: '9',
+    });
   };
 
   const clickListTab = () => {
     setMapSelected(false);
     setShowList(true);
+
+    ga.event({
+      action: 'Switch mappa-lista (mobile)',
+      category: 'Click seleziona lista',
+      label: '',
+      value: '9',
+    });
   };
 
   return (

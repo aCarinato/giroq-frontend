@@ -3,6 +3,8 @@ import Link from 'next/link';
 
 import categoriesList from '../../data/categories-list';
 
+import * as ga from '../../lib/google-analytics';
+
 import { Icon } from '@iconify/react';
 import { useEffect, useState } from 'react';
 
@@ -28,6 +30,7 @@ function Popup(props) {
   } = props;
 
   const exploreLink = `/event/${id}`;
+  // const exploreLink = `https://www.giroq.com/posta-evento`;
 
   const humanReadableStartDate = new Date(startDate).toLocaleDateString(
     'it-IT',
@@ -45,6 +48,20 @@ function Popup(props) {
       year: 'numeric',
     });
   }
+
+  const handleClickDetails = () => {
+    // window.open(`https://www.giroq.com/posta-evento`);
+    // window.open(exploreLink);
+
+    // console.log('clikkeee');
+
+    ga.event({
+      action: 'Popup',
+      category: 'Click maggiori dettagli evento',
+      label: '',
+      value: '9',
+    });
+  };
 
   const [colorCategory, setColorCategory] = useState(null);
 
@@ -80,7 +97,7 @@ function Popup(props) {
           CHIUDI X
         </div>
       )} */}
-      <div className={classes.imgContainer}>
+      <div className={classes.imgContainer} onClick={handleClickDetails}>
         <Link href={exploreLink}>
           <a target="_blank">
             {image && (
@@ -170,7 +187,12 @@ function Popup(props) {
         <div className={classes.actions}>
           <Link href={exploreLink}>
             <a target="_blank">
-              <button className={classes.btnDetails}>Dettagli</button>
+              <button
+                className={classes.btnDetails}
+                onClick={handleClickDetails}
+              >
+                Dettagli
+              </button>
             </a>
           </Link>
         </div>
