@@ -53,6 +53,22 @@ function AdminDashoardPage() {
             </div>
             <div className="col-lg-4"></div>
           </div>
+          <br></br>
+          <div className="row">
+            <div className="col-lg-4"></div>
+            <div className="col-lg-4">
+              <button
+                className="btn btn-outline-primary col-12"
+                type="submit"
+                onClick={() => {
+                  router.push('/admin/conclusi');
+                }}
+              >
+                Eventi conclusi
+              </button>
+            </div>
+            <div className="col-lg-4"></div>
+          </div>
         </Fragment>
       ) : (
         <div className="row">
