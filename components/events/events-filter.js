@@ -24,6 +24,8 @@ function EventsFilter(props) {
     setIsDateDropdownOpen,
     allCategoriesCheck,
     setAllCategoriesCheck,
+    filterCtgrTouch,
+    setFilterCtgrTouch,
   } = props;
 
   useEffect(() => {
@@ -155,6 +157,7 @@ function EventsFilter(props) {
   const minLastDateISO = minLastDate.toISOString().split('T')[0];
 
   const selectCategoryGroup = (id) => {
+    setFilterCtgrTouch(true);
     const newTypesCheck = [...categoryCheck];
     const newCategoryGroupCheck = [...categoryGroupCheck];
 
@@ -325,9 +328,12 @@ function EventsFilter(props) {
             </div>
             {isOpen && (
               <div className={classes.categoriesList}>
-                <div
+                {/* <div
                   className={classes.container}
-                  onClick={() => setAllCategoriesCheck(!allCategoriesCheck)}
+                  onClick={() => {
+                    setAllCategoriesCheck(!allCategoriesCheck);
+                    setFilterCtgrTouch(true);
+                  }}
                 >
                   <div className={classes.checkmarkOuter}>
                     {allCategoriesCheck ? (
@@ -339,7 +345,7 @@ function EventsFilter(props) {
                     )}
                   </div>
                   <div className={classes.label}>SELEZIONA TUTTE</div>
-                </div>
+                </div> */}
                 {CATEGORIES.map((category) => (
                   <Fragment key={category.id}>
                     <div
@@ -406,6 +412,7 @@ function EventsFilter(props) {
                         setCategoryCheck={setCategoryCheck}
                         categoryGroupCheck={categoryGroupCheck}
                         setCategoryGroupCheck={setCategoryGroupCheck}
+                        setFilterCtgrTouch={setFilterCtgrTouch}
                         // applyFilter={applyFilter}
                       />
                     ))}
