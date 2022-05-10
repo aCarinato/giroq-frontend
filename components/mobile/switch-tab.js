@@ -33,22 +33,20 @@ function SwitchTab(props) {
 
   return (
     <div className={classes.switch}>
-      <div className="row">
-        <div className="col" onClick={clickMapTab}>
-          <div className={mapSelected ? classes.tabSelected : classes.tab}>
-            <span className={showList ? classes.spanSelected : null}>
-              Mappa
-            </span>
-          </div>
-        </div>
-        <div className="col" onClick={clickListTab}>
-          <div className={showList ? classes.tabSelected : classes.tab}>
-            <span className={showList ? classes.spanSelected : null}>
-              Lista Eventi
-            </span>
-          </div>
+      {/* <div className="row"> */}
+      <div className={classes.col} onClick={clickMapTab}>
+        <div className={mapSelected ? classes.tabLeftSelected : classes.tab}>
+          <span className={showList ? classes.spanSelected : null}>Mappa</span>
         </div>
       </div>
+      <div className={classes.col} onClick={clickListTab}>
+        <div className={showList ? classes.tabRightSelected : classes.tab}>
+          <span className={showList ? classes.spanSelected : null}>
+            Lista Eventi
+          </span>
+        </div>
+      </div>
+      {/* </div> */}
     </div>
   );
 }

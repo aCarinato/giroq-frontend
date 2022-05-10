@@ -1,19 +1,44 @@
 .switch {
   text-align: center;
+  display: flex;
   /* font-family: 'Comfortaa', cursive; */
+}
+
+.col {
+  width: 50%;
 }
 
 .tab {
   cursor: pointer;
   padding: 0.5rem;
+  border-bottom: 1px solid var(--main-neutral-color);
+  color: rgb(171, 171, 171);
 }
 
-.tabSelected {
-  color: darkslategrey;
+.tabLeftSelected {
+  color: var(--main-neutral-color);
+  font-weight: bold;
+  /* text-decoration: underline; */
   /* background-color: aliceblue; */
-  border-bottom: 3px solid var(--main-neutral-color);
+  /* border-left: 1px solid var(--main-neutral-color); */
+  border-top: 1px solid var(--main-neutral-color);
+  border-right: 1px solid var(--main-neutral-color);
   cursor: pointer;
   padding: 0.5rem;
+  border-radius: 0 0.25rem 0 0;
+}
+
+.tabRightSelected {
+  color: var(--main-neutral-color);
+  font-weight: bold;
+  /* text-decoration: underline; */
+  /* background-color: aliceblue; */
+  border-left: 1px solid var(--main-neutral-color);
+  border-top: 1px solid var(--main-neutral-color);
+  /* border-right: 1px solid var(--main-neutral-color); */
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.25rem 0 0 0;
 }
 
 .spanSelected {
