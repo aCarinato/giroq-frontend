@@ -308,6 +308,7 @@ const Home = () => {
             setIsDateDropdownOpen={setIsDateDropdownOpen}
             allCategoriesCheck={allCategoriesCheck}
             setAllCategoriesCheck={setAllCategoriesCheck}
+            setFilterCtgrTouch={setFilterCtgrTouch}
           />
         ) : (
           <EventsFilter

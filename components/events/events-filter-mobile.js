@@ -24,6 +24,7 @@ function EventsFilterMobile(props) {
     setIsDateDropdownOpen,
     allCategoriesCheck,
     setAllCategoriesCheck,
+    setFilterCtgrTouch,
   } = props;
 
   useEffect(() => {
@@ -155,6 +156,7 @@ function EventsFilterMobile(props) {
   const minLastDateISO = minLastDate.toISOString().split('T')[0];
 
   const selectCategoryGroup = (id) => {
+    setFilterCtgrTouch(true);
     const newTypesCheck = [...categoryCheck];
     const newCategoryGroupCheck = [...categoryGroupCheck];
 
@@ -341,7 +343,7 @@ function EventsFilterMobile(props) {
                     Applica Filtro
                   </button>
                 </div> */}
-                <div
+                {/* <div
                   className={classes.container}
                   onClick={() => setAllCategoriesCheck(!allCategoriesCheck)}
                 >
@@ -355,7 +357,7 @@ function EventsFilterMobile(props) {
                     )}
                   </div>
                   <div className={classes.label}>SELEZIONA TUTTE</div>
-                </div>
+                </div> */}
                 {CATEGORIES.map((category) => (
                   <Fragment key={category.id}>
                     <div
@@ -422,6 +424,7 @@ function EventsFilterMobile(props) {
                         setCategoryCheck={setCategoryCheck}
                         categoryGroupCheck={categoryGroupCheck}
                         setCategoryGroupCheck={setCategoryGroupCheck}
+                        setFilterCtgrTouch={setFilterCtgrTouch}
                       />
                     ))}
                   </Fragment>
