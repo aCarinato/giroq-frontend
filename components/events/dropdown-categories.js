@@ -10,6 +10,7 @@ function DropdownCategories(props) {
     setCategoryCheck,
     categoryGroupCheck,
     setCategoryGroupCheck,
+    setFilterCtgrTouch,
   } = props;
   const idx = index + Number(id);
 
@@ -25,6 +26,7 @@ function DropdownCategories(props) {
     //   });
     // } else {
     // }
+    setFilterCtgrTouch(true);
 
     const newTypesCheck = [...categoryCheck];
     newTypesCheck[idx] = !newTypesCheck[idx];
