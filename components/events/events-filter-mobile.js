@@ -305,7 +305,7 @@ function EventsFilterMobile(props) {
         onClick={handleOnClick}
       >
         <div className={classes.containerFilterSwitch}>
-          Seleziona eventi, attivitá e cose da fare vicino a te
+          Seleziona eventi, attività e cose da fare vicino a te
         </div>
         {/* <div className={classes.containerFilterSwitchArrow}>
           {mainSwitchOpen ? (
