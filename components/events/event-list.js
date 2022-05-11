@@ -18,15 +18,22 @@ function EventList(props) {
     // setZoom,
   } = props;
 
-  // const { eventsCtx } = useMainContext();
-  const { eventData } = useMainContext();
-
   return (
     <div className={classes.colList}>
       {/* <div className={classes.list}> */}
-      {eventData.length === 0 && (
+      {events.length === 0 && (
         <div>
-          IN CARICAMENTO. NESSUN EVENTO PER LE DATE E LUOGHI SELEZIONATI
+          <p>Nessun risultato per la tua selezione</p>
+          <br></br>
+          <p>Puoi provare a modificare la tua ricerca cambiando:</p>
+          <ul>
+            <li>La zona selezionata, muovendoti nella mappa</li>
+            <li>
+              Le categorie degli eventi e attivitá, tramite il filtro
+              'CATEGORIE'
+            </li>
+            <li>Le date degli eventi e attivitá, tramite il filtro 'DATE'</li>
+          </ul>
         </div>
       )}
       {events &&
