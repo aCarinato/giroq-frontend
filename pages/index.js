@@ -290,7 +290,7 @@ const Home = () => {
   return (
     // <div className="container-fluid">
     <div className="mainAppContainer">
-      <div className="appRow">
+      <div className="appRowBlock">
         {/* <div className="col-lg-12"> */}
         {mobileView ? (
           <EventsFilterMobile
@@ -339,7 +339,7 @@ const Home = () => {
           setShowList={setShowList}
         />
       )}
-      <div className="appRow">
+      <div className="appRowFlex">
         {showList &&
           (!loading ? (
             <EventList
