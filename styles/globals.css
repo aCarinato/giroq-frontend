@@ -10,7 +10,12 @@ body {
   font-family: 'Comfortaa', cursive;
 }
 
-.appRow {
+.appRowBlock {
+  /* display: flex; */
+  width: 100%;
+}
+
+.appRowFlex {
   display: flex;
   width: 100%;
 }

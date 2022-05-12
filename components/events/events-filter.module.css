@@ -11,6 +11,7 @@
   padding: 0.75rem;
   color: var(--main-neutral-color);
   font-weight: bold;
+  /* font-size: 0.5rem;filterSwitch */
 }
 
 /* MY DROPDOWN */
@@ -109,7 +110,7 @@
   width: 1rem;
   height: 1rem;
   cursor: pointer;
-  border: 0.75px solid var(--main-neutral-color);
+  border: 1px solid var(--main-neutral-color);
   border-radius: 50%;
 }
 
@@ -238,7 +239,7 @@
   }
 
   .filterSwitch {
-    font-size: 1.45rem;
+    font-size: 1.35rem;
     width: 100%;
     word-wrap: break-word;
     padding: 0 2rem;

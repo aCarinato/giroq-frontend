@@ -298,52 +298,53 @@ function EventsFilterMobile(props) {
   };
 
   return (
-    <div className={classes.mainContainer}>
-      <div
-        className={classes.mainContainerSmallColumn}
-        // onClick={() => setMainSwitchOpen(!mainSwitchOpen)}
-        onClick={handleOnClick}
-      >
-        <div className={classes.containerFilterSwitch}>
-          Seleziona eventi, attività e cose da fare vicino a te
-        </div>
-        {/* <div className={classes.containerFilterSwitchArrow}>
+    <Fragment>
+      <div className={classes.mainContainer}>
+        <div
+          className={classes.mainContainerSmallColumn}
+          // onClick={() => setMainSwitchOpen(!mainSwitchOpen)}
+          onClick={handleOnClick}
+        >
+          <div className={classes.containerFilterSwitch}>
+            Trova eventi, attività e cose da fare vicino a te!
+          </div>
+          {/* <div className={classes.containerFilterSwitchArrow}>
           {mainSwitchOpen ? (
             <div className={classes.filterSwitchArrowUp}></div>
           ) : (
             <div className={classes.filterSwitchArrowDown}></div>
           )}
         </div> */}
-      </div>
-      {/* {mainSwitchOpen && (
+        </div>
+        {/* {mainSwitchOpen && (
         <> */}
-      <div className={classes.mainContainerLargeColumn}>
-        <div className={classes.largeColumnColumn}>
-          <div className={classes.drowdownWrapper}>
-            <div
-              className={classes.categoriesDropdown}
-              // onClick={() => setIsOpen(!isOpen)}
-              onClick={clickCategoriesDropdown}
-            >
-              <div className={classes.containerOpener}>
-                <div className={classes.containerOpenerLabel}>CATEGORIE</div>
-                <div className={classes.containerOpenerArrow}>
-                  {isOpen ? (
-                    <div className={classes.arrowUp}></div>
-                  ) : (
-                    <div className={classes.arrowDown}></div>
-                  )}
+        <div className={classes.mainContainerLargeColumn}>
+          <div className={classes.largeColumnColumn}>
+            <div className={classes.drowdownWrapper}>
+              <div
+                className={classes.categoriesDropdown}
+                // onClick={() => setIsOpen(!isOpen)}
+                onClick={clickCategoriesDropdown}
+              >
+                <div className={classes.containerOpener}>
+                  <div className={classes.containerOpenerLabel}>CATEGORIE</div>
+                  <div className={classes.containerOpenerArrow}>
+                    {isOpen ? (
+                      <div className={classes.arrowUp}></div>
+                    ) : (
+                      <div className={classes.arrowDown}></div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-            {isOpen && (
-              <div className={classes.categoriesList}>
-                {/* <div>
+              {isOpen && (
+                <div className={classes.categoriesList}>
+                  {/* <div>
                   <button className={classes.btnFilter} onClick={applyFilter}>
                     Applica Filtro
                   </button>
                 </div> */}
-                {/* <div
+                  {/* <div
                   className={classes.container}
                   onClick={() => setAllCategoriesCheck(!allCategoriesCheck)}
                 >
@@ -358,142 +359,142 @@ function EventsFilterMobile(props) {
                   </div>
                   <div className={classes.label}>SELEZIONA TUTTE</div>
                 </div> */}
-                {CATEGORIES.map((category) => (
-                  <Fragment key={category.id}>
-                    <div
-                      key={category.id}
-                      className={classes.container}
-                      onClick={() => selectCategoryGroup(category.id)}
-                    >
-                      <div className={classes.checkmarkOuter}>
-                        {+category.id < 5 &&
-                          (categoryGroupCheck[0] ? (
-                            <div className={classes.checkmark}>
-                              <div
-                                className={classes.checkmarkSelectedRed}
-                              ></div>
-                            </div>
-                          ) : (
-                            <div className={classes.checkmark}></div>
-                          ))}
-                        {+category.id > 4 &&
-                          +category.id < 13 &&
-                          (categoryGroupCheck[1] ? (
-                            <div className={classes.checkmark}>
-                              <div
-                                className={classes.checkmarkSelectedBlue}
-                              ></div>
-                            </div>
-                          ) : (
-                            <div className={classes.checkmark}></div>
-                          ))}
-                        {+category.id > 12 &&
-                          +category.id < 20 &&
-                          (categoryGroupCheck[2] ? (
-                            <div className={classes.checkmark}>
-                              <div
-                                className={classes.checkmarkSelectedYellow}
-                              ></div>
-                            </div>
-                          ) : (
-                            <div className={classes.checkmark}></div>
-                          ))}
-                        {+category.id > 19 &&
-                          (categoryGroupCheck[3] ? (
-                            <div className={classes.checkmark}>
-                              <div
-                                className={classes.checkmarkSelectedCyan}
-                              ></div>
-                            </div>
-                          ) : (
-                            <div className={classes.checkmark}></div>
-                          ))}
+                  {CATEGORIES.map((category) => (
+                    <Fragment key={category.id}>
+                      <div
+                        key={category.id}
+                        className={classes.container}
+                        onClick={() => selectCategoryGroup(category.id)}
+                      >
+                        <div className={classes.checkmarkOuter}>
+                          {+category.id < 5 &&
+                            (categoryGroupCheck[0] ? (
+                              <div className={classes.checkmark}>
+                                <div
+                                  className={classes.checkmarkSelectedRed}
+                                ></div>
+                              </div>
+                            ) : (
+                              <div className={classes.checkmark}></div>
+                            ))}
+                          {+category.id > 4 &&
+                            +category.id < 13 &&
+                            (categoryGroupCheck[1] ? (
+                              <div className={classes.checkmark}>
+                                <div
+                                  className={classes.checkmarkSelectedBlue}
+                                ></div>
+                              </div>
+                            ) : (
+                              <div className={classes.checkmark}></div>
+                            ))}
+                          {+category.id > 12 &&
+                            +category.id < 20 &&
+                            (categoryGroupCheck[2] ? (
+                              <div className={classes.checkmark}>
+                                <div
+                                  className={classes.checkmarkSelectedYellow}
+                                ></div>
+                              </div>
+                            ) : (
+                              <div className={classes.checkmark}></div>
+                            ))}
+                          {+category.id > 19 &&
+                            (categoryGroupCheck[3] ? (
+                              <div className={classes.checkmark}>
+                                <div
+                                  className={classes.checkmarkSelectedCyan}
+                                ></div>
+                              </div>
+                            ) : (
+                              <div className={classes.checkmark}></div>
+                            ))}
+                        </div>
+                        <div className={classes.label}>
+                          {category.mainCategory}
+                        </div>
                       </div>
-                      <div className={classes.label}>
-                        {category.mainCategory}
-                      </div>
-                    </div>
 
-                    {category.subCategories.map((cat, index) => (
-                      <DropdownCategories
-                        key={index + Number(category.id)}
-                        id={category.id}
-                        index={index}
-                        cat={cat}
-                        categoryCheck={categoryCheck}
-                        setCategoryCheck={setCategoryCheck}
-                        categoryGroupCheck={categoryGroupCheck}
-                        setCategoryGroupCheck={setCategoryGroupCheck}
-                        setFilterCtgrTouch={setFilterCtgrTouch}
-                      />
-                    ))}
-                  </Fragment>
-                ))}
-              </div>
-            )}
+                      {category.subCategories.map((cat, index) => (
+                        <DropdownCategories
+                          key={index + Number(category.id)}
+                          id={category.id}
+                          index={index}
+                          cat={cat}
+                          categoryCheck={categoryCheck}
+                          setCategoryCheck={setCategoryCheck}
+                          categoryGroupCheck={categoryGroupCheck}
+                          setCategoryGroupCheck={setCategoryGroupCheck}
+                          setFilterCtgrTouch={setFilterCtgrTouch}
+                        />
+                      ))}
+                    </Fragment>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-        <div className={classes.largeColumnColumn}>
-          <div className={classes.drowdownWrapper}>
-            <div
-              className={classes.categoriesDropdown}
-              onClick={clickDatesDropdown}
-            >
-              <div className={classes.containerOpener}>
-                <div className={classes.containerOpenerLabel}>DATE</div>
-                <div className={classes.containerOpenerArrow}>
-                  {isDateDropdownOpen ? (
-                    <div className={classes.arrowUp}></div>
-                  ) : (
-                    <div className={classes.arrowDown}></div>
-                  )}
+          <div className={classes.largeColumnColumn}>
+            <div className={classes.drowdownWrapper}>
+              <div
+                className={classes.categoriesDropdown}
+                onClick={clickDatesDropdown}
+              >
+                <div className={classes.containerOpener}>
+                  <div className={classes.containerOpenerLabel}>DATE</div>
+                  <div className={classes.containerOpenerArrow}>
+                    {isDateDropdownOpen ? (
+                      <div className={classes.arrowUp}></div>
+                    ) : (
+                      <div className={classes.arrowDown}></div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-            {isDateDropdownOpen && (
-              <div className={classes.datesList}>
-                {/* <div>
+              {isDateDropdownOpen && (
+                <div className={classes.datesList}>
+                  {/* <div>
                   <button className={classes.btnFilter} onClick={applyFilter}>
                     Applica Filtro
                   </button>
                 </div> */}
-                <form>
-                  <label htmlFor="first-date">Seleziona data inizio:</label>
-                  <input
-                    type="date"
-                    id="first-date"
-                    min={todayISO}
-                    name="first-date"
-                    value={firstDate}
-                    onChange={selectFirstDate}
-                  />
-                  <label htmlFor="last-date">Seleziona data fine:</label>
-                  <input
-                    type="date"
-                    id="last-date"
-                    min={minLastDateISO}
-                    name="last-date"
-                    value={lastDate}
-                    onChange={selectLastDate}
-                  />
-                </form>
-              </div>
-            )}
+                  <form>
+                    <label htmlFor="first-date">Seleziona data inizio:</label>
+                    <input
+                      type="date"
+                      id="first-date"
+                      min={todayISO}
+                      name="first-date"
+                      value={firstDate}
+                      onChange={selectFirstDate}
+                    />
+                    <label htmlFor="last-date">Seleziona data fine:</label>
+                    <input
+                      type="date"
+                      id="last-date"
+                      min={minLastDateISO}
+                      name="last-date"
+                      value={lastDate}
+                      onChange={selectLastDate}
+                    />
+                  </form>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className={classes.largeColumnBtn}>
-        {/* 
-        <Link href="/posta-evento">
-          <a target="_blank"> */}
+        <div className={classes.largeColumnBtn}>
+          {/* <Link href="/posta-evento">
+          <a target="_blank">
         <button className={classes.btnPost} onClick={clickOnPostEvent}>
           Posta il tuo Evento
         </button>
-        {/* </a>
+        </a>
         </Link> */}
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 }
 

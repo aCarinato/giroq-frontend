@@ -12,7 +12,7 @@
   /* padding: 0; */
   padding: 0 2.5%;
   height: 90vh;
-  overflow-y: scroll;
+
   padding-top: 1rem;
 }
 
@@ -22,9 +22,14 @@
   background-color: blueviolet;
 }
 
+@media (min-width: 820px) {
+  .colList {
+    overflow-y: scroll;
+  }
+}
+
 @media (max-width: 820px) {
   .colList {
-    width: 100%;
     flex-grow: 1;
   }
 }

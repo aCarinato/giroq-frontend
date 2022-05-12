@@ -25,7 +25,7 @@ function EventList(props) {
         <div>
           <p>Nessun risultato per la tua selezione</p>
           <br></br>
-          <p>Puoi provare a modificare la tua ricerca cambiando:</p>
+          <p>Puoi provare a modificare la ricerca cambiando:</p>
           <ul>
             <li>La zona selezionata, muovendoti nella mappa</li>
             <li>
