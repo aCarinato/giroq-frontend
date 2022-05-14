@@ -29,7 +29,7 @@ function EventDetailPage() {
   return (
     <>
       <Head>
-        <meta name="twitter:card" content="summary" />
+        {/* <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@nytimesbits" />
         <meta name="twitter:creator" content="@nickbilton" />
         <meta
@@ -41,8 +41,7 @@ function EventDetailPage() {
           property="og:description"
           content="In the early days, Twitter grew so quickly that it was almost impossible to add new features because engineers spent their time trying to keep the rocket ship from stalling."
         />
-        {event.image && <meta property="og:image" content={event.image.url} />}
-        {/* <meta
+        <meta
           property="og:image"
           content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg"
         /> */}
@@ -52,20 +51,16 @@ function EventDetailPage() {
 
         {/* <meta property="og:title" content="La mappa del tempo libero" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.giroq.com/" />
-        <meta
-          property="og:image"
-          content="https://www.veganok.com/wp-content/uploads/2020/08/vino.jpg"
-        /> */}
+        <meta property="og:url" content="https://www.giroq.com/" /> */}
 
-        {/* <meta property="og:title" content={event.title} />
-        <meta property="og:type" content="website" />
+        <meta property="og:title" content={event.title} />
+        {/* <meta property="og:type" content="website" /> */}
         <meta
           property="og:url"
           content={`https://www.giroq.com/event/${event._id}/`}
         />
         <meta property="og:image" content={event.image && event.image.url} />
-        <meta property="og:description" content={event.description} /> */}
+        <meta property="og:description" content={event.description} />
       </Head>
       <EventId
         organiser={event.organiser}
