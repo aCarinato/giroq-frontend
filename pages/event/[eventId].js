@@ -53,7 +53,8 @@ function EventDetailPage() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.giroq.com/" /> */}
 
-        <meta property="og:title" content={event.title} />
+        <meta property="og:title" content="A Twitter for My Sister" />
+        {/* <meta property="og:title" content={event.title} /> */}
         {/* <meta property="og:type" content="website" /> */}
         <meta
           property="og:url"
