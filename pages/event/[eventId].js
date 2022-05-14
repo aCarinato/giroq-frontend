@@ -53,10 +53,10 @@ function EventDetailPage(props) {
         end={props.event.endTime}
         link={props.event.link}
       /> */}
-      <div>{props.event.organiser}</div>
-      <div>{props.event.title}</div>
-      <div>{props.event.description}</div>
-      <div>{props.event.link}</div>
+      <div className="textTest">{props.event.organiser}</div>
+      <div className="textTest">{props.event.title}</div>
+      <div className="textTest">{props.event.description}</div>
+      <div style={{ color: 'green' }}>{props.event.link}</div>
     </>
   );
 }

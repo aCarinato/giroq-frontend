@@ -63,3 +63,9 @@ body {
   font-weight: bold;
   /* width: fit-content; */
 }
+
+/* EVENT ID */
+.textTest {
+  font-family: 'Comfortaa', cursive;
+  color: red;
+}
