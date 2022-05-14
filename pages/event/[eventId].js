@@ -35,7 +35,7 @@ function EventDetailPage() {
         <meta property="og:type" content="page" />
         <meta
           property="og:url"
-          content={`https://www.giroq.com/event/${event._id}`}
+          content={`https://www.giroq.com/event/${event._id}/`}
         />
         <meta property="og:image" content={event.image && event.image.url} />
         <meta property="og:description" content={event.description} />
