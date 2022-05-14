@@ -40,7 +40,7 @@ function EventDetailPage(props) {
         />
         <meta property="og:description" content={props.event.description} />
       </Head>
-      <EventId
+      {/* <EventId
         organiser={props.event.organiser}
         title={props.event.title}
         description={props.event.description}
@@ -52,8 +52,11 @@ function EventDetailPage(props) {
         start={props.event.startTime}
         end={props.event.endTime}
         link={props.event.link}
-      />
-      {/* <div>{props.event.title}</div> */}
+      /> */}
+      <div>{props.event.organiser}</div>
+      <div>{props.event.title}</div>
+      <div>{props.event.description}</div>
+      <div>{props.event.link}</div>
     </>
   );
 }
