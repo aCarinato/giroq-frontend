@@ -29,16 +29,23 @@ function EventDetailPage() {
   return (
     <>
       <Head>
-        <title>{event.title}</title>
-        <meta name="description" content={event.description} />
-        <meta property="og:title" content={event.title} />
-        <meta property="og:type" content="page" />
+        {/* <title>{event.title}</title>
+        <meta name="description" content={event.description} /> */}
+        <meta property="og:title" content="La mappa del tempo libero" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.giroq.com/" />
+        <meta
+          property="og:image"
+          content="https://www.veganok.com/wp-content/uploads/2020/08/vino.jpg"
+        />
+        {/* <meta property="og:title" content={event.title} />
+        <meta property="og:type" content="website" />
         <meta
           property="og:url"
           content={`https://www.giroq.com/event/${event._id}/`}
         />
         <meta property="og:image" content={event.image && event.image.url} />
-        <meta property="og:description" content={event.description} />
+        <meta property="og:description" content={event.description} /> */}
       </Head>
       <EventId
         organiser={event.organiser}
