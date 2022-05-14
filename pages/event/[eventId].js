@@ -31,6 +31,14 @@ function EventDetailPage() {
       <Head>
         <title>{event.title}</title>
         <meta name="description" content={event.description} />
+        <meta property="og:title" content={event.title} />
+        <meta property="og:type" content="page" />
+        <meta
+          property="og:url"
+          content={`https://www.giroq.com/event/${eventId}`}
+        />
+        <meta property="og:image" content={event.image && event.image.url} />
+        <meta property="og:description" content={event.description} />
       </Head>
       <EventId
         organiser={event.organiser}
