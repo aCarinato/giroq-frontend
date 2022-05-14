@@ -64,8 +64,58 @@ body {
   /* width: fit-content; */
 }
 
-/* EVENT ID */
-.textTest {
-  font-family: Arial, Helvetica, sans-serif;
-  color: red;
+/* ------------ */
+/*   EVENT ID   */
+/* ------------ */
+
+.eventIDpageWrapper {
+  text-align: center;
+  margin: auto;
+  padding: 1rem;
+  color: var(--main-neutral-color);
+  width: 90%;
+}
+
+.eventIDtitle {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  font-size: 2.25rem;
+}
+
+.eventIDquestion {
+  font-style: italic;
+}
+
+.eventIDanswer {
+  font-size: 1.25rem;
+}
+
+.eventIDanswer a {
+  width: 50%;
+}
+
+.eventIDimage {
+  margin-top: 1.5rem;
+  width: 30%;
+  object-fit: cover;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .eventIDimage {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .eventIDanswer {
+    width: 100%;
+  }
+
+  /* .answer a {
+    width: 50%;
+  } */
+
+  .eventIDimage {
+    width: 75%;
+  }
 }
