@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
 :root {
   --main-neutral-color: #616161;
   --main-red-color: #ff6b6b;
@@ -74,6 +76,7 @@ body {
   padding: 1rem;
   color: var(--main-neutral-color);
   width: 90%;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
 }
 
 .eventIDtitle {

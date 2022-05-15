@@ -28,7 +28,7 @@ function EventDetailPage(props) {
 
   const selectedEvent = props.event;
 
-  console.log(selectedEvent);
+  // console.log(selectedEvent);
 
   const humanReadableStartDate = new Date(
     selectedEvent.startDate
