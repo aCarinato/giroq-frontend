@@ -347,7 +347,18 @@ function EventsFilter(props) {
                   <div className={classes.label}>SELEZIONA TUTTE</div>
                 </div> */}
                 <div className={classes.intruction}>
-                  Seleziona una o piú categorie o sottocategorie:
+                  Seleziona una o piú{' '}
+                  <span className={classes.spanBold}>
+                    <span className={classes.spanCol1}>ca</span>
+                    <span className={classes.spanCol2}>te</span>
+                    <span className={classes.spanCol3}>go</span>
+                    <span className={classes.spanCol4}>rie</span> o{' '}
+                    <span className={classes.spanCol1}>sott</span>
+                    <span className={classes.spanCol2}>ocat</span>
+                    <span className={classes.spanCol3}>ego</span>
+                    <span className={classes.spanCol4}>rie</span>
+                  </span>
+                  :
                 </div>
                 {CATEGORIES.map((category) => (
                   <Fragment key={category.id}>

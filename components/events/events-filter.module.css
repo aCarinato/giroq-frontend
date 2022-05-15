@@ -94,6 +94,22 @@
   margin: auto;
 }
 
+.spanCol1 {
+  color: var(--main-red-color);
+}
+
+.spanCol2 {
+  color: var(--main-blue-color);
+}
+
+.spanCol3 {
+  color: var(--main-yellow-color);
+}
+
+.spanCol4 {
+  color: var(--main-cyan-color);
+}
+
 .container {
   height: 2.5rem;
   display: flex;

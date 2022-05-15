@@ -9,6 +9,8 @@ import EventsFilterMobile from '../components/events/events-filter-mobile';
 import EventList from '../components/events/event-list';
 import SwitchTab from '../components/mobile/switch-tab';
 
+import * as ga from '../lib/google-analytics';
+
 import { useMainContext } from '../context/Context';
 
 const Home = () => {
@@ -249,6 +251,13 @@ const Home = () => {
         console.log(err);
       }
       setMobileSearch(true);
+
+      ga.event({
+        action: 'Button filter events - mobile',
+        category: '',
+        label: '',
+        value: '9',
+      });
     }
   };
 

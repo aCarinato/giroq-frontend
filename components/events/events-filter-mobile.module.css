@@ -152,6 +152,22 @@
   line-height: 2.5rem;
 }
 
+.spanCol1 {
+  color: var(--main-red-color);
+}
+
+.spanCol2 {
+  color: var(--main-blue-color);
+}
+
+.spanCol3 {
+  color: var(--main-yellow-color);
+}
+
+.spanCol4 {
+  color: var(--main-cyan-color);
+}
+
 .checkmarkOuter {
   width: 2rem;
   position: relative;

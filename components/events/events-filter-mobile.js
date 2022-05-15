@@ -142,6 +142,17 @@ function EventsFilterMobile(props) {
     });
   };
 
+  const clickMenuFilters = () => {
+    setMenuOpen(!menuOpen);
+
+    ga.event({
+      action: 'Menu filters click - (mobile)',
+      category: '',
+      label: '',
+      value: '9',
+    });
+  };
+
   const clickOnPostEvent = () => {
     window.open('https://www.giroq.com/posta-evento');
     // console.log('posteoo');
@@ -325,10 +336,7 @@ function EventsFilterMobile(props) {
         {/* {mainSwitchOpen && (
         <> */}
         {menuOpen ? (
-          <div
-            className={classes.menuOpen}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
+          <div className={classes.menuOpen} onClick={clickMenuFilters}>
             <div className={classes.labelMenuOpen}>CHIUDI MENÚ FILTRI</div>
 
             <div className={classes.containerFilterSwitchArrow}>
@@ -394,7 +402,18 @@ function EventsFilterMobile(props) {
                   <div className={classes.label}>SELEZIONA TUTTE</div>
                 </div> */}
                       <div className={classes.intruction}>
-                        Seleziona una o piú categorie o sottocategorie:
+                        Seleziona una o piú{' '}
+                        <span className={classes.spanBold}>
+                          <span className={classes.spanCol1}>ca</span>
+                          <span className={classes.spanCol2}>te</span>
+                          <span className={classes.spanCol3}>go</span>
+                          <span className={classes.spanCol4}>rie</span> o{' '}
+                          <span className={classes.spanCol1}>sott</span>
+                          <span className={classes.spanCol2}>ocat</span>
+                          <span className={classes.spanCol3}>ego</span>
+                          <span className={classes.spanCol4}>rie</span>
+                        </span>
+                        :
                       </div>
                       {CATEGORIES.map((category) => (
                         <Fragment key={category.id}>
@@ -548,7 +567,7 @@ function EventsFilterMobile(props) {
                     <span className={classes.spanBold}>
                       {nEvents} eventi e attività
                     </span>{' '}
-                    per date e categorie selezionate
+                    - (per date e categorie selezionate)
                   </div>
                 ) : (
                   <div>
@@ -556,15 +575,15 @@ function EventsFilterMobile(props) {
                     <span className={classes.spanBold}>
                       {nEvents} evento o attività
                     </span>{' '}
-                    per date e categorie selezionate
+                    - (per date e categorie selezionate)
                   </div>
                 )}
-
-                <div>
+                <br></br>
+                <div className={classes.howToUseIt}>
                   Zoom o spostati su{' '}
                   <span className={classes.spanBold}>"Mappa Eventi"</span>
                 </div>
-                <div>
+                <div className={classes.howToUseIt}>
                   Oppure seleziona{' '}
                   <span className={classes.spanBold}>"Lista Eventi"</span>
                 </div>

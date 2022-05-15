@@ -77,7 +77,7 @@ body {
   color: var(--main-neutral-color);
   width: 90%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-family: 'Comfortaa', cursive;
+  /* font-family: 'Comfortaa', cursive; */
 }
 
 .eventIDtitle {
