@@ -73,13 +73,13 @@ function EventItem(props) {
     }
   );
 
-  if (endDate) {
-    const humanReadableEndDate = new Date(endDate).toLocaleDateString('it-IT', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
-  }
+  // if (endDate) {
+  const humanReadableEndDate = new Date(endDate).toLocaleDateString('it-IT', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+  // }
 
   // const handleOnEnter = () => {
   //   if (!mobileView === true) {

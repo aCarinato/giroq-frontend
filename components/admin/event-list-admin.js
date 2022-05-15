@@ -21,11 +21,12 @@ function EventListAdmin(props) {
             key={event._id}
             id={event._id}
             title={event.title}
+            startDate={event.startDate}
+            endDate={event.endDate}
             event={event}
             deleteEvent={deleteEvent}
             // category={+event.category[0]}
-            // startDate={event.startDate}
-            // endDate={event.endDate}
+
             // startTime={event.startTime}
             // endTime={event.endTime}
             // image={event.image}
