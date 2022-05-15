@@ -34,7 +34,7 @@ const Home = () => {
   const today = new Date();
   const todayISO = today.toISOString().split('T')[0];
 
-  const sett = today.setDate(today.getDate() + 90);
+  const sett = today.setDate(today.getDate() + 31);
   const oneWeek = new Date(sett);
   const oneWeekISO = oneWeek.toISOString().split('T')[0];
 
@@ -90,6 +90,9 @@ const Home = () => {
   const [mobileView, setMobileView] = useState(null);
   const [showList, setShowList] = useState(false);
   const [mapSelected, setMapSelected] = useState(true);
+  const [mobileSearch, setMobileSearch] = useState(false);
+  const [nEvents, setNEvents] = useState(null);
+  const [nTotEvents, setNTotEvents] = useState(null);
 
   const calcHeight = () => {
     if (window.innerWidth <= 820) {
@@ -126,133 +129,27 @@ const Home = () => {
       setEventData(events);
       setRenderEvent(events);
       setLoading(false);
+      setNTotEvents(events.length);
     };
     fetchEvents();
   }, []);
 
-  // // RETRIEVE EVENTS ON FILTERING
-  // useEffect(() => {
-  //   const filterCategories = async () => {
-  //     if (bounds) {
-  //       const tlLng = bounds[0]; // bounds.nw.lng;
-  //       const brLat = bounds[1]; //bounds.se.lat;
-  //       const brLng = bounds[2]; //bounds.se.lng;
-  //       const tlLat = bounds[3]; //bounds.nw.lat;
-
-  //       const types = categoryCheck.map((tipo, index) => {
-  //         if (tipo) {
-  //           return index;
-  //         } else {
-  //           return 1000;
-  //         }
-  //       });
-
-  //       const filterParams = {
-  //         firstDate,
-  //         lastDate,
-  //         tlLng,
-  //         brLat,
-  //         brLng,
-  //         tlLat,
-  //         types,
-  //       };
-
-  //       try {
-  //         const retrievedEvents = await axios.post(
-  //           `${process.env.NEXT_PUBLIC_API}/events/`,
-  //           filterParams
-  //         );
-  //         setRenderEvent(retrievedEvents.data);
-  //       } catch (err) {
-  //         console.log(err);
-  //       }
-  //     }
-  //   };
-  //   filterCategories();
-  // }, [categoryCheck]);
-
-  // useEffect(() => {
-  //   const filterDates = async () => {
-  //     if (bounds) {
-  //       const tlLng = bounds[0]; // bounds.nw.lng;
-  //       const brLat = bounds[1]; //bounds.se.lat;
-  //       const brLng = bounds[2]; //bounds.se.lng;
-  //       const tlLat = bounds[3]; //bounds.nw.lat;
-
-  //       const checker = categoryCheck.every((v) => v === false);
-
-  //       let types = [];
-
-  //       if (checker) {
-  //         types = categoryCheck.map((tipo, index) => {
-  //           return index;
-  //         });
-  //       } else {
-  //         types = categoryCheck.map((tipo, index) => {
-  //           if (tipo) {
-  //             return index;
-  //           } else {
-  //             return 1000;
-  //           }
-  //         });
-  //       }
-
-  //       const filterParams = {
-  //         firstDate,
-  //         lastDate,
-  //         tlLng,
-  //         brLat,
-  //         brLng,
-  //         tlLat,
-  //         types,
-  //       };
-
-  //       try {
-  //         const retrievedEvents = await axios.post(
-  //           `${process.env.NEXT_PUBLIC_API}/events/`,
-  //           filterParams
-  //         );
-  //         setRenderEvent(retrievedEvents.data);
-  //       } catch (err) {
-  //         console.log(err);
-  //       }
-  //     }
-  //   };
-  //   filterDates();
-  // }, [firstDate, lastDate]);
-
   useEffect(() => {
-    const filterDates = async () => {
-      if (bounds) {
-        const tlLng = bounds[0]; // bounds.nw.lng;
-        const brLat = bounds[1]; //bounds.se.lat;
-        const brLng = bounds[2]; //bounds.se.lng;
-        const tlLat = bounds[3]; //bounds.nw.lat;
+    if (!mobileView) {
+      const filterDates = async () => {
+        if (bounds) {
+          const tlLng = bounds[0]; // bounds.nw.lng;
+          const brLat = bounds[1]; //bounds.se.lat;
+          const brLng = bounds[2]; //bounds.se.lng;
+          const tlLat = bounds[3]; //bounds.nw.lat;
 
-        let types = [];
+          let types = [];
 
-        if (filterCtgrTouch) {
-          console.log('CATEGORY FILTER HAS BEEN TOUCHED');
-          // types = categoryCheck.map((tipo, index) => {
-          //   return index;
-          // });
-          types = categoryCheck.map((tipo, index) => {
-            if (tipo) {
-              return index;
-            } else {
-              return 1000;
-            }
-          });
-
-          console.log(types);
-        } else {
-          const checker = categoryCheck.every((v) => v === false);
-
-          if (checker) {
-            types = categoryCheck.map((tipo, index) => {
-              return index;
-            });
-          } else {
+          if (filterCtgrTouch) {
+            // console.log('CATEGORY FILTER HAS BEEN TOUCHED');
+            // types = categoryCheck.map((tipo, index) => {
+            //   return index;
+            // });
             types = categoryCheck.map((tipo, index) => {
               if (tipo) {
                 return index;
@@ -260,32 +157,100 @@ const Home = () => {
                 return 1000;
               }
             });
+
+            // console.log(types);
+          } else {
+            const checker = categoryCheck.every((v) => v === false);
+
+            if (checker) {
+              types = categoryCheck.map((tipo, index) => {
+                return index;
+              });
+            } else {
+              types = categoryCheck.map((tipo, index) => {
+                if (tipo) {
+                  return index;
+                } else {
+                  return 1000;
+                }
+              });
+            }
+          }
+
+          const filterParams = {
+            firstDate,
+            lastDate,
+            tlLng,
+            brLat,
+            brLng,
+            tlLat,
+            types,
+          };
+
+          try {
+            const retrievedEvents = await axios.post(
+              `${process.env.NEXT_PUBLIC_API}/events/`,
+              filterParams
+            );
+            setRenderEvent(retrievedEvents.data);
+          } catch (err) {
+            console.log(err);
           }
         }
+      };
+      filterDates();
+    }
+  }, [bounds, categoryCheck, filterCtgrTouch, firstDate, lastDate]);
 
-        const filterParams = {
-          firstDate,
-          lastDate,
-          tlLng,
-          brLat,
-          brLng,
-          tlLat,
-          types,
-        };
+  const filterEventsMobile = async () => {
+    if (mobileView) {
+      let types = [];
 
-        try {
-          const retrievedEvents = await axios.post(
-            `${process.env.NEXT_PUBLIC_API}/events/`,
-            filterParams
-          );
-          setRenderEvent(retrievedEvents.data);
-        } catch (err) {
-          console.log(err);
+      if (filterCtgrTouch) {
+        types = categoryCheck.map((tipo, index) => {
+          if (tipo) {
+            return index;
+          } else {
+            return 1000;
+          }
+        });
+      } else {
+        const checker = categoryCheck.every((v) => v === false);
+
+        if (checker) {
+          types = categoryCheck.map((tipo, index) => {
+            return index;
+          });
+        } else {
+          types = categoryCheck.map((tipo, index) => {
+            if (tipo) {
+              return index;
+            } else {
+              return 1000;
+            }
+          });
         }
       }
-    };
-    filterDates();
-  }, [bounds, categoryCheck, filterCtgrTouch, firstDate, lastDate]);
+
+      const filterParams = {
+        firstDate,
+        lastDate,
+        types,
+      };
+
+      try {
+        const retrievedEvents = await axios.post(
+          `${process.env.NEXT_PUBLIC_API}/events/mobile`,
+          filterParams
+        );
+        setRenderEvent(retrievedEvents.data);
+        setNEvents(retrievedEvents.data.length);
+      } catch (err) {
+        console.log(err);
+      }
+      setMobileSearch(true);
+    }
+  };
 
   return (
     // <div className="container-fluid">
@@ -309,6 +274,10 @@ const Home = () => {
             allCategoriesCheck={allCategoriesCheck}
             setAllCategoriesCheck={setAllCategoriesCheck}
             setFilterCtgrTouch={setFilterCtgrTouch}
+            filterEventsMobile={filterEventsMobile}
+            mobileSearch={mobileSearch}
+            nEvents={nEvents}
+            nTotEvents={nTotEvents}
           />
         ) : (
           <EventsFilter

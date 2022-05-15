@@ -4,6 +4,32 @@
   text-align: center;
 } */
 
+/* ----------------------- */
+/* OPEN-CLOSE MENU FILTERS */
+
+.menuOpen {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 70%;
+  margin: auto;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-decoration: underline;
+  border: 1px solid var(--main-neutral-color);
+  border-radius: 0.25rem;
+}
+
+.labelMenuOpen {
+  font-size: 0.85rem;
+  padding: 0.7rem;
+}
+
+/* .intruction {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+} */
+
 .mainContainerSmallColumn {
   /* display: flex; */
   cursor: pointer;
@@ -21,29 +47,33 @@
 
 .containerFilterSwitchArrow {
   position: relative;
-  width: 4rem;
+  /* width: 4rem; */
+  padding: 0.85rem 0rem 0.7rem 0rem;
+  /* padding-left: 0rem; */
 }
 
 .filterSwitchArrowUp {
   position: relative;
   width: 0;
   height: 0;
-  border-left: 0.75rem solid transparent;
-  border-right: 0.75rem solid transparent;
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
 
-  border-bottom: 0.75rem solid var(--main-neutral-color);
+  border-bottom: 0.5rem solid var(--main-neutral-color);
 }
 
 .filterSwitchArrowDown {
   position: relative;
   width: 0;
   height: 0;
-  border-left: 0.75rem solid transparent;
-  border-right: 0.75rem solid transparent;
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
 
-  border-top: 0.75rem solid var(--main-neutral-color);
+  border-top: 0.5rem solid var(--main-neutral-color);
 }
+/* ----------- */
 
+/* ----------- */
 /* MY DROPDOWN */
 
 /* Dropdown Opener-Closer */
@@ -234,6 +264,10 @@
 .label {
   padding-left: 0.5rem;
   cursor: pointer;
+  border-bottom: 1px solid var(--main-neutral-color);
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
 }
 
 /* Dropdown Dates Items */
@@ -283,11 +317,26 @@
   border-radius: 0.25rem;
 }
 
-.btnPost:hover {
+.searchResults {
+  padding: 0.75rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.howToUseIt {
+  font-size: 0.8rem;
+}
+
+.spanBold {
+  font-weight: bold;
+  /* text-decoration: underline; */
+}
+
+/* .btnPost:hover {
   background-color: white;
   border: 1px solid var(--main-neutral-color);
   color: #616161;
-}
+} */
 
 @media (max-width: 820px) {
   .mainContainerLargeColumn {
