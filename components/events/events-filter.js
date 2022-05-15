@@ -346,6 +346,9 @@ function EventsFilter(props) {
                   </div>
                   <div className={classes.label}>SELEZIONA TUTTE</div>
                 </div> */}
+                <div className={classes.intruction}>
+                  Seleziona una o piú categorie o sottocategorie:
+                </div>
                 {CATEGORIES.map((category) => (
                   <Fragment key={category.id}>
                     <div

@@ -36,7 +36,9 @@ function SwitchTab(props) {
       {/* <div className="row"> */}
       <div className={classes.col} onClick={clickMapTab}>
         <div className={mapSelected ? classes.tabLeftSelected : classes.tab}>
-          <span className={showList ? classes.spanSelected : null}>Mappa</span>
+          <span className={showList ? classes.spanSelected : null}>
+            Mappa Eventi
+          </span>
         </div>
       </div>
       <div className={classes.col} onClick={clickListTab}>
