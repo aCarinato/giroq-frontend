@@ -92,6 +92,7 @@ const Home = () => {
   const [mapSelected, setMapSelected] = useState(true);
   const [mobileSearch, setMobileSearch] = useState(false);
   const [nEvents, setNEvents] = useState(null);
+  const [nTotEvents, setNTotEvents] = useState(null);
 
   const calcHeight = () => {
     if (window.innerWidth <= 820) {
@@ -128,6 +129,7 @@ const Home = () => {
       setEventData(events);
       setRenderEvent(events);
       setLoading(false);
+      setNTotEvents(events.length);
     };
     fetchEvents();
   }, []);
@@ -275,6 +277,7 @@ const Home = () => {
             filterEventsMobile={filterEventsMobile}
             mobileSearch={mobileSearch}
             nEvents={nEvents}
+            nTotEvents={nTotEvents}
           />
         ) : (
           <EventsFilter

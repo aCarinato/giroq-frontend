@@ -28,9 +28,10 @@ function EventsFilterMobile(props) {
     filterEventsMobile,
     mobileSearch,
     nEvents,
+    nTotEvents,
   } = props;
 
-  const [menuOpen, setMenuOpen] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     if (allCategoriesCheck) {
@@ -328,8 +329,11 @@ function EventsFilterMobile(props) {
             className={classes.menuOpen}
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <div>CHIUDI MENÚ FILTRI</div>
-            <div>X</div>
+            <div className={classes.labelMenuOpen}>CHIUDI MENÚ FILTRI</div>
+
+            <div className={classes.containerFilterSwitchArrow}>
+              <div className={classes.filterSwitchArrowUp}></div>
+            </div>
           </div>
         ) : (
           <div
@@ -337,12 +341,15 @@ function EventsFilterMobile(props) {
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {' '}
-            <div>APRI MENÚ FILTRI</div>
-            <div>X</div>
+            <div className={classes.labelMenuOpen}>APRI MENÚ FILTRI</div>
+            <div className={classes.containerFilterSwitchArrow}>
+              <div className={classes.filterSwitchArrowDown}></div>
+            </div>
           </div>
         )}
         {menuOpen && (
           <>
+            <br></br>
             <div className={classes.mainContainerLargeColumn}>
               <div className={classes.largeColumnColumn}>
                 <div className={classes.drowdownWrapper}>
@@ -533,7 +540,7 @@ function EventsFilterMobile(props) {
                 Applica Filtri
               </button>
             </div>
-            {mobileSearch && (
+            {mobileSearch ? (
               <div className={classes.searchResults}>
                 {nEvents > 1 ? (
                   <div>
@@ -562,10 +569,39 @@ function EventsFilterMobile(props) {
                   <span className={classes.spanBold}>"Lista Eventi"</span>
                 </div>
               </div>
+            ) : (
+              <div className={classes.searchResults}>
+                {nTotEvents > 1 ? (
+                  <div>
+                    Trovati{' '}
+                    <span className={classes.spanBold}>
+                      {nTotEvents} eventi e attività
+                    </span>{' '}
+                    - (nessun filtro di ricerca applicato)
+                  </div>
+                ) : (
+                  <div>
+                    Trovato{' '}
+                    <span className={classes.spanBold}>
+                      {nTotEvents} evento o attività
+                    </span>{' '}
+                  </div>
+                )}
+                <br></br>
+                <div className={classes.howToUseIt}>
+                  Zoom o spostati su{' '}
+                  <span className={classes.spanBold}>"Mappa Eventi"</span>
+                </div>
+                <div className={classes.howToUseIt}>
+                  Oppure seleziona{' '}
+                  <span className={classes.spanBold}>"Lista Eventi"</span>
+                </div>
+              </div>
             )}
           </>
         )}
       </div>
+      <br></br>
     </Fragment>
   );
 }
