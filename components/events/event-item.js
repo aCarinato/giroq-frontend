@@ -24,8 +24,10 @@ function EventItem(props) {
     longitude,
     mobileView,
     setMapSelected,
+    setShowList,
     image,
     filterEventsMobile,
+    mapSelected,
     // setCurrentPlaceId,
     // setZoom,
   } = props;
@@ -101,10 +103,16 @@ function EventItem(props) {
   const handleOnClick = () => {
     if (mobileView === true) {
       setMapSelected(true);
-      filterEventsMobile();
+      setShowList(false);
+
       // setSelectedEvent([latitude, longitude]);
+      // setMapCenter({ lat: latitude, lng: longitude });
+      // setZoom(14);
     }
 
+    if (mapSelected) {
+      filterEventsMobile();
+    }
     setMapCenter({ lat: latitude, lng: longitude });
     setZoom(14);
   };

@@ -12,10 +12,12 @@ function EventList(props) {
     // setCurrentMarker,
     mobileView,
     setMapSelected,
+    setShowList,
     setCoordinates,
     setCurrentPlaceId,
     coordinates,
     filterEventsMobile,
+    mapSelected,
     // setZoom,
   } = props;
 
@@ -57,10 +59,12 @@ function EventList(props) {
               latitude={event.lat}
               mobileView={mobileView}
               setMapSelected={setMapSelected}
+              setShowList={setShowList}
               setCoordinates={setCoordinates}
               coordinates={coordinates}
               setCurrentPlaceId={setCurrentPlaceId}
               filterEventsMobile={filterEventsMobile}
+              mapSelected={mapSelected}
             />
             {/* )} */}
           </Fragment>

@@ -95,6 +95,7 @@ const Home = () => {
   const [mobileSearch, setMobileSearch] = useState(false);
   const [nEvents, setNEvents] = useState(null);
   const [nTotEvents, setNTotEvents] = useState(null);
+  const [loadingEventsMobile, setLoadingEentsMobile] = useState(false);
 
   const calcHeight = () => {
     if (window.innerWidth <= 820) {
@@ -268,6 +269,7 @@ const Home = () => {
 
   const filterEventsMobile = async () => {
     if (mobileView) {
+      setLoadingEentsMobile(true);
       let types = [];
 
       if (filterCtgrTouch) {
@@ -313,6 +315,7 @@ const Home = () => {
         console.log(err);
       }
       setMobileSearch(true);
+      setLoadingEentsMobile(false);
 
       ga.event({
         action: 'Button filter events - mobile',
@@ -387,8 +390,10 @@ const Home = () => {
               events={renderEvent}
               mobileView={mobileView}
               setMapSelected={setMapSelected}
+              setShowList={setShowList}
               setCurrentPlaceId={setCurrentPlaceId}
               filterEventsMobile={filterEventsMobile}
+              mapSelected={mapSelected}
             />
           ) : (
             <LoaderList />
