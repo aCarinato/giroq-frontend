@@ -33,9 +33,20 @@ function Map(props) {
 
   const mapRef = useRef();
 
+  const BOUNDS = {
+    north: 46,
+    south: 45,
+    west: 11,
+    east: 12.5,
+  };
+
   const createMapOptions = (maps) => {
     return {
       gestureHandling: 'greedy',
+      restriction: {
+        latLngBounds: BOUNDS,
+        strictBounds: false,
+      },
       // panControl: false,
       // mapTypeControl: false,
       // scrollwheel: false,
