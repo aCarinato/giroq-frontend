@@ -10,7 +10,7 @@ function EventList(props) {
     events,
     // categoryCheck,
     // setCurrentMarker,
-    mobileView,
+    // mobileView,
     setMapSelected,
     setShowList,
     setCoordinates,
@@ -57,7 +57,7 @@ function EventList(props) {
               city={event.city}
               longitude={event.long}
               latitude={event.lat}
-              mobileView={mobileView}
+              // mobileView={mobileView}
               setMapSelected={setMapSelected}
               setShowList={setShowList}
               setCoordinates={setCoordinates}

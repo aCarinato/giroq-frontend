@@ -12,7 +12,7 @@ function CustomMarker(props) {
     title,
     setCurrentPlaceId,
     currentPlaceId,
-    mobileView,
+    // mobileView,
     category,
     zoom,
     // currentPlaceId,
@@ -20,7 +20,7 @@ function CustomMarker(props) {
 
   const [imgSrc, setImgSrc] = useState('');
 
-  const { selectedEvent, setSetSelectedEvent } = useMainContext();
+  const { mobileView, selectedEvent, setSetSelectedEvent } = useMainContext();
 
   useEffect(() => {
     setImgSrc(`/markers/icon-${category}.svg`);

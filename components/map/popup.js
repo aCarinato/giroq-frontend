@@ -8,6 +8,8 @@ import * as ga from '../../lib/google-analytics';
 import { Icon } from '@iconify/react';
 import { useEffect, useState } from 'react';
 
+import { useMainContext } from '../../context/Context';
+
 function Popup(props) {
   const {
     key,
@@ -25,9 +27,11 @@ function Popup(props) {
     lat,
     lng,
     setCurrentPlaceId,
-    mobileView,
+    // mobileView,
     setTestId,
   } = props;
+
+  const { mobileView } = useMainContext();
 
   const exploreLink = `/event/${id}`;
   // const exploreLink = `https://www.giroq.com/posta-evento`;

@@ -20,7 +20,7 @@ function Map(props) {
     // categoryCheck,
     currentPlaceId,
     setCurrentPlaceId,
-    mobileView,
+    // mobileView,
     events,
     bounds,
     isOpen,
@@ -29,7 +29,8 @@ function Map(props) {
     setIsDateDropdownOpen,
   } = props;
 
-  const { mapCenter, zoom, setZoom, selectedEvent } = useMainContext();
+  const { mobileView, mapCenter, zoom, setZoom, selectedEvent } =
+    useMainContext();
 
   const mapRef = useRef();
 
@@ -230,7 +231,7 @@ function Map(props) {
                   lat={cluster.properties.eventLat}
                   lng={cluster.properties.eventLong}
                   setCurrentPlaceId={setCurrentPlaceId}
-                  mobileView={mobileView}
+                  // mobileView={mobileView}
                   // setTestId={setTestId}
                 />
               );
@@ -249,7 +250,7 @@ function Map(props) {
                   title={cluster.properties.eventTitle}
                   currentPlaceId={currentPlaceId}
                   setCurrentPlaceId={setCurrentPlaceId}
-                  mobileView={mobileView}
+                  // mobileView={mobileView}
                   category={cluster.properties.eventCategory[0]}
                   zoom={zoom}
                 />
