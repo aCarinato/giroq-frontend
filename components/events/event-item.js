@@ -25,6 +25,7 @@ function EventItem(props) {
     mobileView,
     setMapSelected,
     image,
+    filterEventsMobile,
     // setCurrentPlaceId,
     // setZoom,
   } = props;
@@ -36,11 +37,11 @@ function EventItem(props) {
     // window.open(`https://www.giroq.com/posta-evento`);
     // window.open(exploreLink);
 
-    console.log('clikkeee');
+    // console.log('clikkeee');
 
     ga.event({
-      action: 'Lista eventi',
-      category: 'Click bottone dettagli evento',
+      action: 'Lista eventi - Click dettagli evento',
+      category: '',
       label: '',
       value: '9',
     });
@@ -100,19 +101,60 @@ function EventItem(props) {
   const handleOnClick = () => {
     if (mobileView === true) {
       setMapSelected(true);
+      filterEventsMobile();
       // setSelectedEvent([latitude, longitude]);
     }
 
     setMapCenter({ lat: latitude, lng: longitude });
-    setZoom(18);
-
-    ga.event({
-      action: 'Lista eventi',
-      category: 'Click mostra nella mappa',
-      label: '',
-      value: '9',
-    });
+    setZoom(14);
   };
+
+  //   if (mobileView) {
+  //     let types = [];
+
+  //     if (filterCtgrTouch) {
+  //       types = categoryCheck.map((tipo, index) => {
+  //         if (tipo) {
+  //           return index;
+  //         } else {
+  //           return 1000;
+  //         }
+  //       });
+  //     } else {
+  //       const checker = categoryCheck.every((v) => v === false);
+
+  //       if (checker) {
+  //         types = categoryCheck.map((tipo, index) => {
+  //           return index;
+  //         });
+  //       } else {
+  //         types = categoryCheck.map((tipo, index) => {
+  //           if (tipo) {
+  //             return index;
+  //           } else {
+  //             return 1000;
+  //           }
+  //         });
+  //       }
+  //     }
+
+  //     const filterParams = {
+  //       firstDate,
+  //       lastDate,
+  //       types,
+  //     };
+
+  //     try {
+  //       const retrievedEvents = await axios.post(
+  //         `${process.env.NEXT_PUBLIC_API}/events/mobile`,
+  //         filterParams
+  //       );
+  //       setRenderEvent(retrievedEvents.data);
+  //       setNEvents(retrievedEvents.data.length);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  // };
 
   return (
     <div className={classes.item}>

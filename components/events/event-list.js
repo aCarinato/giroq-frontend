@@ -15,6 +15,7 @@ function EventList(props) {
     setCoordinates,
     setCurrentPlaceId,
     coordinates,
+    filterEventsMobile,
     // setZoom,
   } = props;
 
@@ -59,6 +60,7 @@ function EventList(props) {
               setCoordinates={setCoordinates}
               coordinates={coordinates}
               setCurrentPlaceId={setCurrentPlaceId}
+              filterEventsMobile={filterEventsMobile}
             />
             {/* )} */}
           </Fragment>
