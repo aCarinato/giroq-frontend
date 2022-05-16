@@ -28,6 +28,13 @@ function EventDetailPage(props) {
 
   const selectedEvent = props.event;
 
+  const originalImgUrl = selectedEvent.image.url;
+  const strBefore = originalImgUrl.split('upload/')[0];
+  // console.log(strBefore);
+  const strAfter = originalImgUrl.split('upload/')[1];
+  // console.log(strAfter);
+  const ogImgUrl = `${strBefore}upload/w_600,c_scale/${strAfter}`;
+
   // console.log(selectedEvent);
 
   const humanReadableStartDate = new Date(
@@ -56,6 +63,16 @@ function EventDetailPage(props) {
   //   });
   // }
 
+  // useEffect(() => {
+  //   const originalImgUrl = selectedEvent.image.url;
+  //   const strBefore = originalImgUrl.split('upload/')[0];
+  //   // console.log(strBefore);
+  //   const strAfter = originalImgUrl.split('upload/')[1];
+  //   // console.log(strAfter);
+  //   const ogImgUrl = `${strBefore}upload/w_600,c_scale/${strAfter}`;
+  //   // console.log(ogImgUrl);
+  // }, []);
+
   return (
     <>
       <Head>
@@ -64,10 +81,7 @@ function EventDetailPage(props) {
           property="og:url"
           content={`https://www.giroq.com/event/${selectedEvent._id}/`}
         />
-        <meta
-          property="og:image"
-          content={selectedEvent.image && selectedEvent.image.url}
-        />
+        <meta property="og:image" content={selectedEvent.image && ogImgUrl} />
         <meta property="og:description" content={selectedEvent.description} />
       </Head>
       {/* <EventId
