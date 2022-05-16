@@ -61,12 +61,10 @@ function AddEvent() {
       };
       // console.log(newOrganiser);
 
-      const res = axios.post(
+      const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API}/auth/organiser`,
         newOrganiser
       );
-
-      window.location.reload();
 
       // console.log(res);
 
@@ -80,6 +78,8 @@ function AddEvent() {
     } catch (err) {
       console.log(err);
     }
+
+    window.location.reload();
   };
 
   // const uploadImg = async (e) => {
