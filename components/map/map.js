@@ -42,7 +42,7 @@ function Map(props) {
 
   const createMapOptions = (maps) => {
     return {
-      gestureHandling: 'greedy',
+      // gestureHandling: 'greedy',
       restriction: {
         latLngBounds: BOUNDS,
         strictBounds: false,
