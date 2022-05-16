@@ -20,6 +20,9 @@ export function ContextProvider({ children }) {
   // Selected event
   const [selectedEvent, setSetSelectedEvent] = useState(null);
 
+  // Mobile
+  const [mobileView, setMobileView] = useState(null);
+
   const value = {
     eventData,
     setEventData,
@@ -31,6 +34,8 @@ export function ContextProvider({ children }) {
     setReRenderMarkers,
     selectedEvent,
     setSetSelectedEvent,
+    mobileView,
+    setMobileView,
   };
 
   return <mainContext.Provider value={value}>{children}</mainContext.Provider>;

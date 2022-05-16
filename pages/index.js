@@ -14,7 +14,7 @@ import * as ga from '../lib/google-analytics';
 import { useMainContext } from '../context/Context';
 
 const Home = () => {
-  const { setEventData } = useMainContext();
+  const { setEventData, mobileView, setMobileView } = useMainContext();
 
   // LOADING DATA
   const [loading, setLoading] = useState(false);
@@ -89,7 +89,7 @@ const Home = () => {
 
   // MOBILE
   const [mapHeight, setMapHeight] = useState('');
-  const [mobileView, setMobileView] = useState(null);
+  // const [mobileView, setMobileView] = useState(null);
   const [showList, setShowList] = useState(false);
   const [mapSelected, setMapSelected] = useState(true);
   const [mobileSearch, setMobileSearch] = useState(false);
@@ -329,7 +329,7 @@ const Home = () => {
           (!loading ? (
             <EventList
               events={renderEvent}
-              mobileView={mobileView}
+              // mobileView={mobileView}
               setMapSelected={setMapSelected}
               setShowList={setShowList}
               setCurrentPlaceId={setCurrentPlaceId}
@@ -348,7 +348,7 @@ const Home = () => {
               setBounds={setBounds}
               currentPlaceId={currentPlaceId}
               setCurrentPlaceId={setCurrentPlaceId}
-              mobileView={mobileView}
+              // mobileView={mobileView}
               events={renderEvent}
               bounds={bounds}
               isOpen={isOpen}

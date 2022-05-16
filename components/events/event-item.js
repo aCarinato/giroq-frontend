@@ -22,7 +22,7 @@ function EventItem(props) {
     city,
     latitude,
     longitude,
-    mobileView,
+    // mobileView,
     setMapSelected,
     setShowList,
     image,
@@ -31,7 +31,7 @@ function EventItem(props) {
     // setCurrentPlaceId,
     // setZoom,
   } = props;
-  const { setMapCenter, setZoom } = useMainContext();
+  const { mobileView, setMapCenter, setZoom } = useMainContext();
 
   const [colorCategory, setColorCategory] = useState(null);
 
