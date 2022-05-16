@@ -33,6 +33,25 @@ function Map(props) {
 
   const mapRef = useRef();
 
+  const createMapOptions = (maps) => {
+    return {
+      gestureHandling: 'greedy',
+      // panControl: false,
+      // mapTypeControl: false,
+      // scrollwheel: false,
+      // styles: [
+      //   {
+      //     stylers: [
+      //       { saturation: -100 },
+      //       { gamma: 0.8 },
+      //       { lightness: 4 },
+      //       { visibility: 'on' },
+      //     ],
+      //   },
+      // ],
+    };
+  };
+
   // const [zoom, setZoom] = useState(13);
 
   const points = events.map((event) => ({
@@ -129,6 +148,7 @@ function Map(props) {
         onGoogleApiLoaded={({ map }) => {
           mapRef.current = map;
         }}
+        options={createMapOptions}
         onChange={handleOnChange}
         onClick={handleOnClick}
         onDrag={handleOnDrag}

@@ -205,65 +205,6 @@ const Home = () => {
     }
   }, [bounds, categoryCheck, filterCtgrTouch, firstDate, lastDate]);
 
-  // useEffect(() => {
-  //   if (mobileView) {
-  //     const filterEventsMobile = async () => {
-  //       if (bounds) {
-  //         const tlLng = bounds[0]; // bounds.nw.lng;
-  //         const brLat = bounds[1]; //bounds.se.lat;
-  //         const brLng = bounds[2]; //bounds.se.lng;
-  //         const tlLat = bounds[3]; //bounds.nw.lat;
-  //         let types = [];
-
-  //         if (filterCtgrTouch) {
-  //           types = categoryCheck.map((tipo, index) => {
-  //             if (tipo) {
-  //               return index;
-  //             } else {
-  //               return 1000;
-  //             }
-  //           });
-  //         } else {
-  //           const checker = categoryCheck.every((v) => v === false);
-
-  //           if (checker) {
-  //             types = categoryCheck.map((tipo, index) => {
-  //               return index;
-  //             });
-  //           } else {
-  //             types = categoryCheck.map((tipo, index) => {
-  //               if (tipo) {
-  //                 return index;
-  //               } else {
-  //                 return 1000;
-  //               }
-  //             });
-  //           }
-  //         }
-
-  //         const filterParams = {
-  //           firstDate,
-  //           lastDate,
-  //           types,
-  //         };
-
-  //         try {
-  //           const retrievedEvents = await axios.post(
-  //             `${process.env.NEXT_PUBLIC_API}/events/mobile`,
-  //             filterParams
-  //           );
-  //           setRenderEvent(retrievedEvents.data);
-  //           setNEvents(retrievedEvents.data.length);
-  //         } catch (err) {
-  //           console.log(err);
-  //         }
-  //         setMobileSearch(true);
-  //       }
-  //     };
-  //     filterEventsMobile();
-  //   }
-  // }, [bounds, filterCtgrTouch, firstDate, lastDate]);
-
   // ------------------------- //
   // FUNCTIONS FOR MOBILE VIEW //
 
