@@ -34,10 +34,10 @@ function Map(props) {
   const mapRef = useRef();
 
   const BOUNDS = {
-    north: 46,
-    south: 45,
-    west: 11,
-    east: 12.5,
+    north: 46.5,
+    south: 44.5,
+    west: 10.5,
+    east: 13,
   };
 
   const createMapOptions = (maps) => {

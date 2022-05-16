@@ -17,7 +17,7 @@ function SwitchTab(props) {
     setMapSelected(true);
     setShowList(false);
 
-    filterEventsMobile();
+    // filterEventsMobile();
 
     ga.event({
       action: 'Switch mappa-lista (mobile)',
