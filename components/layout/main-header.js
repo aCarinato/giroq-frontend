@@ -2,6 +2,7 @@ import Link from 'next/link';
 import classes from './main.header.module.css';
 import Image from 'next/image';
 // import Link from 'next/link';
+import { Icon } from '@iconify/react';
 import * as ga from '../../lib/google-analytics';
 
 import { useMainContext } from '../../context/Context';
@@ -28,7 +29,8 @@ function MainHeader() {
           {/* <Link href="/posta-evento">
           <a target="_blank"> */}
           <button className={classes.btnPost} onClick={clickOnPostEvent}>
-            Posta il tuo Evento
+            Posta il tuo Evento{'  '}
+            <Icon icon="akar-icons:arrow-forward-thick-fill" />
           </button>
           {/* </a>
         </Link> */}

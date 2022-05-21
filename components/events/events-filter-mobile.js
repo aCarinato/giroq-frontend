@@ -1,4 +1,6 @@
 import { Fragment, useState, useEffect } from 'react';
+
+import { Icon } from '@iconify/react';
 import Link from 'next/link';
 import classes from './events-filter-mobile.module.css';
 
@@ -516,7 +518,44 @@ function EventsFilterMobile(props) {
                     Applica Filtro
                   </button>
                 </div> */}
-                      <form>
+                      <br></br>
+                      <div>Seleziona data inizio:</div>
+                      <div className={classes.datesContainer}>
+                        <div>
+                          <Icon icon="ant-design:calendar-outlined" />
+                        </div>
+                        <div className={classes['date-selection']}>
+                          {' '}
+                          <input
+                            type="date"
+                            id="first-date"
+                            min={todayISO}
+                            name="first-date"
+                            value={firstDate}
+                            onChange={selectFirstDate}
+                          />
+                        </div>
+                      </div>
+
+                      <br></br>
+                      <div>Seleziona data fine:</div>
+                      <div className={classes.datesContainer}>
+                        <div>
+                          <Icon icon="ant-design:calendar-outlined" />
+                        </div>
+                        <div className={classes['date-selection']}>
+                          <input
+                            type="date"
+                            id="last-date"
+                            min={minLastDateISO}
+                            name="last-date"
+                            value={lastDate}
+                            onChange={selectLastDate}
+                          />
+                        </div>
+                      </div>
+
+                      {/* <form>
                         <label htmlFor="first-date">
                           Seleziona data inizio:
                         </label>
@@ -537,7 +576,7 @@ function EventsFilterMobile(props) {
                           value={lastDate}
                           onChange={selectLastDate}
                         />
-                      </form>
+                      </form> */}
                     </div>
                   )}
                 </div>

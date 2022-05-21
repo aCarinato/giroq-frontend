@@ -288,6 +288,15 @@
 
 /* Dropdown Dates Items */
 
+.datesContainer {
+  display: flex;
+}
+
+.date-selection {
+  width: 75%;
+  padding-left: 0.5rem;
+}
+
 .datesList {
   width: 15rem;
   padding: 0.5rem;
@@ -296,6 +305,7 @@
   position: absolute;
   overflow-y: scroll;
   z-index: 4;
+  text-align: left;
   margin: auto;
 }
 
