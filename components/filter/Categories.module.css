@@ -1,0 +1,78 @@
+.row {
+  display: flex;
+  padding: 0.25rem;
+}
+
+.col {
+  width: 50%;
+  height: 2rem;
+  line-height: 2rem;
+}
+
+.span-bold {
+  font-weight: bold;
+}
+
+.container {
+  height: 2.5rem;
+  display: flex;
+  line-height: 2.5rem;
+}
+
+.checkmarkOuter {
+  width: 2rem;
+  position: relative;
+  /* cursor: pointer; */
+  padding: 0.75rem;
+  padding-left: 0.5rem;
+}
+
+.checkmark {
+  position: relative;
+  display: flex;
+  width: 1rem;
+  height: 1rem;
+  /* cursor: pointer; */
+  border: 1px solid var(--main-neutral-color);
+  border-radius: 50%;
+}
+
+.checkmarkSelectedRed {
+  position: relative;
+  margin: auto;
+  background-color: var(--main-red-color);
+  width: 0.75rem;
+  height: 0.75rem;
+  /* cursor: pointer; */
+  border-radius: 50%;
+}
+
+.checkmarkSelectedBlue {
+  position: relative;
+  margin: auto;
+  background-color: var(--main-blue-color);
+  width: 0.75rem;
+  height: 0.75rem;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.checkmarkSelectedYellow {
+  position: relative;
+  margin: auto;
+  background-color: var(--main-yellow-color);
+  width: 0.75rem;
+  height: 0.75rem;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.checkmarkSelectedCyan {
+  position: relative;
+  margin: auto;
+  background-color: var(--main-cyan-color);
+  width: 0.75rem;
+  height: 0.75rem;
+  cursor: pointer;
+  border-radius: 50%;
+}

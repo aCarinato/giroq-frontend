@@ -1,0 +1,19 @@
+.row {
+  display: flex;
+  padding: 0.25rem;
+}
+
+.title {
+  text-align: center;
+  padding: 0.25rem;
+}
+
+.col {
+  width: 50%;
+  height: 2rem;
+  line-height: 2rem;
+}
+
+.span-bold {
+  font-weight: bold;
+}

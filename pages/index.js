@@ -8,6 +8,9 @@ import EventsFilter from '../components/events/events-filter';
 import EventsFilterMobile from '../components/events/events-filter-mobile';
 import EventList from '../components/events/event-list';
 import SwitchTab from '../components/mobile/switch-tab';
+import Filter from '../components/filter/Filter';
+
+import Portale from '../components/portals/Portale';
 
 import * as ga from '../lib/google-analytics';
 
@@ -31,6 +34,9 @@ const Home = () => {
   // EVENTS
 
   // const [events, setEvents] = useState([]);
+
+  // MODAL
+  const [showFilter, setShowFilter] = useState(false);
 
   // FILTER EVENTS
   const today = new Date();
@@ -270,6 +276,25 @@ const Home = () => {
   return (
     // <div className="container-fluid">
     <div className="mainAppContainer">
+      {mobileView && (
+        <div>
+          <button onClick={() => setShowFilter(true)}>APRI IL MODALE</button>
+        </div>
+      )}
+      {showFilter && (
+        <Filter
+          firstDate={firstDate}
+          setFirstDate={setFirstDate}
+          lastDate={lastDate}
+          setLastDate={setLastDate}
+          categoryCheck={categoryCheck}
+          setCategoryCheck={setCategoryCheck}
+          categoryGroupCheck={categoryGroupCheck}
+          setCategoryGroupCheck={setCategoryGroupCheck}
+          setFilterCtgrTouch={setFilterCtgrTouch}
+          onClose={() => setShowFilter(false)}
+        />
+      )}
       <div className="appRowBlock">
         {/* <div className="col-lg-12"> */}
         {mobileView ? (

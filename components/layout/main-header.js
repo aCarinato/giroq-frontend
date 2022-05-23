@@ -30,7 +30,10 @@ function MainHeader() {
           <a target="_blank"> */}
           <button className={classes.btnPost} onClick={clickOnPostEvent}>
             Posta il tuo Evento{'  '}
-            <Icon icon="akar-icons:arrow-forward-thick-fill" />
+            <Icon
+              icon="akar-icons:arrow-forward-thick-fill"
+              className={classes.icon}
+            />
           </button>
           {/* </a>
         </Link> */}
