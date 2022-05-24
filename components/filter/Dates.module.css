@@ -1,0 +1,25 @@
+.row {
+  display: flex;
+  padding: 0.25rem 1rem;
+  justify-content: space-between;
+}
+
+.title {
+  text-align: center;
+  padding: 0.25rem;
+  margin: 1rem 0;
+}
+
+.col {
+  width: 50%;
+  height: 2rem;
+  line-height: 2rem;
+}
+
+.span-bold {
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--main-neutral-color);
+  /* border-radius: 1rem; */
+}
