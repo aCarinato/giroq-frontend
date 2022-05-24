@@ -43,7 +43,7 @@ function Dates(props) {
   return (
     <div>
       <div className={`${classes.title}`}>
-        <span className={classes['span-bold']}>DATE</span>
+        <span className={classes['span-bold']}>Date</span>
       </div>
       <div className={classes.row}>
         <div className={classes.col}>

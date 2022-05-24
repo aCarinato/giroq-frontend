@@ -132,6 +132,7 @@ function DropdownCategories(props) {
       className={classes.container}
       key={idx}
     >
+      <div className={classes.label}>{cat}</div>
       {categoryCheck[idx] ? (
         <div className={classes.checkmarkOuter}>
           {+id < 5 && (
@@ -160,8 +161,6 @@ function DropdownCategories(props) {
           <div className={classes.checkmark}></div>
         </div>
       )}
-
-      <div className={classes.label}>{cat}</div>
     </div>
   );
 }

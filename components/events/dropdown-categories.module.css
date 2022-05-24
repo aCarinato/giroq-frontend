@@ -2,6 +2,8 @@
   height: 2rem;
   display: flex;
   line-height: 2rem;
+  justify-content: space-between;
+  padding: 0 1rem;
 }
 
 .checkmarkOuter {
@@ -9,6 +11,7 @@
   position: relative;
   cursor: pointer;
   padding: 0.625rem;
+  border-left: 1px solid var(--main-neutral-color);
 }
 
 .checkmark {
@@ -22,9 +25,11 @@
 }
 
 .label {
-  padding-left: 2rem;
+  padding-left: 1rem;
   cursor: pointer;
-  border-left: 1px solid var(--main-neutral-color);
+  /* border-left: 1px solid var(--main-neutral-color); */
+  text-align: left;
+  font-size: 0.85rem;
 }
 
 .checkmarkSelectedRed {

@@ -4,6 +4,8 @@ import Dates from './Dates';
 
 import classes from './Filter.module.css';
 
+import { useMainContext } from '../../context/Context';
+
 function Filter(props) {
   const {
     firstDate,
@@ -21,6 +23,8 @@ function Filter(props) {
     eventsTemp,
     setFiltersApplied,
   } = props;
+
+  const { setZoom } = useMainContext();
 
   const resetFilters = () => {
     // DATES
@@ -112,10 +116,13 @@ function Filter(props) {
                 setRenderEvent(eventsTemp);
                 setFiltersApplied(true);
                 onClose();
+                setZoom(8);
               }}
             >
               {nEvents > 0
-                ? `Mostra ${nEvents} eventi`
+                ? nEvents > 1
+                  ? `Mostra ${nEvents} eventi`
+                  : `Mostra ${nEvents} evento`
                 : `Nessun evento disponibile`}
             </button>
           </div>

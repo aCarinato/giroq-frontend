@@ -1,11 +1,13 @@
 .row {
   display: flex;
-  padding: 0.25rem;
+  padding: 0.25rem 1rem;
+  justify-content: space-between;
 }
 
 .title {
   text-align: center;
   padding: 0.25rem;
+  margin: 1rem 0;
 }
 
 .col {
@@ -16,4 +18,8 @@
 
 .span-bold {
   font-weight: bold;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--main-neutral-color);
+  /* border-radius: 1rem; */
 }

@@ -150,8 +150,8 @@ function Categories(props) {
 
   return (
     <Fragment>
-      <div className={classes.row}>
-        <span className={classes['span-bold']}>CATEGORIE</span>
+      <div className={classes.title}>
+        <span className={classes['span-bold']}>Categorie</span>
       </div>
       {CATEGORIES.map((category) => (
         <Fragment key={category.id}>
@@ -160,6 +160,7 @@ function Categories(props) {
             className={classes.container}
             onClick={() => selectCategoryGroup(category.id)}
           >
+            <div className={classes.label}>{category.mainCategory}</div>
             <div className={classes.checkmarkOuter}>
               {+category.id < 5 &&
                 (categoryGroupCheck[0] ? (
@@ -196,7 +197,6 @@ function Categories(props) {
                   <div className={classes.checkmark}></div>
                 ))}
             </div>
-            <div className={classes.label}>{category.mainCategory}</div>
           </div>
 
           {category.subCategories.map((cat, index) => (
