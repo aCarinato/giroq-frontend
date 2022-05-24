@@ -80,25 +80,6 @@ function Filter(props) {
           </div>
           <div className={classes['header-text']}>Filtri</div>
         </div>
-        <div className={classes.content}>
-          <Dates
-            firstDate={firstDate}
-            setFirstDate={setFirstDate}
-            lastDate={lastDate}
-            setLastDate={setLastDate}
-            // setFilterDate={setFilterDate}
-          />
-          <br></br>
-          <Categories
-            categoryCheck={categoryCheck}
-            setCategoryCheck={setCategoryCheck}
-            categoryGroupCheck={categoryGroupCheck}
-            setCategoryGroupCheck={setCategoryGroupCheck}
-            setFilterCtgrTouch={setFilterCtgrTouch}
-            // nEvents={nEvents}
-            // nTotEvents={nTotEvents}
-          />
-        </div>
         <div className={classes.footer}>
           <div className={classes['footer-col']}>
             <span className={classes['footer-text']} onClick={resetFilters}>
@@ -127,6 +108,54 @@ function Filter(props) {
             </button>
           </div>
         </div>
+        <div className={classes.content}>
+          <Dates
+            firstDate={firstDate}
+            setFirstDate={setFirstDate}
+            lastDate={lastDate}
+            setLastDate={setLastDate}
+            // setFilterDate={setFilterDate}
+          />
+          <br></br>
+          <Categories
+            categoryCheck={categoryCheck}
+            setCategoryCheck={setCategoryCheck}
+            categoryGroupCheck={categoryGroupCheck}
+            setCategoryGroupCheck={setCategoryGroupCheck}
+            setFilterCtgrTouch={setFilterCtgrTouch}
+            // nEvents={nEvents}
+            // nTotEvents={nTotEvents}
+          />
+          <br></br>
+        </div>
+        {/* <div className={classes.footer}>
+          <div className={classes['footer-col']}>
+            <span className={classes['footer-text']} onClick={resetFilters}>
+              Cancella tutto
+            </span>
+          </div>
+          <div className={classes['footer-col']}>
+            <button
+              className={
+                nEvents > 0
+                  ? classes['footer-btn']
+                  : classes['footer-btn-bigger']
+              }
+              onClick={() => {
+                setRenderEvent(eventsTemp);
+                setFiltersApplied(true);
+                onClose();
+                setZoom(8);
+              }}
+            >
+              {nEvents > 0
+                ? nEvents > 1
+                  ? `Mostra ${nEvents} eventi`
+                  : `Mostra ${nEvents} evento`
+                : `Nessun evento disponibile`}
+            </button>
+          </div>
+        </div> */}
       </div>
     </Modal>
   );

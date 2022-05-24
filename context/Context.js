@@ -12,7 +12,7 @@ export function ContextProvider({ children }) {
 
   // MAP reference object
   const [mapCenter, setMapCenter] = useState({ lat: 45.671519, lng: 11.68314 });
-  const [zoom, setZoom] = useState(11);
+  const [zoom, setZoom] = useState(8);
 
   //Need to re-render markers because user has changed filer option
   const [reRenderMarkers, setReRenderMarkers] = useState(null);
