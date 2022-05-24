@@ -43,7 +43,7 @@ const Home = () => {
   const today = new Date();
   const todayISO = today.toISOString().split('T')[0];
 
-  const interval = today.setDate(today.getDate() + 31);
+  const interval = today.setDate(today.getDate() + 61);
   const timeInterval = new Date(interval);
   const timeIntervalISO = timeInterval.toISOString().split('T')[0];
 
