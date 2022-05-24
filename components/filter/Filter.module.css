@@ -58,3 +58,16 @@
   height: 2rem;
   border: none;
 }
+
+.footer-btn-bigger {
+  width: 90%;
+  background-color: var(--main-neutral-color);
+  color: white;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  height: 2.5rem;
+  border: none;
+  /* margin-top: -1.5rem; */
+  /* margin: auto; */
+  /* white-space: normal; */
+}

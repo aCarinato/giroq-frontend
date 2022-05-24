@@ -9,21 +9,22 @@ import EventsFilterMobile from '../components/events/events-filter-mobile';
 import EventList from '../components/events/event-list';
 import SwitchTab from '../components/mobile/switch-tab';
 import Filter from '../components/filter/Filter';
-
-import Portale from '../components/portals/Portale';
+import FilterButton from '../components/UI/FilterButton';
 
 import * as ga from '../lib/google-analytics';
 
 import { useMainContext } from '../context/Context';
 
 const Home = () => {
-  const { setEventData, mobileView, setMobileView } = useMainContext();
+  const { eventData, setEventData, mobileView, setMobileView } =
+    useMainContext();
 
   // LOADING DATA
   const [loading, setLoading] = useState(false);
 
   //Event to render
   const [renderEvent, setRenderEvent] = useState([]);
+  const [eventsTemp, setEventsTemp] = useState([]);
 
   // MAP
   const [bounds, setBounds] = useState(null);
@@ -42,12 +43,12 @@ const Home = () => {
   const today = new Date();
   const todayISO = today.toISOString().split('T')[0];
 
-  const sett = today.setDate(today.getDate() + 31);
-  const oneWeek = new Date(sett);
-  const oneWeekISO = oneWeek.toISOString().split('T')[0];
+  const interval = today.setDate(today.getDate() + 31);
+  const timeInterval = new Date(interval);
+  const timeIntervalISO = timeInterval.toISOString().split('T')[0];
 
   const [firstDate, setFirstDate] = useState(todayISO);
-  const [lastDate, setLastDate] = useState(oneWeekISO);
+  const [lastDate, setLastDate] = useState(timeIntervalISO);
 
   const [allCategoriesCheck, setAllCategoriesCheck] = useState(false);
 
@@ -100,8 +101,10 @@ const Home = () => {
   const [mapSelected, setMapSelected] = useState(true);
   const [mobileSearch, setMobileSearch] = useState(false);
   const [nEvents, setNEvents] = useState(null);
-  const [nTotEvents, setNTotEvents] = useState(null);
-  const [loadingEventsMobile, setLoadingEentsMobile] = useState(false);
+  const [filtersApplied, setFiltersApplied] = useState(false);
+
+  // const [nTotEvents, setNTotEvents] = useState(null);
+  // const [loadingEventsMobile, setLoadingEentsMobile] = useState(false);
 
   const calcHeight = () => {
     if (window.innerWidth <= 820) {
@@ -138,7 +141,7 @@ const Home = () => {
       setEventData(events);
       setRenderEvent(events);
       setLoading(false);
-      setNTotEvents(events.length);
+      // setNTotEvents(events.length);
     };
     fetchEvents();
   }, []);
@@ -214,6 +217,207 @@ const Home = () => {
   // ------------------------- //
   // FUNCTIONS FOR MOBILE VIEW //
 
+  // useEffect(() => {
+  //   const checker = categoryCheck.every((v) => v === false);
+  //   if (checker) {
+  //     setFilterCategory(false);
+  //   }
+  //   // setFilterDate(true);
+  // }, [categoryCheck, firstDate, lastDate]);
+
+  useEffect(() => {
+    if (mobileView && showFilter) {
+      let types = [];
+
+      const checker = categoryCheck.every((v) => v === false);
+
+      if (checker) {
+        types = categoryCheck.map((tipo, index) => {
+          return index;
+        });
+      } else {
+        types = categoryCheck.map((tipo, index) => {
+          if (tipo) {
+            return index;
+          } else {
+            return 1000;
+          }
+        });
+      }
+
+      const filterParams = {
+        firstDate,
+        lastDate,
+        types,
+      };
+
+      const formattedFirstDate = new Date(firstDate);
+      const formattedLastDate = new Date(lastDate);
+
+      const dayBeforeFirstDate = formattedFirstDate.setDate(
+        formattedFirstDate.getDate() - 1
+      );
+
+      const dayAfterLastDate = formattedLastDate.setDate(
+        formattedLastDate.getDate() + 1
+      );
+
+      // console.log(eventData);
+      // console.log(dayBeforeFirstDate);
+      // console.log(new Date(eventData[0].startDate));
+      // console.log(new Date(eventData[0].startDate).getTime());
+
+      let filteredEvents = eventData.filter((event) => {
+        let firstCondition =
+          new Date(event.startDate).getTime() > dayBeforeFirstDate;
+
+        let secondCondition =
+          new Date(event.startDate).getTime() < dayAfterLastDate;
+
+        let thirdCondition =
+          new Date(event.endDate).getTime() > dayBeforeFirstDate;
+
+        let fourthCondition =
+          new Date(event.endDate).getTime() < dayAfterLastDate;
+
+        let fifthCondition =
+          new Date(event.startDate).getTime() < dayBeforeFirstDate;
+
+        let sixthCondition =
+          new Date(event.endDate).getTime() > dayBeforeFirstDate;
+
+        let combinedFirst = firstCondition && secondCondition;
+        let combinedSecond = thirdCondition && fourthCondition;
+        let combinedThird = fifthCondition && sixthCondition;
+
+        let categoryCondition = types.includes(event.category[0]);
+
+        // console.log(categoryCondition);
+
+        // console.log(combinedFirst);
+        // console.log(combinedSecond);
+        // console.log(combinedThird);
+        return (
+          (combinedFirst || combinedSecond || combinedThird) &&
+          categoryCondition
+        );
+        // &&
+        //   event.endDate < dayAfterLastDate;
+      });
+
+      // console.log(filteredEvents);
+      setEventsTemp(filteredEvents);
+      setNEvents(filteredEvents.length);
+
+      setMobileSearch(true);
+      // setLoadingEentsMobile(false);
+    }
+  }, [showFilter, categoryCheck, firstDate, lastDate]);
+
+  // useEffect(() => {
+  //   if (mobileView && showFilter) {
+  //     const filterEvents = async () => {
+  //       let types = [];
+
+  //       const checker = categoryCheck.every((v) => v === false);
+
+  //       if (checker) {
+  //         types = categoryCheck.map((tipo, index) => {
+  //           return index;
+  //         });
+  //       } else {
+  //         types = categoryCheck.map((tipo, index) => {
+  //           if (tipo) {
+  //             return index;
+  //           } else {
+  //             return 1000;
+  //           }
+  //         });
+  //       }
+
+  //       const filterParams = {
+  //         firstDate,
+  //         lastDate,
+  //         types,
+  //       };
+
+  //       const formattedFirstDate = new Date(firstDate);
+  //       const formattedLastDate = new Date(lastDate);
+
+  //       const dayBeforeFirstDate = formattedFirstDate.setDate(
+  //         formattedFirstDate.getDate() - 1
+  //       );
+
+  //       const dayAfterLastDate = formattedLastDate.setDate(
+  //         formattedLastDate.getDate() + 1
+  //       );
+
+  //       // console.log(eventData);
+  //       // console.log(dayBeforeFirstDate);
+  //       // console.log(new Date(eventData[0].startDate));
+  //       // console.log(new Date(eventData[0].startDate).getTime());
+
+  //       let filteredEvents = eventData.filter((event) => {
+  //         let firstCondition =
+  //           new Date(event.startDate).getTime() > dayBeforeFirstDate;
+
+  //         let secondCondition =
+  //           new Date(event.startDate).getTime() < dayAfterLastDate;
+
+  //         let thirdCondition =
+  //           new Date(event.endDate).getTime() > dayBeforeFirstDate;
+
+  //         let fourthCondition =
+  //           new Date(event.endDate).getTime() < dayAfterLastDate;
+
+  //         let fifthCondition =
+  //           new Date(event.startDate).getTime() < dayBeforeFirstDate;
+
+  //         let sixthCondition =
+  //           new Date(event.endDate).getTime() > dayBeforeFirstDate;
+
+  //         let combinedFirst = firstCondition && secondCondition;
+  //         let combinedSecond = thirdCondition && fourthCondition;
+  //         let combinedThird = fifthCondition && sixthCondition;
+
+  //         let categoryCondition = types.includes(event.category[0]);
+
+  //         // console.log(categoryCondition);
+
+  //         // console.log(combinedFirst);
+  //         // console.log(combinedSecond);
+  //         // console.log(combinedThird);
+  //         return (
+  //           (combinedFirst || combinedSecond || combinedThird) &&
+  //           categoryCondition
+  //         );
+  //         // &&
+  //         //   event.endDate < dayAfterLastDate;
+  //       });
+
+  //       console.log(filteredEvents);
+  //       setEventsTemp(filteredEvents);
+  //       setNEvents(filteredEvents.length);
+
+  //       // try {
+  //       //   const retrievedEvents = await axios.post(
+  //       //     `${process.env.NEXT_PUBLIC_API}/events/mobile`,
+  //       //     filterParams
+  //       //   );
+  //       //   // setRenderEvent(retrievedEvents.data);
+  //       //   setEventsTemp(retrievedEvents.data);
+  //       //   setNEvents(retrievedEvents.data.length);
+  //       // } catch (err) {
+  //       //   console.log(err);
+  //       // }
+  //       setMobileSearch(true);
+  //       // setLoadingEentsMobile(false);
+  //     };
+
+  //     filterEvents();
+  //   }
+  // }, [showFilter, categoryCheck, firstDate, lastDate]);
+
   const filterEventsMobile = async () => {
     if (mobileView) {
       setLoadingEentsMobile(true);
@@ -276,11 +480,11 @@ const Home = () => {
   return (
     // <div className="container-fluid">
     <div className="mainAppContainer">
-      {mobileView && (
+      {/* {mobileView && (
         <div>
-          <button onClick={() => setShowFilter(true)}>APRI IL MODALE</button>
+          <button onClick={() => setShowFilter(true)}>FILTRA EVENTI</button>
         </div>
-      )}
+      )} */}
       {showFilter && (
         <Filter
           firstDate={firstDate}
@@ -293,33 +497,40 @@ const Home = () => {
           setCategoryGroupCheck={setCategoryGroupCheck}
           setFilterCtgrTouch={setFilterCtgrTouch}
           onClose={() => setShowFilter(false)}
+          nEvents={nEvents}
+          setRenderEvent={setRenderEvent}
+          eventsTemp={eventsTemp}
+          setFiltersApplied={setFiltersApplied}
         />
       )}
       <div className="appRowBlock">
-        {/* <div className="col-lg-12"> */}
         {mobileView ? (
-          <EventsFilterMobile
-            categoryCheck={categoryCheck}
-            setCategoryCheck={setCategoryCheck}
-            categoryGroupCheck={categoryGroupCheck}
-            setCategoryGroupCheck={setCategoryGroupCheck}
-            firstDate={firstDate}
-            setFirstDate={setFirstDate}
-            lastDate={lastDate}
-            setLastDate={setLastDate}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            isDateDropdownOpen={isDateDropdownOpen}
-            setIsDateDropdownOpen={setIsDateDropdownOpen}
-            allCategoriesCheck={allCategoriesCheck}
-            setAllCategoriesCheck={setAllCategoriesCheck}
-            setFilterCtgrTouch={setFilterCtgrTouch}
-            filterEventsMobile={filterEventsMobile}
-            mobileSearch={mobileSearch}
-            nEvents={nEvents}
-            nTotEvents={nTotEvents}
+          <FilterButton
+            filtersApplied={filtersApplied}
+            setShowFilter={setShowFilter}
           />
         ) : (
+          // <EventsFilterMobile
+          //   categoryCheck={categoryCheck}
+          //   setCategoryCheck={setCategoryCheck}
+          //   categoryGroupCheck={categoryGroupCheck}
+          //   setCategoryGroupCheck={setCategoryGroupCheck}
+          //   firstDate={firstDate}
+          //   setFirstDate={setFirstDate}
+          //   lastDate={lastDate}
+          //   setLastDate={setLastDate}
+          //   isOpen={isOpen}
+          //   setIsOpen={setIsOpen}
+          //   isDateDropdownOpen={isDateDropdownOpen}
+          //   setIsDateDropdownOpen={setIsDateDropdownOpen}
+          //   allCategoriesCheck={allCategoriesCheck}
+          //   setAllCategoriesCheck={setAllCategoriesCheck}
+          //   setFilterCtgrTouch={setFilterCtgrTouch}
+          //   filterEventsMobile={filterEventsMobile}
+          //   mobileSearch={mobileSearch}
+          //   nEvents={nEvents}
+          //   nTotEvents={nTotEvents}
+          // />
           <EventsFilter
             categoryCheck={categoryCheck}
             setCategoryCheck={setCategoryCheck}

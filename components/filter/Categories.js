@@ -12,6 +12,8 @@ function Categories(props) {
     categoryGroupCheck,
     setCategoryGroupCheck,
     setFilterCtgrTouch,
+    // nEvents,
+    // nTotEvents,
   } = props;
 
   const selectCategoryGroup = (id) => {

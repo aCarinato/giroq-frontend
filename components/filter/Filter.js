@@ -1,4 +1,3 @@
-import React from 'react';
 import Modal from '../UI/Modal';
 import Categories from './Categories';
 import Dates from './Dates';
@@ -17,7 +16,56 @@ function Filter(props) {
     categoryGroupCheck,
     setCategoryGroupCheck,
     setFilterCtgrTouch,
+    nEvents,
+    setRenderEvent,
+    eventsTemp,
+    setFiltersApplied,
   } = props;
+
+  const resetFilters = () => {
+    // DATES
+    const today = new Date();
+    const todayISO = today.toISOString().split('T')[0];
+
+    const interval = today.setDate(today.getDate() + 31);
+    const timeInterval = new Date(interval);
+    const timeIntervalISO = timeInterval.toISOString().split('T')[0];
+
+    setFirstDate(todayISO);
+    setLastDate(timeIntervalISO);
+    setFiltersApplied(false);
+    // CATEGORIES
+    setCategoryCheck([
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ]);
+
+    setCategoryGroupCheck([false, false, false, false]);
+  };
 
   return (
     <Modal onClose={onClose}>
@@ -34,6 +82,7 @@ function Filter(props) {
             setFirstDate={setFirstDate}
             lastDate={lastDate}
             setLastDate={setLastDate}
+            // setFilterDate={setFilterDate}
           />
           <br></br>
           <Categories
@@ -42,14 +91,33 @@ function Filter(props) {
             categoryGroupCheck={categoryGroupCheck}
             setCategoryGroupCheck={setCategoryGroupCheck}
             setFilterCtgrTouch={setFilterCtgrTouch}
+            // nEvents={nEvents}
+            // nTotEvents={nTotEvents}
           />
         </div>
         <div className={classes.footer}>
           <div className={classes['footer-col']}>
-            <span className={classes['footer-text']}>Cancella selezione</span>
+            <span className={classes['footer-text']} onClick={resetFilters}>
+              Cancella tutto
+            </span>
           </div>
           <div className={classes['footer-col']}>
-            <button className={classes['footer-btn']}>Mostra eventi</button>
+            <button
+              className={
+                nEvents > 0
+                  ? classes['footer-btn']
+                  : classes['footer-btn-bigger']
+              }
+              onClick={() => {
+                setRenderEvent(eventsTemp);
+                setFiltersApplied(true);
+                onClose();
+              }}
+            >
+              {nEvents > 0
+                ? `Mostra ${nEvents} eventi`
+                : `Nessun evento disponibile`}
+            </button>
           </div>
         </div>
       </div>

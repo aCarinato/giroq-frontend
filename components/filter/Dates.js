@@ -17,12 +17,11 @@ function Dates(props) {
     const minLastDate = new Date(dateInterval);
     const minLastDateISO = minLastDate.toISOString().split('T')[0];
     setMinLastDateISO(minLastDateISO);
-    console.log(minLastDateISO);
+    // console.log(minLastDateISO);
   }, [firstDate]);
 
   const selectFirstDate = (e) => {
     setFirstDate(e.target.value);
-
     // ga.event({
     //   action: 'Filter section',
     //   category: 'Selezione data inizio',
@@ -33,7 +32,6 @@ function Dates(props) {
 
   const selectLastDate = (e) => {
     setLastDate(e.target.value);
-
     // ga.event({
     //   action: 'Filter section',
     //   category: 'Selezione data fine',
