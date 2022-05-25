@@ -216,7 +216,7 @@ export async function getServerSideProps(context) {
   let eventsCatRec = [];
 
   let sameCategoryEvents = events.data.filter(
-    (event) => event.category[0] === eventCategory
+    (event) => event.category[0] === eventCategory && event._id !== data._id
   );
   eventsCatRec = [...sameCategoryEvents];
 
