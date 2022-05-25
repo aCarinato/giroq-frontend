@@ -83,7 +83,7 @@ function Filter(props) {
         <div className={classes.footer}>
           <div className={classes['footer-col']}>
             <span className={classes['footer-text']} onClick={resetFilters}>
-              Cancella tutto
+              Cancella selezioni
             </span>
           </div>
           <div className={classes['footer-col']}>
