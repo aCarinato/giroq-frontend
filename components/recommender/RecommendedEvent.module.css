@@ -134,12 +134,11 @@
     .dateTime {
       font-size: 0.75rem;
     }
-  }
-  
-  @media (min-width: 768px) {
-    .item {
-      width: 46%;
-      margin: 0.5rem;
-
-    }
   } */
+
+@media (min-width: 768px) {
+  .item {
+    width: 30%;
+    margin: 0.5rem;
+  }
+}

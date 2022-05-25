@@ -2,7 +2,7 @@ import RecommendedEvent from './RecommendedEvent';
 import classes from './Ribbon.module.css';
 
 function Ribbon(props) {
-  const { recommendedEvents } = props;
+  const { type, recommendedEvents } = props;
 
   const recommendationList = recommendedEvents.map((event) => (
     <RecommendedEvent
@@ -20,10 +20,12 @@ function Ribbon(props) {
   ));
 
   return (
-    <div className={classes.container}>
+    <div>
       <br></br>
-      <div>Potrebbe anche interessarti:</div>
-      {recommendationList}
+      {type === 'same' && <div>Della stessa tipologia:</div>}
+      {type === 'similar' && <div>Di tipologie affini:</div>}
+      <br></br>
+      <div className={classes.container}>{recommendationList}</div>
     </div>
   );
 }
