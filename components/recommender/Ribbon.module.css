@@ -1,0 +1,18 @@
+.container {
+  border-top: 1px solid var(--main-neutral-color);
+  padding-top: 1rem;
+  /* font-weight: bold; */
+}
+
+.title {
+  font-size: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}

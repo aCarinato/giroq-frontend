@@ -36,9 +36,12 @@ function EventDetailPage(props) {
   //   if (eventId) fetchEvent();
   // }, [eventId]);
 
-  useEffect(() => {
-    console.log(props.recommendations);
-  }, []);
+  // useEffect(() => {
+  //   console.log('della stessa categ');
+  //   console.log(props.recommendationsSameCategory);
+  //   console.log('simili');
+  //   console.log(props.recommendations);
+  // }, []);
 
   const selectedEvent = props.event;
 
@@ -149,9 +152,24 @@ function EventDetailPage(props) {
           )}
         </div>
         <br></br>
-        {/* {props.recommendations.length > 0 && (
-          <Ribbon name={props.recommendations[0].title} />
-        )} */}
+        <div
+          style={{
+            fontSize: '1.2rem',
+            fontWeight: 'bold',
+            fontFamily: 'Verdana, Geneva, Tahoma, sans-serif',
+          }}
+        >
+          Potrebbe anche interessarti:
+        </div>
+        {props.recommendationsSameCategory.length > 0 && (
+          <Ribbon
+            type={'same'}
+            recommendedEvents={props.recommendationsSameCategory}
+          />
+        )}
+        {props.recommendations.length > 0 && (
+          <Ribbon type={'similar'} recommendedEvents={props.recommendations} />
+        )}
       </div>
     </>
   );
@@ -194,11 +212,23 @@ export async function getServerSideProps(context) {
 
   const eventCategory = data.category[0];
 
+  // Events of the same category
+  let eventsCatRec = [];
+
+  let sameCategoryEvents = events.data.filter(
+    (event) => event.category[0] === eventCategory
+  );
+  eventsCatRec = [...sameCategoryEvents];
+
+  // Events of similar categories
   let eventsRecommended = [];
 
   if (eventCategory < 5) {
     let filterEvents = events.data.filter(
-      (event) => event.category[0] < 5 && event._id !== data._id
+      (event) =>
+        event.category[0] < 5 &&
+        event._id !== data._id &&
+        event.category[0] !== eventCategory
     );
     eventsRecommended = [...filterEvents];
   }
@@ -208,7 +238,8 @@ export async function getServerSideProps(context) {
       (event) =>
         event.category[0] > 4 &&
         event.category[0] < 13 &&
-        event._id !== data._id
+        event._id !== data._id &&
+        event.category[0] !== eventCategory
     );
     eventsRecommended = [...filterEvents];
   }
@@ -218,14 +249,18 @@ export async function getServerSideProps(context) {
       (event) =>
         event.category[0] > 12 &&
         event.category[0] < 20 &&
-        event._id !== data._id
+        event._id !== data._id &&
+        event.category[0] !== eventCategory
     );
     eventsRecommended = [...filterEvents];
   }
 
   if (eventCategory > 19) {
     let filterEvents = events.data.filter(
-      (event) => event.category[0] > 19 && event._id !== data._id
+      (event) =>
+        event.category[0] > 19 &&
+        event._id !== data._id &&
+        event.category[0] !== eventCategory
     );
     eventsRecommended = [...filterEvents];
   }
@@ -234,6 +269,7 @@ export async function getServerSideProps(context) {
     props: {
       event: data,
       events: events.data,
+      recommendationsSameCategory: eventsCatRec,
       recommendations: eventsRecommended,
     },
   };
