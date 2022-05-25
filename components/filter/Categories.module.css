@@ -1,6 +1,6 @@
 .row {
-  display: flex;
-  padding: 0.25rem;
+  /* display: flex; */
+  padding: 0 1rem;
 }
 
 .title {
@@ -27,7 +27,7 @@
   display: flex;
   line-height: 2.5rem;
   justify-content: space-between;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
 }
 
 .label {

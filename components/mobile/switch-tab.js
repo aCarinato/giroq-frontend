@@ -5,19 +5,11 @@ import * as ga from '../../lib/google-analytics';
 function SwitchTab(props) {
   //   const [mapSelected, setMapSelected] = useState(true);
 
-  const {
-    mapSelected,
-    setMapSelected,
-    showList,
-    setShowList,
-    filterEventsMobile,
-  } = props;
+  const { mapSelected, setMapSelected, showList, setShowList } = props;
 
   const clickMapTab = () => {
     setMapSelected(true);
     setShowList(false);
-
-    // filterEventsMobile();
 
     ga.event({
       action: 'Switch mappa-lista (mobile)',

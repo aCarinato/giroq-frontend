@@ -149,7 +149,7 @@ function Categories(props) {
   };
 
   return (
-    <Fragment>
+    <div className={classes.row}>
       <div className={classes.title}>
         <span className={classes['span-bold']}>Categorie</span>
       </div>
@@ -214,7 +214,7 @@ function Categories(props) {
           ))}
         </Fragment>
       ))}
-    </Fragment>
+    </div>
   );
 }
 

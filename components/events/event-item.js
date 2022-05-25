@@ -26,7 +26,6 @@ function EventItem(props) {
     setMapSelected,
     setShowList,
     image,
-    filterEventsMobile,
     mapSelected,
     // setCurrentPlaceId,
     // setZoom,
@@ -170,7 +169,7 @@ function EventItem(props) {
     <div className={classes.item}>
       <div className={classes.imgContainer} onClick={handleClickDetails}>
         <Link href={exploreLink}>
-          <a target="_blank">
+          <a>
             {image && (
               <img className={classes.image} src={image.url} alt={title} />
             )}

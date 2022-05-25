@@ -1,10 +1,20 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import EventId from '../../components/events/eventid';
+// import EventId from '../../components/events/eventid';
 import Head from 'next/head';
 
+import Ribbon from '../../components/recommender/Ribbon';
+
+// import CATEGORIES from '../../data/categories';
+
+// import { useMainContext } from '../../context/Context';
+
 function EventDetailPage(props) {
+  // const { eventData, filteredEvents } = useMainContext();
+
+  // const [filteredEvents, setFilteredEvents] = useState([]);
+
   // console.log(props.event);
   // const [event, setEvent] = useState({});
   // const router = useRouter();
@@ -25,6 +35,10 @@ function EventDetailPage(props) {
   // useEffect(() => {
   //   if (eventId) fetchEvent();
   // }, [eventId]);
+
+  useEffect(() => {
+    console.log(props.recommendations);
+  }, []);
 
   const selectedEvent = props.event;
 
@@ -134,6 +148,10 @@ function EventDetailPage(props) {
             />
           )}
         </div>
+        <br></br>
+        {/* {props.recommendations.length > 0 && (
+          <Ribbon name={props.recommendations[0].title} />
+        )} */}
       </div>
     </>
   );
@@ -146,18 +164,77 @@ export async function getServerSideProps(context) {
 
   const eventId = params.eventId;
 
-  try {
-    const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API}/event/${eventId}`
-    );
+  // try {
+  //   const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/events/`);
+  //   const events = res.data;
 
-    return {
-      props: {
-        event: data,
-      },
-    };
-    // setEvent(data);
-  } catch (err) {
-    console.log(err);
+  // } catch (err) {
+  //   console.log(err);
+  // }
+
+  // try {
+  //   const { data } = await axios.get(
+  //     `${process.env.NEXT_PUBLIC_API}/event/${eventId}`
+  //   );
+
+  //   return {
+  //     props: {
+  //       event: data,
+  //     },
+  //   };
+  // } catch (err) {
+  //   console.log(err);
+  // }
+
+  const events = await axios.get(`${process.env.NEXT_PUBLIC_API}/events/`);
+  // const events = res.data;
+  const { data } = await axios.get(
+    `${process.env.NEXT_PUBLIC_API}/event/${eventId}`
+  );
+
+  const eventCategory = data.category[0];
+
+  let eventsRecommended = [];
+
+  if (eventCategory < 5) {
+    let filterEvents = events.data.filter(
+      (event) => event.category[0] < 5 && event._id !== data._id
+    );
+    eventsRecommended = [...filterEvents];
   }
+
+  if (eventCategory > 4 && eventCategory < 13) {
+    let filterEvents = events.data.filter(
+      (event) =>
+        event.category[0] > 4 &&
+        event.category[0] < 13 &&
+        event._id !== data._id
+    );
+    eventsRecommended = [...filterEvents];
+  }
+
+  if (eventCategory > 12 && eventCategory < 20) {
+    let filterEvents = events.data.filter(
+      (event) =>
+        event.category[0] > 12 &&
+        event.category[0] < 20 &&
+        event._id !== data._id
+    );
+    eventsRecommended = [...filterEvents];
+  }
+
+  if (eventCategory > 19) {
+    let filterEvents = events.data.filter(
+      (event) => event.category[0] > 19 && event._id !== data._id
+    );
+    eventsRecommended = [...filterEvents];
+  }
+
+  return {
+    props: {
+      event: data,
+      events: events.data,
+      recommendations: eventsRecommended,
+    },
+  };
 }

@@ -114,6 +114,7 @@
   height: 2.5rem;
   display: flex;
   line-height: 2.5rem;
+  justify-content: space-between;
   /* position: relative;
   z-index: 5; */
 }

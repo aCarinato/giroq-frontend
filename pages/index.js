@@ -5,7 +5,7 @@ import LoaderMap from '../components/map/loader-map';
 import LoaderList from '../components/events/loader-list';
 import Map from '../components/map/map';
 import EventsFilter from '../components/events/events-filter';
-import EventsFilterMobile from '../components/events/events-filter-mobile';
+// import EventsFilterMobile from '../components/events/events-filter-mobile';
 import EventList from '../components/events/event-list';
 import SwitchTab from '../components/mobile/switch-tab';
 import Filter from '../components/filter/Filter';
@@ -16,8 +16,13 @@ import * as ga from '../lib/google-analytics';
 import { useMainContext } from '../context/Context';
 
 const Home = () => {
-  const { eventData, setEventData, mobileView, setMobileView } =
-    useMainContext();
+  const {
+    eventData,
+    setEventData,
+    mobileView,
+    setMobileView,
+    setFilteredEvents,
+  } = useMainContext();
 
   // LOADING DATA
   const [loading, setLoading] = useState(false);
@@ -146,84 +151,164 @@ const Home = () => {
     fetchEvents();
   }, []);
 
+  // useEffect(() => {
+  //   if (!mobileView) {
+  //     const filterEvents = async () => {
+  //       if (bounds) {
+  //         const tlLng = bounds[0]; // bounds.nw.lng;
+  //         const brLat = bounds[1]; //bounds.se.lat;
+  //         const brLng = bounds[2]; //bounds.se.lng;
+  //         const tlLat = bounds[3]; //bounds.nw.lat;
+
+  //         let types = [];
+
+  //         if (filterCtgrTouch) {
+  //           // console.log('CATEGORY FILTER HAS BEEN TOUCHED');
+  //           // types = categoryCheck.map((tipo, index) => {
+  //           //   return index;
+  //           // });
+  //           types = categoryCheck.map((tipo, index) => {
+  //             if (tipo) {
+  //               return index;
+  //             } else {
+  //               return 1000;
+  //             }
+  //           });
+
+  //           // console.log(types);
+  //         } else {
+  //           const checker = categoryCheck.every((v) => v === false);
+
+  //           if (checker) {
+  //             types = categoryCheck.map((tipo, index) => {
+  //               return index;
+  //             });
+  //           } else {
+  //             types = categoryCheck.map((tipo, index) => {
+  //               if (tipo) {
+  //                 return index;
+  //               } else {
+  //                 return 1000;
+  //               }
+  //             });
+  //           }
+  //         }
+
+  //         const filterParams = {
+  //           firstDate,
+  //           lastDate,
+  //           tlLng,
+  //           brLat,
+  //           brLng,
+  //           tlLat,
+  //           types,
+  //         };
+
+  //         try {
+  //           const retrievedEvents = await axios.post(
+  //             `${process.env.NEXT_PUBLIC_API}/events/`,
+  //             filterParams
+  //           );
+  //           setRenderEvent(retrievedEvents.data);
+  //         } catch (err) {
+  //           console.log(err);
+  //         }
+  //       }
+  //     };
+  //     filterEvents();
+  //   }
+  // }, [bounds, categoryCheck, filterCtgrTouch, firstDate, lastDate]);
+
   useEffect(() => {
-    if (!mobileView) {
-      const filterEvents = async () => {
-        if (bounds) {
-          const tlLng = bounds[0]; // bounds.nw.lng;
-          const brLat = bounds[1]; //bounds.se.lat;
-          const brLng = bounds[2]; //bounds.se.lng;
-          const tlLat = bounds[3]; //bounds.nw.lat;
+    if (!mobileView && bounds) {
+      const tlLng = bounds[0]; // bounds.nw.lng;
+      const brLat = bounds[1]; //bounds.se.lat;
+      const brLng = bounds[2]; //bounds.se.lng;
+      const tlLat = bounds[3]; //bounds.nw.lat;
 
-          let types = [];
+      let types = [];
 
-          if (filterCtgrTouch) {
-            // console.log('CATEGORY FILTER HAS BEEN TOUCHED');
-            // types = categoryCheck.map((tipo, index) => {
-            //   return index;
-            // });
-            types = categoryCheck.map((tipo, index) => {
-              if (tipo) {
-                return index;
-              } else {
-                return 1000;
-              }
-            });
+      const checker = categoryCheck.every((v) => v === false);
 
-            // console.log(types);
+      if (checker) {
+        types = categoryCheck.map((tipo, index) => {
+          return index;
+        });
+      } else {
+        types = categoryCheck.map((tipo, index) => {
+          if (tipo) {
+            return index;
           } else {
-            const checker = categoryCheck.every((v) => v === false);
-
-            if (checker) {
-              types = categoryCheck.map((tipo, index) => {
-                return index;
-              });
-            } else {
-              types = categoryCheck.map((tipo, index) => {
-                if (tipo) {
-                  return index;
-                } else {
-                  return 1000;
-                }
-              });
-            }
+            return 1000;
           }
+        });
+      }
 
-          const filterParams = {
-            firstDate,
-            lastDate,
-            tlLng,
-            brLat,
-            brLng,
-            tlLat,
-            types,
-          };
+      const formattedFirstDate = new Date(firstDate);
+      const formattedLastDate = new Date(lastDate);
 
-          try {
-            const retrievedEvents = await axios.post(
-              `${process.env.NEXT_PUBLIC_API}/events/`,
-              filterParams
-            );
-            setRenderEvent(retrievedEvents.data);
-          } catch (err) {
-            console.log(err);
-          }
-        }
-      };
-      filterEvents();
+      const dayBeforeFirstDate = formattedFirstDate.setDate(
+        formattedFirstDate.getDate() - 1
+      );
+
+      const dayAfterLastDate = formattedLastDate.setDate(
+        formattedLastDate.getDate() + 1
+      );
+
+      // Conditions on dates
+      let filteredEvents = eventData.filter((event) => {
+        let firstCondition =
+          new Date(event.startDate).getTime() > dayBeforeFirstDate;
+
+        let secondCondition =
+          new Date(event.startDate).getTime() < dayAfterLastDate;
+
+        let thirdCondition =
+          new Date(event.endDate).getTime() > dayBeforeFirstDate;
+
+        let fourthCondition =
+          new Date(event.endDate).getTime() < dayAfterLastDate;
+
+        let fifthCondition =
+          new Date(event.startDate).getTime() < dayBeforeFirstDate;
+
+        let sixthCondition =
+          new Date(event.endDate).getTime() > dayBeforeFirstDate;
+
+        let combinedFirst = firstCondition && secondCondition;
+        let combinedSecond = thirdCondition && fourthCondition;
+        let combinedThird = fifthCondition && sixthCondition;
+
+        // Condition on category
+        let categoryCondition = types.includes(event.category[0]);
+
+        // Condition on bounds
+        let firstConditionBounds = event.lat > brLat;
+        let secondConditionBounds = event.lat < tlLat;
+        let thirdConditionBounds = event.long > tlLng;
+        let fourthConditionBounds = event.long < brLng;
+
+        let combinedFirstBounds = firstConditionBounds && secondConditionBounds;
+        let combinedSecondBounds =
+          thirdConditionBounds && fourthConditionBounds;
+
+        return (
+          (combinedFirst || combinedSecond || combinedThird) &&
+          categoryCondition &&
+          combinedFirstBounds &&
+          combinedSecondBounds
+        );
+      });
+
+      setRenderEvent(filteredEvents);
+      setNEvents(filteredEvents.length);
+
+      setFilteredEvents(filteredEvents);
     }
-  }, [bounds, categoryCheck, filterCtgrTouch, firstDate, lastDate]);
+  }, [bounds, categoryCheck, firstDate, lastDate]);
 
   // ------------------------- //
   // FUNCTIONS FOR MOBILE VIEW //
-
-  // useEffect(() => {
-  //   const checker = categoryCheck.every((v) => v === false);
-  //   if (checker) {
-  //     setFilterCategory(false);
-  //   }
-  //   // setFilterDate(true);
-  // }, [categoryCheck, firstDate, lastDate]);
 
   useEffect(() => {
     if (mobileView && showFilter) {
@@ -245,11 +330,11 @@ const Home = () => {
         });
       }
 
-      const filterParams = {
-        firstDate,
-        lastDate,
-        types,
-      };
+      // const filterParams = {
+      //   firstDate,
+      //   lastDate,
+      //   types,
+      // };
 
       const formattedFirstDate = new Date(firstDate);
       const formattedLastDate = new Date(lastDate);
@@ -418,65 +503,6 @@ const Home = () => {
   //   }
   // }, [showFilter, categoryCheck, firstDate, lastDate]);
 
-  const filterEventsMobile = async () => {
-    if (mobileView) {
-      setLoadingEentsMobile(true);
-      let types = [];
-
-      if (filterCtgrTouch) {
-        types = categoryCheck.map((tipo, index) => {
-          if (tipo) {
-            return index;
-          } else {
-            return 1000;
-          }
-        });
-      } else {
-        const checker = categoryCheck.every((v) => v === false);
-
-        if (checker) {
-          types = categoryCheck.map((tipo, index) => {
-            return index;
-          });
-        } else {
-          types = categoryCheck.map((tipo, index) => {
-            if (tipo) {
-              return index;
-            } else {
-              return 1000;
-            }
-          });
-        }
-      }
-
-      const filterParams = {
-        firstDate,
-        lastDate,
-        types,
-      };
-
-      try {
-        const retrievedEvents = await axios.post(
-          `${process.env.NEXT_PUBLIC_API}/events/mobile`,
-          filterParams
-        );
-        setRenderEvent(retrievedEvents.data);
-        setNEvents(retrievedEvents.data.length);
-      } catch (err) {
-        console.log(err);
-      }
-      setMobileSearch(true);
-      setLoadingEentsMobile(false);
-
-      ga.event({
-        action: 'Button filter events - mobile',
-        category: '',
-        label: '',
-        value: '9',
-      });
-    }
-  };
-
   return (
     // <div className="container-fluid">
     <div className="mainAppContainer">
@@ -557,7 +583,6 @@ const Home = () => {
           setMapSelected={setMapSelected}
           showList={showList}
           setShowList={setShowList}
-          filterEventsMobile={filterEventsMobile}
         />
       )}
       <div className="appRowFlex">
@@ -569,7 +594,6 @@ const Home = () => {
               setMapSelected={setMapSelected}
               setShowList={setShowList}
               setCurrentPlaceId={setCurrentPlaceId}
-              filterEventsMobile={filterEventsMobile}
               mapSelected={mapSelected}
             />
           ) : (

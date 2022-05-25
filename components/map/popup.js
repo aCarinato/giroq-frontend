@@ -28,7 +28,6 @@ function Popup(props) {
     lng,
     setCurrentPlaceId,
     // mobileView,
-    setTestId,
   } = props;
 
   const { mobileView } = useMainContext();
@@ -103,7 +102,7 @@ function Popup(props) {
       )} */}
       <div className={classes.imgContainer} onClick={handleClickDetails}>
         <Link href={exploreLink}>
-          <a target="_blank">
+          <a>
             {image && (
               <img className={classes.image} src={image.url} alt={title} />
             )}

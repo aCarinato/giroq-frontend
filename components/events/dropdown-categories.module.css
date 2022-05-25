@@ -3,7 +3,7 @@
   display: flex;
   line-height: 2rem;
   justify-content: space-between;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
 }
 
 .checkmarkOuter {
