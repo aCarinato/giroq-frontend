@@ -22,8 +22,12 @@ function Ribbon(props) {
   return (
     <div>
       <br></br>
-      {type === 'same' && <div>Della stessa tipologia:</div>}
-      {type === 'similar' && <div>Di tipologie affini:</div>}
+      {type === 'same' && (
+        <div className={classes.title}>Della stessa tipologia:</div>
+      )}
+      {type === 'similar' && (
+        <div className={classes.title}>Di tipologie affini:</div>
+      )}
       <br></br>
       <div className={classes.container}>{recommendationList}</div>
     </div>
