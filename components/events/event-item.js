@@ -26,7 +26,6 @@ function EventItem(props) {
     setMapSelected,
     setShowList,
     image,
-    filterEventsMobile,
     mapSelected,
     // setCurrentPlaceId,
     // setZoom,

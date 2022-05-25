@@ -15,7 +15,8 @@ export function ContextProvider({ children }) {
   const [zoom, setZoom] = useState(8);
 
   //Need to re-render markers because user has changed filer option
-  const [reRenderMarkers, setReRenderMarkers] = useState(null);
+  // const [reRenderMarkers, setReRenderMarkers] = useState(null);
+  const [filteredEvents, setFilteredEvents] = useState(null);
 
   // Selected event
   const [selectedEvent, setSetSelectedEvent] = useState(null);
@@ -30,8 +31,10 @@ export function ContextProvider({ children }) {
     setMapCenter,
     zoom,
     setZoom,
-    reRenderMarkers,
-    setReRenderMarkers,
+    filteredEvents,
+    setFilteredEvents,
+    // reRenderMarkers,
+    // setReRenderMarkers,
     selectedEvent,
     setSetSelectedEvent,
     mobileView,
