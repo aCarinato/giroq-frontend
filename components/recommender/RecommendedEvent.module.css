@@ -1,0 +1,145 @@
+.item {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px 12px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: white;
+  /* margin: 1rem; */
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.imgContainer {
+  aspect-ratio: 16 / 8;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* object-fit: contain; */
+}
+
+.title {
+  padding: 0.3rem;
+  margin: 0;
+}
+
+.dateTime {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.twoFlexItem {
+  display: flex;
+}
+
+.iconContainer {
+  padding: 0.3rem 0.4rem;
+}
+
+.dateContainer {
+  padding: 0.4rem 0.5rem 0 0;
+}
+
+.trickyText {
+  padding: 0.4rem 0.5rem 0 0;
+  color: rgba(0, 0, 0, 0);
+}
+
+.city {
+  display: flex;
+}
+
+.categoryContainer {
+  display: flex;
+  font-size: 0.75rem;
+  padding: 0.3rem;
+}
+
+.categoryLabelRed {
+  padding: 0.3rem 0.4rem;
+  background-color: var(--main-red-color);
+  color: white;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.categoryLabelBlue {
+  padding: 0.3rem 0.4rem;
+  background-color: var(--main-blue-color);
+  color: white;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.categoryLabelYellow {
+  padding: 0.3rem 0.4rem;
+  background-color: var(--main-yellow-color);
+  color: white;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.categoryLabelCyan {
+  padding: 0.3rem 0.4rem;
+  background-color: var(--main-cyan-color);
+  color: white;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+.addressOnMap {
+  /* padding: 0.3rem 0.4rem; */
+  font-weight: bold;
+  display: flex;
+  cursor: pointer;
+}
+
+.actions {
+  padding: 0.3rem;
+  text-align: center;
+}
+
+.btnDetails {
+  background-color: var(--main-neutral-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 0px;
+}
+
+.btnDetails a {
+  text-decoration: none;
+  color: white;
+}
+
+.btnDetails:hover {
+  background-color: white;
+  border: 1px solid var(--main-neutral-color);
+  color: var(--main-neutral-color);
+}
+
+.btnDetails:hover > a {
+  background-color: white;
+  color: var(--main-neutral-color);
+}
+
+.foot {
+  aspect-ratio: 16 / 1;
+}
+
+/* @media (min-width: 769px) and (max-width: 1350px) {
+    .dateTime {
+      font-size: 0.75rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .item {
+      width: 46%;
+      margin: 0.5rem;
+
+    }
+  } */

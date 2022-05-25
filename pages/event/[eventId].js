@@ -149,9 +149,9 @@ function EventDetailPage(props) {
           )}
         </div>
         <br></br>
-        {/* {props.recommendations.length > 0 && (
-          <Ribbon name={props.recommendations[0].title} />
-        )} */}
+        {props.recommendations.length > 0 && (
+          <Ribbon recommendedEvents={props.recommendations} />
+        )}
       </div>
     </>
   );
