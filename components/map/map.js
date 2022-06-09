@@ -104,8 +104,8 @@ function Map(props) {
     setBounds([bounds.nw.lng, bounds.se.lat, bounds.se.lng, bounds.nw.lat]);
 
     ga.event({
-      action: 'Map',
-      category: 'Zoom mappa',
+      action: 'Map - Zoom',
+      category: '',
       label: '',
       value: '9',
     });
@@ -137,8 +137,8 @@ function Map(props) {
     }
 
     ga.event({
-      action: 'Map',
-      category: 'Click map',
+      action: 'Map - Click (close popup)',
+      category: '',
       label: '',
       value: '9',
     });
@@ -202,8 +202,8 @@ function Map(props) {
                     mapRef.current.panTo({ lat: latitude, lng: longitude });
 
                     ga.event({
-                      action: 'Map',
-                      category: 'Click cluster',
+                      action: 'Map - Click cluster',
+                      category: '',
                       label: '',
                       value: '9',
                     });
