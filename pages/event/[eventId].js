@@ -4,6 +4,8 @@ import axios from 'axios';
 // import EventId from '../../components/events/eventid';
 import Head from 'next/head';
 
+import * as ga from '../../lib/google-analytics';
+
 import Ribbon from '../../components/recommender/Ribbon';
 
 // import CATEGORIES from '../../data/categories';
@@ -11,38 +13,6 @@ import Ribbon from '../../components/recommender/Ribbon';
 // import { useMainContext } from '../../context/Context';
 
 function EventDetailPage(props) {
-  // const { eventData, filteredEvents } = useMainContext();
-
-  // const [filteredEvents, setFilteredEvents] = useState([]);
-
-  // console.log(props.event);
-  // const [event, setEvent] = useState({});
-  // const router = useRouter();
-
-  // const eventId = router.query.eventId;
-
-  // const fetchEvent = async () => {
-  //   try {
-  //     const { data } = await axios.get(
-  //       `${process.env.NEXT_PUBLIC_API}/event/${eventId}`
-  //     );
-  //     setEvent(data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (eventId) fetchEvent();
-  // }, [eventId]);
-
-  // useEffect(() => {
-  //   console.log('della stessa categ');
-  //   console.log(props.recommendationsSameCategory);
-  //   console.log('simili');
-  //   console.log(props.recommendations);
-  // }, []);
-
   const selectedEvent = props.event;
 
   const originalImgUrl = selectedEvent.image.url;
@@ -53,6 +23,16 @@ function EventDetailPage(props) {
   const ogImgUrl = `${strBefore}upload/w_600,c_scale/${strAfter}`;
 
   // console.log(selectedEvent);
+
+  useEffect(() => {
+    console.log('ciaooo');
+    ga.event({
+      action: 'Event page',
+      category: '',
+      label: '',
+      value: '9',
+    });
+  }, []);
 
   const humanReadableStartDate = new Date(
     selectedEvent.startDate
