@@ -8,6 +8,7 @@ function UserForm(props) {
     emailInputRef,
     passwordInputRef,
     formSubmit,
+    error,
   } = props;
   return (
     <>
@@ -67,6 +68,7 @@ function UserForm(props) {
           </>
         )}
       </form>
+      {error !== null && <p>{error}</p>}
       {loginMode ? (
         <div onClick={() => setLoginMode(!loginMode)}>Crea Account</div>
       ) : (

@@ -6,6 +6,8 @@ import UserForm from '../components/forms/user-form';
 function UserLogin() {
   const [loginMode, setLoginMode] = useState(true);
 
+  const [error, setError] = useState(null);
+
   const usernameInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -16,6 +18,7 @@ function UserLogin() {
     e.preventDefault();
 
     if (loginMode) {
+      // setShowError(false);
       const enteredEmail = emailInputRef.current.value;
       const enteredPassword = passwordInputRef.current.value;
 
@@ -29,8 +32,13 @@ function UserLogin() {
           `${process.env.NEXT_PUBLIC_API}/user/login`,
           loggingUser
         );
-        console.log('mo pusho');
-        router.push('/');
+
+        if (res.data.error) {
+          // setShowError(true);
+          setError(res.data.error);
+        } else {
+          router.push('/');
+        }
       } catch (err) {
         console.log(err);
       }
@@ -50,8 +58,12 @@ function UserLogin() {
           `${process.env.NEXT_PUBLIC_API}/user/signup`,
           newUser
         );
-        console.log('mo pusho');
-        router.push('/');
+
+        if (res.data.error) {
+          setError(res.data.error);
+        } else {
+          router.push('/');
+        }
       } catch (err) {
         console.log(err);
       }
@@ -65,10 +77,12 @@ function UserLogin() {
         <UserForm
           loginMode={loginMode}
           setLoginMode={setLoginMode}
+          // showError={showError}
           usernameInputRef={usernameInputRef}
           emailInputRef={emailInputRef}
           passwordInputRef={passwordInputRef}
           formSubmit={submitHandler}
+          error={error}
         />
       </div>
       <div className="col-lg-4"></div>
