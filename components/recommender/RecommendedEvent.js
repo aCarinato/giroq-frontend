@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import classes from './RecommendedEvent.module.css';
 
+import * as ga from '../../lib/google-analytics';
+
 import { Icon } from '@iconify/react';
 
 import categoriesList from '../../data/categories-list';
+import { useRouter } from 'next/router';
 
 function RecommendedEvent(props) {
   const {
@@ -20,6 +23,8 @@ function RecommendedEvent(props) {
   } = props;
 
   const exploreLink = `/event/${id}`;
+
+  const router = useRouter();
 
   const [colorCategory, setColorCategory] = useState(null);
 
@@ -57,16 +62,24 @@ function RecommendedEvent(props) {
     year: 'numeric',
   });
 
+  const handleClick = () => {
+    ga.event({
+      action: 'Recommended event - Click',
+      category: '',
+      label: '',
+      value: '9',
+    });
+    router.push(exploreLink);
+  };
+
   return (
-    <div className={classes.item}>
+    <div className={classes.item} onClick={handleClick}>
       <div className={classes.imgContainer}>
-        <Link href={exploreLink}>
-          <a>
-            {image && (
-              <img className={classes.image} src={image.url} alt={title} />
-            )}
-          </a>
-        </Link>
+        {/* <Link href={exploreLink}>
+          <a> */}
+        {image && <img className={classes.image} src={image.url} alt={title} />}
+        {/* </a>
+        </Link> */}
       </div>
       <h4 className={classes.title}>{title}</h4>
 

@@ -4,6 +4,8 @@ import axios from 'axios';
 // import EventId from '../../components/events/eventid';
 import Head from 'next/head';
 
+import * as ga from '../../lib/google-analytics';
+
 import Ribbon from '../../components/recommender/Ribbon';
 
 // import CATEGORIES from '../../data/categories';
@@ -21,6 +23,16 @@ function EventDetailPage(props) {
   const ogImgUrl = `${strBefore}upload/w_600,c_scale/${strAfter}`;
 
   // console.log(selectedEvent);
+
+  useEffect(() => {
+    console.log('ciaooo');
+    ga.event({
+      action: 'Event page',
+      category: '',
+      label: '',
+      value: '9',
+    });
+  }, []);
 
   const humanReadableStartDate = new Date(
     selectedEvent.startDate
