@@ -25,9 +25,8 @@ function EventDetailPage(props) {
   // console.log(selectedEvent);
 
   useEffect(() => {
-    console.log('ciaooo');
     ga.event({
-      action: 'Event page',
+      action: 'Visit event detail page',
       category: '',
       label: '',
       value: '9',
@@ -69,6 +68,17 @@ function EventDetailPage(props) {
   //   const ogImgUrl = `${strBefore}upload/w_600,c_scale/${strAfter}`;
   //   // console.log(ogImgUrl);
   // }, []);
+
+  const handleLinkClick = () => {
+    ga.event({
+      action: 'Event detail page - Click vai a evento',
+      category: '',
+      label: '',
+      value: '9',
+    });
+    window.open(selectedEvent.link, '_blank');
+    // window.open('https://www.google.com', '_blank');
+  };
 
   return (
     <>
@@ -117,11 +127,12 @@ function EventDetailPage(props) {
         <div className="eventIDquestion">Descrizione</div>
         <p className="eventIDanswer">{selectedEvent.description} </p>
         <div className="eventIDquestion">Scopri di più</div>
-        <p className="eventIDanswer">
-          {' '}
-          {/* <a href={link}>{link}</a> */}
-          <a href={selectedEvent.link}>Link al sito</a>
+        <p onClick={handleLinkClick} className="eventIDanswer-link">
+          Link al sito
         </p>
+        {/* <a href={link}>{link}</a> */}
+        {/* <a href={selectedEvent.link}>Link al sito</a> */}
+
         <div>
           {selectedEvent.image && (
             <img

@@ -98,6 +98,15 @@ body {
   width: 50%;
 }
 
+.eventIDanswer-link {
+  margin: auto;
+  font-size: 1.25rem;
+  width: 50%;
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
 .eventIDimage {
   margin-top: 1.5rem;
   width: 30%;
