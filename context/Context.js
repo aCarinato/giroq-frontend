@@ -1,6 +1,12 @@
 import React, { useContext, useState } from 'react';
 
-const mainContext = React.createContext();
+const mainContext = React.createContext({
+  userName: '',
+  token: '',
+  isLoggedIn: false,
+  login: (token) => {},
+  logout: () => {},
+});
 
 export function useMainContext() {
   return useContext(mainContext);
@@ -24,6 +30,28 @@ export function ContextProvider({ children }) {
   // Mobile
   const [mobileView, setMobileView] = useState(null);
 
+  // AUTHENTICATION
+  let initialToken;
+  if (typeof window !== 'undefined') {
+    initialToken = localStorage.getItem('token');
+  }
+
+  const [token, setToken] = useState(initialToken);
+  const userIsLoggedIn = !!token;
+  const [username, setUsername] = useState(null);
+
+  const loginHandler = (username, token) => {
+    setUsername(username);
+    setToken(token);
+    localStorage.setItem('token', token);
+  };
+
+  const logoutHandler = () => {
+    setUsername(null);
+    setToken(null);
+    localStorage.removeItem('token');
+  };
+
   const value = {
     eventData,
     setEventData,
@@ -33,12 +61,17 @@ export function ContextProvider({ children }) {
     setZoom,
     filteredEvents,
     setFilteredEvents,
-    // reRenderMarkers,
-    // setReRenderMarkers,
     selectedEvent,
     setSetSelectedEvent,
     mobileView,
     setMobileView,
+
+    // AUTH
+    username: username,
+    token: token,
+    isLoggedIn: userIsLoggedIn,
+    login: loginHandler,
+    logout: logoutHandler,
   };
 
   return <mainContext.Provider value={value}>{children}</mainContext.Provider>;

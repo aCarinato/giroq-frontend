@@ -3,7 +3,11 @@ import { useRouter } from 'next/router';
 import { useRef, useState } from 'react';
 import UserForm from '../components/forms/user-form';
 
+import { useMainContext } from '../context/Context';
+
 function UserLogin() {
+  const { login, isLoggedIn, logout } = useMainContext();
+
   const [loginMode, setLoginMode] = useState(true);
 
   const [error, setError] = useState(null);
@@ -37,7 +41,8 @@ function UserLogin() {
           // setShowError(true);
           setError(res.data.error);
         } else {
-          router.push('/');
+          login(res.data.username, res.data.token);
+          router.push('/profilo');
         }
       } catch (err) {
         console.log(err);
@@ -62,7 +67,8 @@ function UserLogin() {
         if (res.data.error) {
           setError(res.data.error);
         } else {
-          router.push('/');
+          login(res.data.username, res.data.token);
+          router.push('/profilo');
         }
       } catch (err) {
         console.log(err);
@@ -70,20 +76,28 @@ function UserLogin() {
     }
   };
 
+  const logoutHandler = async () => {
+    logout();
+  };
+
   return (
     <div className="row">
       <div className="col-lg-4"></div>
       <div className="col-lg-4">
-        <UserForm
-          loginMode={loginMode}
-          setLoginMode={setLoginMode}
-          // showError={showError}
-          usernameInputRef={usernameInputRef}
-          emailInputRef={emailInputRef}
-          passwordInputRef={passwordInputRef}
-          formSubmit={submitHandler}
-          error={error}
-        />
+        {isLoggedIn ? (
+          <div onClick={logoutHandler}>Logout</div>
+        ) : (
+          <UserForm
+            loginMode={loginMode}
+            setLoginMode={setLoginMode}
+            // showError={showError}
+            usernameInputRef={usernameInputRef}
+            emailInputRef={emailInputRef}
+            passwordInputRef={passwordInputRef}
+            formSubmit={submitHandler}
+            error={error}
+          />
+        )}
       </div>
       <div className="col-lg-4"></div>
       {/* {loginMode ? (
