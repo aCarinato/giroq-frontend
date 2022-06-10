@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import { Fragment, useEffect } from 'react';
 import { useMainContext } from '../../context/Context';
 
+import BtnLightCTA from '../../components/UI/BtnLightCTA.js';
+
 function ProfiloUtente() {
   const { username, isLoggedIn, logout } = useMainContext();
 
@@ -23,7 +25,9 @@ function ProfiloUtente() {
       {isLoggedIn && (
         <>
           <div>Profilo di {username}</div>
-          <div onClick={logoutHandler}>Logout</div>
+          <br></br>
+          <BtnLightCTA label="Logout" onCLickAction={logoutHandler} />
+          {/* <div onClick={logoutHandler}>Logout</div> */}
         </>
       )}
     </Fragment>
