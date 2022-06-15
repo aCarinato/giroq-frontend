@@ -95,6 +95,7 @@ function userProfile() {
           <>
             <div>Profilo di: {user.username}</div>
             <div>ID: {user._id}</div>
+            <div>{user.preferences}</div>
             <div onClick={logoutHandler}>Logout</div>
           </>
         )}

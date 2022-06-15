@@ -12,20 +12,47 @@ function UserLogin() {
 
   const [error, setError] = useState(null);
 
+  const [categoryCheck, setCategoryCheck] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+  const [categoryGroupCheck, setCategoryGroupCheck] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
+
+  const [filterCtgrTouch, setFilterCtgrTouch] = useState(false);
+
   const usernameInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
   const router = useRouter();
-  // console.log('authState:');
-  // console.log(authState);
-
-  // useEffect(() => {
-  //   if (authState && authState.username !== '') {
-  //     console.log('MA PORCA TROIA');
-  //     router.push(`/profilo/${authState.username}`);
-  //   }
-  // }, [authState]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -62,10 +89,29 @@ function UserLogin() {
       const enteredEmail = emailInputRef.current.value;
       const enteredPassword = passwordInputRef.current.value;
 
+      let types = [];
+
+      const checker = categoryCheck.every((v) => v === false);
+
+      if (checker) {
+        types = categoryCheck.map((tipo, index) => {
+          return index;
+        });
+      } else {
+        types = categoryCheck.map((tipo, index) => {
+          if (tipo) {
+            return index;
+          } else {
+            return 1000;
+          }
+        });
+      }
+
       const newUser = {
         username: enteredUsername,
         email: enteredEmail,
         password: enteredPassword,
+        preferences: types,
       };
 
       try {
@@ -99,6 +145,11 @@ function UserLogin() {
         usernameInputRef={usernameInputRef}
         emailInputRef={emailInputRef}
         passwordInputRef={passwordInputRef}
+        categoryCheck={categoryCheck}
+        setCategoryCheck={setCategoryCheck}
+        categoryGroupCheck={categoryGroupCheck}
+        setCategoryGroupCheck={setCategoryGroupCheck}
+        setFilterCtgrTouch={setFilterCtgrTouch}
         formSubmit={submitHandler}
         error={error}
       />
