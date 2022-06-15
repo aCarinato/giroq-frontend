@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import UserForm from '../components/forms/user-form';
 
 import { useMainContext } from '../context/Context';
@@ -78,8 +78,8 @@ function UserLogin() {
           setError(res.data.error);
         } else {
           login(res.data.username, res.data.email, res.data.token);
-
-          router.push(`/profilo/${res.data.username}`);
+          // router.push(`/profilo/${res.data.username}`);
+          router.push(`/profilo`);
         }
       } catch (err) {
         console.log(err);
@@ -133,8 +133,8 @@ function UserLogin() {
   };
 
   if (authState && authState.token) {
-    console.log(`Adesso lo pusho a: /profilo/${authState.username}`);
-    router.push(`/profilo/${authState.username}`);
+    // console.log(`Adesso lo pusho a: /profilo`);
+    router.push(`/profilo`);
   }
 
   return (

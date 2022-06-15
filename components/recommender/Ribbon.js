@@ -2,7 +2,7 @@ import RecommendedEvent from './RecommendedEvent';
 import classes from './Ribbon.module.css';
 
 function Ribbon(props) {
-  const { type, recommendedEvents } = props;
+  const { type = '', recommendedEvents } = props;
 
   const recommendationList = recommendedEvents.map((event) => (
     <RecommendedEvent
@@ -28,6 +28,7 @@ function Ribbon(props) {
       {type === 'similar' && (
         <div className={classes.title}>Di tipologie affini:</div>
       )}
+      {type === '' && <div></div>}
       <br></br>
       <div className={classes.container}>{recommendationList}</div>
     </div>

@@ -1,44 +1,89 @@
+import axios from 'axios';
 import { useRouter } from 'next/router';
-import { Fragment, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useMainContext } from '../../context/Context';
 
-import BtnLightCTA from '../../components/UI/BtnLightCTA.js';
+import LoaderList from '../../components/events/loader-list';
+import UserProfile from '../../components/user/user-profile';
 
-function ProfiloUtente() {
-  const { username, authState, token, logout } = useMainContext();
+import UserRoute from '../../components/routes/user-route';
+
+function Profilo() {
+  const { authState, logout } = useMainContext();
+  // LOADING DATA
+  const [loading, setLoading] = useState(false);
+
+  const [preferences, setPreference] = useState([]);
+  const [userEvents, setUserEvents] = useState([]);
+
+  const [user, setUser] = useState({});
 
   const router = useRouter();
 
-  //   console.log(username);
-  //   console.log(authState.username);
-  console.log(token);
-
   useEffect(() => {
-    if (token === '') {
+    const fetchUser = async () => {
+      setLoading(true);
+      try {
+        const { data } = await axios.get(
+          `${process.env.NEXT_PUBLIC_API}/user/${authState.username}`
+        );
+        //   console.log(data);
+        setUser(data);
+        setPreference(data.preferences);
+      } catch (err) {
+        console.log(err);
+      }
+      // router.push(`/profilo/${authState.username}`);
+      // console.log(user);
+      setLoading(false);
+    };
+    if (authState !== null) {
+      fetchUser();
+    } else {
       router.push('/user-login');
     }
-  }, []);
+  }, [authState]);
 
-  const logoutHandler = async () => {
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const events = await axios.get(
+          `${process.env.NEXT_PUBLIC_API}/events/`
+        );
+
+        let selectedEvents = [];
+
+        selectedEvents = events.data.filter((event) =>
+          preferences.includes(event.category[0])
+        );
+        setUserEvents(selectedEvents);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchEvents();
+  }, [authState, preferences]);
+
+  const logoutHandler = () => {
     logout();
     router.push('/user-login');
   };
 
   return (
-    <Fragment>
-      {token && (
-        <>
-          <div>Profilo di {username}</div>
-          <br></br>
-          <BtnLightCTA
-            type="button"
-            label="Logout"
-            onCLickAction={logoutHandler}
+    <UserRoute>
+      <>
+        {loading ? (
+          <LoaderList />
+        ) : (
+          <UserProfile
+            username={user.username}
+            events={userEvents}
+            logoutHandler={logoutHandler}
           />
-        </>
-      )}
-    </Fragment>
+        )}
+      </>
+    </UserRoute>
   );
 }
 
-export default ProfiloUtente;
+export default Profilo;
