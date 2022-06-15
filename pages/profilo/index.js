@@ -5,12 +5,16 @@ import { useMainContext } from '../../context/Context';
 import BtnLightCTA from '../../components/UI/BtnLightCTA.js';
 
 function ProfiloUtente() {
-  const { username, isLoggedIn, logout } = useMainContext();
+  const { username, authState, token, logout } = useMainContext();
 
   const router = useRouter();
 
+  //   console.log(username);
+  //   console.log(authState.username);
+  console.log(token);
+
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (token === '') {
       router.push('/user-login');
     }
   }, []);
@@ -22,12 +26,15 @@ function ProfiloUtente() {
 
   return (
     <Fragment>
-      {isLoggedIn && (
+      {token && (
         <>
           <div>Profilo di {username}</div>
           <br></br>
-          <BtnLightCTA label="Logout" onCLickAction={logoutHandler} />
-          {/* <div onClick={logoutHandler}>Logout</div> */}
+          <BtnLightCTA
+            type="button"
+            label="Logout"
+            onCLickAction={logoutHandler}
+          />
         </>
       )}
     </Fragment>
