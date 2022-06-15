@@ -1,6 +1,7 @@
 .container {
   border-top: 1px solid var(--main-neutral-color);
-  padding-top: 1rem;
+  /* padding-top: 1rem; */
+  padding: 1rem 1rem 0;
   /* font-weight: bold; */
 }
 
@@ -15,5 +16,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    /* justify-content: space-around; */
   }
 }

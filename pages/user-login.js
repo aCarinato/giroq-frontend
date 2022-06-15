@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import UserForm from '../components/forms/user-form';
 
 import { useMainContext } from '../context/Context';
@@ -12,20 +12,47 @@ function UserLogin() {
 
   const [error, setError] = useState(null);
 
+  const [categoryCheck, setCategoryCheck] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+  const [categoryGroupCheck, setCategoryGroupCheck] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
+
+  const [filterCtgrTouch, setFilterCtgrTouch] = useState(false);
+
   const usernameInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
   const router = useRouter();
-  // console.log('authState:');
-  // console.log(authState);
-
-  // useEffect(() => {
-  //   if (authState && authState.username !== '') {
-  //     console.log('MA PORCA TROIA');
-  //     router.push(`/profilo/${authState.username}`);
-  //   }
-  // }, [authState]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -51,8 +78,8 @@ function UserLogin() {
           setError(res.data.error);
         } else {
           login(res.data.username, res.data.email, res.data.token);
-
-          router.push(`/profilo/${res.data.username}`);
+          // router.push(`/profilo/${res.data.username}`);
+          router.push(`/profilo`);
         }
       } catch (err) {
         console.log(err);
@@ -62,10 +89,29 @@ function UserLogin() {
       const enteredEmail = emailInputRef.current.value;
       const enteredPassword = passwordInputRef.current.value;
 
+      let types = [];
+
+      const checker = categoryCheck.every((v) => v === false);
+
+      if (checker) {
+        types = categoryCheck.map((tipo, index) => {
+          return index;
+        });
+      } else {
+        types = categoryCheck.map((tipo, index) => {
+          if (tipo) {
+            return index;
+          } else {
+            return 1000;
+          }
+        });
+      }
+
       const newUser = {
         username: enteredUsername,
         email: enteredEmail,
         password: enteredPassword,
+        preferences: types,
       };
 
       try {
@@ -87,8 +133,8 @@ function UserLogin() {
   };
 
   if (authState && authState.token) {
-    console.log(`Adesso lo pusho a: /profilo/${authState.username}`);
-    router.push(`/profilo/${authState.username}`);
+    // console.log(`Adesso lo pusho a: /profilo`);
+    router.push(`/profilo`);
   }
 
   return (
@@ -99,6 +145,11 @@ function UserLogin() {
         usernameInputRef={usernameInputRef}
         emailInputRef={emailInputRef}
         passwordInputRef={passwordInputRef}
+        categoryCheck={categoryCheck}
+        setCategoryCheck={setCategoryCheck}
+        categoryGroupCheck={categoryGroupCheck}
+        setCategoryGroupCheck={setCategoryGroupCheck}
+        setFilterCtgrTouch={setFilterCtgrTouch}
         formSubmit={submitHandler}
         error={error}
       />

@@ -1,5 +1,7 @@
 import classes from './user-form.module.css';
 import BtnDarkCTA from '../UI/BtnDarkCTA';
+import Categories from '../filter/Categories';
+import { useState } from 'react';
 
 function UserForm(props) {
   const {
@@ -8,6 +10,11 @@ function UserForm(props) {
     usernameInputRef,
     emailInputRef,
     passwordInputRef,
+    categoryCheck,
+    setCategoryCheck,
+    categoryGroupCheck,
+    setCategoryGroupCheck,
+    setFilterCtgrTouch,
     formSubmit,
     error,
   } = props;
@@ -71,6 +78,7 @@ function UserForm(props) {
                 Email:
               </label>
               <input
+                // onBlur={() => console.log(categoryCheck)}
                 className={classes.input}
                 type="email"
                 id="email"
@@ -90,6 +98,19 @@ function UserForm(props) {
                 ref={passwordInputRef}
               />
             </div>
+            <div className={classes.field}>
+              <label className={classes.label} htmlFor="password">
+                Seleziona gli eventi di tuo interesse:
+              </label>
+              <Categories
+                categoryCheck={categoryCheck}
+                setCategoryCheck={setCategoryCheck}
+                categoryGroupCheck={categoryGroupCheck}
+                setCategoryGroupCheck={setCategoryGroupCheck}
+                setFilterCtgrTouch={setFilterCtgrTouch}
+              />
+            </div>
+
             <div className={classes.field}>
               <BtnDarkCTA
                 type="submit"

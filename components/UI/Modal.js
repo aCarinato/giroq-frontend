@@ -20,6 +20,7 @@ function Modal(props) {
   if (mounted) {
     return (
       <Fragment>
+        {/* THIS IS THE BACKGROUND, THAT WHEN CLICKED IS CLOSED */}
         {ReactDOM.createPortal(
           <div onClick={props.onClose} className={classes.backdrop}></div>,
           document.getElementById('overlays')
