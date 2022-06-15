@@ -1,6 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+// import axios from 'axios';
 
-const mainContext = React.createContext();
+const mainContext = React.createContext({
+  authState: {},
+  login: (token) => {},
+  logout: () => {},
+});
 
 export function useMainContext() {
   return useContext(mainContext);
@@ -24,6 +29,58 @@ export function ContextProvider({ children }) {
   // Mobile
   const [mobileView, setMobileView] = useState(null);
 
+  // AUTHENTICATION
+
+  const [authState, setAuthState] = useState({
+    username: '',
+    email: '',
+    token: '',
+  });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setAuthState(JSON.parse(localStorage.getItem('auth')));
+    }
+  }, []);
+
+  // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+  // const [userEmail, setUserEmail] = useState('')
+
+  const loginHandler = (username, email, token) => {
+    // setUsername(username);
+    // setToken(token);
+    localStorage.setItem('token', token);
+
+    // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+    localStorage.setItem(
+      'auth',
+      JSON.stringify({
+        username,
+        token,
+        email,
+      })
+    );
+    setAuthState({
+      username,
+      token,
+      email,
+    });
+  };
+
+  const logoutHandler = () => {
+    // setUsername(null);
+    // setToken(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('auth');
+    setAuthState({
+      username: '',
+      email: '',
+      token: '',
+    });
+  };
+
   const value = {
     eventData,
     setEventData,
@@ -33,12 +90,15 @@ export function ContextProvider({ children }) {
     setZoom,
     filteredEvents,
     setFilteredEvents,
-    // reRenderMarkers,
-    // setReRenderMarkers,
     selectedEvent,
     setSetSelectedEvent,
     mobileView,
     setMobileView,
+
+    // AUTH
+    authState: authState,
+    login: loginHandler,
+    logout: logoutHandler,
   };
 
   return <mainContext.Provider value={value}>{children}</mainContext.Provider>;
