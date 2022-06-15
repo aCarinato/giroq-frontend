@@ -39,7 +39,7 @@ function userProfile() {
       );
       //   console.log(data);
       setUser(data);
-      console.log(user);
+      // console.log(user);
       setLoading(false);
     };
     if (authState !== null) {
