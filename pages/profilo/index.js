@@ -21,6 +21,8 @@ function Profilo() {
   const router = useRouter();
 
   useEffect(() => {
+    let cancel = false;
+
     const fetchUser = async () => {
       setLoading(true);
       try {
@@ -37,14 +39,20 @@ function Profilo() {
       // console.log(user);
       setLoading(false);
     };
-    if (authState !== null) {
+    if (authState !== null && !cancel) {
       fetchUser();
     } else {
       router.push('/user-login');
     }
+
+    return () => {
+      cancel = true;
+    };
   }, [authState]);
 
   useEffect(() => {
+    // let cancel = false;
+
     const fetchEvents = async () => {
       try {
         const events = await axios.get(
@@ -61,7 +69,10 @@ function Profilo() {
         console.log(err);
       }
     };
-    fetchEvents();
+
+    if (authState !== null) {
+      fetchEvents();
+    }
   }, [authState, preferences]);
 
   const logoutHandler = () => {

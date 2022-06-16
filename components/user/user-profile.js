@@ -5,7 +5,7 @@ import BtnLightCTA from '../UI/BtnLightCTA.js';
 function UserProfile(props) {
   const { username, events, logoutHandler } = props;
   return (
-    <div>
+    <div className={classes.container}>
       <div className={classes.header}>
         <div className={classes.textBig}>{username}</div>
         <div>
