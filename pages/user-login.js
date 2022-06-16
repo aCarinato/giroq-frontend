@@ -124,7 +124,7 @@ function UserLogin() {
           setError(res.data.error);
         } else {
           login(res.data.username, res.data.email, res.data.token);
-          router.push(`/profilo/${res.data.username}`);
+          router.push(`/profilo`);
         }
       } catch (err) {
         console.log(err);
