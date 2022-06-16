@@ -18,7 +18,7 @@ function AddEvent() {
   // const [date, setDate] = useState(today);
 
   const [startDate, setStartDate] = useState(today);
-  const [endDate, setEndDate] = useState(null);
+  const [endDate, setEndDate] = useState('');
 
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');

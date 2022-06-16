@@ -24,6 +24,7 @@ function EventListAdmin(props) {
             startDate={event.startDate}
             endDate={event.endDate}
             event={event}
+            organiser={event.organiser}
             deleteEvent={deleteEvent}
             // category={+event.category[0]}
 

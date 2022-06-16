@@ -26,9 +26,9 @@ function Login() {
       //   myStorage.setItem('user', res.data.username);
       // setState({ user: res.data.username });
 
-      localStorage.setItem('user', res.data.username);
+      localStorage.setItem('admin-user', res.data.username);
       setIsLoggedIn(true);
-      router.push('/admin/nuovo');
+      router.push('/admin');
     } catch (err) {
       console.log(err);
     }
@@ -36,12 +36,12 @@ function Login() {
 
   const handleLogout = async (e) => {
     e.preventDefault();
-    localStorage.removeItem('user');
+    localStorage.removeItem('admin-user');
     setIsLoggedIn(false);
   };
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem('user');
+    const storedUsername = localStorage.getItem('admin-user');
 
     if (storedUsername === 'admin') {
       setIsLoggedIn(true);

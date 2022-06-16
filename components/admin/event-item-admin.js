@@ -3,7 +3,8 @@ import classes from './event-item-admin.module.css';
 // import axios from 'axios';
 
 function EventItemAdmin(props) {
-  const { id, title, deleteEvent, event, startDate, endDate } = props;
+  const { id, title, deleteEvent, event, startDate, endDate, organiser } =
+    props;
 
   // const deleteEvent = async () => {
   //   // console.log(id);
@@ -40,7 +41,8 @@ function EventItemAdmin(props) {
   return (
     <div className={classes.item}>
       {/* <p>{id}</p> */}
-      <p>{title}</p>
+      <p>Nome evento: {title}</p>
+      <p>Organizzato da: {organiser}</p>
       {endDate ? (
         <div>
           Evento tenutosi

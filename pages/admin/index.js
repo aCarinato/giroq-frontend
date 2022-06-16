@@ -6,8 +6,15 @@ function AdminDashoardPage() {
 
   const router = useRouter();
 
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    localStorage.removeItem('admin-user');
+    setIsLoggedIn(false);
+    router.push('/admin');
+  };
+
   useEffect(() => {
-    const storedUsername = localStorage.getItem('user');
+    const storedUsername = localStorage.getItem('admin-user');
 
     if (storedUsername === 'admin') {
       setIsLoggedIn(true);
@@ -69,6 +76,21 @@ function AdminDashoardPage() {
             </div>
             <div className="col-lg-4"></div>
           </div>
+          <br></br>
+          <div className="row">
+            {' '}
+            <div className="col-lg-4"></div>
+            <div className="col-lg-4">
+              <button
+                className="btn btn-outline-primary col-12"
+                type="submit"
+                onClick={handleLogout}
+              >
+                Log out
+              </button>
+            </div>
+            <div className="col-lg-4"></div>
+          </div>
         </Fragment>
       ) : (
         <div className="row">
@@ -80,7 +102,7 @@ function AdminDashoardPage() {
               className="btn btn-outline-primary col-12"
               type="submit"
               onClick={() => {
-                router.push('/login');
+                router.push('/admin/login');
               }}
             >
               Log-in

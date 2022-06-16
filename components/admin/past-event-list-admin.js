@@ -21,6 +21,7 @@ function PastEventListAdmin(props) {
             key={event._id}
             id={event._id}
             title={event.title}
+            organiser={event.organiser}
             event={event}
             deleteEvent={deleteEvent}
           />
