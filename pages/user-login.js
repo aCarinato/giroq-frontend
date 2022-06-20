@@ -6,7 +6,8 @@ import UserForm from '../components/forms/user-form';
 import { useMainContext } from '../context/Context';
 
 function UserLogin() {
-  const { login, authState, logout } = useMainContext();
+  const { login, authState, logout, mobileView } = useMainContext();
+  console.log(mobileView);
 
   const [loginMode, setLoginMode] = useState(false);
 

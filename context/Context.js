@@ -2,6 +2,18 @@ import React, { useContext, useState, useEffect } from 'react';
 // import axios from 'axios';
 
 const mainContext = React.createContext({
+  // eventData,
+  //   setEventData,
+  //   mapCenter,
+  //   setMapCenter,
+  //   zoom,
+  //   setZoom,
+  //   filteredEvents,
+  //   setFilteredEvents,
+  //   selectedEvent,
+  //   setSetSelectedEvent,
+  // mobileView,
+  // setMobileView,
   authState: {},
   login: (token) => {},
   logout: () => {},
@@ -39,8 +51,22 @@ export function ContextProvider({ children }) {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      if (window.innerWidth <= 820) {
+        setMobileView(true);
+      } else {
+        setMobileView(false);
+      }
+
       setAuthState(JSON.parse(localStorage.getItem('auth')));
     }
+
+    // if (typeof window !== 'undefined') {
+    //   if (window.innerWidth <= 820) {
+    //     setMobileView(true);
+    //   } else {
+    //     setMobileView(false);
+    //   }
+    // }
   }, []);
 
   // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

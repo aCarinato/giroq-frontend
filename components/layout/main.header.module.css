@@ -1,9 +1,9 @@
 .header {
   width: 100%;
   /* display: flex; */
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: baseline;
-  padding: 1rem 10%;
+  /* padding: 1rem 5%; */
   /* height: 15rem; */
   /* background-color: navy; */
   /* opacity: 0.5; */
@@ -12,17 +12,17 @@
   /* box-shadow: 0 0 1rem; */
 }
 
+.CTAcontainer {
+  display: flex;
+  justify-content: space-between;
+}
+
 .btnContainer {
   text-align: right;
   padding: 0 0 0.6rem 0;
 }
 
 .btnPost {
-  /* width: 18rem; */
-  /* width: 70%; */
-  /* height: 3rem; */
-  /* line-height: 3rem; */
-  /* margin: auto; */
   background-color: var(--main-neutral-color);
   /* text-decoration: underline; */
   color: white;
@@ -32,7 +32,7 @@
   /* font-weight: bolder; */
   border-radius: 0.25rem;
   font-size: 0.7rem;
-  margin-right: -1.5rem;
+  /* margin-right: -1.5rem; */
 }
 
 .logo {

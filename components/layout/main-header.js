@@ -6,9 +6,15 @@ import { Icon } from '@iconify/react';
 import * as ga from '../../lib/google-analytics';
 
 import { useMainContext } from '../../context/Context';
+import { useRouter } from 'next/router';
 
 function MainHeader() {
-  const { mobileView } = useMainContext();
+  const { authState, mobileView } = useMainContext();
+  const router = useRouter();
+
+  const goToProfile = () => {
+    router.push('/profilo');
+  };
 
   const clickOnPostEvent = () => {
     window.open('https://www.giroq.com/posta-evento');
@@ -24,10 +30,13 @@ function MainHeader() {
 
   return (
     <header className={classes.header}>
-      {mobileView && (
-        <div className={classes.btnContainer}>
-          {/* <Link href="/posta-evento">
-          <a target="_blank"> */}
+      <div className={classes.CTAcontainer}>
+        {authState !== null ? (
+          <div onClick={goToProfile}>{authState.username}</div>
+        ) : (
+          <div>EVENTI PER TE</div>
+        )}
+        <div>
           <button className={classes.btnPost} onClick={clickOnPostEvent}>
             Posta il tuo Evento{'  '}
             <Icon
@@ -35,10 +44,20 @@ function MainHeader() {
               className={classes.icon}
             />
           </button>
-          {/* </a>
-        </Link> */}
         </div>
-      )}
+      </div>
+
+      {/* {mobileView && (
+        <div className={classes.btnContainer}>
+          <button className={classes.btnPost} onClick={clickOnPostEvent}>
+            Posta il tuo Evento{'  '}
+            <Icon
+              icon="akar-icons:arrow-forward-thick-fill"
+              className={classes.icon}
+            />
+          </button>
+        </div>
+      )} */}
       <div className={classes.logo}>
         <Link href="/">
           {/* <Image src="/BRAND.png" alt="giroq" width="64" height="64" /> */}

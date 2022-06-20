@@ -80,6 +80,8 @@ function EventListByDate(props) {
             />
           ))}
       </div>
+      <br></br>
+      <br></br>
     </Fragment>
   );
 }

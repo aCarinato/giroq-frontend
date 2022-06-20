@@ -24,6 +24,7 @@ const Home = () => {
     setFilteredEvents,
   } = useMainContext();
 
+  // console.log(mobileView);
   // LOADING DATA
   const [loading, setLoading] = useState(false);
 
@@ -364,27 +365,6 @@ const Home = () => {
             setShowFilter={setShowFilter}
           />
         ) : (
-          // <EventsFilterMobile
-          //   categoryCheck={categoryCheck}
-          //   setCategoryCheck={setCategoryCheck}
-          //   categoryGroupCheck={categoryGroupCheck}
-          //   setCategoryGroupCheck={setCategoryGroupCheck}
-          //   firstDate={firstDate}
-          //   setFirstDate={setFirstDate}
-          //   lastDate={lastDate}
-          //   setLastDate={setLastDate}
-          //   isOpen={isOpen}
-          //   setIsOpen={setIsOpen}
-          //   isDateDropdownOpen={isDateDropdownOpen}
-          //   setIsDateDropdownOpen={setIsDateDropdownOpen}
-          //   allCategoriesCheck={allCategoriesCheck}
-          //   setAllCategoriesCheck={setAllCategoriesCheck}
-          //   setFilterCtgrTouch={setFilterCtgrTouch}
-          //   filterEventsMobile={filterEventsMobile}
-          //   mobileSearch={mobileSearch}
-          //   nEvents={nEvents}
-          //   nTotEvents={nTotEvents}
-          // />
           <EventsFilter
             categoryCheck={categoryCheck}
             setCategoryCheck={setCategoryCheck}

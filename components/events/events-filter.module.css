@@ -14,6 +14,21 @@
   /* font-size: 0.5rem;filterSwitch */
 }
 
+.mainContainerSmallColumn {
+  width: 50%;
+}
+
+.mainContainerLargeColumn {
+  width: 50%;
+  display: flex;
+}
+
+.largeColumnColumn {
+  width: 50%;
+  text-align: center;
+  /* padding: 0.5rem; */
+}
+
 /* MY DROPDOWN */
 
 /* Dropdown Opener-Closer */
@@ -282,24 +297,24 @@
     margin-top: 0.75rem;
   }
 
-  .mainContainerSmallColumn {
-    width: 33%;
+  /* .mainContainerSmallColumn {
+    width: 50%;
     flex-grow: 1;
   }
 
   .mainContainerLargeColumn {
     position: relative;
-    width: 67%;
+    width: 50%;
     display: flex;
     flex-grow: 1;
     z-index: 1;
   }
 
   .largeColumnColumn {
-    width: 33%;
+    width: 50%;
     text-align: center;
     padding: 0.5rem;
-  }
+  } */
 
   .drowdownWrapper {
     margin-top: 0.7rem;
@@ -361,22 +376,20 @@
     /* line-height: 2.5rem; */
   }
 
-  .mainContainerSmallColumn {
-    width: 33%;
-    flex-grow: 1;
+  /* .mainContainerSmallColumn {
+    width: 50%;
   }
 
   .mainContainerLargeColumn {
-    width: 67%;
+    width: 50%;
     display: flex;
-    flex-grow: 1;
   }
 
   .largeColumnColumn {
-    width: 33%;
+    width: 50%;
     text-align: center;
     padding: 0.5rem;
-  }
+  } */
 
   .drowdownWrapper {
     width: 12rem;
@@ -457,20 +470,19 @@
     height: 100%;
   }
 
-  .mainContainerSmallColumn {
-    width: 33%;
+  /* .mainContainerSmallColumn {
+    width: 50%;
   }
 
   .mainContainerLargeColumn {
-    width: 67%;
+    width: 50%;
     display: flex;
   }
 
   .largeColumnColumn {
-    width: 33%;
+    width: 50%;
     text-align: center;
-    /* padding: 0.5rem; */
-  }
+  } */
 
   .drowdownWrapper {
     width: 8rem;
