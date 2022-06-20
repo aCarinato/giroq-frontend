@@ -2,8 +2,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import LoaderList from '../../components/events/loader-list';
 import EventListByDate from '../../components/events/event-list-date';
+import UserRoute from '../../components/routes/user-route';
 
 import { useMainContext } from '../../context/Context';
+import { useRouter } from 'next/router';
 
 function TestPage() {
   const { authState, logout } = useMainContext();
@@ -13,6 +15,9 @@ function TestPage() {
   const [preferences, setPreference] = useState([]);
   const [userEvents, setUserEvents] = useState([]);
 
+  const router = useRouter();
+
+  //   DATES
   const today = new Date();
   const todayISO = today.toISOString().split('T')[0];
 
@@ -98,22 +103,22 @@ function TestPage() {
     }
   }, [authState, preferences]);
   return (
-    <>
-      {loading ? (
-        <LoaderList />
-      ) : (
-        <>
-          {/* <EventListByDate date={dateArray} events={userEvents} /> */}
-          {dateArray &&
-            dateArray.length > 0 &&
-            dateArray.map((date, index) => (
-              <EventListByDate key={index} date={date} events={userEvents} />
-            ))}
-        </>
-
-        // <EventListByDate date={todayISO} events={userEvents} />
-      )}
-    </>
+    <UserRoute>
+      <>
+        {loading ? (
+          <LoaderList />
+        ) : (
+          <>
+            <div className="eventIDtitle">{user.username}</div>
+            {dateArray &&
+              dateArray.length > 0 &&
+              dateArray.map((date, index) => (
+                <EventListByDate key={index} date={date} events={userEvents} />
+              ))}
+          </>
+        )}
+      </>
+    </UserRoute>
   );
 }
 
