@@ -7,7 +7,7 @@ import { useMainContext } from '../context/Context';
 
 function UserLogin() {
   const { login, authState, logout, mobileView } = useMainContext();
-  console.log(mobileView);
+  // console.log(mobileView);
 
   const [loginMode, setLoginMode] = useState(false);
 

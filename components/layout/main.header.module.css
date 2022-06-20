@@ -1,20 +1,19 @@
 .header {
-  width: 100%;
-  /* display: flex; */
-  /* justify-content: space-between; */
-  align-items: baseline;
-  /* padding: 1rem 5%; */
-  /* height: 15rem; */
-  /* background-color: navy; */
-  /* opacity: 0.5; */
+  width: 95%;
+  margin: auto;
   text-align: center;
   justify-content: center;
-  /* box-shadow: 0 0 1rem; */
 }
 
 .CTAcontainer {
   display: flex;
   justify-content: space-between;
+}
+
+.cta {
+  color: var(--main-neutral-color);
+  font-weight: bold;
+  padding: 0.5rem;
 }
 
 .btnContainer {
@@ -24,15 +23,12 @@
 
 .btnPost {
   background-color: var(--main-neutral-color);
-  /* text-decoration: underline; */
   color: white;
   border: none;
   cursor: pointer;
   padding: 0.35rem 0.5rem;
-  /* font-weight: bolder; */
   border-radius: 0.25rem;
   font-size: 0.7rem;
-  /* margin-right: -1.5rem; */
 }
 
 .logo {

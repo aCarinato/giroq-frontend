@@ -13,3 +13,11 @@
   color: white;
   border: none;
 }
+
+@media (max-width: 768px) {
+  .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    border-radius: 0.25rem;
+  }
+}
