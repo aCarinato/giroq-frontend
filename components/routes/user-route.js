@@ -26,7 +26,7 @@ const UserRoute = ({ children }) => {
       if (data.ok) setOk(true);
     } catch (err) {
       router.push('/user-login');
-      console.log('na merdAAAAA');
+      // console.log('na merdAAAAA');
     }
   };
 

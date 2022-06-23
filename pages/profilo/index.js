@@ -1,24 +1,51 @@
 import axios from 'axios';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { useMainContext } from '../../context/Context';
-
+// OWN COMPONENTS
 import LoaderList from '../../components/events/loader-list';
-import UserProfile from '../../components/user/user-profile';
-
+import EventListByDate from '../../components/events/event-list-date';
 import UserRoute from '../../components/routes/user-route';
+import HeaderProfile from '../../components/user/header-profile';
 
-function Profilo() {
+import { useMainContext } from '../../context/Context';
+import { useRouter } from 'next/router';
+
+function Profile() {
   const { authState, logout } = useMainContext();
-  // LOADING DATA
   const [loading, setLoading] = useState(false);
 
+  const [user, setUser] = useState({});
   const [preferences, setPreference] = useState([]);
   const [userEvents, setUserEvents] = useState([]);
 
-  const [user, setUser] = useState({});
-
   const router = useRouter();
+
+  //   DATES
+  const today = new Date();
+  const todayISO = today.toISOString().split('T')[0];
+
+  const nDays = 60;
+  const interval = today.setDate(today.getDate() + nDays);
+  const timeInterval = new Date(interval);
+
+  const timeIntervalISO = timeInterval.toISOString().split('T')[0];
+
+  //   //   const [firstDate, setFirstDate] = useState(todayISO);
+  //   //   const [lastDate, setLastDate] = useState(timeIntervalISO);
+
+  const getDateArray = (start, end) => {
+    let Arr = new Array();
+    let dt = new Date(start);
+    let endNotISO = new Date(end);
+    // console.log(dt <= endNotISO);
+    while (dt <= endNotISO) {
+      Arr.push(new Date(dt));
+      dt.setDate(dt.getDate() + 1);
+    }
+
+    return Arr;
+  };
+
+  const dateArray = getDateArray(todayISO, timeIntervalISO);
 
   useEffect(() => {
     let cancel = false;
@@ -51,7 +78,7 @@ function Profilo() {
   }, [authState]);
 
   useEffect(() => {
-    // let cancel = false;
+    let cancel = false;
 
     const fetchEvents = async () => {
       try {
@@ -59,26 +86,27 @@ function Profilo() {
           `${process.env.NEXT_PUBLIC_API}/events/`
         );
 
+        // FILTER WITH CATEGORY
         let selectedEvents = [];
 
         selectedEvents = events.data.filter((event) =>
           preferences.includes(event.category[0])
         );
+
         setUserEvents(selectedEvents);
       } catch (err) {
         console.log(err);
       }
     };
 
-    if (authState !== null) {
+    if (authState !== null && !cancel) {
       fetchEvents();
     }
-  }, [authState, preferences]);
 
-  const logoutHandler = () => {
-    logout();
-    router.push('/user-login');
-  };
+    return () => {
+      cancel = true;
+    };
+  }, [authState, preferences]);
 
   return (
     <UserRoute>
@@ -86,15 +114,18 @@ function Profilo() {
         {loading ? (
           <LoaderList />
         ) : (
-          <UserProfile
-            username={user.username}
-            events={userEvents}
-            logoutHandler={logoutHandler}
-          />
+          <>
+            <HeaderProfile />
+            {dateArray &&
+              dateArray.length > 0 &&
+              dateArray.map((date, index) => (
+                <EventListByDate key={index} date={date} events={userEvents} />
+              ))}
+          </>
         )}
       </>
     </UserRoute>
   );
 }
 
-export default Profilo;
+export default Profile;

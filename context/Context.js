@@ -2,6 +2,18 @@ import React, { useContext, useState, useEffect } from 'react';
 // import axios from 'axios';
 
 const mainContext = React.createContext({
+  // eventData,
+  //   setEventData,
+  //   mapCenter,
+  //   setMapCenter,
+  //   zoom,
+  //   setZoom,
+  //   filteredEvents,
+  //   setFilteredEvents,
+  //   selectedEvent,
+  //   setSetSelectedEvent,
+  // mobileView,
+  // setMobileView,
   authState: {},
   login: (token) => {},
   logout: () => {},
@@ -35,19 +47,34 @@ export function ContextProvider({ children }) {
     username: '',
     email: '',
     token: '',
+    preferences: [],
   });
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setAuthState(JSON.parse(localStorage.getItem('auth')));
+      if (window.innerWidth <= 820) {
+        setMobileView(true);
+      } else {
+        setMobileView(false);
+      }
+
+      setAuthState(JSON.parse(localStorage.getItem('gq-user-auth')));
     }
+
+    // if (typeof window !== 'undefined') {
+    //   if (window.innerWidth <= 820) {
+    //     setMobileView(true);
+    //   } else {
+    //     setMobileView(false);
+    //   }
+    // }
   }, []);
 
   // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   // const [userEmail, setUserEmail] = useState('')
 
-  const loginHandler = (username, email, token) => {
+  const loginHandler = (username, email, token, preferences) => {
     // setUsername(username);
     // setToken(token);
     localStorage.setItem('token', token);
@@ -55,17 +82,20 @@ export function ContextProvider({ children }) {
     // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
     localStorage.setItem(
-      'auth',
+      'gq-user-auth',
       JSON.stringify({
         username,
         token,
         email,
+        preferences,
       })
     );
+
     setAuthState({
       username,
       token,
       email,
+      preferences,
     });
   };
 
@@ -73,11 +103,12 @@ export function ContextProvider({ children }) {
     // setUsername(null);
     // setToken(null);
     localStorage.removeItem('token');
-    localStorage.removeItem('auth');
+    localStorage.removeItem('gq-user-auth');
     setAuthState({
       username: '',
       email: '',
       token: '',
+      preferences: [],
     });
   };
 

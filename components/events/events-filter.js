@@ -141,7 +141,6 @@ function EventsFilter(props) {
 
   const clickOnPostEvent = () => {
     window.open('https://www.giroq.com/posta-evento');
-    // console.log('posteoo');
 
     ga.event({
       action: 'Filter section',
@@ -330,24 +329,6 @@ function EventsFilter(props) {
             </div>
             {isOpen && (
               <div className={classes.categoriesList}>
-                {/* <div
-                  className={classes.container}
-                  onClick={() => {
-                    setAllCategoriesCheck(!allCategoriesCheck);
-                    setFilterCtgrTouch(true);
-                  }}
-                >
-                  <div className={classes.checkmarkOuter}>
-                    {allCategoriesCheck ? (
-                      <div className={classes.checkmark}>
-                        <div className={classes.checkmarkGreyRed}></div>
-                      </div>
-                    ) : (
-                      <div className={classes.checkmark}></div>
-                    )}
-                  </div>
-                  <div className={classes.label}>SELEZIONA TUTTE</div>
-                </div> */}
                 <div className={classes.intruction}>
                   Seleziona una o piú{' '}
                   <span className={classes.spanBold}>
@@ -429,7 +410,6 @@ function EventsFilter(props) {
                         categoryGroupCheck={categoryGroupCheck}
                         setCategoryGroupCheck={setCategoryGroupCheck}
                         setFilterCtgrTouch={setFilterCtgrTouch}
-                        // applyFilter={applyFilter}
                       />
                     ))}
                   </Fragment>
@@ -479,9 +459,6 @@ function EventsFilter(props) {
                 <br></br>
                 <div>Seleziona data fine:</div>
                 <div className={classes.datesContainer}>
-                  {/* <div>
-                    <Icon icon="ant-design:calendar-outlined" />
-                  </div> */}
                   <div className={classes['date-selection']}>
                     <input
                       type="date"
@@ -493,41 +470,16 @@ function EventsFilter(props) {
                     />
                   </div>
                 </div>
-
-                {/* <form>
-                  <label htmlFor="first-date">Seleziona data inizio:</label>
-                  <input
-                    type="date"
-                    id="first-date"
-                    min={todayISO}
-                    name="first-date"
-                    value={firstDate}
-                    onChange={selectFirstDate}
-                  />
-                  <label htmlFor="last-date">Seleziona data fine:</label>
-                  <input
-                    type="date"
-                    id="last-date"
-                    min={minLastDateISO}
-                    name="last-date"
-                    value={lastDate}
-                    onChange={selectLastDate}
-                  />
-                </form> */}
               </div>
             )}
           </div>
         </div>
 
-        <div className={classes.largeColumnColumn}>
-          {/* <Link href="/posta-evento">
-            <a target="_blank"> */}
+        {/* <div className={classes.largeColumnColumn}>
           <button className={classes.btnPost} onClick={clickOnPostEvent}>
             Posta il tuo Evento
           </button>
-          {/* </a>
-          </Link> */}
-        </div>
+        </div> */}
       </div>
     </div>
   );

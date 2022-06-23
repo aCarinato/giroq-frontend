@@ -24,6 +24,7 @@ const Home = () => {
     setFilteredEvents,
   } = useMainContext();
 
+  // console.log(mobileView);
   // LOADING DATA
   const [loading, setLoading] = useState(false);
 
@@ -279,11 +280,6 @@ const Home = () => {
         formattedLastDate.getDate() + 1
       );
 
-      // console.log(eventData);
-      // console.log(dayBeforeFirstDate);
-      // console.log(new Date(eventData[0].startDate));
-      // console.log(new Date(eventData[0].startDate).getTime());
-
       let filteredEvents = eventData.filter((event) => {
         let firstCondition =
           new Date(event.startDate).getTime() > dayBeforeFirstDate;
@@ -309,11 +305,6 @@ const Home = () => {
 
         let categoryCondition = types.includes(event.category[0]);
 
-        // console.log(categoryCondition);
-
-        // console.log(combinedFirst);
-        // console.log(combinedSecond);
-        // console.log(combinedThird);
         return (
           (combinedFirst || combinedSecond || combinedThird) &&
           categoryCondition
@@ -322,7 +313,6 @@ const Home = () => {
         //   event.endDate < dayAfterLastDate;
       });
 
-      // console.log(filteredEvents);
       setEventsTemp(filteredEvents);
       setNEvents(filteredEvents.length);
 
@@ -364,27 +354,6 @@ const Home = () => {
             setShowFilter={setShowFilter}
           />
         ) : (
-          // <EventsFilterMobile
-          //   categoryCheck={categoryCheck}
-          //   setCategoryCheck={setCategoryCheck}
-          //   categoryGroupCheck={categoryGroupCheck}
-          //   setCategoryGroupCheck={setCategoryGroupCheck}
-          //   firstDate={firstDate}
-          //   setFirstDate={setFirstDate}
-          //   lastDate={lastDate}
-          //   setLastDate={setLastDate}
-          //   isOpen={isOpen}
-          //   setIsOpen={setIsOpen}
-          //   isDateDropdownOpen={isDateDropdownOpen}
-          //   setIsDateDropdownOpen={setIsDateDropdownOpen}
-          //   allCategoriesCheck={allCategoriesCheck}
-          //   setAllCategoriesCheck={setAllCategoriesCheck}
-          //   setFilterCtgrTouch={setFilterCtgrTouch}
-          //   filterEventsMobile={filterEventsMobile}
-          //   mobileSearch={mobileSearch}
-          //   nEvents={nEvents}
-          //   nTotEvents={nTotEvents}
-          // />
           <EventsFilter
             categoryCheck={categoryCheck}
             setCategoryCheck={setCategoryCheck}
