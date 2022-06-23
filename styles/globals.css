@@ -22,6 +22,12 @@ body {
   width: 100%;
 }
 
+/* GENERAL PAGE CONTAINERS */
+.container95 {
+  width: 95%;
+  margin: auto;
+}
+
 /* SUPERCLUSTERS */
 .cluster-marker {
   color: #fff;

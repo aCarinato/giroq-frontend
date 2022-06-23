@@ -1,7 +1,7 @@
 import classes from './user-form.module.css';
 import BtnDarkCTA from '../UI/BtnDarkCTA';
 import Categories from '../filter/Categories';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 function UserForm(props) {
   const {
@@ -54,9 +54,6 @@ function UserForm(props) {
             </div>
             <div className={classes.field}>
               <BtnDarkCTA type="submit" label="Login" onCLickAction={null} />
-              {/* <button className="btn btn-outline-primary col-3" type="submit">
-                Login
-              </button> */}
             </div>
           </>
         ) : (
@@ -117,9 +114,6 @@ function UserForm(props) {
                 label="Crea Account"
                 onCLickAction={null}
               />
-              {/* <button className="btn btn-outline-primary col-3" type="submit">
-                Crea Account
-              </button> */}
             </div>
           </>
         )}
