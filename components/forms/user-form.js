@@ -97,21 +97,22 @@ function UserForm(props) {
             </div>
             <div className={classes.field}>
               <label className={classes.label} htmlFor="password">
-                Seleziona le categorie di eventi di tuo interesse:
+                Per completare la registrazione seleziona le categorie di eventi
+                di tuo interesse:
               </label>
-              <Categories
+              {/* <Categories
                 categoryCheck={categoryCheck}
                 setCategoryCheck={setCategoryCheck}
                 categoryGroupCheck={categoryGroupCheck}
                 setCategoryGroupCheck={setCategoryGroupCheck}
                 setFilterCtgrTouch={setFilterCtgrTouch}
-              />
+              /> */}
             </div>
 
             <div className={classes.field}>
               <BtnDarkCTA
                 type="submit"
-                label="Crea Account"
+                label="Seleziona preferenze"
                 onCLickAction={null}
               />
             </div>

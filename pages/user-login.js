@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useRef, useState } from 'react';
 import UserForm from '../components/forms/user-form';
+import RegistrationWizard from '../components/user/registration-wizard';
 
 import { useMainContext } from '../context/Context';
 
@@ -93,55 +94,56 @@ function UserLogin() {
         console.log(err);
       }
     } else {
-      const enteredUsername = usernameInputRef.current.value;
-      const enteredEmail = emailInputRef.current.value;
-      const enteredPassword = passwordInputRef.current.value;
+      router.push(`/signup`);
+      // const enteredUsername = usernameInputRef.current.value;
+      // const enteredEmail = emailInputRef.current.value;
+      // const enteredPassword = passwordInputRef.current.value;
 
-      let types = [];
+      // let types = [];
 
-      const checker = categoryCheck.every((v) => v === false);
+      // const checker = categoryCheck.every((v) => v === false);
 
-      if (checker) {
-        types = categoryCheck.map((tipo, index) => {
-          return index;
-        });
-      } else {
-        types = categoryCheck.map((tipo, index) => {
-          if (tipo) {
-            return index;
-          } else {
-            return 1000;
-          }
-        });
-      }
+      // if (checker) {
+      //   types = categoryCheck.map((tipo, index) => {
+      //     return index;
+      //   });
+      // } else {
+      //   types = categoryCheck.map((tipo, index) => {
+      //     if (tipo) {
+      //       return index;
+      //     } else {
+      //       return 1000;
+      //     }
+      //   });
+      // }
 
-      const newUser = {
-        username: enteredUsername,
-        email: enteredEmail,
-        password: enteredPassword,
-        preferences: types,
-      };
+      // const newUser = {
+      //   username: enteredUsername,
+      //   email: enteredEmail,
+      //   password: enteredPassword,
+      //   preferences: types,
+      // };
 
-      try {
-        const res = await axios.post(
-          `${process.env.NEXT_PUBLIC_API}/user/signup`,
-          newUser
-        );
+      // try {
+      //   const res = await axios.post(
+      //     `${process.env.NEXT_PUBLIC_API}/user/signup`,
+      //     newUser
+      //   );
 
-        if (res.data.error) {
-          setError(res.data.error);
-        } else {
-          login(
-            res.data.username,
-            res.data.email,
-            res.data.token,
-            res.data.preferences
-          );
-          router.push(`/profilo`);
-        }
-      } catch (err) {
-        console.log(err);
-      }
+      //   if (res.data.error) {
+      //     setError(res.data.error);
+      //   } else {
+      //     login(
+      //       res.data.username,
+      //       res.data.email,
+      //       res.data.token,
+      //       res.data.preferences
+      //     );
+      //     router.push(`/profilo`);
+      //   }
+      // } catch (err) {
+      //   console.log(err);
+      // }
     }
   };
 
@@ -152,6 +154,7 @@ function UserLogin() {
 
   return (
     <div>
+      {!loginMode && <RegistrationWizard activeStep={0} />}
       <UserForm
         loginMode={loginMode}
         setLoginMode={setLoginMode}

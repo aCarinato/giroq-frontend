@@ -150,9 +150,9 @@ function Categories(props) {
 
   return (
     <div className={classes.row}>
-      <div className={classes.title}>
+      {/* <div className={classes.title}>
         <span className={classes['span-bold']}>Categorie</span>
-      </div>
+      </div> */}
       {CATEGORIES.map((category) => (
         <Fragment key={category.id}>
           <div
