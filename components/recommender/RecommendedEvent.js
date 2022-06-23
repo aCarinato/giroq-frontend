@@ -157,21 +157,6 @@ function RecommendedEvent(props) {
           </div>
         )}
       </div>
-      {/* {mobileView && (
-        <div className={classes.actions}>
-          <Link href={exploreLink}>
-            <a target="_blank">
-              <button
-                className={classes.btnDetails}
-                onClick={handleClickDetails}
-              >
-                Dettagli
-              </button>
-            </a>
-          </Link>
-        </div>
-      )} */}
-
       <div className={classes.foot}></div>
     </div>
   );

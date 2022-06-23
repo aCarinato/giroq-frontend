@@ -74,11 +74,18 @@ function UserLogin() {
           loggingUser
         );
 
+        // console.log(res);
+
         if (res.data.error) {
           // setShowError(true);
           setError(res.data.error);
         } else {
-          login(res.data.username, res.data.email, res.data.token);
+          login(
+            res.data.username,
+            res.data.email,
+            res.data.token,
+            res.data.preferences
+          );
           // router.push(`/profilo/${res.data.username}`);
           router.push(`/profilo`);
         }
@@ -124,7 +131,12 @@ function UserLogin() {
         if (res.data.error) {
           setError(res.data.error);
         } else {
-          login(res.data.username, res.data.email, res.data.token);
+          login(
+            res.data.username,
+            res.data.email,
+            res.data.token,
+            res.data.preferences
+          );
           router.push(`/profilo`);
         }
       } catch (err) {

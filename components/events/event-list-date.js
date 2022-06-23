@@ -13,6 +13,7 @@ function EventListByDate(props) {
   const humanReadableStartDate = new Date(selectedDate).toLocaleDateString(
     'it-IT',
     {
+      weekday: 'long',
       day: 'numeric',
       month: 'long',
       year: 'numeric',
@@ -48,7 +49,6 @@ function EventListByDate(props) {
         }
       });
 
-      // console.log(selectedEvents.length);
       setEventsToday(selectedEvents);
     };
 
@@ -57,15 +57,12 @@ function EventListByDate(props) {
     }
   }, [events]);
 
-  return (
-    <Fragment>
-      {eventsToday && eventsToday.length > 0 && (
+  if (eventsToday && eventsToday.length > 0) {
+    return (
+      <Fragment>
         <div className={classes.date}>{humanReadableStartDate}</div>
-      )}
-      <div className={classes.container}>
-        {eventsToday &&
-          eventsToday.length > 0 &&
-          eventsToday.map((event) => (
+        <div className={classes.container}>
+          {eventsToday.map((event) => (
             <RecommendedEvent
               key={event._id}
               id={event._id}
@@ -79,11 +76,21 @@ function EventListByDate(props) {
               city={event.city}
             />
           ))}
-      </div>
-      <br></br>
-      <br></br>
-    </Fragment>
-  );
+        </div>
+        <br></br>
+        <br></br>
+      </Fragment>
+    );
+  } else {
+    return (
+      <Fragment>
+        <div className={classes.date}>{humanReadableStartDate}</div>
+        <div className={classes.container}>
+          Nessun evento per le categorie da te selezionate
+        </div>
+      </Fragment>
+    );
+  }
 }
 
 export default EventListByDate;

@@ -100,7 +100,7 @@ function UserForm(props) {
             </div>
             <div className={classes.field}>
               <label className={classes.label} htmlFor="password">
-                Seleziona gli eventi di tuo interesse:
+                Seleziona le categorie di eventi di tuo interesse:
               </label>
               <Categories
                 categoryCheck={categoryCheck}

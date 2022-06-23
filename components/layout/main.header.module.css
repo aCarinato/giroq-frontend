@@ -14,6 +14,7 @@
   color: var(--main-neutral-color);
   font-weight: bold;
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 .btnContainer {

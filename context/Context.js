@@ -47,6 +47,7 @@ export function ContextProvider({ children }) {
     username: '',
     email: '',
     token: '',
+    preferences: [],
   });
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export function ContextProvider({ children }) {
         setMobileView(false);
       }
 
-      setAuthState(JSON.parse(localStorage.getItem('auth')));
+      setAuthState(JSON.parse(localStorage.getItem('gq-user-auth')));
     }
 
     // if (typeof window !== 'undefined') {
@@ -73,7 +74,7 @@ export function ContextProvider({ children }) {
 
   // const [userEmail, setUserEmail] = useState('')
 
-  const loginHandler = (username, email, token) => {
+  const loginHandler = (username, email, token, preferences) => {
     // setUsername(username);
     // setToken(token);
     localStorage.setItem('token', token);
@@ -81,17 +82,20 @@ export function ContextProvider({ children }) {
     // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
     localStorage.setItem(
-      'auth',
+      'gq-user-auth',
       JSON.stringify({
         username,
         token,
         email,
+        preferences,
       })
     );
+
     setAuthState({
       username,
       token,
       email,
+      preferences,
     });
   };
 
@@ -99,11 +103,12 @@ export function ContextProvider({ children }) {
     // setUsername(null);
     // setToken(null);
     localStorage.removeItem('token');
-    localStorage.removeItem('auth');
+    localStorage.removeItem('gq-user-auth');
     setAuthState({
       username: '',
       email: '',
       token: '',
+      preferences: [],
     });
   };
 
