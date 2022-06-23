@@ -3,7 +3,7 @@ import classes from './settings-options.module.css';
 import BtnLightCTA from '../UI/BtnLightCTA';
 
 function SettingsOptions(props) {
-  const { logoutClick, updateclick } = props;
+  const { logoutClick, updateclick, deleteclick } = props;
 
   return (
     <div className={classes.container}>
@@ -30,6 +30,17 @@ function SettingsOptions(props) {
             type="button"
             label="Modifica"
             onCLickAction={updateclick}
+          />
+        </div>
+      </div>
+      <br></br>
+      <div className={classes.flexRow}>
+        <div>Cancella account:</div>
+        <div>
+          <BtnLightCTA
+            type="button"
+            label="Cancella"
+            onCLickAction={deleteclick}
           />
         </div>
       </div>
