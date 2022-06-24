@@ -82,14 +82,16 @@ function EventListByDate(props) {
       </Fragment>
     );
   } else {
-    return (
-      <Fragment>
-        <div className={classes.date}>{humanReadableStartDate}</div>
-        <div className={classes.container}>
-          Nessun evento per le categorie da te selezionate
-        </div>
-      </Fragment>
-    );
+    return null;
+    // (
+    //   <Fragment>
+    //     <div className={classes.date}>{humanReadableStartDate}</div>
+    //     <div className={classes.container}>
+    //       <span></span>
+    //       Nessun risultato per le categorie di eventi selezionate
+    //     </div>
+    //   </Fragment>
+    // );
   }
 }
 

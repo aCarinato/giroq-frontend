@@ -1,19 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
-// import axios from 'axios';
 
 const mainContext = React.createContext({
-  // eventData,
-  //   setEventData,
-  //   mapCenter,
-  //   setMapCenter,
-  //   zoom,
-  //   setZoom,
-  //   filteredEvents,
-  //   setFilteredEvents,
-  //   selectedEvent,
-  //   setSetSelectedEvent,
-  // mobileView,
-  // setMobileView,
   authState: {},
   login: (token) => {},
   logout: () => {},
@@ -42,13 +29,17 @@ export function ContextProvider({ children }) {
   const [mobileView, setMobileView] = useState(null);
 
   // AUTHENTICATION
-
   const [authState, setAuthState] = useState({
     username: '',
     email: '',
     token: '',
     preferences: [],
   });
+
+  // SIGNUP
+  const [signupName, setSignupName] = useState('');
+  const [signupEmail, setSignupEmail] = useState('');
+  const [signupPassword, setSignupPassword] = useState('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -75,11 +66,7 @@ export function ContextProvider({ children }) {
   // const [userEmail, setUserEmail] = useState('')
 
   const loginHandler = (username, email, token, preferences) => {
-    // setUsername(username);
-    // setToken(token);
     localStorage.setItem('token', token);
-
-    // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
     localStorage.setItem(
       'gq-user-auth',
@@ -100,8 +87,6 @@ export function ContextProvider({ children }) {
   };
 
   const logoutHandler = () => {
-    // setUsername(null);
-    // setToken(null);
     localStorage.removeItem('token');
     localStorage.removeItem('gq-user-auth');
     setAuthState({
@@ -110,6 +95,9 @@ export function ContextProvider({ children }) {
       token: '',
       preferences: [],
     });
+    setSignupName('');
+    setSignupEmail('');
+    setSignupPassword('');
   };
 
   const value = {
@@ -130,6 +118,14 @@ export function ContextProvider({ children }) {
     authState: authState,
     login: loginHandler,
     logout: logoutHandler,
+
+    // SIGNUP
+    signupName,
+    setSignupName,
+    signupEmail,
+    setSignupEmail,
+    signupPassword,
+    setSignupPassword,
   };
 
   return <mainContext.Provider value={value}>{children}</mainContext.Provider>;

@@ -1,6 +1,7 @@
 .row {
   /* display: flex; */
   padding: 0 1rem;
+  width: 100%;
 }
 
 .title {
@@ -8,11 +9,11 @@
   margin-bottom: 0.5rem;
 }
 
-.col {
+/* .col {
   width: 50%;
   height: 2rem;
   line-height: 2rem;
-}
+} */
 
 .span-bold {
   font-weight: bold;

@@ -9,12 +9,12 @@
 
 .item {
   flex-grow: 1;
+  font-size: 0.75rem;
 }
 
 .activeItemTxt {
   /* flex-grow: 1; */
   text-align: center;
-  /* border-bottom: 1px solid var(--main-neutral-color); */
 }
 
 .inactiveItemTxt {
