@@ -3,27 +3,71 @@ import { Icon } from '@iconify/react';
 
 import { useMainContext } from '../../context/Context';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 function SignupForm(props) {
   const {
-    signupName,
+    // signupName,
     setSignupName,
-    signupEmail,
+    // signupEmail,
     setSignupEmail,
-    signupPassword,
+    // signupPassword,
     setSignupPassword,
   } = useMainContext();
 
   const { setLoginMode } = props;
 
+  //   const nameInputRef = useRef();
+
+  const [enteredName, setEnteredName] = useState('');
+  const [enteredEmail, setEnteredEmail] = useState('');
+  const [enteredPassword, setEnteredPassword] = useState('');
+
+  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
+
+  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+
+  const [formIsValid, setFormIsValid] = useState(false);
+
+  //   CHECK INPUT VALIDITY
+  const enteredNameIsValid = enteredName.trim() !== '';
+  const signupNameIsInvalid = !enteredNameIsValid && enteredNameTouched;
+
   const router = useRouter();
 
-  //   const goToPreferences = (e) => {
-  //     e.preventDefault();
-  //     router.push(`/signup-preferenze`);
-  //   };
+  const nameInputChangeHandler = (e) => {
+    setEnteredName(e.target.value);
+  };
+
+  const emailInputChangeHandler = (e) => {
+    setEnteredEmail(e.target.value);
+  };
+
+  const passwordInputChangeHandler = (e) => {
+    setEnteredPassword(e.target.value);
+  };
+
+  const nameInputBlurHandler = (e) => {
+    setEnteredNameTouched(true);
+  };
+
   const goToPreferences = () => {
-    router.push(`/signup-preferenze`);
+    setEnteredNameTouched(true);
+    // console.log(nameInputRef.current.value.trim() === '');
+    if (!enteredNameIsValid) {
+      //   setNameIsValid(false);
+      return;
+    } else {
+      setSignupName(enteredName);
+      setSignupEmail(enteredEmail);
+      setSignupPassword(enteredPassword);
+      setEnteredName('');
+      setEnteredEmail('');
+      setEnteredPassword('');
+      setEnteredNameTouched(false);
+      router.push(`/signup-preferenze`);
+    }
   };
 
   const switchModeHandler = () => {
@@ -38,13 +82,22 @@ function SignupForm(props) {
           Nome:
         </label>
         <input
-          className={classes.input}
+          className={
+            signupNameIsInvalid ? classes['input-invalid'] : classes.input
+          }
           type="text"
           id="signupName"
           required
-          value={signupName}
-          onChange={(e) => setSignupName(e.target.value)}
+          value={enteredName}
+          //   onChange={(e) => setEnteredName(e.target.value)}
+          onChange={nameInputChangeHandler}
+          onBlur={nameInputBlurHandler}
         />
+        {signupNameIsInvalid && (
+          <p className={classes['input-error']}>
+            Inserire un valore per il nome
+          </p>
+        )}
       </div>
       <div className={classes.field}>
         <label className={classes.label} htmlFor="email">
@@ -52,13 +105,13 @@ function SignupForm(props) {
         </label>
         <input
           // onBlur={() => console.log(categoryCheck)}
-          className={classes.input}
+          className={emailIsValid ? classes.input : classes['input-invalid']}
           type="email"
           id="email"
           required
           // ref={emailInputRef}
-          value={signupEmail}
-          onChange={(e) => setSignupEmail(e.target.value)}
+          value={enteredEmail}
+          onChange={(e) => setEnteredEmail(e.target.value)}
         />
       </div>
       <div className={classes.field}>
@@ -66,21 +119,14 @@ function SignupForm(props) {
           Password:
         </label>
         <input
-          className={classes.input}
+          className={passwordIsValid ? classes.input : classes['input-invalid']}
           type="password"
           id="password"
           required
-          value={signupPassword}
-          onChange={(e) => setSignupPassword(e.target.value)}
+          value={enteredPassword}
+          onChange={(e) => setEnteredPassword(e.target.value)}
         />
       </div>
-      {/* <div className={classes.field}>
-          <label className={classes.label} htmlFor="password">
-            Per completare la registrazione seleziona le categorie di eventi di
-            tuo interesse:
-          </label>
-        </div> */}
-
       <div>
         <span onClick={goToPreferences} className={classes.link}>
           Seleziona eventi di tuo interesse{' '}

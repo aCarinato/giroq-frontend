@@ -36,6 +36,27 @@
   color: red;
 }
 
+.input-error {
+  color: red;
+  font-size: 0.75rem;
+}
+
+.input-invalid {
+  display: block;
+  width: 90%;
+  margin: auto;
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
+}
+
+.input-invalid:focus {
+  display: block;
+  width: 90%;
+  margin: auto;
+  border-color: #ff8800;
+  background-color: #fbe8d2;
+}
+
 .small-text {
   font-size: 0.85rem;
 }
