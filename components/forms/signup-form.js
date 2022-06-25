@@ -6,16 +6,11 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 function SignupForm(props) {
-  const {
-    // signupName,
-    setSignupName,
-    // signupEmail,
-    setSignupEmail,
-    // signupPassword,
-    setSignupPassword,
-  } = useMainContext();
+  const { setSignupName, setSignupEmail, setSignupPassword } = useMainContext();
 
   const { setLoginMode } = props;
+
+  const router = useRouter();
 
   //   const nameInputRef = useRef();
 
@@ -23,19 +18,38 @@ function SignupForm(props) {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
 
-  const [emailIsValid, setEmailIsValid] = useState(true);
-  const [passwordIsValid, setPasswordIsValid] = useState(true);
-
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
-
-  const [formIsValid, setFormIsValid] = useState(false);
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
+  const [enteredPasswordTouched, setEnteredPasswordTouched] = useState(false);
 
   //   CHECK INPUT VALIDITY
   const enteredNameIsValid = enteredName.trim() !== '';
   const signupNameIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
-  const router = useRouter();
+  //   console.log('enteredNameIsValid:');
+  //   console.log(enteredNameIsValid);
+  //   console.log('enteredNameTouched');
+  //   console.log(enteredNameTouched);
+  //   console.log('signupNameIsInvalid');
+  //   console.log(signupNameIsInvalid);
 
+  const enteredEmailIsValid =
+    enteredEmail.trim() !== '' && enteredEmail.includes('@');
+  const signupEmailIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
+  //   console.log(signupEmailIsInvalid);
+
+  const enteredPasswordIsValid =
+    enteredPassword.trim() !== '' && enteredPassword.length >= 6;
+  const signupPasswordIsInvalid =
+    !enteredPasswordIsValid && enteredPasswordTouched;
+
+  let formIsValid;
+
+  if (enteredNameIsValid && enteredEmailIsValid && enteredPasswordIsValid)
+    formIsValid = true;
+
+  //   HANDLERS
+  //   onChange()
   const nameInputChangeHandler = (e) => {
     setEnteredName(e.target.value);
   };
@@ -48,15 +62,25 @@ function SignupForm(props) {
     setEnteredPassword(e.target.value);
   };
 
+  //   onBlur()
   const nameInputBlurHandler = (e) => {
     setEnteredNameTouched(true);
   };
 
+  const emailInputBlurHandler = (e) => {
+    setEnteredEmailTouched(true);
+  };
+
+  const passwordInputBlurHandler = (e) => {
+    setEnteredPasswordTouched(true);
+  };
+
   const goToPreferences = () => {
     setEnteredNameTouched(true);
-    // console.log(nameInputRef.current.value.trim() === '');
-    if (!enteredNameIsValid) {
-      //   setNameIsValid(false);
+    setEnteredEmailTouched(true);
+    setEnteredPasswordTouched(true);
+
+    if (!formIsValid) {
       return;
     } else {
       setSignupName(enteredName);
@@ -66,6 +90,8 @@ function SignupForm(props) {
       setEnteredEmail('');
       setEnteredPassword('');
       setEnteredNameTouched(false);
+      setEnteredEmailTouched(false);
+      setEnteredPasswordTouched(false);
       router.push(`/signup-preferenze`);
     }
   };
@@ -89,7 +115,7 @@ function SignupForm(props) {
           id="signupName"
           required
           value={enteredName}
-          //   onChange={(e) => setEnteredName(e.target.value)}
+          // onChange={(e) => setEnteredName(e.target.value)} // THIS WORKS TOO
           onChange={nameInputChangeHandler}
           onBlur={nameInputBlurHandler}
         />
@@ -104,28 +130,42 @@ function SignupForm(props) {
           Email:
         </label>
         <input
-          // onBlur={() => console.log(categoryCheck)}
-          className={emailIsValid ? classes.input : classes['input-invalid']}
+          className={
+            signupEmailIsInvalid ? classes['input-invalid'] : classes.input
+          }
           type="email"
           id="email"
           required
-          // ref={emailInputRef}
           value={enteredEmail}
-          onChange={(e) => setEnteredEmail(e.target.value)}
+          onChange={emailInputChangeHandler}
+          onBlur={emailInputBlurHandler}
         />
+        {signupEmailIsInvalid && (
+          <p className={classes['input-error']}>
+            Inserire un valore valido per l'email
+          </p>
+        )}
       </div>
       <div className={classes.field}>
         <label className={classes.label} htmlFor="password">
           Password:
         </label>
         <input
-          className={passwordIsValid ? classes.input : classes['input-invalid']}
+          className={
+            signupPasswordIsInvalid ? classes['input-invalid'] : classes.input
+          }
           type="password"
           id="password"
           required
           value={enteredPassword}
-          onChange={(e) => setEnteredPassword(e.target.value)}
+          onChange={passwordInputChangeHandler}
+          onBlur={passwordInputBlurHandler}
         />
+        {signupPasswordIsInvalid && (
+          <p className={classes['input-error']}>
+            Password di almeno 7 caratteri
+          </p>
+        )}
       </div>
       <div>
         <span onClick={goToPreferences} className={classes.link}>

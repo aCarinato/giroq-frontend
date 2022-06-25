@@ -1,5 +1,7 @@
 .btn {
   background-color: white;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
+    0 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.1);
   color: var(--main-neutral-color);
   border: 1px solid var(--main-neutral-color);
   padding: 0.5rem 1rem;
@@ -16,7 +18,7 @@
 
 @media (max-width: 768px) {
   .btn {
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem 0.5rem;
     font-size: 0.85rem;
     border-radius: 0.25rem;
   }

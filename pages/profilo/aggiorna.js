@@ -68,7 +68,7 @@ function Aggiorna() {
   };
 
   useEffect(() => {
-    let cancel = false;
+    let isMounted = true;
 
     const setAllStuff = () => {
       const selectedCategories = mapPreferences(authState.preferences);
@@ -76,7 +76,7 @@ function Aggiorna() {
       setCategoryCheck(selectedCategories);
     };
 
-    if (authState && authState.username !== '' && !cancel) {
+    if (authState && authState.username !== '' && isMounted) {
       // const selectedCategories = mapPreferences(authState.preferences);
       // setUsernameInput(authState.username);
       // setCategoryCheck(selectedCategories);
@@ -84,7 +84,7 @@ function Aggiorna() {
     }
 
     return () => {
-      cancel = true;
+      isMounted = false;
     };
   }, [authState && authState.username]);
 
