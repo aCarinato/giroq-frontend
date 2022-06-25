@@ -5,6 +5,7 @@ import Dates from './Dates';
 import classes from './Filter.module.css';
 
 import { useMainContext } from '../../context/Context';
+import { useState } from 'react';
 
 function Filter(props) {
   const {
@@ -25,6 +26,8 @@ function Filter(props) {
   } = props;
 
   const { setZoom } = useMainContext();
+
+  const [noCategoriesSelection, setNoCategoriesSelection] = useState(true);
 
   const resetFilters = () => {
     // DATES
@@ -123,6 +126,7 @@ function Filter(props) {
             categoryGroupCheck={categoryGroupCheck}
             setCategoryGroupCheck={setCategoryGroupCheck}
             setFilterCtgrTouch={setFilterCtgrTouch}
+            setNoCategoriesSelection={setNoCategoriesSelection}
             // nEvents={nEvents}
             // nTotEvents={nTotEvents}
           />

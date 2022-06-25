@@ -12,12 +12,14 @@ function Categories(props) {
     categoryGroupCheck,
     setCategoryGroupCheck,
     setFilterCtgrTouch,
+    setNoCategoriesSelection,
     // nEvents,
     // nTotEvents,
   } = props;
 
   const selectCategoryGroup = (id) => {
     setFilterCtgrTouch(true);
+    setNoCategoriesSelection(false);
     const newTypesCheck = [...categoryCheck];
     const newCategoryGroupCheck = [...categoryGroupCheck];
 
@@ -150,9 +152,9 @@ function Categories(props) {
 
   return (
     <div className={classes.row}>
-      <div className={classes.title}>
+      {/* <div className={classes.title}>
         <span className={classes['span-bold']}>Categorie</span>
-      </div>
+      </div> */}
       {CATEGORIES.map((category) => (
         <Fragment key={category.id}>
           <div
@@ -210,6 +212,7 @@ function Categories(props) {
               categoryGroupCheck={categoryGroupCheck}
               setCategoryGroupCheck={setCategoryGroupCheck}
               setFilterCtgrTouch={setFilterCtgrTouch}
+              setNoCategoriesSelection={setNoCategoriesSelection}
             />
           ))}
         </Fragment>

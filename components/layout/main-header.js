@@ -34,16 +34,24 @@ function MainHeader() {
 
   const goToRegister = () => {
     router.push('/user-login');
+
+    ga.event({
+      action: 'Gli eventi per te - Btn Click',
+      category: '',
+      label: '',
+      value: '9',
+    });
   };
 
   const clickOnPostEvent = () => {
-    window.open('https://www.giroq.com/posta-evento');
+    router.push('/posta-evento');
+    // window.open('https://www.giroq.com/posta-evento');
     // console.log('posteoo');
 
     //
 
     ga.event({
-      action: 'Click posta il tuo evento - Mobile',
+      action: 'Posta il tuo evento - Btn Click',
       category: '',
       label: '',
       value: '9',

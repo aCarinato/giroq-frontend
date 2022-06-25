@@ -1,6 +1,8 @@
 import classes from './update-profile-form.module.css';
 import Categories from '../filter/Categories';
 import BtnDarkCTA from '../UI/BtnDarkCTA';
+import BtnLightCTA from '../UI/BtnLightCTA';
+import { useRouter } from 'next/router';
 
 function UpdateProfileForm(props) {
   const {
@@ -17,6 +19,9 @@ function UpdateProfileForm(props) {
     formSubmit,
     // error,
   } = props;
+
+  const router = useRouter();
+
   return (
     <div className={classes.container}>
       <form onSubmit={formSubmit}>
@@ -34,19 +39,6 @@ function UpdateProfileForm(props) {
             // ref={usernameInputRef}
           />
         </div>
-        {/* <div className={classes.field}>
-          <label className={classes.label} htmlFor="email">
-            Email:
-          </label>
-          <input
-            // onBlur={() => console.log(categoryCheck)}
-            className={classes.input}
-            type="email"
-            id="email"
-            required
-            ref={emailInputRef}
-          />
-        </div> */}
         <div className={classes.field}>
           <label className={classes.label} htmlFor="password">
             Password:
@@ -72,13 +64,20 @@ function UpdateProfileForm(props) {
           />
         </div>
 
-        <div className={classes.field}>
+        {/* <div className={classes['flex-row']}> */}
+        <div className={classes['flex-row']}>
           <BtnDarkCTA
             type="submit"
             label="Modifica Account"
             onCLickAction={null}
           />
+          <BtnLightCTA
+            type="button"
+            label="Cancella"
+            onCLickAction={() => router.push('/profilo')}
+          />
         </div>
+        {/* </div> */}
       </form>
     </div>
   );

@@ -10,7 +10,12 @@ const UserRoute = ({ children }) => {
   const { authState } = useMainContext();
 
   useEffect(() => {
+    // let cancel = false;
     if (authState && authState.token) getCurrentUser();
+
+    // return () => {
+    //   cancel = true;
+    // };
   }, [authState && authState.token]);
 
   const getCurrentUser = async () => {
