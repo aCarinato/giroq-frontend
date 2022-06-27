@@ -40,6 +40,7 @@ export function ContextProvider({ children }) {
   const [signupName, setSignupName] = useState('');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
+  const [signupSecret, setSignupSecret] = useState('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -126,6 +127,8 @@ export function ContextProvider({ children }) {
     setSignupEmail,
     signupPassword,
     setSignupPassword,
+    signupSecret,
+    setSignupSecret,
   };
 
   return <mainContext.Provider value={value}>{children}</mainContext.Provider>;

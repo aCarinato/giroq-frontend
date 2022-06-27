@@ -6,7 +6,8 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 function SignupForm(props) {
-  const { setSignupName, setSignupEmail, setSignupPassword } = useMainContext();
+  const { setSignupName, setSignupEmail, setSignupPassword, setSignupSecret } =
+    useMainContext();
 
   const { setLoginMode } = props;
 
@@ -17,35 +18,39 @@ function SignupForm(props) {
   const [enteredName, setEnteredName] = useState('');
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
+  const [enteredSecret, setEnteredSecret] = useState('');
 
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
   const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
   const [enteredPasswordTouched, setEnteredPasswordTouched] = useState(false);
+  const [enteredSecretTouched, setEnteredSecretTouched] = useState(false);
 
   //   CHECK INPUT VALIDITY
   const enteredNameIsValid = enteredName.trim() !== '';
-  const signupNameIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
-  //   console.log('enteredNameIsValid:');
-  //   console.log(enteredNameIsValid);
-  //   console.log('enteredNameTouched');
-  //   console.log(enteredNameTouched);
-  //   console.log('signupNameIsInvalid');
-  //   console.log(signupNameIsInvalid);
+  const signupNameIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
   const enteredEmailIsValid =
     enteredEmail.trim() !== '' && enteredEmail.includes('@');
   const signupEmailIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
-  //   console.log(signupEmailIsInvalid);
 
   const enteredPasswordIsValid =
     enteredPassword.trim() !== '' && enteredPassword.length >= 6;
   const signupPasswordIsInvalid =
     !enteredPasswordIsValid && enteredPasswordTouched;
 
+  const enteredSecretIsValid = enteredSecret.trim() !== '';
+  const signupSecretIsInvalid = !enteredSecretIsValid && enteredSecretTouched;
+
+  // FORM VALIDITY
   let formIsValid;
 
-  if (enteredNameIsValid && enteredEmailIsValid && enteredPasswordIsValid)
+  if (
+    enteredNameIsValid &&
+    enteredEmailIsValid &&
+    enteredPasswordIsValid &&
+    enteredSecretIsValid
+  )
     formIsValid = true;
 
   //   HANDLERS
@@ -62,6 +67,10 @@ function SignupForm(props) {
     setEnteredPassword(e.target.value);
   };
 
+  const secretInputChangeHandler = (e) => {
+    setEnteredSecret(e.target.value);
+  };
+
   //   onBlur()
   const nameInputBlurHandler = (e) => {
     setEnteredNameTouched(true);
@@ -75,10 +84,17 @@ function SignupForm(props) {
     setEnteredPasswordTouched(true);
   };
 
+  const secretInputBlurHandler = (e) => {
+    setEnteredSecretTouched(true);
+  };
+
+  // FORM SUBMISSION
+
   const goToPreferences = () => {
     setEnteredNameTouched(true);
     setEnteredEmailTouched(true);
     setEnteredPasswordTouched(true);
+    setEnteredSecretTouched(true);
 
     if (!formIsValid) {
       return;
@@ -86,12 +102,15 @@ function SignupForm(props) {
       setSignupName(enteredName);
       setSignupEmail(enteredEmail);
       setSignupPassword(enteredPassword);
+      setSignupSecret(enteredSecret);
       setEnteredName('');
       setEnteredEmail('');
       setEnteredPassword('');
+      setEnteredSecret('');
       setEnteredNameTouched(false);
       setEnteredEmailTouched(false);
       setEnteredPasswordTouched(false);
+      setEnteredSecretTouched(false);
       router.push(`/signup-preferenze`);
     }
   };
@@ -167,6 +186,53 @@ function SignupForm(props) {
           </p>
         )}
       </div>
+
+      <div className={classes.field}>
+        <label className={classes.label} htmlFor="secret">
+          Seleziona una domanda:
+        </label>
+
+        <select className={classes.input}>
+          <option>---</option>
+          <option>Qual'è il tuo colore preferito?</option>
+          <option>Qual'è il nome del tuo migliore amico?</option>
+          <option>Qual'è la tua città di nascita?</option>
+        </select>
+        <br></br>
+
+        <small className={classes.label}>
+          Puoi usare questa risposta per resettare la password nel caso la
+          dimenticassi.
+        </small>
+
+        <input
+          className={
+            signupSecretIsInvalid ? classes['input-invalid'] : classes.input
+          }
+          type="text"
+          id="secret"
+          required
+          value={enteredSecret}
+          onChange={secretInputChangeHandler}
+          onBlur={secretInputBlurHandler}
+        />
+        {signupSecretIsInvalid && (
+          <p className={classes['input-error']}>
+            Seleziona una domanda e digita la risponda.
+          </p>
+        )}
+      </div>
+
+      {/* <div className="form-group p-2">
+          <input
+            value={secret}
+            onChange={(e) => setSecret(e.target.value)}
+            type="text"
+            className="form-control"
+            placeholder="Write your answer here"
+          />
+        </div> */}
+
       <div>
         <span onClick={goToPreferences} className={classes.link}>
           Seleziona eventi di tuo interesse{' '}
@@ -174,15 +240,6 @@ function SignupForm(props) {
         </span>
       </div>
 
-      {/* <div className={classes.field}>
-          <BtnDarkCTA
-            type="submit"
-            label="Seleziona preferenze"
-            //   onCLickAction={goToPreferences}
-            onCLickAction={null}
-          />
-        </div> */}
-      {/* </form> */}
       <div className={classes.field}>
         <p className={classes['small-text']}>
           Sei giá registrato? Vai al tuo{' '}
