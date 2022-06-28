@@ -164,6 +164,7 @@ function Aggiorna() {
           setCategoryGroupCheck={setCategoryGroupCheck}
           setFilterCtgrTouch={setFilterCtgrTouch}
           formSubmit={submitHandler}
+          // setNoCategoriesSelection={setNoCategoriesSelection}
         />
       </div>
     </UserRoute>

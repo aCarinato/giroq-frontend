@@ -18,6 +18,8 @@ function Registration() {
     setSignupEmail,
     signupPassword,
     setSignupPassword,
+    signupSecret,
+    setSignupSecret,
     login,
   } = useMainContext();
 
@@ -99,10 +101,11 @@ function Registration() {
       username: signupName,
       email: signupEmail,
       password: signupPassword,
+      secret: signupSecret,
       preferences: types,
     };
 
-    console.log(newUser);
+    // console.log(newUser);
 
     try {
       const res = await axios.post(

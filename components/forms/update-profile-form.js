@@ -16,6 +16,7 @@ function UpdateProfileForm(props) {
     categoryGroupCheck,
     setCategoryGroupCheck,
     setFilterCtgrTouch,
+    // setNoCategoriesSelection,
     formSubmit,
     // error,
   } = props;
@@ -61,6 +62,7 @@ function UpdateProfileForm(props) {
             categoryGroupCheck={categoryGroupCheck}
             setCategoryGroupCheck={setCategoryGroupCheck}
             setFilterCtgrTouch={setFilterCtgrTouch}
+            // setNoCategoriesSelection={setNoCategoriesSelection}
           />
         </div>
 

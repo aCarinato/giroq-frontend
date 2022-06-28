@@ -1,13 +1,21 @@
 import classes from './login-form.module.css';
 import BtnDarkCTA from '../UI/BtnDarkCTA';
+// import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 function LoginForm(props) {
   const { setLoginMode, emailInputRef, passwordInputRef, formSubmit, error } =
     props;
 
+  // const router = useRouter();
+
   const switchModeHandler = () => {
     setLoginMode((prevState) => !prevState);
   };
+
+  // const resetPasswordHandler = () => {
+  //   router.push('/reset-password');
+  // };
 
   return (
     <div className={classes.container}>
@@ -49,6 +57,20 @@ function LoginForm(props) {
             Registrati
           </span>
         </p>
+      </div>
+
+      <div className={classes.field}>
+        <p>
+          Password dimenticata?
+          {/* <span className={classes.spanLink} onClick={resetPasswordHandler}>
+            <small>Reimposta password</small>
+          </span> */}
+        </p>
+        <small>
+          <Link href="/reset-password">
+            <a>Reimposta password</a>
+          </Link>
+        </small>
       </div>
     </div>
   );

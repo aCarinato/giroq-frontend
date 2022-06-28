@@ -12,14 +12,14 @@ function Categories(props) {
     categoryGroupCheck,
     setCategoryGroupCheck,
     setFilterCtgrTouch,
-    setNoCategoriesSelection,
+    // setNoCategoriesSelection,
     // nEvents,
     // nTotEvents,
   } = props;
 
   const selectCategoryGroup = (id) => {
     setFilterCtgrTouch(true);
-    setNoCategoriesSelection(false);
+    // setNoCategoriesSelection(false);
     const newTypesCheck = [...categoryCheck];
     const newCategoryGroupCheck = [...categoryGroupCheck];
 
@@ -212,7 +212,7 @@ function Categories(props) {
               categoryGroupCheck={categoryGroupCheck}
               setCategoryGroupCheck={setCategoryGroupCheck}
               setFilterCtgrTouch={setFilterCtgrTouch}
-              setNoCategoriesSelection={setNoCategoriesSelection}
+              // setNoCategoriesSelection={setNoCategoriesSelection}
             />
           ))}
         </Fragment>

@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import LoginForm from '../components/forms/login-form';
 import SignupForm from '../components/forms/signup-form';
 import RegistrationWizard from '../components/user/registration-wizard';
+import Wrapper5095 from '../components/UI/Wrapper5095';
 
 import { useMainContext } from '../context/Context';
 
@@ -70,6 +71,13 @@ function UserLogin() {
       {!loginMode ? (
         <>
           <RegistrationWizard activeStep={0} />
+          <br></br>
+          <Wrapper5095 shadow={false}>
+            <h4>
+              Registrati e resta aggiornato su tutti gli eventi di tuo
+              interesse!
+            </h4>
+          </Wrapper5095>
           <SignupForm setLoginMode={setLoginMode} />
         </>
       ) : (
