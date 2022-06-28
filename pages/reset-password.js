@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRef, useState } from 'react';
 import ResetPasswordForm from '../components/forms/reset-password-form';
 import Wrapper5095 from '../components/UI/Wrapper5095';
+import ErrorParagraph from '../components/UI/ErrorParagraph';
 
 import { useMainContext } from '../context/Context';
 
@@ -79,7 +80,7 @@ function ResetPassword() {
       )}
       {errorMessage !== '' && (
         <Wrapper5095 shadow={false}>
-          <p>{errorMessage}</p>
+          <ErrorParagraph text={errorMessage} />
         </Wrapper5095>
       )}
     </div>
