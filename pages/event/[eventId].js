@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 // import EventId from '../../components/events/eventid';
 import Head from 'next/head';
+import Wrapper5095 from '../../components/UI/Wrapper5095';
+import BtnDarkCTA from '../../components/UI/BtnDarkCTA';
+import BtnLightCTA from '../../components/UI/BtnLightCTA';
 
 import * as ga from '../../lib/google-analytics';
 
@@ -14,6 +17,8 @@ import Ribbon from '../../components/recommender/Ribbon';
 
 function EventDetailPage(props) {
   const selectedEvent = props.event;
+
+  const router = useRouter();
 
   const originalImgUrl = selectedEvent.image.url;
   const strBefore = originalImgUrl.split('upload/')[0];
@@ -142,6 +147,19 @@ function EventDetailPage(props) {
             />
           )}
         </div>
+        <br></br>
+        <Wrapper5095 shadow={false}>
+          <BtnDarkCTA
+            type="button"
+            label="Gli eventi per te"
+            onCLickAction={() => router.push('/user-login')}
+          />
+          <BtnLightCTA
+            type="button"
+            label="Trova tutti gli eventi"
+            onCLickAction={() => router.push('/')}
+          />
+        </Wrapper5095>
         <br></br>
         <div
           style={{
